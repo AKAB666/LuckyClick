@@ -89,27 +89,46 @@ font-size:30px;
 
 <div id="casino" class="card hidden">
 
+<div id="casino" class="card hidden">
+
 <h2>🎰 Казино</h2>
 
-<button>
-🎰 Слот
+<h3>🎡 Рулетка</h3>
+
+<input id="bet" type="number" placeholder="Сумма ставки">
+
+<br>
+
+<button onclick="chooseColor('red')">
+🔴 Красное x2
 </button>
 
-<button>
-🎲 Кубик
+<button onclick="chooseColor('black')">
+⚫ Черное x2
 </button>
 
-<button>
-🎡 Рулетка
+<button onclick="chooseColor('green')">
+🟢 Зеленое x14
 </button>
 
-<button>
-📈 Лесенка
+<br>
+
+<input id="number" type="number" min="0" max="36" placeholder="Число 0-36">
+
+<br>
+
+<button onclick="roulette()">
+🎡 Крутить рулетку
 </button>
 
-<button>
-💎 Джекпот
+<p id="rouletteResult"></p>
+
+
+<button onclick="back()">
+⬅️ Назад
 </button>
+
+</div>
 
 <button onclick="back()">
 ⬅️ Назад
