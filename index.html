@@ -311,7 +311,80 @@ x.classList.remove("hidden");
 
 }
 
+let selectedColor = "";
 
+function chooseColor(color){
+    selectedColor = color;
+}
+
+function roulette(){
+
+    let bet = Number(document.getElementById("bet").value);
+    let number = Number(document.getElementById("number").value);
+
+    if(bet <= 0){
+        alert("Введите ставку");
+        return;
+    }
+
+    if(bet > coins){
+        alert("Недостаточно монет");
+        return;
+    }
+
+    if(selectedColor == ""){
+        alert("Выберите цвет");
+        return;
+    }
+
+    if(number < 0 || number > 36){
+        alert("Введите число от 0 до 36");
+        return;
+    }
+
+    coins -= bet;
+
+    let winNumber = Math.floor(Math.random()*37);
+
+    let winColor;
+
+    if(winNumber == 0){
+        winColor = "green";
+    }else if(winNumber % 2 == 0){
+        winColor = "black";
+    }else{
+        winColor = "red";
+    }
+
+    let text = "Выпало: " + winNumber + " ";
+
+    if(winColor=="red") text+="🔴";
+    if(winColor=="black") text+="⚫";
+    if(winColor=="green") text+="🟢";
+
+    if(number == winNumber){
+        coins += bet * 14;
+        text += "<br>🎉 Вы угадали число!";
+    }
+    else if(selectedColor == winColor){
+
+        if(winColor=="green"){
+            coins += bet * 14;
+        }else{
+            coins += bet * 2;
+        }
+
+        text += "<br>🎉 Вы угадали цвет!";
+    }
+    else{
+        text += "<br>😢 Проигрыш";
+    }
+
+    document.getElementById("rouletteResult").innerHTML = text;
+
+    save();
+    update();
+}
 update();
 
 </script>
