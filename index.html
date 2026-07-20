@@ -7,48 +7,49 @@
 <title>Lucky Click</title>
 
 <style>
-
 body{
-    background:#101010;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-    margin:0;
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
+margin:0;
 }
 
-header{
-    padding:20px;
-    font-size:30px;
-    font-weight:bold;
+h1{
+color:#ffd700;
 }
 
 .card{
-    background:#1f1f1f;
-    margin:15px;
-    padding:20px;
-    border-radius:20px;
+background:#222;
+margin:15px;
+padding:20px;
+border-radius:20px;
 }
 
 button{
-    background:#ffd700;
-    border:none;
-    border-radius:15px;
-    padding:15px;
-    margin:8px;
-    font-size:18px;
-}
-
-.click{
-    width:200px;
-    height:200px;
-    border-radius:50%;
-    font-size:35px;
+width:90%;
+padding:15px;
+margin:8px;
+border-radius:15px;
+border:0;
+font-size:18px;
+background:#ffd700;
 }
 
 .menu button{
-    width:90%;
-    background:#292929;
-    color:white;
+background:#333;
+color:white;
+}
+
+.hidden{
+display:none;
+}
+
+.click{
+width:180px;
+height:180px;
+border-radius:50%;
+font-size:30px;
 }
 
 </style>
@@ -57,48 +58,128 @@ button{
 
 <body>
 
-<header>
-🍀 Lucky Click
-</header>
+
+<h1>🍀 Lucky Click</h1>
 
 
 <div class="card">
-
-<h2>
 💰 Монеты:
 <span id="coins">0</span>
-</h2>
-
-
-<h3>
+<br>
 ⚡ Сила клика:
 <span id="power">1</span>
-</h3>
+</div>
 
+
+<div id="home" class="card">
 
 <button class="click" onclick="clickCoin()">
 🖱️ КЛИК
 </button>
 
+<br>
+
+<button onclick="upgrade()">
+⚡ Улучшить клик
+</button>
 
 </div>
 
 
 
-<div class="card">
+<div id="casino" class="card hidden">
 
-<h2>⚡ Улучшение клика</h2>
+<h2>🎰 Казино</h2>
 
-<p>
-Цена:
-<span id="upgradePrice">100</span> 💰
-</p>
-
-
-<button onclick="upgrade()">
-Улучшить
+<button>
+🎰 Слот
 </button>
 
+<button>
+🎲 Кубик
+</button>
+
+<button>
+🎡 Рулетка
+</button>
+
+<button>
+📈 Лесенка
+</button>
+
+<button>
+💎 Джекпот
+</button>
+
+<button onclick="back()">
+⬅️ Назад
+</button>
+
+</div>
+
+
+
+<div id="shop" class="card hidden">
+
+<h2>🏪 Магазин</h2>
+
+<p>
+Скоро здесь будут улучшения и бустеры
+</p>
+
+<button onclick="back()">
+⬅️ Назад
+</button>
+
+</div>
+
+
+
+<div id="pets" class="card hidden">
+
+<h2>🐾 Питомцы</h2>
+
+<p>
+Скоро появятся питомцы
+</p>
+
+<button onclick="back()">
+⬅️ Назад
+</button>
+
+</div>
+
+
+
+<div id="cases" class="card hidden">
+
+<h2>🎁 Кейсы</h2>
+
+<p>
+Обычный — 5000 💰<br>
+Редкий — 12000 💰<br>
+Легендарный — 100000 💰
+</p>
+
+<button onclick="back()">
+⬅️ Назад
+</button>
+
+</div>
+
+
+
+<div id="profile" class="card hidden">
+
+<h2>👤 Профиль</h2>
+
+<p>
+Игрок Lucky Click
+</p>
+
+<button onclick="back()">
+⬅️ Назад
+</button>
 
 </div>
 
@@ -106,33 +187,27 @@ button{
 
 <div class="card menu">
 
-<h2>🎮 Меню</h2>
+<h2>Меню</h2>
 
-
-<button>
+<button onclick="openPage('casino')">
 🎰 Казино
 </button>
 
-
-<button>
+<button onclick="openPage('shop')">
 🏪 Магазин
 </button>
 
-
-<button>
+<button onclick="openPage('pets')">
 🐾 Питомцы
 </button>
 
-
-<button>
+<button onclick="openPage('cases')">
 🎁 Кейсы
 </button>
 
-
-<button>
+<button onclick="openPage('profile')">
 👤 Профиль
 </button>
-
 
 </div>
 
@@ -140,39 +215,9 @@ button{
 
 <script>
 
+let coins = Number(localStorage.getItem("coins")) || 0;
 
-let coins =
-Number(localStorage.getItem("coins")) || 0;
-
-
-let power =
-Number(localStorage.getItem("power")) || 1;
-
-
-let upgradePrice =
-Number(localStorage.getItem("upgradePrice")) || 100;
-
-
-
-function save(){
-
-localStorage.setItem(
-"coins",
-coins
-);
-
-localStorage.setItem(
-"power",
-power
-);
-
-localStorage.setItem(
-"upgradePrice",
-upgradePrice
-);
-
-}
-
+let power = Number(localStorage.getItem("power")) || 1;
 
 
 function update(){
@@ -181,60 +226,74 @@ document.getElementById("coins").innerHTML=coins;
 
 document.getElementById("power").innerHTML=power;
 
-document.getElementById("upgradePrice").innerHTML=upgradePrice;
-
 }
-
 
 
 function clickCoin(){
 
-coins += power;
+coins+=power;
 
 save();
 
 update();
 
 }
-
 
 
 function upgrade(){
 
-if(coins >= upgradePrice){
+if(coins>=100){
 
-coins -= upgradePrice;
+coins-=100;
 
 power++;
-
-upgradePrice *= 2;
 
 save();
 
 update();
 
+}else{
 
-alert(
-"⚡ Клик улучшен!"
-);
-
-
-}
-
-else{
-
-alert(
-"❌ Не хватает монет"
-);
+alert("Не хватает монет");
 
 }
 
 }
 
+
+
+function save(){
+
+localStorage.setItem("coins",coins);
+
+localStorage.setItem("power",power);
+
+}
+
+
+
+function openPage(page){
+
+document.querySelectorAll(".card").forEach(x=>{
+x.classList.add("hidden");
+});
+
+document.getElementById(page).classList.remove("hidden");
+
+}
+
+
+
+function back(){
+
+document.querySelectorAll(".card").forEach(x=>{
+x.classList.remove("hidden");
+});
+
+}
 
 
 update();
-
 
 </script>
 
