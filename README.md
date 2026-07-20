@@ -1,0 +1,2 @@
+# LuckyClick
+Мини апп
