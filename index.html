@@ -1,394 +1,143 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Click</title>
 
-<title>Lucky Click</title>
-
-<style>
-body{
-background:#111;
-color:white;
-font-family:Arial;
-text-align:center;
-margin:0;
-}
-
-h1{
-color:#ffd700;
-}
-
-.card{
-background:#222;
-margin:15px;
-padding:20px;
-border-radius:20px;
-}
-
-button{
-width:90%;
-padding:15px;
-margin:8px;
-border-radius:15px;
-border:0;
-font-size:18px;
-background:#ffd700;
-}
-
-.menu button{
-background:#333;
-color:white;
-}
-
-.hidden{
-display:none;
-}
-
-.click{
-width:180px;
-height:180px;
-border-radius:50%;
-font-size:30px;
-}
-
-</style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+<header class="top">
+    <h1>🍀 Lucky Click</h1>
 
-<h1>🍀 Lucky Click</h1>
+    <div class="balance">
+        💰 <span id="coins">0</span>
+    </div>
 
+    <div class="power">
+        ⚡ Клик:
+        <span id="clickPower">1</span>
+    </div>
+</header>
 
-<div class="card">
-💰 Монеты:
-<span id="coins">0</span>
-<br>
-⚡ Сила клика:
-<span id="power">1</span>
-</div>
+<section id="home" class="page active">
 
+    <button id="clickButton">
+        🪙
+    </button>
 
-<div id="home" class="card">
+    <button class="big" onclick="upgradeClick()">
+        ⚡ Улучшить клик
+    </button>
 
-<button class="click" onclick="clickCoin()">
-🖱️ КЛИК
-</button>
+</section>
 
-<br>
-
-<button onclick="upgrade()">
-⚡ Улучшить клик
-</button>
-
-</div>
-
-
-
-<div id="casino" class="card hidden">
-
-<div id="casino" class="card hidden">
+<section id="casino" class="page">
 
 <h2>🎰 Казино</h2>
 
-<h3>🎡 Рулетка</h3>
-
-<input id="bet" type="number" placeholder="Сумма ставки">
-
-<br>
-
-<button onclick="chooseColor('red')">
-🔴 Красное x2
+<button onclick="openGame('roulette')">
+🎡 Рулетка
 </button>
 
-<button onclick="chooseColor('black')">
-⚫ Черное x2
+<button onclick="openGame('dice')">
+🎲 Кубик
 </button>
 
-<button onclick="chooseColor('green')">
-🟢 Зеленое x14
+<button onclick="openGame('slot')">
+🎰 Слот
 </button>
 
-<br>
-
-<input id="number" type="number" min="0" max="36" placeholder="Число 0-36">
-
-<br>
-
-<button onclick="roulette()">
-🎡 Крутить рулетку
+<button onclick="openGame('ladder')">
+📈 Лесенка
 </button>
 
-<p id="rouletteResult"></p>
-
-
-<button onclick="back()">
-⬅️ Назад
+<button onclick="openGame('jackpot')">
+💎 Джекпот
 </button>
 
-</div>
-
-<button onclick="back()">
-⬅️ Назад
+<button onclick="showPage('home')">
+⬅ Назад
 </button>
 
-</div>
+</section>
 
-
-
-<div id="shop" class="card hidden">
+<section id="shop" class="page">
 
 <h2>🏪 Магазин</h2>
 
+<div class="item">
+
+<h3>⚡ Улучшение клика</h3>
+
 <p>
-Скоро здесь будут улучшения и бустеры
+Цена:
+<span id="upgradePrice">100</span>
 </p>
 
-<button onclick="back()">
-⬅️ Назад
+<button onclick="upgradeClick()">
+Купить
 </button>
 
 </div>
 
+<div class="item">
 
+<h3>🤖 Автоклик</h3>
 
-<div id="pets" class="card hidden">
+<p>
+Цена:
+5000
+</p>
+
+<button id="buyAuto">
+Купить
+</button>
+
+</div>
+
+<button onclick="showPage('home')">
+⬅ Назад
+</button>
+
+</section>
+
+<section id="pets" class="page">
 
 <h2>🐾 Питомцы</h2>
 
-<p>
-Скоро появятся питомцы
-</p>
-
-<button onclick="back()">
-⬅️ Назад
-</button>
+<div id="petsList">
 
 </div>
 
+<button onclick="showPage('home')">
+⬅ Назад
+</button>
 
+</section>
 
-<div id="cases" class="card hidden">
+<section id="cases" class="page">
 
 <h2>🎁 Кейсы</h2>
 
-<p>
-Обычный — 5000 💰<br>
-Редкий — 12000 💰<br>
-Легендарный — 100000 💰
-</p>
-
-<button onclick="back()">
-⬅️ Назад
+<button onclick="openCase('common')">
+Обычный — 5000
 </button>
 
-</div>
-
-
-
-<div id="profile" class="card hidden">
-
-<h2>👤 Профиль</h2>
-
-<p>
-Игрок Lucky Click
-</p>
-
-<button onclick="back()">
-⬅️ Назад
+<button onclick="openCase('rare')">
+Редкий — 12000
 </button>
 
-</div>
-
-
-
-<div class="card menu">
-
-<h2>Меню</h2>
-
-<button onclick="openPage('casino')">
-🎰 Казино
+<button onclick="openCase('legend')">
+Легендарный — 100000
 </button>
 
-<button onclick="openPage('shop')">
-🏪 Магазин
+<div id="caseResult"></div>
+
+<button onclick="showPage('home')">
+⬅ Назад
 </button>
 
-<button onclick="openPage('pets')">
-🐾 Питомцы
-</button>
-
-<button onclick="openPage('cases')">
-🎁 Кейсы
-</button>
-
-<button onclick="openPage('profile')">
-👤 Профиль
-</button>
-
-</div>
-
-
-
-<script>
-
-let coins = Number(localStorage.getItem("coins")) || 0;
-
-let power = Number(localStorage.getItem("power")) || 1;
-
-
-function update(){
-
-document.getElementById("coins").innerHTML=coins;
-
-document.getElementById("power").innerHTML=power;
-
-}
-
-
-function clickCoin(){
-
-coins+=power;
-
-save();
-
-update();
-
-}
-
-
-function upgrade(){
-
-if(coins>=100){
-
-coins-=100;
-
-power++;
-
-save();
-
-update();
-
-}else{
-
-alert("Не хватает монет");
-
-}
-
-}
-
-
-
-function save(){
-
-localStorage.setItem("coins",coins);
-
-localStorage.setItem("power",power);
-
-}
-
-
-
-function openPage(page){
-
-document.querySelectorAll(".card").forEach(x=>{
-x.classList.add("hidden");
-});
-
-document.getElementById(page).classList.remove("hidden");
-
-}
-
-
-
-function back(){
-
-document.querySelectorAll(".card").forEach(x=>{
-x.classList.remove("hidden");
-});
-
-}
-
-let selectedColor = "";
-
-function chooseColor(color){
-    selectedColor = color;
-}
-
-function roulette(){
-
-    let bet = Number(document.getElementById("bet").value);
-    let number = Number(document.getElementById("number").value);
-
-    if(bet <= 0){
-        alert("Введите ставку");
-        return;
-    }
-
-    if(bet > coins){
-        alert("Недостаточно монет");
-        return;
-    }
-
-    if(selectedColor == ""){
-        alert("Выберите цвет");
-        return;
-    }
-
-    if(number < 0 || number > 36){
-        alert("Введите число от 0 до 36");
-        return;
-    }
-
-    coins -= bet;
-
-    let winNumber = Math.floor(Math.random()*37);
-
-    let winColor;
-
-    if(winNumber == 0){
-        winColor = "green";
-    }else if(winNumber % 2 == 0){
-        winColor = "black";
-    }else{
-        winColor = "red";
-    }
-
-    let text = "Выпало: " + winNumber + " ";
-
-    if(winColor=="red") text+="🔴";
-    if(winColor=="black") text+="⚫";
-    if(winColor=="green") text+="🟢";
-
-    if(number == winNumber){
-        coins += bet * 14;
-        text += "<br>🎉 Вы угадали число!";
-    }
-    else if(selectedColor == winColor){
-
-        if(winColor=="green"){
-            coins += bet * 14;
-        }else{
-            coins += bet * 2;
-        }
-
-        text += "<br>🎉 Вы угадали цвет!";
-    }
-    else{
-        text += "<br>😢 Проигрыш";
-    }
-
-    document.getElementById("rouletteResult").innerHTML = text;
-
-    save();
-    update();
-}
-update();
-
-</script>
-
-
-</body>
-</html>
+</section>
