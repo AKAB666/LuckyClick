@@ -1,97 +1,243 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Lucky Click</title>
+
 <style>
+
 body{
-background:#111;
-color:white;
-font-family:Arial;
-text-align:center;
+    background:#101010;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    margin:0;
 }
 
-button{
-font-size:25px;
-padding:20px;
-margin:10px;
-border-radius:15px;
+header{
+    padding:20px;
+    font-size:30px;
+    font-weight:bold;
 }
 
 .card{
-margin:20px;
-padding:20px;
-background:#222;
-border-radius:20px;
+    background:#1f1f1f;
+    margin:15px;
+    padding:20px;
+    border-radius:20px;
 }
+
+button{
+    background:#ffd700;
+    border:none;
+    border-radius:15px;
+    padding:15px;
+    margin:8px;
+    font-size:18px;
+}
+
+.click{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    font-size:35px;
+}
+
+.menu button{
+    width:90%;
+    background:#292929;
+    color:white;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h1>🍀 Lucky Click</h1>
-
-<div class="card">
-<h2>💰 Монеты: <span id="coins">0</span></h2>
-
-<button onclick="clicker()">
-🖱️ Клик
-</button>
-
-</div>
+<header>
+🍀 Lucky Click
+</header>
 
 
 <div class="card">
 
-<h2>🎰 Казино</h2>
+<h2>
+💰 Монеты:
+<span id="coins">0</span>
+</h2>
 
-<button onclick="roulette()">
-🎡 Рулетка
+
+<h3>
+⚡ Сила клика:
+<span id="power">1</span>
+</h3>
+
+
+<button class="click" onclick="clickCoin()">
+🖱️ КЛИК
 </button>
 
-<p id="result"></p>
 
 </div>
+
+
+
+<div class="card">
+
+<h2>⚡ Улучшение клика</h2>
+
+<p>
+Цена:
+<span id="upgradePrice">100</span> 💰
+</p>
+
+
+<button onclick="upgrade()">
+Улучшить
+</button>
+
+
+</div>
+
+
+
+<div class="card menu">
+
+<h2>🎮 Меню</h2>
+
+
+<button>
+🎰 Казино
+</button>
+
+
+<button>
+🏪 Магазин
+</button>
+
+
+<button>
+🐾 Питомцы
+</button>
+
+
+<button>
+🎁 Кейсы
+</button>
+
+
+<button>
+👤 Профиль
+</button>
+
+
+</div>
+
 
 
 <script>
 
-let coins=0;
 
-function clicker(){
+let coins =
+Number(localStorage.getItem("coins")) || 0;
 
-coins++;
+
+let power =
+Number(localStorage.getItem("power")) || 1;
+
+
+let upgradePrice =
+Number(localStorage.getItem("upgradePrice")) || 100;
+
+
+
+function save(){
+
+localStorage.setItem(
+"coins",
+coins
+);
+
+localStorage.setItem(
+"power",
+power
+);
+
+localStorage.setItem(
+"upgradePrice",
+upgradePrice
+);
+
+}
+
+
+
+function update(){
 
 document.getElementById("coins").innerHTML=coins;
 
-}
+document.getElementById("power").innerHTML=power;
 
-
-function roulette(){
-
-let win=Math.random();
-
-if(win>0.5){
-
-coins+=100;
-
-document.getElementById("result").innerHTML=
-"🎉 Победа +100 монет";
-
-}else{
-
-coins-=50;
-
-document.getElementById("result").innerHTML=
-"😢 Проигрыш -50 монет";
+document.getElementById("upgradePrice").innerHTML=upgradePrice;
 
 }
 
-document.getElementById("coins").innerHTML=coins;
+
+
+function clickCoin(){
+
+coins += power;
+
+save();
+
+update();
 
 }
+
+
+
+function upgrade(){
+
+if(coins >= upgradePrice){
+
+coins -= upgradePrice;
+
+power++;
+
+upgradePrice *= 2;
+
+save();
+
+update();
+
+
+alert(
+"⚡ Клик улучшен!"
+);
+
+
+}
+
+else{
+
+alert(
+"❌ Не хватает монет"
+);
+
+}
+
+}
+
+
+
+update();
+
 
 </script>
+
 
 </body>
 </html>
