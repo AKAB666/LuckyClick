@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lucky Click</title>
+<style>
+body{
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+button{
+font-size:25px;
+padding:20px;
+margin:10px;
+border-radius:15px;
+}
+
+.card{
+margin:20px;
+padding:20px;
+background:#222;
+border-radius:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🍀 Lucky Click</h1>
+
+<div class="card">
+<h2>💰 Монеты: <span id="coins">0</span></h2>
+
+<button onclick="clicker()">
+🖱️ Клик
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎰 Казино</h2>
+
+<button onclick="roulette()">
+🎡 Рулетка
+</button>
+
+<p id="result"></p>
+
+</div>
+
+
+<script>
+
+let coins=0;
+
+function clicker(){
+
+coins++;
+
+document.getElementById("coins").innerHTML=coins;
+
+}
+
+
+function roulette(){
+
+let win=Math.random();
+
+if(win>0.5){
+
+coins+=100;
+
+document.getElementById("result").innerHTML=
+"🎉 Победа +100 монет";
+
+}else{
+
+coins-=50;
+
+document.getElementById("result").innerHTML=
+"😢 Проигрыш -50 монет";
+
+}
+
+document.getElementById("coins").innerHTML=coins;
+
+}
+
+</script>
+
+</body>
+</html>
