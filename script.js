@@ -1,14 +1,14 @@
-// ==========================================
-// 🍀 LUCKY CLICK 2.0 — SCRIPT.JS
-// ==========================================
+// ======================================================
+// 🍀 LUCKY CLICK 2.0
+// Полный игровой скрипт
+// ======================================================
 
 
-// ==========================================
-// 💰 СОСТОЯНИЕ ИГРЫ
-// ==========================================
+// ======================================================
+// 💾 СОСТОЯНИЕ ИГРЫ
+// ======================================================
 
-let coins =
-    Number(localStorage.getItem("coins")) || 0.0;
+let coins = Number(localStorage.getItem("coins")) || 0;
 
 let clickPower =
     Number(localStorage.getItem("clickPower")) || 0.1;
@@ -16,18 +16,72 @@ let clickPower =
 let clickPrice =
     Number(localStorage.getItem("clickPrice")) || 100;
 
-let inventory =
-    JSON.parse(
-        localStorage.getItem("inventory")
-    ) || [];
-
 let totalClicks =
     Number(localStorage.getItem("totalClicks")) || 0;
 
+let inventory =
+    JSON.parse(
+        localStorage.getItem("inventory") || "[]"
+    );
 
-// ==========================================
+
+// ======================================================
+// 🎮 СОСТОЯНИЕ КАЗИНО
+// ======================================================
+
+let selectedDiceNumber = null;
+
+let selectedRouletteColor = null;
+
+let selectedRouletteNumber = null;
+
+
+// ======================================================
+// ✈️ CRASH
+// ======================================================
+
+let crashRunning = false;
+
+let crashMultiplier = 1;
+
+let crashBet = 0;
+
+let crashTimer = null;
+
+let crashCrashPoint = 1;
+
+
+// ======================================================
+// 💣 MINES
+// ======================================================
+
+let minesGameActive = false;
+
+let minesBet = 0;
+
+let mines = [];
+
+let openedMines = [];
+
+let minesMultiplier = 1;
+
+
+// ======================================================
+// 📈 ЛЕСЕНКА
+// ======================================================
+
+let ladderLevel = 0;
+
+let ladderBet = 0;
+
+let ladderMultiplier = 1;
+
+let ladderActive = false;
+
+
+// ======================================================
 // 💾 СОХРАНЕНИЕ
-// ==========================================
+// ======================================================
 
 function saveGame() {
 
@@ -47,172 +101,124 @@ function saveGame() {
     );
 
     localStorage.setItem(
-        "inventory",
-        JSON.stringify(inventory)
-    );
-
-    localStorage.setItem(
         "totalClicks",
         totalClicks
     );
 
+    localStorage.setItem(
+        "inventory",
+        JSON.stringify(inventory)
+    );
+
 }
 
 
-// ==========================================
-// 💰 ОБНОВЛЕНИЕ БАЛАНСА
-// ==========================================
+// ======================================================
+// 💰 БАЛАНС
+// ======================================================
 
 function updateBalance() {
 
-    const balanceElements =
-        document.querySelectorAll(
-            ".balance"
+    document
+        .querySelectorAll(".balance")
+        .forEach(
+            element => {
+
+                element.textContent =
+                    coins.toFixed(1) +
+                    " 🪙";
+
+            }
         );
 
 
-    balanceElements.forEach(
-        function(element) {
+    document
+        .querySelectorAll(".click-power")
+        .forEach(
+            element => {
 
-            element.textContent =
-                coins.toFixed(1) +
-                " 🪙";
+                element.textContent =
+                    "+" +
+                    clickPower.toFixed(1) +
+                    " 🪙";
 
-        }
-    );
-
-
-    const clickPowerElements =
-        document.querySelectorAll(
-            ".click-power"
+            }
         );
 
 
-    clickPowerElements.forEach(
-        function(element) {
+    document
+        .querySelectorAll(".click-price")
+        .forEach(
+            element => {
 
-            element.textContent =
-                "+" +
-                clickPower.toFixed(1) +
-                " 🪙";
+                element.textContent =
+                    Math.floor(clickPrice) +
+                    " 🪙";
 
-        }
-    );
-
-
-    const priceElements =
-        document.querySelectorAll(
-            ".click-price"
+            }
         );
-
-
-    priceElements.forEach(
-        function(element) {
-
-            element.textContent =
-                Math.floor(
-                    clickPrice
-                ) +
-                " 🪙";
-
-        }
-    );
 
 }
 
 
-// ==========================================
-// 🪙 ГЛАВНЫЙ КЛИК
-// ==========================================
+// ======================================================
+// 🪙 КЛИКЕР
+// ======================================================
 
 function clickCoin() {
 
     totalClicks++;
 
 
-    // Обычный доход
-
     let reward =
         clickPower;
 
 
-    // ======================================
-    // 🎁 РЕДКИЕ БОНУСЫ
-    // ======================================
-
-    const random =
+    let random =
         Math.random();
 
 
-    let bonusMessage =
-        "";
+    let bonusMessage = "";
 
 
-    // 💎 Сверхредкий бонус
-    // 0.05%
+    // 💎 0.05%
 
     if (
         random < 0.0005
     ) {
 
-        const bonus =
-            100;
-
-
-        reward += bonus;
-
+        reward += 100;
 
         bonusMessage =
-
-            "💎💎💎 СУПЕР БОНУС +" +
-            bonus +
-            " 🪙!";
+            "💎 СУПЕР БОНУС +100 🪙!";
 
     }
 
 
-    // 🎁 Очень редкий бонус
-    // 0.3%
+    // 🎁 0.3%
 
     else if (
         random < 0.0035
     ) {
 
-        const bonus =
-            10;
-
-
-        reward += bonus;
-
+        reward += 10;
 
         bonusMessage =
-
-            "🎁 РЕДКИЙ БОНУС +" +
-            bonus +
-            " 🪙!";
+            "🎁 ОЧЕНЬ РЕДКИЙ БОНУС +10 🪙!";
 
     }
 
 
-    // ⚡ Редкий бонус
-    // 2%
+    // ⚡ 2%
 
     else if (
         random < 0.0235
     ) {
 
-        const bonus =
-            1;
-
-
-        reward += bonus;
-
+        reward += 1;
 
         bonusMessage =
-
-            "⚡ БОНУС +" +
-            bonus +
-            " 🪙!";
+            "⚡ РЕДКИЙ БОНУС +1 🪙!";
 
     }
 
@@ -233,9 +239,9 @@ function clickCoin() {
 }
 
 
-// ==========================================
+// ======================================================
 // ✨ ЭФФЕКТ КЛИКА
-// ==========================================
+// ======================================================
 
 function showClickEffect(
     reward,
@@ -248,7 +254,9 @@ function showClickEffect(
         );
 
 
-    if (!container) {
+    if (
+        !container
+    ) {
 
         return;
 
@@ -267,13 +275,7 @@ function showClickEffect(
 
     effect.textContent =
 
-        bonusMessage
-
-        ?
-
-        bonusMessage
-
-        :
+        bonusMessage ||
 
         "+" +
         reward.toFixed(1) +
@@ -286,7 +288,7 @@ function showClickEffect(
 
 
     setTimeout(
-        function() {
+        () => {
 
             effect.remove();
 
@@ -297,9 +299,9 @@ function showClickEffect(
 }
 
 
-// ==========================================
+// ======================================================
 // ⚡ УЛУЧШЕНИЕ КЛИКА
-// ==========================================
+// ======================================================
 
 function upgradeClick() {
 
@@ -321,10 +323,9 @@ function upgradeClick() {
         clickPrice;
 
 
-    // Увеличиваем доход
-
     if (
-        clickPower < 1
+        clickPower <
+        1
     ) {
 
         clickPower +=
@@ -342,13 +343,9 @@ function upgradeClick() {
 
     clickPower =
         Number(
-            clickPower.toFixed(
-                1
-            )
+            clickPower.toFixed(1)
         );
 
-
-    // Цена увеличивается
 
     clickPrice *=
         2;
@@ -360,36 +357,24 @@ function upgradeClick() {
 
 
     showMessage(
-
-        "⚡ Клик улучшен! " +
-
-        "+" +
-
-        clickPower.toFixed(
-            1
-        ) +
-
-        " 🪙 за клик"
-
+        "⚡ Клик улучшен!"
     );
 
 }
 
 
-// ==========================================
+// ======================================================
 // 📱 НАВИГАЦИЯ
-// ==========================================
+// ======================================================
 
 function openPage(
     pageId
 ) {
 
     document
-        .querySelectorAll(
-            ".page"
-        )
+        .querySelectorAll(".page")
         .forEach(
-            function(page) {
+            page => {
 
                 page.classList.add(
                     "hidden"
@@ -424,20 +409,37 @@ function openPage(
 }
 
 
-// ==========================================
-// 🎰 ОТКРЫТИЕ ИГРЫ
-// ==========================================
+// ======================================================
+// 🎮 ОТКРЫТИЕ ИГРЫ
+// ======================================================
 
 function openGame(
     gameId
 ) {
+
+    const casinoMenu =
+        document.getElementById(
+            "casinoMenu"
+        );
+
+
+    if (
+        casinoMenu
+    ) {
+
+        casinoMenu.classList.add(
+            "hidden"
+        );
+
+    }
+
 
     document
         .querySelectorAll(
             ".game-screen"
         )
         .forEach(
-            function(game) {
+            game => {
 
                 game.classList.add(
                     "hidden"
@@ -466,9 +468,9 @@ function openGame(
 }
 
 
-// ==========================================
+// ======================================================
 // 🔙 НАЗАД В КАЗИНО
-// ==========================================
+// ======================================================
 
 function backToCasino() {
 
@@ -477,7 +479,7 @@ function backToCasino() {
             ".game-screen"
         )
         .forEach(
-            function(game) {
+            game => {
 
                 game.classList.add(
                     "hidden"
@@ -487,17 +489,17 @@ function backToCasino() {
         );
 
 
-    const casino =
+    const casinoMenu =
         document.getElementById(
             "casinoMenu"
         );
 
 
     if (
-        casino
+        casinoMenu
     ) {
 
-        casino.classList.remove(
+        casinoMenu.classList.remove(
             "hidden"
         );
 
@@ -506,9 +508,9 @@ function backToCasino() {
 }
 
 
-// ==========================================
+// ======================================================
 // 💬 СООБЩЕНИЯ
-// ==========================================
+// ======================================================
 
 function showMessage(
     text
@@ -543,7 +545,7 @@ function showMessage(
 
 
     setTimeout(
-        function() {
+        () => {
 
             message.classList.remove(
                 "show"
@@ -556,61 +558,1549 @@ function showMessage(
 }
 
 
-// ==========================================
-// 🎁 КЕЙСЫ
-// ==========================================
+// ======================================================
+// 🎰 СЛОТ
+// ======================================================
 
-const cases = {
+function playSlot() {
 
-    common: {
-
-        name:
-            "Обычный кейс",
-
-        price:
-            5000
-
-    },
+    const input =
+        document.getElementById(
+            "slotBet"
+        );
 
 
-    rare: {
-
-        name:
-            "Редкий кейс",
-
-        price:
-            25000
-
-    },
+    const bet =
+        Number(
+            input?.value
+        );
 
 
-    legendary: {
+    if (
+        !bet ||
+        bet <= 0
+    ) {
 
-        name:
-            "Легендарный кейс",
+        showMessage(
+            "Введите ставку"
+        );
 
-        price:
-            100000
-
-    },
-
-
-    mythical: {
-
-        name:
-            "Мифический кейс",
-
-        price:
-            500000
+        return;
 
     }
 
-};
+
+    if (
+        bet >
+        coins
+    ) {
+
+        showMessage(
+            "❌ Недостаточно монет"
+        );
+
+        return;
+
+    }
 
 
-// ==========================================
-// 🎁 ПРЕДМЕТЫ
-// ==========================================
+    coins -=
+        bet;
+
+
+    const symbols = [
+
+        "🍒",
+
+        "🍋",
+
+        "🍀",
+
+        "⭐",
+
+        "💎",
+
+        "7️⃣"
+
+    ];
+
+
+    const slot1 =
+        document.getElementById(
+            "slot1"
+        );
+
+    const slot2 =
+        document.getElementById(
+            "slot2"
+        );
+
+    const slot3 =
+        document.getElementById(
+            "slot3"
+        );
+
+
+    if (
+        slot1 &&
+        slot2 &&
+        slot3
+    ) {
+
+        slot1.classList.add(
+            "slot-spin"
+        );
+
+        slot2.classList.add(
+            "slot-spin"
+        );
+
+        slot3.classList.add(
+            "slot-spin"
+        );
+
+    }
+
+
+    setTimeout(
+        () => {
+
+            const a =
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
+
+
+            const b =
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
+
+
+            const c =
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
+
+
+            if (
+                slot1 &&
+                slot2 &&
+                slot3
+            ) {
+
+                slot1.textContent =
+                    a;
+
+                slot2.textContent =
+                    b;
+
+                slot3.textContent =
+                    c;
+
+
+                slot1.classList.remove(
+                    "slot-spin"
+                );
+
+                slot2.classList.remove(
+                    "slot-spin"
+                );
+
+                slot3.classList.remove(
+                    "slot-spin"
+                );
+
+            }
+
+
+            let win =
+                0;
+
+
+            if (
+                a === "7️⃣" &&
+                b === "7️⃣" &&
+                c === "7️⃣"
+            ) {
+
+                win =
+                    bet *
+                    20;
+
+                showMessage(
+                    "🎉 ДЖЕКПОТ 777!"
+                );
+
+            }
+
+            else if (
+                a === b &&
+                b === c
+            ) {
+
+                win =
+                    bet *
+                    8;
+
+                showMessage(
+                    "🔥 ТРИ ОДИНАКОВЫХ!"
+                );
+
+            }
+
+            else if (
+                a === b ||
+                b === c ||
+                a === c
+            ) {
+
+                win =
+                    bet *
+                    2;
+
+                showMessage(
+                    "✨ Пара!"
+                );
+
+            }
+
+            else {
+
+                showMessage(
+                    "😔 Не повезло"
+                );
+
+            }
+
+
+            coins +=
+                win;
+
+
+            saveGame();
+
+            updateBalance();
+
+
+        },
+        1000
+    );
+
+}
+
+
+// ======================================================
+// 🎡 РУЛЕТКА
+// ======================================================
+
+function selectRouletteColor(
+    color
+) {
+
+    selectedRouletteColor =
+        color;
+
+
+    const element =
+        document.getElementById(
+            "selectedRouletteColor"
+        );
+
+
+    if (
+        element
+    ) {
+
+        const names = {
+
+            red:
+                "🔴 Красное",
+
+            black:
+                "⚫ Чёрное",
+
+            green:
+                "🟢 Зелёное"
+
+        };
+
+
+        element.textContent =
+            names[color];
+
+    }
+
+}
+
+
+// ======================================================
+// 🔢 ВЫБОР ЧИСЛА РУЛЕТКИ
+// ======================================================
+
+function selectRouletteNumber(
+    number
+) {
+
+    selectedRouletteNumber =
+        Number(
+            number
+        );
+
+
+    showMessage(
+        "Выбрано число " +
+        number
+    );
+
+}
+
+
+// ======================================================
+// 🎡 ИГРА В РУЛЕТКУ
+// ======================================================
+
+function playRoulette() {
+
+    const bet =
+        Number(
+            document.getElementById(
+                "rouletteBet"
+            )?.value
+        );
+
+
+    if (
+        !bet ||
+        bet <= 0
+    ) {
+
+        showMessage(
+            "Введите ставку"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        bet >
+        coins
+    ) {
+
+        showMessage(
+            "❌ Недостаточно монет"
+        );
+
+        return;
+
+    }
+
+
+    coins -=
+        bet;
+
+
+    const result =
+        Math.floor(
+            Math.random() *
+            37
+        );
+
+
+    const redNumbers = [
+
+        1, 3, 5, 7, 9,
+
+        12, 14, 16, 18,
+
+        19, 21, 23, 25,
+
+        27, 30, 32, 34, 36
+
+    ];
+
+
+    let color;
+
+
+    if (
+        result === 0
+    ) {
+
+        color =
+            "green";
+
+    }
+
+    else if (
+        redNumbers.includes(
+            result
+        )
+    ) {
+
+        color =
+            "red";
+
+    }
+
+    else {
+
+        color =
+            "black";
+
+    }
+
+
+    const resultElement =
+        document.getElementById(
+            "rouletteNumber"
+        );
+
+
+    if (
+        resultElement
+    ) {
+
+        resultElement.textContent =
+            result;
+
+    }
+
+
+    let win =
+        0;
+
+
+    // Ставка на конкретное число
+
+    if (
+        selectedRouletteNumber !== null &&
+        result ===
+        selectedRouletteNumber
+    ) {
+
+        win +=
+            bet *
+            36;
+
+    }
+
+
+    // Ставка на цвет
+
+    if (
+        selectedRouletteColor ===
+        color
+    ) {
+
+        if (
+            color ===
+            "green"
+        ) {
+
+            win +=
+                bet *
+                14;
+
+        }
+
+        else {
+
+            win +=
+                bet *
+                2;
+
+        }
+
+    }
+
+
+    coins +=
+        win;
+
+
+    saveGame();
+
+    updateBalance();
+
+
+    if (
+        win > 0
+    ) {
+
+        showMessage(
+            "🎉 Выпало " +
+            result +
+            "! Вы выиграли " +
+            win.toFixed(1) +
+            " 🪙"
+        );
+
+    }
+
+    else {
+
+        showMessage(
+            "🎡 Выпало " +
+            result
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// 🎲 ВЫБОР ЧИСЛА КУБИКА
+// ======================================================
+
+function selectDiceNumber(
+    number
+) {
+
+    selectedDiceNumber =
+        number;
+
+
+    const element =
+        document.getElementById(
+            "selectedDiceNumber"
+        );
+
+
+    if (
+        element
+    ) {
+
+        element.textContent =
+            "Выбрано число: " +
+            number;
+
+    }
+
+}
+
+
+// ======================================================
+// 🎲 ИГРА В КУБИК
+// ======================================================
+
+function playDice() {
+
+    const bet =
+        Number(
+            document.getElementById(
+                "diceBet"
+            )?.value
+        );
+
+
+    if (
+        !bet ||
+        bet <= 0
+    ) {
+
+        showMessage(
+            "Введите ставку"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        bet >
+        coins
+    ) {
+
+        showMessage(
+            "❌ Недостаточно монет"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !selectedDiceNumber
+    ) {
+
+        showMessage(
+            "Выберите число"
+        );
+
+        return;
+
+    }
+
+
+    coins -=
+        bet;
+
+
+    const result =
+        Math.floor(
+            Math.random() *
+            6
+        ) +
+        1;
+
+
+    const dice =
+        document.querySelector(
+            ".dice-number"
+        );
+
+
+    if (
+        dice
+    ) {
+
+        dice.textContent =
+            "🎲 " +
+            result;
+
+    }
+
+
+    let win =
+        0;
+
+
+    if (
+        result ===
+        selectedDiceNumber
+    ) {
+
+        win =
+            bet *
+            5;
+
+        showMessage(
+            "🎉 Вы угадали!"
+        );
+
+    }
+
+    else {
+
+        showMessage(
+            "😔 Выпало " +
+            result
+        );
+
+    }
+
+
+    coins +=
+        win;
+
+
+    saveGame();
+
+    updateBalance();
+
+}
+
+
+// ======================================================
+// 📈 ЛЕСЕНКА
+// ======================================================
+
+function startLadder() {
+
+    const input =
+        document.getElementById(
+            "ladderBet"
+        );
+
+
+    const bet =
+        Number(
+            input?.value
+        );
+
+
+    if (
+        !bet ||
+        bet <= 0
+    ) {
+
+        showMessage(
+            "Введите ставку"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        bet >
+        coins
+    ) {
+
+        showMessage(
+            "❌ Недостаточно монет"
+        );
+
+        return;
+
+    }
+
+
+    coins -=
+        bet;
+
+
+    ladderBet =
+        bet;
+
+    ladderLevel =
+        0;
+
+    ladderMultiplier =
+        1;
+
+    ladderActive =
+        true;
+
+
+    saveGame();
+
+    updateBalance();
+
+
+    updateLadder();
+
+}
+
+
+// ======================================================
+// 📈 СЛЕДУЮЩИЙ УРОВЕНЬ
+// ======================================================
+
+function ladderNext() {
+
+    if (
+        !ladderActive
+    ) {
+
+        return;
+
+    }
+
+
+    // Шанс пройти уровень
+
+    const success =
+        Math.random() <
+        0.72;
+
+
+    if (
+        !success
+    ) {
+
+        ladderActive =
+            false;
+
+
+        ladderLevel =
+            0;
+
+
+        ladderMultiplier =
+            1;
+
+
+        showMessage(
+            "💥 Вы упали! Ставка потеряна"
+        );
+
+        return;
+
+    }
+
+
+    ladderLevel++;
+
+
+    ladderMultiplier =
+        Number(
+            (
+                1 +
+                ladderLevel *
+                0.35
+            ).toFixed(2)
+        );
+
+
+    updateLadder();
+
+
+    if (
+        ladderLevel >=
+        10
+    ) {
+
+        ladderCashout();
+
+    }
+
+}
+
+
+// ======================================================
+// 💰 ЗАБРАТЬ ЛЕСЕНКУ
+// ======================================================
+
+function ladderCashout() {
+
+    if (
+        !ladderActive
+    ) {
+
+        return;
+
+    }
+
+
+    const win =
+        ladderBet *
+        ladderMultiplier;
+
+
+    coins +=
+        win;
+
+
+    ladderActive =
+        false;
+
+
+    saveGame();
+
+    updateBalance();
+
+
+    showMessage(
+        "💰 Вы забрали " +
+        win.toFixed(1) +
+        " 🪙"
+    );
+
+}
+
+
+// ======================================================
+// 📈 ОБНОВЛЕНИЕ ЛЕСЕНКИ
+// ======================================================
+
+function updateLadder() {
+
+    const level =
+        document.getElementById(
+            "ladderLevel"
+        );
+
+
+    const multiplier =
+        document.getElementById(
+            "ladderMultiplier"
+        );
+
+
+    if (
+        level
+    ) {
+
+        level.textContent =
+            "Уровень " +
+            ladderLevel +
+            " / 10";
+
+    }
+
+
+    if (
+        multiplier
+    ) {
+
+        multiplier.textContent =
+            "×" +
+            ladderMultiplier.toFixed(2);
+
+    }
+
+}
+
+
+// ======================================================
+// 💣 MINES
+// ======================================================
+
+function startMines() {
+
+    const bet =
+        Number(
+            document.getElementById(
+                "minesBet"
+            )?.value
+        );
+
+
+    if (
+        !bet ||
+        bet <= 0
+    ) {
+
+        showMessage(
+            "Введите ставку"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        bet >
+        coins
+    ) {
+
+        showMessage(
+            "❌ Недостаточно монет"
+        );
+
+        return;
+
+    }
+
+
+    coins -=
+        bet;
+
+
+    minesBet =
+        bet;
+
+
+    minesGameActive =
+        true;
+
+
+    openedMines =
+        [];
+
+
+    minesMultiplier =
+        1;
+
+
+    mines =
+        [];
+
+
+    while (
+        mines.length <
+        4
+    ) {
+
+        const random =
+            Math.floor(
+                Math.random() *
+                16
+            );
+
+
+        if (
+            !mines.includes(
+                random
+            )
+        ) {
+
+            mines.push(
+                random
+            );
+
+        }
+
+    }
+
+
+    createMinesBoard();
+
+
+    saveGame();
+
+    updateBalance();
+
+}
+
+
+// ======================================================
+// 💣 СОЗДАНИЕ МИН
+// ======================================================
+
+function createMinesBoard() {
+
+    const board =
+        document.querySelector(
+            ".mines-board"
+        );
+
+
+    if (
+        !board
+    ) {
+
+        return;
+
+    }
+
+
+    board.innerHTML =
+        "";
+
+
+    for (
+        let i = 0;
+        i < 16;
+        i++
+    ) {
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+
+        button.textContent =
+            "?";
+
+
+        button.onclick =
+            () => openMineCell(
+                i,
+                button
+            );
+
+
+        board.appendChild(
+            button
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// 💣 ОТКРЫТИЕ КЛЕТКИ
+// ======================================================
+
+function openMineCell(
+    index,
+    button
+) {
+
+    if (
+        !minesGameActive
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        openedMines.includes(
+            index
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    openedMines.push(
+        index
+    );
+
+
+    if (
+        mines.includes(
+            index
+        )
+    ) {
+
+        button.textContent =
+            "💣";
+
+
+        minesGameActive =
+            false;
+
+
+        showMessage(
+            "💥 Мина! Вы проиграли"
+        );
+
+
+        return;
+
+    }
+
+
+    button.textContent =
+        "💎";
+
+
+    minesMultiplier =
+        Number(
+            (
+                minesMultiplier +
+                0.35
+            ).toFixed(2)
+        );
+
+
+    const multiplierElement =
+        document.getElementById(
+            "minesMultiplier"
+        );
+
+
+    if (
+        multiplierElement
+    ) {
+
+        multiplierElement.textContent =
+            "×" +
+            minesMultiplier.toFixed(2);
+
+    }
+
+}
+
+
+// ======================================================
+// 💰 ЗАБРАТЬ MINES
+// ======================================================
+
+function cashoutMines() {
+
+    if (
+        !minesGameActive
+    ) {
+
+        return;
+
+    }
+
+
+    const win =
+        minesBet *
+        minesMultiplier;
+
+
+    coins +=
+        win;
+
+
+    minesGameActive =
+        false;
+
+
+    saveGame();
+
+    updateBalance();
+
+
+    showMessage(
+        "💰 Вы забрали " +
+        win.toFixed(1) +
+        " 🪙"
+    );
+
+}
+
+
+// ======================================================
+// ✈️ CRASH
+// ======================================================
+
+function startCrash() {
+
+    if (
+        crashRunning
+    ) {
+
+        return;
+
+    }
+
+
+    const bet =
+        Number(
+            document.getElementById(
+                "crashBet"
+            )?.value
+        );
+
+
+    if (
+        !bet ||
+        bet <= 0
+    ) {
+
+        showMessage(
+            "Введите ставку"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        bet >
+        coins
+    ) {
+
+        showMessage(
+            "❌ Недостаточно монет"
+        );
+
+        return;
+
+    }
+
+
+    coins -=
+        bet;
+
+
+    crashBet =
+        bet;
+
+
+    crashMultiplier =
+        1;
+
+
+    crashRunning =
+        true;
+
+
+    // Краш всегда от 1x до 30x
+
+    crashCrashPoint =
+        Number(
+            (
+                1 +
+                Math.random() *
+                29
+            ).toFixed(2)
+        );
+
+
+    // Редкие большие значения
+
+    if (
+        Math.random() <
+        0.90
+    ) {
+
+        crashCrashPoint =
+            Number(
+                (
+                    1 +
+                    Math.random() *
+                    5
+                ).toFixed(2)
+            );
+
+    }
+
+
+    saveGame();
+
+    updateBalance();
+
+
+    clearInterval(
+        crashTimer
+    );
+
+
+    crashTimer =
+        setInterval(
+            () => {
+
+                crashMultiplier +=
+                    0.05;
+
+
+                crashMultiplier =
+                    Number(
+                        crashMultiplier.toFixed(
+                            2
+                        )
+                    );
+
+
+                const element =
+                    document.getElementById(
+                        "crashMultiplier"
+                    );
+
+
+                if (
+                    element
+                ) {
+
+                    element.textContent =
+                        "×" +
+                        crashMultiplier.toFixed(
+                            2
+                        );
+
+                }
+
+
+                if (
+                    crashMultiplier >=
+                    crashCrashPoint
+                ) {
+
+                    crashCrash();
+
+                }
+
+            },
+            100
+        );
+
+}
+
+
+// ======================================================
+// 💥 CRASH
+// ======================================================
+
+function crashCrash() {
+
+    clearInterval(
+        crashTimer
+    );
+
+
+    crashRunning =
+        false;
+
+
+    const element =
+        document.getElementById(
+            "crashMultiplier"
+        );
+
+
+    if (
+        element
+    ) {
+
+        element.textContent =
+            "💥 CRASH ×" +
+            crashMultiplier.toFixed(
+                2
+            );
+
+    }
+
+
+    showMessage(
+        "💥 Самолёт разбился!"
+    );
+
+}
+
+
+// ======================================================
+// 💰 ЗАБРАТЬ CRASH
+// ======================================================
+
+function cashoutCrash() {
+
+    if (
+        !crashRunning
+    ) {
+
+        showMessage(
+            "Самолёт уже разбился"
+        );
+
+        return;
+
+    }
+
+
+    const win =
+        crashBet *
+        crashMultiplier;
+
+
+    coins +=
+        win;
+
+
+    clearInterval(
+        crashTimer
+    );
+
+
+    crashRunning =
+        false;
+
+
+    saveGame();
+
+    updateBalance();
+
+
+    showMessage(
+        "🚀 Вы забрали " +
+        win.toFixed(1) +
+        " 🪙"
+    );
+
+}
+
+
+// ======================================================
+// 💎 ДЖЕКПОТ
+// ======================================================
+
+function playJackpot() {
+
+    const bet =
+        Number(
+            document.getElementById(
+                "jackpotBet"
+            )?.value
+        );
+
+
+    if (
+        !bet ||
+        bet <= 0
+    ) {
+
+        showMessage(
+            "Введите ставку"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        bet >
+        coins
+    ) {
+
+        showMessage(
+            "❌ Недостаточно монет"
+        );
+
+        return;
+
+    }
+
+
+    coins -=
+        bet;
+
+
+    const chance =
+        Math.random();
+
+
+    let win =
+        0;
+
+
+    if (
+        chance <
+        0.001
+    ) {
+
+        win =
+            bet *
+            100;
+
+
+        showMessage(
+            "💎💎💎 ДЖЕКПОТ ×100!"
+        );
+
+    }
+
+    else if (
+        chance <
+        0.01
+    ) {
+
+        win =
+            bet *
+            20;
+
+
+        showMessage(
+            "💎 Большой выигрыш!"
+        );
+
+    }
+
+    else {
+
+        showMessage(
+            "😔 Джекпот не выпал"
+        );
+
+    }
+
+
+    coins +=
+        win;
+
+
+    saveGame();
+
+    updateBalance();
+
+}
+
+
+// ======================================================
+// 🎁 ПОДАРКИ
+// ======================================================
 
 const gifts = [
 
@@ -754,30 +2244,42 @@ const gifts = [
 ];
 
 
-// ==========================================
+// ======================================================
+// 🎁 КЕЙСЫ
+// ======================================================
+
+const cases = {
+
+    common:
+        5000,
+
+    rare:
+        25000,
+
+    legendary:
+        100000,
+
+    mythical:
+        500000
+
+};
+
+
+// ======================================================
 // 🎁 ОТКРЫТИЕ КЕЙСА
-// ==========================================
+// ======================================================
 
 function openCase(
     type
 ) {
 
-    const caseData =
+    const price =
         cases[type];
 
 
     if (
-        !caseData
-    ) {
-
-        return;
-
-    }
-
-
-    if (
         coins <
-        caseData.price
+        price
     ) {
 
         showMessage(
@@ -790,10 +2292,8 @@ function openCase(
 
 
     coins -=
-        caseData.price;
+        price;
 
-
-    // Выбор предмета
 
     const random =
         Math.random();
@@ -803,7 +2303,8 @@ function openCase(
 
 
     if (
-        random < 0.55
+        random <
+        0.55
     ) {
 
         gift =
@@ -812,7 +2313,8 @@ function openCase(
     }
 
     else if (
-        random < 0.80
+        random <
+        0.80
     ) {
 
         gift =
@@ -821,7 +2323,8 @@ function openCase(
     }
 
     else if (
-        random < 0.94
+        random <
+        0.94
     ) {
 
         gift =
@@ -830,7 +2333,8 @@ function openCase(
     }
 
     else if (
-        random < 0.985
+        random <
+        0.985
     ) {
 
         gift =
@@ -839,7 +2343,8 @@ function openCase(
     }
 
     else if (
-        random < 0.998
+        random <
+        0.998
     ) {
 
         gift =
@@ -855,8 +2360,6 @@ function openCase(
     }
 
 
-    // Добавляем в инвентарь
-
     inventory.push(
         gift
     );
@@ -866,6 +2369,8 @@ function openCase(
 
     updateBalance();
 
+    renderInventory();
+
 
     showGiftResult(
         gift
@@ -874,9 +2379,9 @@ function openCase(
 }
 
 
-// ==========================================
-// 🎁 ПОКАЗ ВЫПАВШЕГО ПОДАРКА
-// ==========================================
+// ======================================================
+// 🎁 РЕЗУЛЬТАТ КЕЙСА
+// ======================================================
 
 function showGiftResult(
     gift
@@ -888,83 +2393,8 @@ function showGiftResult(
         );
 
 
-    if (!result) {
-
-        return;
-
-    }
-
-
-    result.innerHTML =
-
-        "<div class='gift-result'>" +
-
-        "<div class='gift-big'>" +
-
-        gift.emoji +
-
-        "</div>" +
-
-        "<h2>" +
-
-        "🎉 ТЕБЕ ВЫПАЛО!" +
-
-        "</h2>" +
-
-        "<h3>" +
-
-        gift.name +
-
-        "</h3>" +
-
-        "<p>" +
-
-        "⭐ " +
-
-        gift.rarity +
-
-        "</p>" +
-
-        "<p>" +
-
-        "💰 Стоимость: " +
-
-        gift.price.toLocaleString() +
-
-        " 🪙" +
-
-        "</p>" +
-
-        "<p>" +
-
-        "⚡ Доход: +" +
-
-        gift.income +
-
-        " 🪙 / 10 мин" +
-
-        "</p>" +
-
-        "<button onclick='sellLastGift()'>" +
-
-        "💰 ПРОДАТЬ" +
-
-        "</button>" +
-
-        "</div>";
-
-}
-
-
-// ==========================================
-// 💰 ПРОДАЖА ПОСЛЕДНЕГО ПРЕДМЕТА
-// ==========================================
-
-function sellLastGift() {
-
     if (
-        inventory.length ===
-        0
+        !result
     ) {
 
         return;
@@ -972,80 +2402,64 @@ function sellLastGift() {
     }
 
 
-    const gift =
-        inventory.pop();
+    result.innerHTML = `
 
+        <div class="gift-result">
 
-    coins +=
-        gift.price;
+            <div class="gift-big">
 
+                ${gift.emoji}
 
-    saveGame();
+            </div>
 
-    updateBalance();
+            <h2>
 
+                🎉 ТЕБЕ ВЫПАЛО!
 
-    showMessage(
+            </h2>
 
-        "💰 Продано за " +
+            <h3>
 
-        gift.price.toLocaleString() +
+                ${gift.name}
 
-        " 🪙"
+            </h3>
 
-    );
+            <p>
+
+                ⭐ ${gift.rarity}
+
+            </p>
+
+            <p>
+
+                💰 Стоимость:
+
+                ${gift.price.toLocaleString()}
+
+                🪙
+
+            </p>
+
+            <p>
+
+                ⚡ Доход:
+
+                +${gift.income}
+
+                🪙 / 10 мин
+
+            </p>
+
+        </div>
+
+    `;
 
 }
 
 
-// ==========================================
-// ⚡ ПАССИВНЫЙ ДОХОД
-// ==========================================
-
-setInterval(
-
-    function() {
-
-        let income =
-            0;
-
-
-        inventory.forEach(
-
-            function(gift) {
-
-                income +=
-                    gift.income;
-
-            }
-
-        );
-
-
-        if (
-            income > 0
-        ) {
-
-            coins +=
-                income;
-
-
-            saveGame();
-
-            updateBalance();
-
-        }
-
-    },
-
-    10 * 60 * 1000
-
-);
-
-
-// ==========================================
+// ======================================================
 // 🎒 ИНВЕНТАРЬ
-// ==========================================
+// ======================================================
 
 function renderInventory() {
 
@@ -1055,7 +2469,9 @@ function renderInventory() {
         );
 
 
-    if (!container) {
+    if (
+        !container
+    ) {
 
         return;
 
@@ -1066,9 +2482,31 @@ function renderInventory() {
         "";
 
 
-    inventory.forEach(
+    if (
+        inventory.length ===
+        0
+    ) {
 
-        function(gift, index) {
+        container.innerHTML = `
+
+            <p>
+
+                🎒 Коллекция пока пуста
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    inventory.forEach(
+        (
+            gift,
+            index
+        ) => {
 
             const card =
                 document.createElement(
@@ -1080,45 +2518,45 @@ function renderInventory() {
                 "inventory-card";
 
 
-            card.innerHTML =
+            card.innerHTML = `
 
-                "<div class='inventory-icon'>" +
+                <div
+                    class="inventory-icon"
+                >
 
-                gift.emoji +
+                    ${gift.emoji}
 
-                "</div>" +
+                </div>
 
-                "<b>" +
+                <b>
 
-                gift.name +
+                    ${gift.name}
 
-                "</b>" +
+                </b>
 
-                "<span>" +
+                <span>
 
-                gift.rarity +
+                    ${gift.rarity}
 
-                "</span>" +
+                </span>
 
-                "<small>" +
+                <small>
 
-                "+" +
+                    +${gift.income}
 
-                gift.income +
+                    🪙 / 10 мин
 
-                " 🪙 / 10 мин" +
+                </small>
 
-                "</small>" +
+                <button
+                    onclick="sellGift(${index})"
+                >
 
-                "<button onclick='sellGift(" +
+                    💰 Продать
 
-                index +
+                </button>
 
-                ")'>" +
-
-                "Продать" +
-
-                "</button>";
+            `;
 
 
             container.appendChild(
@@ -1126,15 +2564,14 @@ function renderInventory() {
             );
 
         }
-
     );
 
 }
 
 
-// ==========================================
-// 💰 ПРОДАЖА ПРЕДМЕТА
-// ==========================================
+// ======================================================
+// 💰 ПРОДАЖА ПОДАРКА
+// ======================================================
 
 function sellGift(
     index
@@ -1144,7 +2581,9 @@ function sellGift(
         inventory[index];
 
 
-    if (!gift) {
+    if (
+        !gift
+    ) {
 
         return;
 
@@ -1167,23 +2606,177 @@ function sellGift(
 
     renderInventory();
 
+
+    showMessage(
+        "💰 Предмет продан!"
+    );
+
 }
 
 
-// ==========================================
+// ======================================================
+// ⚡ ПАССИВНЫЙ ДОХОД
+// ======================================================
+
+setInterval(
+    () => {
+
+        let income =
+            0;
+
+
+        inventory.forEach(
+            gift => {
+
+                income +=
+                    gift.income;
+
+            }
+        );
+
+
+        if (
+            income > 0
+        ) {
+
+            coins +=
+                income;
+
+
+            saveGame();
+
+            updateBalance();
+
+        }
+
+    },
+    10 * 60 * 1000
+);
+
+
+// ======================================================
+// 🏆 ТОП ИГРОКОВ
+// ======================================================
+
+function renderLeaderboard() {
+
+    const leaderboard =
+        document.querySelector(
+            ".leaderboard"
+        );
+
+
+    if (
+        !leaderboard
+    ) {
+
+        return;
+
+    }
+
+
+    const players = [
+
+        {
+            name:
+                "LuckyKing",
+
+            coins:
+                9999999
+
+        },
+
+        {
+
+            name:
+                "CasinoPro",
+
+            coins:
+                7500000
+
+        },
+
+        {
+
+            name:
+                "Dragon",
+
+            coins:
+                5000000
+
+        },
+
+        {
+
+            name:
+                "LuckyPlayer",
+
+            coins:
+                2500000
+
+        }
+
+    ];
+
+
+    leaderboard.innerHTML =
+        "";
+
+
+    players.forEach(
+        (
+            player,
+            index
+        ) => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.innerHTML =
+
+                (index + 1) +
+
+                ". " +
+
+                player.name +
+
+                " — " +
+
+                player.coins.toLocaleString() +
+
+                " 🪙";
+
+
+            leaderboard.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
 // 🚀 ЗАПУСК
-// ==========================================
+// ======================================================
 
 document.addEventListener(
-
     "DOMContentLoaded",
-
-    function() {
+    () => {
 
         updateBalance();
 
         renderInventory();
 
-    }
+        renderLeaderboard();
 
+        openPage(
+            "home"
+        );
+
+    }
 );
