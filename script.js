@@ -303,6 +303,175 @@ function playRoulette() {
 
     }
 
+    coins -= 100;
+
+    update();
+    save();
+
+
+    let wheel =
+        document.getElementById("rouletteWheel");
+
+    let number =
+        document.getElementById("rouletteNumber");
+
+
+    // Очищаем прошлый результат
+
+    document.getElementById("casinoResult")
+        .textContent =
+        "🎡 Рулетка вращается...";
+
+
+    number.textContent =
+        "🎡 Вращение...";
+
+
+    // Сбрасываем анимацию
+
+    wheel.classList.remove(
+        "roulette-spinning"
+    );
+
+    void wheel.offsetWidth;
+
+
+    // Случайное вращение
+
+    let rotation =
+        1440 +
+        Math.floor(
+            Math.random() * 1440
+        );
+
+
+    wheel.style.transform =
+        "rotate(" +
+        rotation +
+        "deg)";
+
+
+    wheel.classList.add(
+        "roulette-spinning"
+    );
+
+
+    // Результат через 4 секунды
+
+    setTimeout(function() {
+
+
+        // Европейская рулетка
+        // 0 = зелёный
+
+        let result =
+            Math.floor(
+                Math.random() * 37
+            );
+
+
+        let color;
+
+
+        if (result === 0) {
+
+            color = "🟢 Зелёное";
+
+        }
+
+        else if (
+            result === 1 ||
+            result === 3 ||
+            result === 5 ||
+            result === 7 ||
+            result === 9 ||
+            result === 12 ||
+            result === 14 ||
+            result === 16 ||
+            result === 18 ||
+            result === 19 ||
+            result === 21 ||
+            result === 23 ||
+            result === 25 ||
+            result === 27 ||
+            result === 30 ||
+            result === 32 ||
+            result === 34 ||
+            result === 36
+        ) {
+
+            color = "🔴 Красное";
+
+        }
+
+        else {
+
+            color = "⚫ Чёрное";
+
+        }
+
+
+        number.textContent =
+            result +
+            " — " +
+            color;
+
+
+        // Зелёный 0
+
+        if (result === 0) {
+
+            coins += 3600;
+
+            document.getElementById(
+                "casinoResult"
+            ).textContent =
+                "🎉💚 ЗЕЛЁНОЕ 0! +" +
+                "3600 🪙";
+
+        }
+
+
+        // Красное
+
+        else if (
+            color === "🔴 Красное"
+        ) {
+
+            coins += 200;
+
+            document.getElementById(
+                "casinoResult"
+            ).textContent =
+                "🔴 КРАСНОЕ! 🎉 +" +
+                "200 🪙";
+
+        }
+
+
+        // Чёрное
+
+        else {
+
+            document.getElementById(
+                "casinoResult"
+            ).textContent =
+                "⚫ ЧЁРНОЕ! 😢";
+
+        }
+
+
+        update();
+
+        save();
+
+
+    }, 4000);
+
+}
+
+    }
+
 
     let choice = prompt(
         "🎡 Выбери красное или чёрное"
