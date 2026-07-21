@@ -397,19 +397,52 @@
             </div>
 
 
-            <p>
-                Ставка: 100 🪙
-            </p>
+           <p>💰 Ваша ставка:</p>
 
+<input
+    type="number"
+    id="rouletteBet"
+    placeholder="Введите ставку"
+    min="1"
+>
 
-            <button
-                class="play-button"
-                onclick="playRoulette()"
-            >
+<p>🎯 Выберите цвет:</p>
 
-                🎡 КРУТИТЬ РУЛЕТКУ
+<div class="roulette-bets">
 
-            </button>
+    <button
+        class="red-bet"
+        onclick="selectRouletteColor('red')"
+    >
+        🔴 Красное
+    </button>
+
+    <button
+        class="black-bet"
+        onclick="selectRouletteColor('black')"
+    >
+        ⚫ Чёрное
+    </button>
+
+    <button
+        class="green-bet"
+        onclick="selectRouletteColor('green')"
+    >
+        🟢 Зелёное
+    </button>
+
+</div>
+
+<p id="selectedRouletteColor">
+    Цвет не выбран
+</p>
+
+<button
+    class="play-button"
+    onclick="playRoulette()"
+>
+    🎡 КРУТИТЬ РУЛЕТКУ
+</button>
 
 
         </div>
