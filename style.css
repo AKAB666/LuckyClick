@@ -1,747 +1,1716 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#0f172a;
-color:white;
-padding:20px;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-}
-
-h1{
-font-size:28px;
-}
-
-.coins{
-font-size:22px;
-font-weight:bold;
-background:#1e293b;
-padding:10px 20px;
-border-radius:12px;
-}
-
-.menu{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-margin-bottom:20px;
-}
-
-.menu button{
-background:#2563eb;
-color:white;
-border:none;
-border-radius:14px;
-padding:16px;
-font-size:18px;
-cursor:pointer;
-transition:.2s;
-}
-
-.menu button:hover{
-background:#1d4ed8;
-}
-
-.page{
-background:#1e293b;
-border-radius:18px;
-padding:20px;
-margin-top:15px;
-}
-
-.hidden{
-display:none;
-}
-
-#clickButton{
-width:220px;
-height:220px;
-border-radius:50%;
-border:none;
-font-size:48px;
-background:#facc15;
-cursor:pointer;
-display:block;
-margin:20px auto;
-transition:.15s;
-}
-
-#clickButton:active{
-transform:scale(.94);
-}
-
-button{
-background:#22c55e;
-color:white;
-border:none;
-border-radius:12px;
-padding:14px;
-font-size:18px;
-cursor:pointer;
-margin-top:10px;
-width:100%;
-}
-
-button:hover{
-background:#16a34a;
-}
-
-input{
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
-margin-top:10px;
-font-size:16px;
-background:#334155;
-color:white;
-}
-
-#casinoResult,
-#caseResult{
-margin-top:20px;
-font-size:20px;
-font-weight:bold;
-text-align:center;
-color:#facc15;
-}
-
-#petsList{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-margin-top:15px;
-}
-
-.pet{
-background:#334155;
-padding:12px;
-border-radius:12px;
-text-align:center;
-}
-
-@media(max-width:600px){
-
-.menu{
-grid-template-columns:1fr;
-}
-
-#clickButton{
-width:180px;
-height:180px;
-font-size:42px;
-}
-
-h1{
-font-size:24px;
-}
-
-}
-/* =========================
-   АНИМАЦИИ КАЗИНО
-========================= */
-
-#casino:not(.hidden) {
-    animation: casinoOpen 0.5s ease;
-}
-
-@keyframes casinoOpen {
-    from {
-        opacity: 0;
-        transform: scale(0.92) translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-#casino h2 {
-    animation: casinoTitle 0.7s ease;
-}
-
-@keyframes casinoTitle {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-#casino button {
-    animation: casinoButton 0.5s ease backwards;
-}
-
-#casino button:nth-of-type(1) {
-    animation-delay: 0.1s;
-}
-
-#casino button:nth-of-type(2) {
-    animation-delay: 0.2s;
-}
-
-#casino button:nth-of-type(3) {
-    animation-delay: 0.3s;
-}
-
-#casino button:nth-of-type(4) {
-    animation-delay: 0.4s;
-}
-
-#casino button:nth-of-type(5) {
-    animation-delay: 0.5s;
-}
-
-@keyframes casinoButton {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Результат игры */
-
-#casinoResult {
-    min-height: 50px;
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 15px;
-    transition: 0.3s;
-}
-
-/* Анимация выигрыша */
-
-.win-animation {
-    animation: win 0.8s ease;
-}
-
-@keyframes win {
-    0% {
-        transform: scale(1);
-    }
-
-    30% {
-        transform: scale(1.2) rotate(-3deg);
-    }
-
-    60% {
-        transform: scale(1.1) rotate(3deg);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Анимация проигрыша */
-
-.lose-animation {
-    animation: lose 0.5s ease;
-}
-
-@keyframes lose {
-    0% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-10px);
-    }
-
-    50% {
-        transform: translateX(10px);
-    }
-
-    75% {
-        transform: translateX(-5px);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
-/* Слот */
-
-.slot-spin {
-    animation: slotSpin 1s ease;
-}
-
-@keyframes slotSpin {
-    0% {
-        transform: rotateX(0);
-    }
-
-    30% {
-        transform: rotateX(360deg);
-    }
-
-    60% {
-        transform: rotateX(720deg);
-    }
-
-    100% {
-        transform: rotateX(1080deg);
-    }
-}
-
-/* Кубик */
-
-.dice-roll {
-    animation: diceRoll 0.8s ease;
-}
-
-@keyframes diceRoll {
-    0% {
-        transform: rotate(0deg) scale(1);
-    }
-
-    50% {
-        transform: rotate(360deg) scale(1.4);
-    }
-
-    100% {
-        transform: rotate(720deg) scale(1);
-    }
-}
-
-/* Рулетка */
-
-.roulette-spin {
-    animation: rouletteSpin 1.5s ease-out;
-}
-
-@keyframes rouletteSpin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(1080deg);
-    }
-}
-
-/* Джекпот */
-
-.jackpot-animation {
-    animation: jackpot 1s infinite;
-}
-
-@keyframes jackpot {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0px transparent;
-    }
-
-    50% {
-        transform: scale(1.08);
-        box-shadow: 0 0 30px #facc15;
-    }
-
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0px transparent;
-    }
-}
+/* ================================= */
+/* ОСНОВА */
+/* ================================= */
 
-/* Нажатие кнопок */
-
-#casino button:active {
-    transform: scale(0.94);
-}
-
-/* Эффект появления результата */
-
-.result-show {
-    animation: resultShow 0.5s ease;
-}
-
-@keyframes resultShow {
-    from {
-        opacity: 0;
-        transform: scale(0.7);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-/* =========================
-   LUCKY CASINO
-========================= */
-
-.casino-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.casino-header h2 {
-    font-size: 28px;
-    margin-bottom: 8px;
-}
-
-.casino-header p {
-    opacity: 0.7;
-}
-
-.casino-games {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.game-card {
-    min-height: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    background: #334155;
-    border-radius: 20px;
-    border: 1px solid #475569;
-
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-.game-card:active {
-    transform: scale(0.94);
-}
-
-.game-icon {
-    font-size: 45px;
-}
-
-.game-title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.game-subtitle {
-    font-size: 12px;
-    opacity: 0.7;
-}
-
-.jackpot-card {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, #7c3aed, #db2777);
-}
-
-.casino-game {
-    margin-top: 20px;
-    animation: gameOpen 0.4s ease;
-}
-
-@keyframes gameOpen {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.back-game {
-    background: #475569;
-    margin-bottom: 15px;
-}
-
-.casino-panel {
-    text-align: center;
-}
-
-.casino-panel h3 {
-    font-size: 25px;
-    margin-bottom: 20px;
-}
-
-.slot-machine {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.slot-reel {
-    width: 75px;
-    height: 75px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: white;
-    color: black;
-
-    border-radius: 15px;
-
-    font-size: 40px;
-
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-}
-
-#diceVisual {
-    font-size: 100px;
-    margin: 25px 0;
-}
-
-#rouletteWheel {
-    font-size: 110px;
-    margin: 20px 0;
-}
-
-#jackpotVisual {
-    font-size: 120px;
-    margin: 20px 0;
-}
-
-#ladderVisual {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 35px;
-    margin: 20px 0;
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.play-button {
-    background: #f59e0b;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.play-button:hover {
-    background: #d97706;
-}
-
-#casinoResult {
-    margin-top: 20px;
-    min-height: 40px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-@media (max-width: 600px) {
-
-    .casino-games {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .game-card {
-        min-height: 135px;
-    }
-
-    .game-icon {
-        font-size: 38px;
-    }
-
-}
-/* =========================
-   НАСТОЯЩАЯ РУЛЕТКА
-========================= */
-
-.roulette-container {
-    position: relative;
-    width: 280px;
-    height: 280px;
-    margin: 25px auto;
-}
-
-#rouletteWheel {
-    width: 280px;
-    height: 280px;
-
-    border-radius: 50%;
-
-    position: relative;
-
-    border: 10px solid #d4af37;
-
-    background:
-        conic-gradient(
-            #b91c1c 0deg 9.73deg,
-            #111827 9.73deg 19.46deg,
-            #b91c1c 19.46deg 29.19deg,
-            #111827 29.19deg 38.92deg,
-            #b91c1c 38.92deg 48.65deg,
-            #111827 48.65deg 58.38deg,
-            #b91c1c 58.38deg 68.11deg,
-            #111827 68.11deg 77.84deg,
-            #b91c1c 77.84deg 87.57deg,
-            #111827 87.57deg 97.3deg,
-            #b91c1c 97.3deg 107.03deg,
-            #111827 107.03deg 116.76deg,
-            #b91c1c 116.76deg 126.49deg,
-            #111827 126.49deg 136.22deg,
-            #b91c1c 136.22deg 145.95deg,
-            #111827 145.95deg 155.68deg,
-            #b91c1c 155.68deg 165.41deg,
-            #111827 165.41deg 175.14deg,
-            #b91c1c 175.14deg 184.87deg,
-            #111827 184.87deg 194.6deg,
-            #b91c1c 194.6deg 204.33deg,
-            #111827 204.33deg 214.06deg,
-            #b91c1c 214.06deg 223.79deg,
-            #111827 223.79deg 233.52deg,
-            #b91c1c 233.52deg 243.25deg,
-            #111827 243.25deg 252.98deg,
-            #b91c1c 252.98deg 262.71deg,
-            #111827 262.71deg 272.44deg,
-            #b91c1c 272.44deg 282.17deg,
-            #111827 282.17deg 291.9deg,
-            #b91c1c 291.9deg 301.63deg,
-            #111827 301.63deg 311.36deg,
-            #b91c1c 311.36deg 321.09deg,
-            #111827 321.09deg 330.82deg,
-            #b91c1c 330.82deg 340.55deg,
-            #111827 340.55deg 350.28deg,
-            #15803d 350.28deg 360deg
-        );
-
-    box-shadow:
-        0 0 0 5px #78350f,
-        0 10px 30px rgba(0,0,0,0.6);
-
-    transition: transform 4s cubic-bezier(.15,.85,.2,1);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.roulette-center {
-    width: 75px;
-    height: 75px;
-
-    border-radius: 50%;
-
-    background: #d4af37;
-
-    border: 6px solid #78350f;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 32px;
-
-    z-index: 5;
-
-    box-shadow:
-        0 0 15px rgba(0,0,0,0.7);
-}
-
-.roulette-pointer {
-    position: absolute;
-
-    top: -15px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    z-index: 10;
-
-    color: #facc15;
-
-    font-size: 35px;
-
-    text-shadow:
-        0 3px 5px black;
-}
-
-#rouletteNumber {
-    text-align: center;
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-    min-height: 35px;
-
-    margin-bottom: 15px;
-
-    color: #facc15;
-}
-
-/* Вращение */
-
-.roulette-spinning {
-    animation: rouletteGlow 4s ease;
-}
-
-@keyframes rouletteGlow {
-
-    0% {
-        box-shadow:
-            0 0 0 5px #78350f,
-            0 10px 30px rgba(0,0,0,0.6);
-    }
-
-    50% {
-        box-shadow:
-            0 0 30px #facc15,
-            0 10px 50px rgba(250,204,21,0.5);
-    }
-
-    100% {
-        box-shadow:
-            0 0 0 5px #78350f,
-            0 10px 30px rgba(0,0,0,0.6);
-    }
-
-}
-
-@media(max-width:600px) {
-
-    .roulette-container,
-    #rouletteWheel {
-        width: 240px;
-        height: 240px;
-    }
-
-}
 html {
     touch-action: manipulation;
 }
 
 body {
-    touch-action: manipulation;
-    -webkit-text-size-adjust: 100%;
+    margin: 0;
+    padding: 0 0 90px 0;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #24243a 0%,
+            #101018 45%,
+            #08080d 100%
+        );
+
+    color: white;
+
+    min-height: 100vh;
+
+    user-select: none;
 }
 
-button {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    -webkit-user-select: none;
+
+/* ================================= */
+/* ЗАПРЕТ ПРИБЛИЖЕНИЯ НА INPUT */
+/* ================================= */
+
+input,
+button,
+select,
+textarea {
+    font-size: 16px;
+}
+
+
+/* ================================= */
+/* ВЕРХНЯЯ ПАНЕЛЬ */
+/* ================================= */
+
+.top-bar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 18px;
+
+    background:
+        rgba(12, 12, 20, 0.95);
+
+    backdrop-filter:
+        blur(15px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+
+}
+
+
+.logo {
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+}
+
+
+.balance {
+
+    padding:
+        9px 15px;
+
+    border-radius:
+        15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #24243d,
+            #151522
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    color:
+        #ffd84d;
+
+    font-weight:
+        800;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.3);
+
+}
+
+
+/* ================================= */
+/* СТРАНИЦЫ */
+/* ================================= */
+
+.page {
+
+    padding:
+        20px;
+
+    max-width:
+        650px;
+
+    margin:
+        auto;
+
+    animation:
+        pageAppear
+        0.3s
+        ease;
+
+}
+
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+@keyframes pageAppear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ================================= */
+/* ГЛАВНАЯ */
+/* ================================= */
+
+.home-card {
+
+    text-align:
+        center;
+
+    padding:
+        30px 20px;
+
+}
+
+
+.home-card h2 {
+
+    font-size:
+        28px;
+
+    margin-bottom:
+        5px;
+
+}
+
+
+.home-card p {
+
+    color:
+        #999;
+
+}
+
+
+/* ================================= */
+/* БОЛЬШАЯ КНОПКА КЛИКА */
+/* ================================= */
+
+.big-click {
+
+    width:
+        210px;
+
+    height:
+        210px;
+
+    border-radius:
+        50%;
+
+    border:
+        none;
+
+    margin:
+        45px auto 30px;
+
+    display:
+        block;
+
+    font-size:
+        85px;
+
+    cursor:
+        pointer;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff36a,
+            #ffc400 40%,
+            #d47a00 100%
+        );
+
+    box-shadow:
+
+        0 0 0 8px
+        rgba(255,200,0,0.08),
+
+        0 0 40px
+        rgba(255,180,0,0.35),
+
+        inset 0 -15px 20px
+        rgba(0,0,0,0.25);
+
+    transition:
+        transform
+        0.1s;
+
+}
+
+
+.big-click:active {
+
+    transform:
+        scale(0.92);
+
+}
+
+
+.click-info {
+
+    display:
+        inline-block;
+
+    padding:
+        12px 20px;
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+}
+
+
+/* ================================= */
+/* БОНУС КЛИКА */
+/* ================================= */
+
+#clickBonus {
+
+    min-height:
+        35px;
+
+    margin:
+        10px;
+
+    font-weight:
+        800;
+
+    color:
+        #ffd84d;
+
+}
+
+
+.bonus-animation {
+
+    animation:
+        bonusPop
+        0.7s
+        ease;
+
+}
+
+
+@keyframes bonusPop {
+
+    0% {
+
+        transform:
+            scale(0.5);
+
+        opacity:
+            0;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.2);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* ================================= */
+/* КАЗИНО */
+/* ================================= */
+
+.casino-header {
+
+    text-align:
+        center;
+
+    padding:
+        10px 0 25px;
+
+}
+
+
+.casino-header h1 {
+
+    font-size:
+        30px;
+
+    margin:
+        0;
+
+}
+
+
+.casino-header p {
+
+    color:
+        #999;
+
+}
+
+
+/* ================================= */
+/* МЕНЮ КАЗИНО */
+/* ================================= */
+
+.casino-menu {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        14px;
+
+}
+
+
+.casino-card {
+
+    min-height:
+        150px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-radius:
+        22px;
+
+    color:
+        white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #24243c,
+            #151522
+        );
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        8px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,0.3);
+
+    cursor:
+        pointer;
+
+    transition:
+        transform
+        0.15s;
+
+}
+
+
+.casino-card:active {
+
+    transform:
+        scale(0.94);
+
+}
+
+
+.casino-card span {
+
+    font-size:
+        50px;
+
+}
+
+
+.casino-card b {
+
+    font-size:
+        16px;
+
+}
+
+
+.casino-card small {
+
+    color:
+        #999;
+
+}
+
+
+.casino-card.jackpot {
+
+    background:
+        linear-gradient(
+            145deg,
+            #49320a,
+            #1d1507
+        );
+
+    border:
+        1px solid
+        rgba(255,190,0,0.25);
+
+}
+
+
+/* ================================= */
+/* СТРАНИЦА ИГРЫ */
+/* ================================= */
+
+.casino-game {
+
+    margin-top:
+        10px;
+
+}
+
+
+.back-button {
+
+    width:
+        100%;
+
+    padding:
+        14px;
+
+    margin-bottom:
+        20px;
+
+    border:
+        none;
+
+    border-radius:
+        14px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    color:
+        white;
+
+    font-size:
+        16px;
+
+}
+
+
+/* ================================= */
+/* ПАНЕЛЬ ИГРЫ */
+/* ================================= */
+
+.casino-panel {
+
+    text-align:
+        center;
+
+    padding:
+        20px;
+
+    border-radius:
+        25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,35,55,0.95),
+            rgba(15,15,25,0.95)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.4);
+
+}
+
+
+.casino-panel input {
+
+    width:
+        100%;
+
+    padding:
+        16px;
+
+    margin:
+        8px 0 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    border-radius:
+        14px;
+
+    background:
+        #101018;
+
+    color:
+        white;
+
+    outline:
+        none;
+
+    text-align:
+        center;
+
+}
+
+
+/* ================================= */
+/* КНОПКА ИГРЫ */
+/* ================================= */
+
+.play-button {
+
+    width:
+        100%;
+
+    padding:
+        17px;
+
+    margin-top:
+        20px;
+
+    border:
+        none;
+
+    border-radius:
+        15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffcc00,
+            #ff8c00
+        );
+
+    color:
+        #17120a;
+
+    font-size:
+        17px;
+
+    font-weight:
+        900;
+
+    box-shadow:
+        0 8px 25px
+        rgba(255,160,0,0.25);
+
+}
+
+
+.play-button:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+/* ================================= */
+/* СЛОТЫ */
+/* ================================= */
+
+.slot-machine {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    margin:
+        25px 0;
+
+}
+
+
+.slot-reel {
+
+    width:
+        85px;
+
+    height:
+        100px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        48px;
+
+    border-radius:
+        15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fafafa,
+            #c9c9c9
+        );
+
+    color:
+        #111;
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(0,0,0,0.35);
+
+}
+
+
+.slot-spin {
+
+    animation:
+        slotSpin
+        0.15s
+        linear
+        infinite;
+
+}
+
+
+@keyframes slotSpin {
+
+    0% {
+
+        transform:
+            translateY(-8px);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(8px);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-8px);
+
+    }
+
+}
+
+
+/* ================================= */
+/* РУЛЕТКА */
+/* ================================= */
+
+.roulette-wheel {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    margin:
+        20px 0;
+
+}
+
+
+.wheel {
+
+    width:
+        210px;
+
+    height:
+        210px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        75px;
+
+    background:
+        conic-gradient(
+            #c91e2b 0deg 30deg,
+            #171717 30deg 60deg,
+            #c91e2b 60deg 90deg,
+            #171717 90deg 120deg,
+            #c91e2b 120deg 150deg,
+            #171717 150deg 180deg,
+            #c91e2b 180deg 210deg,
+            #171717 210deg 240deg,
+            #c91e2b 240deg 270deg,
+            #171717 270deg 300deg,
+            #c91e2b 300deg 330deg,
+            #159447 330deg 360deg
+        );
+
+    border:
+        8px solid
+        #d5a43a;
+
+    box-shadow:
+        0 0 35px
+        rgba(0,0,0,0.6);
+
+}
+
+
+.roulette-spin {
+
+    animation:
+        rouletteSpin
+        1.5s
+        cubic-bezier(
+            .17,
+            .67,
+            .12,
+            .99
+        );
+
+}
+
+
+@keyframes rouletteSpin {
+
+    from {
+
+        transform:
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            rotate(1440deg);
+
+    }
+
+}
+
+
+/* ================================= */
+/* СТАВКИ РУЛЕТКИ */
+/* ================================= */
+
+.roulette-bets {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        8px;
+
+}
+
+
+.roulette-bets button {
+
+    padding:
+        14px 5px;
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    color:
+        white;
+
+    font-weight:
+        800;
+
+}
+
+
+.red-bet {
+
+    background:
+        #c92838;
+
+}
+
+
+.black-bet {
+
+    background:
+        #222;
+
+}
+
+
+.green-bet {
+
+    background:
+        #159447;
+
+}
+
+
+/* ================================= */
+/* КУБИК */
+/* ================================= */
+
+.dice-numbers {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        10px;
+
+}
+
+
+.dice-numbers button {
+
+    padding:
+        15px;
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    background:
+        #292941;
+
+    color:
+        white;
+
+    font-size:
+        20px;
+
+}
+
+
+.dice {
+
+    font-size:
+        80px;
+
+    margin:
+        25px;
+
+}
+
+
+.dice-roll {
+
+    animation:
+        diceRoll
+        1s
+        ease;
+
+}
+
+
+@keyframes diceRoll {
+
+    0% {
+
+        transform:
+            rotate(0)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            rotate(360deg)
+            scale(1.3);
+
+    }
+
+    100% {
+
+        transform:
+            rotate(720deg)
+            scale(1);
+
+    }
+
+}
+
+
+/* ================================= */
+/* ЛЕСЕНКА */
+/* ================================= */
+
+.ladder-board {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
+
+    margin:
+        20px 0;
+
+}
+
+
+.ladder-level {
+
+    padding:
+        15px;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #25253e,
+            #171725
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
+
+    transition:
+        all
+        0.4s;
+
+}
+
+
+.active-level {
+
+    background:
+        linear-gradient(
+            90deg,
+            #d49b16,
+            #6c4205
+        );
+
+    transform:
+        scale(1.04);
+
+}
+
+
+.ladder-up {
+
+    animation:
+        ladderUp
+        0.6s
+        ease;
+
+}
+
+
+@keyframes ladderUp {
+
+    from {
+
+        transform:
+            translateY(50px);
+
+        opacity:
+            0;
+
+    }
+
+    to {
+
+        transform:
+            translateY(0);
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+.ladder-fall {
+
+    animation:
+        ladderFall
+        0.8s
+        ease;
+
+}
+
+
+@keyframes ladderFall {
+
+    0% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(300px)
+            rotate(15deg);
+
+        opacity:
+            0;
+
+    }
+
+}
+
+
+/* ================================= */
+/* МИНЕР */
+/* ================================= */
+
+.mine-options {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        7px;
+
+}
+
+
+.mine-options button {
+
+    padding:
+        12px 5px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        #292941;
+
+    color:
+        white;
+
+}
+
+
+.mines-board {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap:
+        7px;
+
+    margin:
+        20px 0;
+
+}
+
+
+.mine-cell {
+
+    aspect-ratio:
+        1;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3b3b59,
+            #202033
+        );
+
+    color:
+        white;
+
+    font-size:
+        24px;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform
+        0.15s;
+
+}
+
+
+.mine-cell:active {
+
+    transform:
+        scale(0.9);
+
+}
+
+
+.mine-safe {
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c9d68,
+            #087345
+        );
+
+    animation:
+        safeOpen
+        0.3s
+        ease;
+
+}
+
+
+.mine-bomb {
+
+    background:
+        linear-gradient(
+            145deg,
+            #d92d3d,
+            #6b101c
+        );
+
+    animation:
+        bombOpen
+        0.4s
+        ease;
+
+}
+
+
+@keyframes safeOpen {
+
+    from {
+
+        transform:
+            scale(0.5);
+
+    }
+
+    to {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes bombOpen {
+
+    0% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.2);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+#minesMultiplier {
+
+    font-size:
+        28px;
+
+    font-weight:
+        900;
+
+    color:
+        #55e69c;
+
+}
+
+
+.cashout-button {
+
+    width:
+        100%;
+
+    padding:
+        15px;
+
+    margin-top:
+        10px;
+
+    border:
+        none;
+
+    border-radius:
+        14px;
+
+    background:
+        #159447;
+
+    color:
+        white;
+
+    font-weight:
+        900;
+
+}
+
+
+/* ================================= */
+/* ДЖЕКПОТ */
+/* ================================= */
+
+.jackpot-visual {
+
+    font-size:
+        110px;
+
+    margin:
+        30px;
+
+}
+
+
+.jackpot-animation {
+
+    animation:
+        jackpotPulse
+        0.5s
+        infinite alternate;
+
+}
+
+
+@keyframes jackpotPulse {
+
+    from {
+
+        transform:
+            scale(1);
+
+    }
+
+    to {
+
+        transform:
+            scale(1.2)
+            rotate(5deg);
+
+    }
+
+}
+
+
+/* ================================= */
+/* ТОП ИГРОКОВ */
+/* ================================= */
+
+.top-players {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+
+}
+
+
+.top-players div {
+
+    padding:
+        17px;
+
+    border-radius:
+        15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #24243c,
+            #151522
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
+
+    font-weight:
+        700;
+
+}
+
+
+.top-players div:nth-child(1) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #806d1a,
+            #302808
+        );
+
+}
+
+
+.top-players div:nth-child(2) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #555a64,
+            #252832
+        );
+
+}
+
+
+.top-players div:nth-child(3) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #754d2d,
+            #2d1b0e
+        );
+
+}
+
+
+/* ================================= */
+/* МАГАЗИН */
+/* ================================= */
+
+.shop-card {
+
+    padding:
+        20px;
+
+    margin-bottom:
+        15px;
+
+    border-radius:
+        20px;
+
+    background:
+        #191927;
+
+}
+
+
+.shop-card button {
+
+    width:
+        100%;
+
+    padding:
+        15px;
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    background:
+        #ffb800;
+
+    font-weight:
+        900;
+
+}
+
+
+/* ================================= */
+/* ПРОФИЛЬ */
+/* ================================= */
+
+.profile-card {
+
+    text-align:
+        center;
+
+    padding:
+        30px;
+
+    border-radius:
+        25px;
+
+    background:
+        #191927;
+
+}
+
+
+.profile-avatar {
+
+    font-size:
+        70px;
+
+}
+
+
+/* ================================= */
+/* НИЖНЕЕ МЕНЮ */
+/* ================================= */
+
+.bottom-menu {
+
+    position:
+        fixed;
+
+    bottom:
+        0;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    z-index:
+        999;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    padding:
+        8px 5px;
+
+    background:
+        rgba(12,12,20,0.97);
+
+    backdrop-filter:
+        blur(20px);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+}
+
+
+.bottom-menu button {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        #888;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    gap:
+        3px;
+
+    font-size:
+        20px;
+
+}
+
+
+.bottom-menu span {
+
+    font-size:
+        10px;
+
+}
+
+
+.bottom-menu button:active {
+
+    color:
+        #ffd23f;
+
+    transform:
+        scale(0.9);
+
+}
+
+
+/* ================================= */
+/* МОБИЛЬНЫЙ ЭКРАН */
+/* ================================= */
+
+@media (
+    max-width: 400px
+) {
+
+    .casino-menu {
+
+        gap:
+            10px;
+
+    }
+
+
+    .casino-card {
+
+        min-height:
+            135px;
+
+    }
+
+
+    .casino-card span {
+
+        font-size:
+            42px;
+
+    }
+
+
+    .slot-reel {
+
+        width:
+            75px;
+
+        height:
+            90px;
+
+        font-size:
+            40px;
+
+    }
+
+
+    .wheel {
+
+        width:
+            180px;
+
+        height:
+            180px;
+
+    }
+
 }
