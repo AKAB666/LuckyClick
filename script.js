@@ -623,3 +623,45 @@ showPets();
 // ==============================
 
 update();
+function animateResult(type) {
+
+    let result = document.getElementById("casinoResult");
+
+    result.classList.remove(
+        "win-animation",
+        "lose-animation",
+        "slot-spin",
+        "dice-roll",
+        "roulette-spin",
+        "jackpot-animation",
+        "result-show"
+    );
+
+    void result.offsetWidth;
+
+    if (type === "win") {
+        result.classList.add("win-animation");
+    }
+
+    if (type === "lose") {
+        result.classList.add("lose-animation");
+    }
+
+    if (type === "slot") {
+        result.classList.add("slot-spin");
+    }
+
+    if (type === "dice") {
+        result.classList.add("dice-roll");
+    }
+
+    if (type === "roulette") {
+        result.classList.add("roulette-spin");
+    }
+
+    if (type === "jackpot") {
+        result.classList.add("jackpot-animation");
+    }
+
+    result.classList.add("result-show");
+}
