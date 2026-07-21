@@ -1,59 +1,48 @@
-/* ================================= */
-/* ОСНОВА */
-/* ================================= */
-
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
 
 html {
-    touch-action: manipulation;
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
-    padding: 0 0 90px 0;
+    padding: 0;
+    padding-bottom: 90px;
 
     font-family:
         -apple-system,
         BlinkMacSystemFont,
+        "SF Pro Display",
         "Segoe UI",
         sans-serif;
+
+    color: #ffffff;
 
     background:
         radial-gradient(
             circle at top,
-            #24243a 0%,
-            #101018 45%,
-            #08080d 100%
+            #1c3150 0%,
+            #0b1422 35%,
+            #050910 100%
         );
-
-    color: white;
 
     min-height: 100vh;
 
+    overflow-x: hidden;
+
     user-select: none;
+    -webkit-user-select: none;
 }
 
 
-/* ================================= */
-/* ЗАПРЕТ ПРИБЛИЖЕНИЯ НА INPUT */
-/* ================================= */
+/* ========================================= */
+/* 📱 ВЕРХНЯЯ ПАНЕЛЬ */
+/* ========================================= */
 
-input,
-button,
-select,
-textarea {
-    font-size: 16px;
-}
-
-
-/* ================================= */
-/* ВЕРХНЯЯ ПАНЕЛЬ */
-/* ================================= */
-
-.top-bar {
+.topbar {
 
     position: sticky;
 
@@ -61,24 +50,39 @@ textarea {
 
     z-index: 100;
 
-    display: flex;
+    height: 64px;
 
-    justify-content: space-between;
+    display: flex;
 
     align-items: center;
 
-    padding: 15px 18px;
+    justify-content: space-between;
+
+    padding:
+        0 16px;
 
     background:
-        rgba(12, 12, 20, 0.95);
+        rgba(
+            7,
+            14,
+            25,
+            0.88
+        );
 
     backdrop-filter:
-        blur(15px);
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
 
     border-bottom:
         1px solid
-        rgba(255,255,255,0.08);
-
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
 }
 
 
@@ -88,59 +92,71 @@ textarea {
 
     font-weight: 800;
 
+    letter-spacing:
+        -0.5px;
+
 }
 
 
 .balance {
 
     padding:
-        9px 15px;
+        9px 14px;
 
     border-radius:
-        15px;
+        20px;
 
     background:
-        linear-gradient(
-            135deg,
-            #24243d,
-            #151522
+        rgba(
+            255,
+            255,
+            255,
+            0.08
         );
 
     border:
         1px solid
-        rgba(255,255,255,0.1);
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    font-weight:
+        700;
 
     color:
         #ffd84d;
 
-    font-weight:
-        800;
-
     box-shadow:
         0 5px 20px
-        rgba(0,0,0,0.3);
-
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
 }
 
 
-/* ================================= */
-/* СТРАНИЦЫ */
-/* ================================= */
+/* ========================================= */
+/* 📄 СТРАНИЦЫ */
+/* ========================================= */
 
 .page {
 
+    min-height:
+        calc(
+            100vh - 64px
+        );
+
     padding:
-        20px;
-
-    max-width:
-        650px;
-
-    margin:
-        auto;
+        20px 16px 110px;
 
     animation:
         pageAppear
-        0.3s
+        0.25s
         ease;
 
 }
@@ -162,7 +178,9 @@ textarea {
             0;
 
         transform:
-            translateY(10px);
+            translateY(
+                10px
+            );
 
     }
 
@@ -172,18 +190,109 @@ textarea {
             1;
 
         transform:
-            translateY(0);
+            translateY(
+                0
+            );
 
     }
 
 }
 
 
-/* ================================= */
-/* ГЛАВНАЯ */
-/* ================================= */
+/* ========================================= */
+/* 👤 МИНИ ПРОФИЛЬ */
+/* ========================================= */
 
-.home-card {
+.profile-mini {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        14px;
+
+    margin-bottom:
+        20px;
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.avatar {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    font-size:
+        26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #38d996,
+            #147dff
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            20,
+            125,
+            255,
+            0.3
+        );
+
+}
+
+
+/* ========================================= */
+/* 🪙 КЛИКЕР */
+/* ========================================= */
+
+.clicker-card {
+
+    position:
+        relative;
 
     text-align:
         center;
@@ -191,123 +300,175 @@ textarea {
     padding:
         30px 20px;
 
-}
-
-
-.home-card h2 {
-
-    font-size:
-        28px;
-
     margin-bottom:
-        5px;
-
-}
-
-
-.home-card p {
-
-    color:
-        #999;
-
-}
-
-
-/* ================================= */
-/* БОЛЬШАЯ КНОПКА КЛИКА */
-/* ================================= */
-
-.big-click {
-
-    width:
-        210px;
-
-    height:
-        210px;
+        18px;
 
     border-radius:
-        50%;
+        30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.1
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.035
+            )
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    box-shadow:
+        0 20px 60px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+    overflow:
+        hidden;
+
+}
+
+
+.clicker-title {
+
+    font-size:
+        26px;
+
+    font-weight:
+        900;
+
+}
+
+
+.clicker-subtitle {
+
+    margin-top:
+        6px;
+
+    margin-bottom:
+        25px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.55
+        );
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.coin-button {
+
+    width:
+        190px;
+
+    height:
+        190px;
 
     border:
         none;
 
-    margin:
-        45px auto 30px;
-
-    display:
-        block;
+    border-radius:
+        50%;
 
     font-size:
-        85px;
+        90px;
 
     cursor:
         pointer;
 
     background:
         radial-gradient(
-            circle at 35% 30%,
-            #fff36a,
-            #ffc400 40%,
-            #d47a00 100%
+            circle at 35% 25%,
+            #fff4a8,
+            #ffd229 30%,
+            #f09b00 70%,
+            #a95c00 100%
         );
 
     box-shadow:
+        0 12px 0
+        #9b5b00,
 
-        0 0 0 8px
-        rgba(255,200,0,0.08),
-
-        0 0 40px
-        rgba(255,180,0,0.35),
-
-        inset 0 -15px 20px
-        rgba(0,0,0,0.25);
+        0 25px 45px
+        rgba(
+            255,
+            174,
+            0,
+            0.3
+        );
 
     transition:
         transform
-        0.1s;
+        0.08s
+        ease;
 
 }
 
 
-.big-click:active {
+.coin-button:active {
 
     transform:
-        scale(0.92);
+        scale(
+            0.91
+        )
+        translateY(
+            5px
+        );
+
+    box-shadow:
+        0 5px 0
+        #9b5b00;
 
 }
 
 
 .click-info {
 
-    display:
-        inline-block;
+    margin-top:
+        25px;
 
-    padding:
-        12px 20px;
-
-    border-radius:
+    font-size:
         15px;
 
-    background:
-        rgba(255,255,255,0.06);
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.6
+        );
 
 }
 
 
-/* ================================= */
-/* БОНУС КЛИКА */
-/* ================================= */
-
-#clickBonus {
-
-    min-height:
-        35px;
-
-    margin:
-        10px;
-
-    font-weight:
-        800;
+.click-power {
 
     color:
         #ffd84d;
@@ -315,120 +476,284 @@ textarea {
 }
 
 
-.bonus-animation {
+/* ========================================= */
+/* ✨ ЭФФЕКТ КЛИКА */
+/* ========================================= */
 
-    animation:
-        bonusPop
-        0.7s
-        ease;
+.click-effects {
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    top:
+        50%;
+
+    pointer-events:
+        none;
 
 }
 
 
-@keyframes bonusPop {
+.click-effect {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    transform:
+        translateX(
+            -50%
+        );
+
+    color:
+        #ffd84d;
+
+    font-size:
+        20px;
+
+    font-weight:
+        900;
+
+    animation:
+        clickFloat
+        1.2s
+        ease
+        forwards;
+
+    white-space:
+        nowrap;
+
+}
+
+
+@keyframes clickFloat {
 
     0% {
 
-        transform:
-            scale(0.5);
-
-        opacity:
-            0;
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.2);
-
         opacity:
             1;
+
+        transform:
+            translate(
+                -50%,
+                0
+            )
+            scale(
+                1
+            );
 
     }
 
     100% {
 
+        opacity:
+            0;
+
         transform:
-            scale(1);
+            translate(
+                -50%,
+                -80px
+            )
+            scale(
+                1.2
+            );
 
     }
 
 }
 
 
-/* ================================= */
-/* КАЗИНО */
-/* ================================= */
+/* ========================================= */
+/* 🔘 КНОПКИ */
+/* ========================================= */
 
-.casino-header {
+.main-button {
+
+    width:
+        100%;
+
+    min-height:
+        54px;
+
+    border:
+        none;
+
+    border-radius:
+        16px;
+
+    padding:
+        12px 18px;
+
+    margin-top:
+        12px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        16px;
+
+    font-weight:
+        800;
+
+    background:
+        linear-gradient(
+            135deg,
+            #287cff,
+            #635bff
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            53,
+            100,
+            255,
+            0.25
+        );
+
+    cursor:
+        pointer;
+
+    transition:
+        transform
+        0.15s
+        ease;
+
+}
+
+
+.main-button:active {
+
+    transform:
+        scale(
+            0.97
+        );
+
+}
+
+
+.click-price {
+
+    display:
+        block;
+
+    margin-top:
+        4px;
+
+    color:
+        #d7e3ff;
+
+    font-size:
+        12px;
+
+}
+
+
+/* ========================================= */
+/* 🎰 ЗАГОЛОВКИ */
+/* ========================================= */
+
+.page-title {
 
     text-align:
         center;
 
-    padding:
-        10px 0 25px;
-
-}
-
-
-.casino-header h1 {
-
     font-size:
-        30px;
+        28px;
 
-    margin:
-        0;
+    font-weight:
+        900;
+
+    margin-top:
+        10px;
 
 }
 
 
-.casino-header p {
+.page-subtitle {
+
+    text-align:
+        center;
 
     color:
-        #999;
+        rgba(
+            255,
+            255,
+            255,
+            0.5
+        );
+
+    margin-bottom:
+        25px;
 
 }
 
 
-/* ================================= */
-/* МЕНЮ КАЗИНО */
-/* ================================= */
+/* ========================================= */
+/* 🎰 КАЗИНО */
+/* ========================================= */
 
-.casino-menu {
+.casino-grid {
 
     display:
         grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(
+            2,
+            1fr
+        );
 
     gap:
-        14px;
+        12px;
 
 }
 
 
-.casino-card {
+.game-card {
 
     min-height:
         150px;
 
     border:
         1px solid
-        rgba(255,255,255,0.08);
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
 
     border-radius:
-        22px;
+        24px;
 
     color:
-        white;
+        #ffffff;
 
     background:
         linear-gradient(
             145deg,
-            #24243c,
-            #151522
+            rgba(
+                255,
+                255,
+                255,
+                0.1
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.035
+            )
         );
 
     display:
@@ -446,230 +771,171 @@ textarea {
     gap:
         8px;
 
-    box-shadow:
-        0 10px 25px
-        rgba(0,0,0,0.3);
-
     cursor:
         pointer;
 
     transition:
         transform
-        0.15s;
+        0.15s
+        ease;
 
 }
 
 
-.casino-card:active {
+.game-card:active {
 
     transform:
-        scale(0.94);
-
-}
-
-
-.casino-card span {
-
-    font-size:
-        50px;
-
-}
-
-
-.casino-card b {
-
-    font-size:
-        16px;
-
-}
-
-
-.casino-card small {
-
-    color:
-        #999;
-
-}
-
-
-.casino-card.jackpot {
-
-    background:
-        linear-gradient(
-            145deg,
-            #49320a,
-            #1d1507
+        scale(
+            0.95
         );
 
-    border:
-        1px solid
-        rgba(255,190,0,0.25);
+}
+
+
+.game-icon {
+
+    font-size:
+        48px;
 
 }
 
 
-/* ================================= */
-/* СТРАНИЦА ИГРЫ */
-/* ================================= */
+.game-card b {
 
-.casino-game {
+    font-size:
+        15px;
 
-    margin-top:
-        10px;
+}
+
+
+.game-card small {
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.45
+        );
+
+}
+
+
+/* ========================================= */
+/* 🎮 ЭКРАН ИГРЫ */
+/* ========================================= */
+
+.game-screen {
+
+    animation:
+        pageAppear
+        0.3s
+        ease;
+
+}
+
+
+.game-screen h2 {
+
+    text-align:
+        center;
+
+    font-size:
+        27px;
 
 }
 
 
 .back-button {
 
-    width:
-        100%;
-
-    padding:
-        14px;
-
-    margin-bottom:
-        20px;
-
     border:
         none;
 
-    border-radius:
-        14px;
-
     background:
-        rgba(255,255,255,0.07);
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
 
     color:
         white;
 
-    font-size:
-        16px;
-
-}
-
-
-/* ================================= */
-/* ПАНЕЛЬ ИГРЫ */
-/* ================================= */
-
-.casino-panel {
-
-    text-align:
-        center;
-
     padding:
-        20px;
+        10px 16px;
 
     border-radius:
-        25px;
+        12px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(35,35,55,0.95),
-            rgba(15,15,25,0.95)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.4);
+    cursor:
+        pointer;
 
 }
 
 
-.casino-panel input {
+input {
 
     width:
         100%;
 
-    padding:
-        16px;
+    height:
+        54px;
 
-    margin:
-        8px 0 20px;
+    margin-top:
+        15px;
+
+    padding:
+        0 18px;
 
     border:
         1px solid
-        rgba(255,255,255,0.1);
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
 
     border-radius:
-        14px;
-
-    background:
-        #101018;
-
-    color:
-        white;
+        16px;
 
     outline:
         none;
 
-    text-align:
-        center;
-
-}
-
-
-/* ================================= */
-/* КНОПКА ИГРЫ */
-/* ================================= */
-
-.play-button {
-
-    width:
-        100%;
-
-    padding:
-        17px;
-
-    margin-top:
-        20px;
-
-    border:
-        none;
-
-    border-radius:
-        15px;
-
     background:
-        linear-gradient(
-            135deg,
-            #ffcc00,
-            #ff8c00
+        rgba(
+            255,
+            255,
+            255,
+            0.07
         );
 
     color:
-        #17120a;
+        white;
 
     font-size:
-        17px;
-
-    font-weight:
-        900;
-
-    box-shadow:
-        0 8px 25px
-        rgba(255,160,0,0.25);
+        16px;
 
 }
 
 
-.play-button:active {
+input::placeholder {
 
-    transform:
-        scale(0.97);
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
 
 }
 
 
-/* ================================= */
-/* СЛОТЫ */
-/* ================================= */
+/* ========================================= */
+/* 🎰 СЛОТ */
+/* ========================================= */
 
 .slot-machine {
 
@@ -682,19 +948,41 @@ textarea {
     gap:
         10px;
 
+    padding:
+        25px 15px;
+
     margin:
-        25px 0;
+        20px 0;
+
+    border-radius:
+        24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c2738,
+            #080d15
+        );
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
 
 }
 
 
-.slot-reel {
+.slot-machine div {
 
     width:
-        85px;
+        80px;
 
     height:
-        100px;
+        90px;
 
     display:
         flex;
@@ -705,25 +993,14 @@ textarea {
     justify-content:
         center;
 
-    font-size:
-        48px;
-
     border-radius:
         15px;
 
     background:
-        linear-gradient(
-            180deg,
-            #fafafa,
-            #c9c9c9
-        );
+        #ffffff;
 
-    color:
-        #111;
-
-    box-shadow:
-        inset 0 0 15px
-        rgba(0,0,0,0.35);
+    font-size:
+        48px;
 
 }
 
@@ -744,55 +1021,295 @@ textarea {
     0% {
 
         transform:
-            translateY(-8px);
+            translateY(
+                -5px
+            );
 
     }
 
     50% {
 
         transform:
-            translateY(8px);
+            translateY(
+                5px
+            );
 
     }
 
     100% {
 
         transform:
-            translateY(-8px);
+            translateY(
+                -5px
+            );
 
     }
 
 }
 
 
-/* ================================= */
-/* РУЛЕТКА */
-/* ================================= */
+/* ========================================= */
+/* 🎡 РУЛЕТКА */
+/* ========================================= */
 
 .roulette-wheel {
+
+    width:
+        260px;
+
+    height:
+        260px;
+
+    margin:
+        25px
+        auto;
+
+    border-radius:
+        50%;
+
+    border:
+        12px
+        solid
+        #c89b3c;
+
+    background:
+        conic-gradient(
+
+            #d92727
+            0deg 10deg,
+
+            #111
+            10deg 20deg,
+
+            #d92727
+            20deg 30deg,
+
+            #111
+            30deg 40deg,
+
+            #d92727
+            40deg 50deg,
+
+            #111
+            50deg 60deg,
+
+            #d92727
+            60deg 70deg,
+
+            #111
+            70deg 80deg,
+
+            #d92727
+            80deg 90deg,
+
+            #111
+            90deg 100deg,
+
+            #d92727
+            100deg 110deg,
+
+            #111
+            110deg 120deg,
+
+            #d92727
+            120deg 130deg,
+
+            #111
+            130deg 140deg,
+
+            #d92727
+            140deg 150deg,
+
+            #111
+            150deg 160deg,
+
+            #d92727
+            160deg 170deg,
+
+            #111
+            170deg 180deg,
+
+            #d92727
+            180deg 190deg,
+
+            #111
+            190deg 200deg,
+
+            #d92727
+            200deg 210deg,
+
+            #111
+            210deg 220deg,
+
+            #d92727
+            220deg 230deg,
+
+            #111
+            230deg 240deg,
+
+            #d92727
+            240deg 250deg,
+
+            #111
+            250deg 260deg,
+
+            #d92727
+            260deg 270deg,
+
+            #111
+            270deg 280deg,
+
+            #d92727
+            280deg 290deg,
+
+            #111
+            290deg 300deg,
+
+            #d92727
+            300deg 310deg,
+
+            #111
+            310deg 320deg,
+
+            #d92727
+            320deg 330deg,
+
+            #111
+            330deg 340deg,
+
+            #0b8f55
+            340deg 360deg
+
+        );
 
     display:
         flex;
 
+    align-items:
+        center;
+
     justify-content:
         center;
 
-    margin:
-        20px 0;
+    box-shadow:
+        0 15px 50px
+        rgba(
+            0,
+            0,
+            0,
+            0.5
+        );
 
 }
 
 
-.wheel {
+.roulette-center {
 
     width:
-        210px;
+        80px;
 
     height:
-        210px;
+        80px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
 
     border-radius:
         50%;
+
+    background:
+        #111;
+
+    font-weight:
+        900;
+
+}
+
+
+.color-buttons {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+        8px;
+
+    margin:
+        15px 0;
+
+}
+
+
+.color-buttons button {
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    padding:
+        14px 5px;
+
+    color:
+        white;
+
+    font-weight:
+        700;
+
+}
+
+
+.red-button {
+
+    background:
+        #c92828;
+
+}
+
+
+.black-button {
+
+    background:
+        #161616;
+
+}
+
+
+.green-button {
+
+    background:
+        #08884e;
+
+}
+
+
+/* ========================================= */
+/* 🎲 КУБИК */
+/* ========================================= */
+
+.dice-number {
+
+    width:
+        120px;
+
+    height:
+        120px;
+
+    margin:
+        25px auto;
 
     display:
         flex;
@@ -804,91 +1321,425 @@ textarea {
         center;
 
     font-size:
-        75px;
+        70px;
+
+    border-radius:
+        25px;
 
     background:
-        conic-gradient(
-            #c91e2b 0deg 30deg,
-            #171717 30deg 60deg,
-            #c91e2b 60deg 90deg,
-            #171717 90deg 120deg,
-            #c91e2b 120deg 150deg,
-            #171717 150deg 180deg,
-            #c91e2b 180deg 210deg,
-            #171717 210deg 240deg,
-            #c91e2b 240deg 270deg,
-            #171717 270deg 300deg,
-            #c91e2b 300deg 330deg,
-            #159447 330deg 360deg
-        );
-
-    border:
-        8px solid
-        #d5a43a;
-
-    box-shadow:
-        0 0 35px
-        rgba(0,0,0,0.6);
-
-}
-
-
-.roulette-spin {
-
-    animation:
-        rouletteSpin
-        1.5s
-        cubic-bezier(
-            .17,
-            .67,
-            .12,
-            .99
+        rgba(
+            255,
+            255,
+            255,
+            0.08
         );
 
 }
 
 
-@keyframes rouletteSpin {
-
-    from {
-
-        transform:
-            rotate(0deg);
-
-    }
-
-    to {
-
-        transform:
-            rotate(1440deg);
-
-    }
-
-}
-
-
-/* ================================= */
-/* СТАВКИ РУЛЕТКИ */
-/* ================================= */
-
-.roulette-bets {
+.number-grid {
 
     display:
         grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(
+            3,
+            1fr
+        );
 
     gap:
-        8px;
+        10px;
+
+    margin:
+        20px 0;
 
 }
 
 
-.roulette-bets button {
+.number-grid button {
+
+    height:
+        55px;
+
+    border:
+        none;
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    color:
+        white;
+
+    font-size:
+        20px;
+
+    font-weight:
+        800;
+
+}
+
+
+/* ========================================= */
+/* 📈 ЛЕСЕНКА */
+/* ========================================= */
+
+.ladder {
+
+    display:
+        flex;
+
+    flex-direction:
+        column-reverse;
+
+    gap:
+        8px;
+
+    margin:
+        25px 0;
+
+}
+
+
+.ladder div {
 
     padding:
-        14px 5px;
+        16px;
+
+    border-radius:
+        14px;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1c3558,
+            #172238
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+}
+
+
+/* ========================================= */
+/* 💣 МИНЁР */
+/* ========================================= */
+
+.mines-board {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap:
+        8px;
+
+    margin:
+        25px 0;
+
+}
+
+
+.mines-board button {
+
+    aspect-ratio:
+        1;
+
+    border:
+        none;
+
+    border-radius:
+        14px;
+
+    color:
+        white;
+
+    font-size:
+        22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #253b58,
+            #111c2d
+        );
+
+}
+
+
+/* ========================================= */
+/* ✈️ CRASH */
+/* ========================================= */
+
+.crash-area {
+
+    position:
+        relative;
+
+    height:
+        330px;
+
+    margin:
+        20px 0;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        25px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #152b4c,
+            #07111e
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+}
+
+
+.crash-multiplier {
+
+    position:
+        absolute;
+
+    top:
+        25px;
+
+    width:
+        100%;
+
+    text-align:
+        center;
+
+    font-size:
+        42px;
+
+    font-weight:
+        900;
+
+    color:
+        #57e6a3;
+
+}
+
+
+.crash-plane {
+
+    position:
+        absolute;
+
+    left:
+        10%;
+
+    bottom:
+        20%;
+
+    font-size:
+        50px;
+
+    transform:
+        rotate(
+            -15deg
+        );
+
+}
+
+
+.cashout-button {
+
+    width:
+        100%;
+
+    min-height:
+        54px;
+
+    margin-top:
+        10px;
+
+    border:
+        none;
+
+    border-radius:
+        16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00b978,
+            #00e18b
+        );
+
+    color:
+        white;
+
+    font-size:
+        17px;
+
+    font-weight:
+        900;
+
+}
+
+
+/* ========================================= */
+/* 💎 ДЖЕКПОТ */
+/* ========================================= */
+
+.jackpot-icon {
+
+    text-align:
+        center;
+
+    font-size:
+        100px;
+
+    margin:
+        30px 0;
+
+    animation:
+        jackpotPulse
+        1.5s
+        infinite;
+
+}
+
+
+@keyframes jackpotPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(
+                1
+            );
+
+    }
+
+    50% {
+
+        transform:
+            scale(
+                1.12
+            );
+
+    }
+
+}
+
+
+/* ========================================= */
+/* 🎁 КЕЙСЫ */
+/* ========================================= */
+
+.cases-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:
+        12px;
+
+}
+
+
+.case-card {
+
+    padding:
+        20px 12px;
+
+    text-align:
+        center;
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.1
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.035
+            )
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.case-icon {
+
+    font-size:
+        55px;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.case-card button {
+
+    width:
+        100%;
+
+    padding:
+        11px;
 
     border:
         none;
@@ -902,644 +1753,198 @@ textarea {
     font-weight:
         800;
 
-}
-
-
-.red-bet {
-
     background:
-        #c92838;
+        #287cff;
 
 }
 
 
-.black-bet {
+.case-result {
 
-    background:
-        #222;
-
-}
-
-
-.green-bet {
-
-    background:
-        #159447;
-
-}
-
-
-/* ================================= */
-/* КУБИК */
-/* ================================= */
-
-.dice-numbers {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap:
-        10px;
-
-}
-
-
-.dice-numbers button {
-
-    padding:
-        15px;
-
-    border:
-        none;
-
-    border-radius:
-        12px;
-
-    background:
-        #292941;
-
-    color:
-        white;
-
-    font-size:
-        20px;
-
-}
-
-
-.dice {
-
-    font-size:
-        80px;
-
-    margin:
+    margin-top:
         25px;
 
-}
-
-
-.dice-roll {
-
-    animation:
-        diceRoll
-        1s
-        ease;
+    text-align:
+        center;
 
 }
 
 
-@keyframes diceRoll {
-
-    0% {
-
-        transform:
-            rotate(0)
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            rotate(360deg)
-            scale(1.3);
-
-    }
-
-    100% {
-
-        transform:
-            rotate(720deg)
-            scale(1);
-
-    }
-
-}
-
-
-/* ================================= */
-/* ЛЕСЕНКА */
-/* ================================= */
-
-.ladder-board {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        8px;
-
-    margin:
-        20px 0;
-
-}
-
-
-.ladder-level {
+.gift-result {
 
     padding:
-        15px;
+        25px;
 
     border-radius:
-        12px;
+        25px;
 
     background:
         linear-gradient(
-            90deg,
-            #25253e,
-            #171725
+            145deg,
+            #1b3150,
+            #101827
         );
 
     border:
         1px solid
-        rgba(255,255,255,0.06);
-
-    transition:
-        all
-        0.4s;
-
-}
-
-
-.active-level {
-
-    background:
-        linear-gradient(
-            90deg,
-            #d49b16,
-            #6c4205
+        rgba(
+            255,
+            255,
+            255,
+            0.1
         );
 
-    transform:
-        scale(1.04);
-
-}
-
-
-.ladder-up {
-
     animation:
-        ladderUp
-        0.6s
+        giftAppear
+        0.5s
         ease;
 
 }
 
 
-@keyframes ladderUp {
+.gift-big {
+
+    font-size:
+        100px;
+
+}
+
+
+@keyframes giftAppear {
 
     from {
-
-        transform:
-            translateY(50px);
 
         opacity:
             0;
 
+        transform:
+            scale(
+                0.5
+            )
+            rotate(
+                -10deg
+            );
+
     }
 
     to {
-
-        transform:
-            translateY(0);
 
         opacity:
             1;
 
-    }
-
-}
-
-
-.ladder-fall {
-
-    animation:
-        ladderFall
-        0.8s
-        ease;
-
-}
-
-
-@keyframes ladderFall {
-
-    0% {
-
         transform:
-            translateY(0);
-
-    }
-
-    100% {
-
-        transform:
-            translateY(300px)
-            rotate(15deg);
-
-        opacity:
-            0;
+            scale(
+                1
+            )
+            rotate(
+                0
+            );
 
     }
 
 }
 
 
-/* ================================= */
-/* МИНЕР */
-/* ================================= */
+/* ========================================= */
+/* 🎒 ИНВЕНТАРЬ */
+/* ========================================= */
 
-.mine-options {
+.inventory {
 
     display:
         grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(
+            2,
+            1fr
+        );
 
     gap:
-        7px;
+        12px;
 
 }
 
 
-.mine-options button {
-
-    padding:
-        12px 5px;
-
-    border:
-        none;
-
-    border-radius:
-        10px;
-
-    background:
-        #292941;
-
-    color:
-        white;
-
-}
-
-
-.mines-board {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(5, 1fr);
-
-    gap:
-        7px;
-
-    margin:
-        20px 0;
-
-}
-
-
-.mine-cell {
-
-    aspect-ratio:
-        1;
-
-    border:
-        none;
-
-    border-radius:
-        10px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #3b3b59,
-            #202033
-        );
-
-    color:
-        white;
-
-    font-size:
-        24px;
-
-    cursor:
-        pointer;
-
-    transition:
-        transform
-        0.15s;
-
-}
-
-
-.mine-cell:active {
-
-    transform:
-        scale(0.9);
-
-}
-
-
-.mine-safe {
-
-    background:
-        linear-gradient(
-            145deg,
-            #1c9d68,
-            #087345
-        );
-
-    animation:
-        safeOpen
-        0.3s
-        ease;
-
-}
-
-
-.mine-bomb {
-
-    background:
-        linear-gradient(
-            145deg,
-            #d92d3d,
-            #6b101c
-        );
-
-    animation:
-        bombOpen
-        0.4s
-        ease;
-
-}
-
-
-@keyframes safeOpen {
-
-    from {
-
-        transform:
-            scale(0.5);
-
-    }
-
-    to {
-
-        transform:
-            scale(1);
-
-    }
-
-}
-
-
-@keyframes bombOpen {
-
-    0% {
-
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.2);
-
-    }
-
-    100% {
-
-        transform:
-            scale(1);
-
-    }
-
-}
-
-
-#minesMultiplier {
-
-    font-size:
-        28px;
-
-    font-weight:
-        900;
-
-    color:
-        #55e69c;
-
-}
-
-
-.cashout-button {
-
-    width:
-        100%;
+.inventory-card {
 
     padding:
         15px;
+
+    text-align:
+        center;
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+}
+
+
+.inventory-icon {
+
+    font-size:
+        50px;
+
+}
+
+
+.inventory-card span,
+.inventory-card small {
+
+    display:
+        block;
+
+    margin-top:
+        5px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.5
+        );
+
+}
+
+
+.inventory-card button {
 
     margin-top:
         10px;
 
-    border:
-        none;
-
-    border-radius:
-        14px;
-
-    background:
-        #159447;
-
-    color:
-        white;
-
-    font-weight:
-        900;
-
-}
-
-
-/* ================================= */
-/* ДЖЕКПОТ */
-/* ================================= */
-
-.jackpot-visual {
-
-    font-size:
-        110px;
-
-    margin:
-        30px;
-
-}
-
-
-.jackpot-animation {
-
-    animation:
-        jackpotPulse
-        0.5s
-        infinite alternate;
-
-}
-
-
-@keyframes jackpotPulse {
-
-    from {
-
-        transform:
-            scale(1);
-
-    }
-
-    to {
-
-        transform:
-            scale(1.2)
-            rotate(5deg);
-
-    }
-
-}
-
-
-/* ================================= */
-/* ТОП ИГРОКОВ */
-/* ================================= */
-
-.top-players {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        10px;
-
-}
-
-
-.top-players div {
-
-    padding:
-        17px;
-
-    border-radius:
-        15px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #24243c,
-            #151522
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
-
-    font-weight:
-        700;
-
-}
-
-
-.top-players div:nth-child(1) {
-
-    background:
-        linear-gradient(
-            135deg,
-            #806d1a,
-            #302808
-        );
-
-}
-
-
-.top-players div:nth-child(2) {
-
-    background:
-        linear-gradient(
-            135deg,
-            #555a64,
-            #252832
-        );
-
-}
-
-
-.top-players div:nth-child(3) {
-
-    background:
-        linear-gradient(
-            135deg,
-            #754d2d,
-            #2d1b0e
-        );
-
-}
-
-
-/* ================================= */
-/* МАГАЗИН */
-/* ================================= */
-
-.shop-card {
-
-    padding:
-        20px;
-
-    margin-bottom:
-        15px;
-
-    border-radius:
-        20px;
-
-    background:
-        #191927;
-
-}
-
-
-.shop-card button {
-
     width:
         100%;
 
     padding:
-        15px;
+        9px;
 
     border:
         none;
 
     border-radius:
-        12px;
+        10px;
+
+    color:
+        white;
 
     background:
-        #ffb800;
-
-    font-weight:
-        900;
+        #c83232;
 
 }
 
 
-/* ================================= */
-/* ПРОФИЛЬ */
-/* ================================= */
+/* ========================================= */
+/* 🏆 ПРОФИЛЬ */
+/* ========================================= */
 
 .profile-card {
 
@@ -1547,78 +1952,190 @@ textarea {
         center;
 
     padding:
-        30px;
+        35px 20px;
 
     border-radius:
         25px;
 
     background:
-        #191927;
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
 
 }
 
 
-.profile-avatar {
+.profile-card .avatar {
 
-    font-size:
-        70px;
+    margin:
+        0 auto 15px;
 
 }
 
 
-/* ================================= */
-/* НИЖНЕЕ МЕНЮ */
-/* ================================= */
+/* ========================================= */
+/* 💬 СООБЩЕНИЯ */
+/* ========================================= */
 
-.bottom-menu {
+.game-message {
 
     position:
         fixed;
 
-    bottom:
-        0;
-
     left:
-        0;
+        50%;
 
-    right:
-        0;
+    bottom:
+        100px;
 
     z-index:
-        999;
+        200;
+
+    transform:
+        translateX(
+            -50%
+        )
+        translateY(
+            20px
+        );
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    padding:
+        12px 18px;
+
+    border-radius:
+        14px;
+
+    background:
+        rgba(
+            20,
+            30,
+            45,
+            0.95
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    transition:
+        0.25s
+        ease;
+
+}
+
+
+.game-message.show {
+
+    opacity:
+        1;
+
+    transform:
+        translateX(
+            -50%
+        )
+        translateY(
+            0
+        );
+
+}
+
+
+/* ========================================= */
+/* 📱 НИЖНЯЯ НАВИГАЦИЯ */
+/* ========================================= */
+
+.bottom-nav {
+
+    position:
+        fixed;
+
+    left:
+        10px;
+
+    right:
+        10px;
+
+    bottom:
+        10px;
+
+    z-index:
+        150;
+
+    height:
+        68px;
 
     display:
         grid;
 
     grid-template-columns:
-        repeat(5, 1fr);
+        repeat(
+            5,
+            1fr
+        );
 
-    padding:
-        8px 5px;
+    align-items:
+        center;
+
+    border-radius:
+        22px;
 
     background:
-        rgba(12,12,20,0.97);
+        rgba(
+            10,
+            18,
+            30,
+            0.92
+        );
 
     backdrop-filter:
-        blur(20px);
+        blur(
+            20px
+        );
 
-    border-top:
+    -webkit-backdrop-filter:
+        blur(
+            20px
+        );
+
+    border:
         1px solid
-        rgba(255,255,255,0.08);
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    box-shadow:
+        0 10px 40px
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
 
 }
 
 
-.bottom-menu button {
+.bottom-nav button {
 
-    border:
-        none;
-
-    background:
-        transparent;
-
-    color:
-        #888;
+    height:
+        100%;
 
     display:
         flex;
@@ -1629,8 +2146,25 @@ textarea {
     align-items:
         center;
 
+    justify-content:
+        center;
+
     gap:
         3px;
+
+    border:
+        none;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.55
+        );
+
+    background:
+        transparent;
 
     font-size:
         20px;
@@ -1638,78 +2172,47 @@ textarea {
 }
 
 
-.bottom-menu span {
+.bottom-nav span {
 
     font-size:
-        10px;
+        9px;
 
 }
 
 
-.bottom-menu button:active {
-
-    color:
-        #ffd23f;
-
-    transform:
-        scale(0.9);
-
-}
-
-
-/* ================================= */
-/* МОБИЛЬНЫЙ ЭКРАН */
-/* ================================= */
+/* ========================================= */
+/* 📱 АДАПТАЦИЯ */
+/* ========================================= */
 
 @media (
-    max-width: 400px
+    min-width: 600px
 ) {
 
-    .casino-menu {
+    body {
 
-        gap:
-            10px;
+        max-width:
+            520px;
 
-    }
+        margin:
+            0 auto;
 
+        border-left:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.05
+            );
 
-    .casino-card {
-
-        min-height:
-            135px;
-
-    }
-
-
-    .casino-card span {
-
-        font-size:
-            42px;
-
-    }
-
-
-    .slot-reel {
-
-        width:
-            75px;
-
-        height:
-            90px;
-
-        font-size:
-            40px;
-
-    }
-
-
-    .wheel {
-
-        width:
-            180px;
-
-        height:
-            180px;
+        border-right:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.05
+            );
 
     }
 
