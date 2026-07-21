@@ -427,129 +427,444 @@ function playDice() {
 
 }
 
+// ==============================
+// 🎡 РУЛЕТКА СО СТАВКОЙ
+// ==============================
+
+let selectedRouletteColor = null;
+
 
 // ==============================
-// 🎡 РУЛЕТКА
+// 🎯 ВЫБОР ЦВЕТА
+// ==============================
+
+function selectRouletteColor(color) {
+
+    selectedRouletteColor = color;
+
+    const selected =
+        document.getElementById(
+            "selectedRouletteColor"
+        );
+
+
+    if (color === "red") {
+
+        selected.textContent =
+            "🔴 Выбрано: Красное";
+
+    }
+
+
+    if (color === "black") {
+
+        selected.textContent =
+            "⚫ Выбрано: Чёрное";
+
+    }
+
+
+    if (color === "green") {
+
+        selected.textContent =
+            "🟢 Выбрано: Зелёное";
+
+    }
+
+}
+
+
+// ==============================
+// 🎡 ИГРА В РУЛЕТКУ
 // ==============================
 
 function playRoulette() {
 
-    if (coins < 100) {
 
-        alert("❌ Нужно 100 монет!");
+    // Получаем ставку
+
+    const betInput =
+        document.getElementById(
+            "rouletteBet"
+        );
+
+
+    const bet =
+        Number(betInput.value);
+
+
+    // Проверяем ставку
+
+    if (
+        !bet ||
+        bet <= 0
+    ) {
+
+        alert(
+            "❌ Введите ставку!"
+        );
 
         return;
 
     }
 
-    coins -= 100;
 
-    let wheel =
-        document.getElementById("rouletteWheel");
+    // Проверяем цвет
 
-    let resultElement =
-        document.getElementById("casinoResult");
+    if (
+        !selectedRouletteColor
+    ) {
+
+        alert(
+            "❌ Выберите цвет!"
+        );
+
+        return;
+
+    }
+
+
+    // Проверяем монеты
+
+    if (
+        coins < bet
+    ) {
+
+        alert(
+            "❌ Недостаточно монет!"
+        );
+
+        return;
+
+    }
+
+
+    // Забираем ставку
+
+    coins -= bet;
+
+    save();
+
+    update();
+
+
+    // Получаем элементы
+
+    const wheel =
+        document.getElementById(
+            "rouletteWheel"
+        );
+
+
+    const resultElement =
+        document.getElementById(
+            "casinoResult"
+        );
+
+
+    const numberElement =
+        document.getElementById(
+            "rouletteNumber"
+        );
+
+
+    // Анимация рулетки
 
     if (wheel) {
 
-        wheel.classList.add("roulette-spin");
+        wheel.classList.remove(
+            "roulette-spin"
+        );
+
+        void wheel.offsetWidth;
+
+        wheel.classList.add(
+            "roulette-spin"
+        );
 
     }
 
-    if (resultElement) {
 
-        resultElement.textContent =
-            "🎡 Рулетка вращается...";
+    resultElement.textContent =
+        "🎡 Рулетка вращается...";
 
-    }
+
+    numberElement.textContent =
+        "🎡 Вращение...";
+
+
+    // Результат через 1.5 секунды
 
     setTimeout(function() {
 
-        let result =
-            Math.floor(Math.random() * 37);
 
-        let color;
+        // Число от 0 до 36
 
-        if (result === 0) {
+        const result =
+            Math.floor(
+                Math.random() * 37
+            );
 
-            color = "🟢 Зелёное";
+
+        let resultColor;
+
+
+        // ==============================
+        // 🟢 ЗЕЛЁНОЕ
+        // ==============================
+
+        if (
+            result === 0
+        ) {
+
+            resultColor =
+                "green";
+
+        }
+
+
+        // ==============================
+        // 🔴 КРАСНОЕ
+        // ==============================
+
+        else if (
+
+            [
+                1,
+                3,
+                5,
+                7,
+                9,
+                12,
+                14,
+                16,
+                18,
+                19,
+                21,
+                23,
+                25,
+                27,
+                30,
+                32,
+                34,
+                36
+            ].includes(result)
+
+        ) {
+
+            resultColor =
+                "red";
+
+        }
+
+
+        // ==============================
+        // ⚫ ЧЁРНОЕ
+        // ==============================
+
+        else {
+
+            resultColor =
+                "black";
+
+        }
+
+
+        // Останавливаем анимацию
+
+        if (wheel) {
+
+            wheel.classList.remove(
+                "roulette-spin"
+            );
+
+        }
+
+
+        // Показываем результат
+
+        if (
+            result === 0
+        ) {
+
+            numberElement.textContent =
+                "0 — 🟢 ЗЕЛЁНОЕ";
 
         }
 
         else if (
-            [
-                1, 3, 5, 7, 9,
-                12, 14, 16, 18,
-                19, 21, 23, 25,
-                27, 30, 32, 34, 36
-            ].includes(result)
+            resultColor === "red"
         ) {
 
-            color = "🔴 Красное";
+            numberElement.textContent =
+                result +
+                " — 🔴 КРАСНОЕ";
 
         }
 
         else {
 
-            color = "⚫ Чёрное";
+            numberElement.textContent =
+                result +
+                " — ⚫ ЧЁРНОЕ";
 
         }
 
-        if (wheel) {
 
-            wheel.classList.remove("roulette-spin");
+        // ==============================
+        // 🟢 ЗЕЛЁНОЕ x14
+        // ==============================
 
-        }
+        if (
+            resultColor === "green"
+        ) {
 
-        if (result === 0) {
 
-            coins += 3600;
+            if (
+                selectedRouletteColor ===
+                "green"
+            ) {
 
-            if (resultElement) {
+                const win =
+                    bet * 14;
+
+
+                coins += win;
+
 
                 resultElement.textContent =
-                    "🎉💚 ЗЕЛЁНОЕ 0! +3600 🪙";
+                    "🎉🟢 ЗЕЛЁНОЕ! " +
+                    "Ты выиграл " +
+                    win +
+                    " 🪙!";
+
+
+            }
+
+            else {
+
+                resultElement.textContent =
+                    "🟢 ЗЕЛЁНОЕ! " +
+                    "😢 Ты проиграл " +
+                    bet +
+                    " 🪙.";
 
             }
 
         }
 
-        else if (color === "🔴 Красное") {
 
-            coins += 200;
+        // ==============================
+        // 🔴 КРАСНОЕ x2
+        // ==============================
 
-            if (resultElement) {
+        else if (
+            resultColor === "red"
+        ) {
+
+
+            if (
+                selectedRouletteColor ===
+                "red"
+            ) {
+
+                const win =
+                    bet * 2;
+
+
+                coins += win;
+
 
                 resultElement.textContent =
-                    "🔴 КРАСНОЕ! Выпало " +
-                    result +
-                    " 🎉 +200 🪙";
+                    "🎉🔴 КРАСНОЕ! " +
+                    "Ты выиграл " +
+                    win +
+                    " 🪙!";
+
+
+            }
+
+            else {
+
+                resultElement.textContent =
+                    "🔴 КРАСНОЕ! " +
+                    "😢 Ты проиграл " +
+                    bet +
+                    " 🪙.";
 
             }
 
         }
+
+
+        // ==============================
+        // ⚫ ЧЁРНОЕ x2
+        // ==============================
 
         else {
 
-            if (resultElement) {
+
+            if (
+                selectedRouletteColor ===
+                "black"
+            ) {
+
+                const win =
+                    bet * 2;
+
+
+                coins += win;
+
 
                 resultElement.textContent =
-                    "⚫ ЧЁРНОЕ! Выпало " +
-                    result +
-                    " 😢";
+                    "🎉⚫ ЧЁРНОЕ! " +
+                    "Ты выиграл " +
+                    win +
+                    " 🪙!";
+
+
+            }
+
+            else {
+
+                resultElement.textContent =
+                    "⚫ ЧЁРНОЕ! " +
+                    "😢 Ты проиграл " +
+                    bet +
+                    " 🪙.";
 
             }
 
         }
+
+
+        // Сохраняем
 
         save();
+
         update();
+
+
+        // Сбрасываем выбор цвета
+
+        selectedRouletteColor =
+            null;
+
+
+        document.getElementById(
+            "selectedRouletteColor"
+        ).textContent =
+            "Цвет не выбран";
+
+
+        // Очищаем поле ставки
+
+        betInput.value = "";
+
 
     }, 1500);
 
 }
-
-
 // ==============================
 // 📈 ЛЕСЕНКА
 // ==============================
