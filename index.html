@@ -22,213 +22,222 @@
 <body>
 
 
-<!-- ============================== -->
-<!-- HEADER -->
-<!-- ============================== -->
+<!-- ================================= -->
+<!-- ВЕРХНЯЯ ПАНЕЛЬ -->
+<!-- ================================= -->
 
-<header>
+<header class="top-bar">
 
-    <h1>🍀 Lucky Click</h1>
+    <div class="logo">
+        🍀 Lucky Click
+    </div>
 
-    <div class="coins">
-        💰 <span id="coins">0</span>
+    <div class="balance">
+        🪙
+        <span id="coins">0</span>
     </div>
 
 </header>
 
 
-<!-- ============================== -->
-<!-- МЕНЮ -->
-<!-- ============================== -->
-
-<div class="menu">
-
-    <button onclick="showPage('home')">
-        🏠 Главная
-    </button>
-
-    <button onclick="showPage('casino')">
-        🎰 Казино
-    </button>
-
-    <button onclick="showPage('shop')">
-        🏪 Магазин
-    </button>
-
-    <button onclick="showPage('cases')">
-        🎁 Кейсы
-    </button>
-
-    <button onclick="showPage('pets')">
-        🐾 Питомцы
-    </button>
-
-    <button onclick="showPage('profile')">
-        👤 Профиль
-    </button>
-
-</div>
-
-
-<!-- ============================== -->
+<!-- ================================= -->
 <!-- ГЛАВНАЯ -->
-<!-- ============================== -->
+<!-- ================================= -->
 
-<section id="home" class="page">
+<section
+    id="home"
+    class="page active"
+>
 
-    <h2>🪙 Кликер</h2>
+    <div class="home-card">
 
-    <button
-        id="clickButton"
-        class="click-button"
-    >
-        🪙 КЛИК
-    </button>
+        <h2>
+            🪙 LUCKY CLICK
+        </h2>
 
-    <p>
-        Сила клика:
-        <span id="clickPower">1</span>
-    </p>
+        <p>
+            Нажимай и зарабатывай монеты
+        </p>
+
+
+        <button
+            id="clickButton"
+            class="big-click"
+        >
+
+            🪙
+
+        </button>
+
+
+        <div id="clickBonus">
+
+        </div>
+
+
+        <div class="click-info">
+
+            ⚡ Сила клика:
+
+            <b id="clickPower">
+                1
+            </b>
+
+        </div>
+
+
+    </div>
 
 </section>
 
 
-<!-- ============================== -->
+<!-- ================================= -->
 <!-- КАЗИНО -->
-<!-- ============================== -->
+<!-- ================================= -->
 
-<section id="casino" class="page hidden">
+<section
+    id="casino"
+    class="page hidden"
+>
 
 
     <div class="casino-header">
 
-        <h2>
+        <h1>
             🎰 LUCKY CASINO
-        </h2>
+        </h1>
 
         <p>
-            Испытай удачу!
+            Испытай удачу
         </p>
 
     </div>
 
 
-    <!-- СПИСОК ИГР -->
+    <!-- МЕНЮ ИГР -->
 
     <div
-        id="casinoGames"
-        class="casino-games"
+        id="casinoMenu"
+        class="casino-menu"
     >
 
 
-        <!-- СЛОТ -->
-
         <button
-            class="game-card"
+            class="casino-card"
             onclick="openCasinoGame('slot')"
         >
 
-            <span class="game-icon">
+            <span>
                 🎰
             </span>
 
-            <span class="game-title">
-                СЛОТ
-            </span>
+            <b>
+                СЛОТЫ
+            </b>
 
-            <span class="game-subtitle">
-                Крути барабаны
-            </span>
-
-        </button>
-
-
-        <!-- КУБИК -->
-
-        <button
-            class="game-card"
-            onclick="openCasinoGame('dice')"
-        >
-
-            <span class="game-icon">
-                🎲
-            </span>
-
-            <span class="game-title">
-                КУБИК
-            </span>
-
-            <span class="game-subtitle">
-                Испытай удачу
-            </span>
+            <small>
+                777
+            </small>
 
         </button>
 
 
-        <!-- РУЛЕТКА -->
-
         <button
-            class="game-card"
+            class="casino-card"
             onclick="openCasinoGame('roulette')"
         >
 
-            <span class="game-icon">
+            <span>
                 🎡
             </span>
 
-            <span class="game-title">
+            <b>
                 РУЛЕТКА
-            </span>
+            </b>
 
-            <span class="game-subtitle">
-                🔴 Красное ×2
-                ⚫ Чёрное ×2
-                🟢 Зелёное ×14
-            </span>
+            <small>
+                0 — 36
+            </small>
 
         </button>
 
 
-        <!-- ЛЕСЕНКА -->
+        <button
+            class="casino-card"
+            onclick="openCasinoGame('dice')"
+        >
+
+            <span>
+                🎲
+            </span>
+
+            <b>
+                КУБИК
+            </b>
+
+            <small>
+                1 — 6
+            </small>
+
+        </button>
+
 
         <button
-            class="game-card"
+            class="casino-card"
             onclick="openCasinoGame('ladder')"
         >
 
-            <span class="game-icon">
+            <span>
                 📈
             </span>
 
-            <span class="game-title">
+            <b>
                 ЛЕСЕНКА
-            </span>
+            </b>
 
-            <span class="game-subtitle">
-                Рискни ради большего
-            </span>
+            <small>
+                10 уровней
+            </small>
 
         </button>
 
 
-        <!-- ДЖЕКПОТ -->
+        <button
+            class="casino-card"
+            onclick="openCasinoGame('mines')"
+        >
+
+            <span>
+                💣
+            </span>
+
+            <b>
+                МИНЕР
+            </b>
+
+            <small>
+                Найди 💎
+            </small>
+
+        </button>
+
 
         <button
-            class="game-card jackpot-card"
+            class="casino-card jackpot"
             onclick="openCasinoGame('jackpot')"
         >
 
-            <span class="game-icon">
+            <span>
                 💎
             </span>
 
-            <span class="game-title">
+            <b>
                 ДЖЕКПОТ
-            </span>
+            </b>
 
-            <span class="game-subtitle">
-                Сорви главный приз
-            </span>
+            <small>
+                Главный приз
+            </small>
 
         </button>
 
@@ -236,9 +245,9 @@
     </div>
 
 
-    <!-- ============================== -->
-    <!-- ОКНО ИГРЫ -->
-    <!-- ============================== -->
+    <!-- ================================= -->
+    <!-- СТРАНИЦА ИГРЫ -->
+    <!-- ================================= -->
 
     <div
         id="casinoGame"
@@ -246,62 +255,77 @@
     >
 
 
-        <!-- НАЗАД -->
-
         <button
-            class="back-game"
+            class="back-button"
             onclick="closeCasinoGame()"
         >
-            ← Назад к играм
+
+            ← Все игры
+
         </button>
 
 
-        <!-- ============================== -->
+        <!-- ================================= -->
         <!-- СЛОТ -->
-        <!-- ============================== -->
+        <!-- ================================= -->
 
         <div
             id="slotGame"
             class="casino-panel hidden"
         >
 
-            <h3>
-                🎰 СЛОТ
-            </h3>
+            <h2>
+                🎰 СЛОТЫ
+            </h2>
+
 
             <p>
-                💰 Ставка: 100 🪙
+                💰 Ваша ставка
             </p>
+
+
+            <input
+                id="slotBet"
+                type="number"
+                min="1"
+                placeholder="Введите ставку"
+            >
 
 
             <div class="slot-machine">
 
+
                 <div
-                    class="slot-reel"
                     id="slot1"
+                    class="slot-reel"
                 >
-                    🍀
+                    7️⃣
                 </div>
 
+
                 <div
-                    class="slot-reel"
                     id="slot2"
+                    class="slot-reel"
                 >
-                    💎
+                    7️⃣
                 </div>
 
+
                 <div
-                    class="slot-reel"
                     id="slot3"
+                    class="slot-reel"
                 >
-                    ⭐
+                    7️⃣
                 </div>
+
 
             </div>
 
 
             <div id="slotResult">
-                Нажми «Крутить»
+
+                🎰 Сделайте ставку
+
             </div>
 
 
@@ -309,112 +333,65 @@
                 class="play-button"
                 onclick="playSlot()"
             >
+
                 🎰 КРУТИТЬ
+
             </button>
+
 
         </div>
 
 
-        <!-- ============================== -->
-        <!-- КУБИК -->
-        <!-- ============================== -->
-
-        <div
-            id="diceGame"
-            class="casino-panel hidden"
-        >
-
-            <h3>
-                🎲 КУБИК
-            </h3>
-
-
-            <p>
-                💰 Ставка: 100 🪙
-            </p>
-
-
-            <div id="diceVisual">
-                🎲
-            </div>
-
-
-            <div id="diceResult">
-                Нажми «Бросить»
-            </div>
-
-
-            <button
-                class="play-button"
-                onclick="playDice()"
-            >
-                🎲 БРОСИТЬ
-            </button>
-
-        </div>
-
-
-        <!-- ============================== -->
+        <!-- ================================= -->
         <!-- РУЛЕТКА -->
-        <!-- ============================== -->
+        <!-- ================================= -->
 
         <div
             id="rouletteGame"
             class="casino-panel hidden"
         >
 
-            <h3>
+            <h2>
                 🎡 РУЛЕТКА
-            </h3>
+            </h2>
 
 
-            <div class="roulette-container">
+            <div class="roulette-wheel">
 
-                <div class="roulette-pointer">
-                    ▼
-                </div>
+                <div
+                    id="rouletteWheel"
+                    class="wheel"
+                >
 
-
-                <div id="rouletteWheel">
-
-                    <div class="roulette-center">
-                        🎡
-                    </div>
+                    🎡
 
                 </div>
 
             </div>
 
-
-            <!-- ЧИСЛО -->
 
             <div id="rouletteNumber">
 
-                Нажми «Крутить»
+                🎯 Ожидание ставки
 
             </div>
 
 
-            <!-- СТАВКА -->
-
             <p>
-                💰 Ваша ставка:
+                💰 Ваша ставка
             </p>
 
 
             <input
-                type="number"
                 id="rouletteBet"
-                placeholder="Введите ставку"
+                type="number"
                 min="1"
-                step="1"
+                placeholder="Введите ставку"
             >
 
 
-            <!-- ВЫБОР ЦВЕТА -->
-
             <p>
-                🎯 Выберите цвет:
+                🎯 Выберите цвет
             </p>
 
 
@@ -422,33 +399,37 @@
 
 
                 <button
-                    class="red-bet"
                     onclick="selectRouletteColor('red')"
+                    class="red-bet"
                 >
+
                     🔴 Красное ×2
+
                 </button>
 
 
                 <button
-                    class="black-bet"
                     onclick="selectRouletteColor('black')"
+                    class="black-bet"
                 >
+
                     ⚫ Чёрное ×2
+
                 </button>
 
 
                 <button
-                    class="green-bet"
                     onclick="selectRouletteColor('green')"
+                    class="green-bet"
                 >
+
                     🟢 Зелёное ×14
+
                 </button>
 
 
             </div>
 
-
-            <!-- ВЫБРАННЫЙ ЦВЕТ -->
 
             <p id="selectedRouletteColor">
 
@@ -456,8 +437,6 @@
 
             </p>
 
-
-            <!-- РЕЗУЛЬТАТ -->
 
             <div id="rouletteResult">
 
@@ -468,60 +447,195 @@
                 class="play-button"
                 onclick="playRoulette()"
             >
-                🎡 КРУТИТЬ РУЛЕТКУ
+
+                🎡 КРУТИТЬ
+
             </button>
 
 
         </div>
 
 
-        <!-- ============================== -->
+        <!-- ================================= -->
+        <!-- КУБИК -->
+        <!-- ================================= -->
+
+        <div
+            id="diceGame"
+            class="casino-panel hidden"
+        >
+
+            <h2>
+                🎲 КУБИК
+            </h2>
+
+
+            <p>
+                💰 Ваша ставка
+            </p>
+
+
+            <input
+                id="diceBet"
+                type="number"
+                min="1"
+                placeholder="Введите ставку"
+            >
+
+
+            <p>
+                🎯 Выберите число
+            </p>
+
+
+            <div class="dice-numbers">
+
+
+                <button onclick="selectDiceNumber(1)">
+                    1
+                </button>
+
+                <button onclick="selectDiceNumber(2)">
+                    2
+                </button>
+
+                <button onclick="selectDiceNumber(3)">
+                    3
+                </button>
+
+                <button onclick="selectDiceNumber(4)">
+                    4
+                </button>
+
+                <button onclick="selectDiceNumber(5)">
+                    5
+                </button>
+
+                <button onclick="selectDiceNumber(6)">
+                    6
+                </button>
+
+
+            </div>
+
+
+            <p id="selectedDiceNumber">
+
+                Число не выбрано
+
+            </p>
+
+
+            <div
+                id="diceVisual"
+                class="dice"
+            >
+
+                🎲
+
+            </div>
+
+
+            <div id="diceResult">
+
+                🎲 Ожидание ставки
+
+            </div>
+
+
+            <button
+                class="play-button"
+                onclick="playDice()"
+            >
+
+                🎲 БРОСИТЬ
+
+            </button>
+
+
+        </div>
+
+
+        <!-- ================================= -->
         <!-- ЛЕСЕНКА -->
-        <!-- ============================== -->
+        <!-- ================================= -->
 
         <div
             id="ladderGame"
             class="casino-panel hidden"
         >
 
-            <h3>
+            <h2>
                 📈 ЛЕСЕНКА
-            </h3>
+            </h2>
 
 
             <p>
-                💰 Ставка: 100 🪙
+                💰 Ваша ставка
             </p>
 
 
-            <div id="ladderVisual">
+            <input
+                id="ladderBet"
+                type="number"
+                min="1"
+                placeholder="Введите ставку"
+            >
 
-                <div>
-                    🏆
+
+            <div
+                id="ladderBoard"
+                class="ladder-board"
+            >
+
+
+                <div class="ladder-level">
+                    👑 Уровень 10
                 </div>
 
-                <div>
-                    💎
+                <div class="ladder-level">
+                    💎 Уровень 9
                 </div>
 
-                <div>
-                    ⭐
+                <div class="ladder-level">
+                    🏆 Уровень 8
                 </div>
 
-                <div>
-                    🍀
+                <div class="ladder-level">
+                    💰 Уровень 7
                 </div>
 
-                <div>
-                    🪙
+                <div class="ladder-level">
+                    🔥 Уровень 6
                 </div>
+
+                <div class="ladder-level">
+                    ⭐ Уровень 5
+                </div>
+
+                <div class="ladder-level">
+                    💎 Уровень 4
+                </div>
+
+                <div class="ladder-level">
+                    ⭐ Уровень 3
+                </div>
+
+                <div class="ladder-level">
+                    🍀 Уровень 2
+                </div>
+
+                <div class="ladder-level active-level">
+                    🪙 Уровень 1
+                </div>
+
 
             </div>
 
 
             <div id="ladderResult">
 
-                Начни игру
+                Начните игру
 
             </div>
 
@@ -530,32 +644,156 @@
                 class="play-button"
                 onclick="playLadder()"
             >
+
                 📈 НАЧАТЬ
+
             </button>
+
 
         </div>
 
 
-        <!-- ============================== -->
+        <!-- ================================= -->
+        <!-- МИНЕР -->
+        <!-- ================================= -->
+
+        <div
+            id="minesGame"
+            class="casino-panel hidden"
+        >
+
+            <h2>
+                💣 МИНЕР
+            </h2>
+
+
+            <p>
+                💰 Ваша ставка
+            </p>
+
+
+            <input
+                id="minesBet"
+                type="number"
+                min="1"
+                placeholder="Введите ставку"
+            >
+
+
+            <p>
+                💣 Количество мин
+            </p>
+
+
+            <div class="mine-options">
+
+
+                <button onclick="setMines(3)">
+                    💣 3
+                </button>
+
+
+                <button onclick="setMines(5)">
+                    💣 5
+                </button>
+
+
+                <button onclick="setMines(10)">
+                    💣 10
+                </button>
+
+
+                <button onclick="setMines(15)">
+                    💣 15
+                </button>
+
+
+            </div>
+
+
+            <p id="selectedMines">
+
+                Мин: 5
+
+            </p>
+
+
+            <div
+                id="minesBoard"
+                class="mines-board"
+            >
+
+            </div>
+
+
+            <div id="minesMultiplier">
+
+                ×1.00
+
+            </div>
+
+
+            <div id="minesResult">
+
+                Сделайте ставку
+
+            </div>
+
+
+            <button
+                class="play-button"
+                onclick="startMines()"
+            >
+
+                💣 НАЧАТЬ ИГРУ
+
+            </button>
+
+
+            <button
+                class="cashout-button"
+                onclick="cashoutMines()"
+            >
+
+                💰 ЗАБРАТЬ ВЫИГРЫШ
+
+            </button>
+
+
+        </div>
+
+
+        <!-- ================================= -->
         <!-- ДЖЕКПОТ -->
-        <!-- ============================== -->
+        <!-- ================================= -->
 
         <div
             id="jackpotGame"
             class="casino-panel hidden"
         >
 
-            <h3>
+            <h2>
                 💎 ДЖЕКПОТ
-            </h3>
+            </h2>
 
 
             <p>
-                💰 Ставка: 1000 🪙
+                💰 Ваша ставка
             </p>
 
 
-            <div id="jackpotVisual">
+            <input
+                id="jackpotBet"
+                type="number"
+                min="1"
+                placeholder="Введите ставку"
+            >
+
+
+            <div
+                id="jackpotVisual"
+                class="jackpot-visual"
+            >
 
                 💎
 
@@ -564,8 +802,7 @@
 
             <div id="jackpotResult">
 
-                Главный приз:
-                100 000 🪙
+                Испытай удачу
 
             </div>
 
@@ -574,15 +811,11 @@
                 class="play-button"
                 onclick="playJackpot()"
             >
-                💎 ИСПЫТАТЬ УДАЧУ
+
+                💎 ИГРАТЬ
+
             </button>
 
-        </div>
-
-
-        <!-- ОБЩИЙ РЕЗУЛЬТАТ -->
-
-        <div id="casinoResult">
 
         </div>
 
@@ -593,100 +826,207 @@
 </section>
 
 
-<!-- ============================== -->
+<!-- ================================= -->
+<!-- ТОП ИГРОКОВ -->
+<!-- ================================= -->
+
+<section
+    id="top"
+    class="page hidden"
+>
+
+
+    <h2>
+        🏆 ТОП ИГРОКОВ
+    </h2>
+
+
+    <div
+        id="topPlayers"
+        class="top-players"
+    >
+
+
+        <div>
+            🥇 @PlayerOne
+        </div>
+
+
+        <div>
+            🥈 @LuckyBoy
+        </div>
+
+
+        <div>
+            🥉 @Winner777
+        </div>
+
+
+        <div>
+            4️⃣ @Player4
+        </div>
+
+
+        <div>
+            5️⃣ @Player5
+        </div>
+
+
+        <div>
+            6️⃣ @Player6
+        </div>
+
+
+        <div>
+            7️⃣ @Player7
+        </div>
+
+
+        <div>
+            8️⃣ @Player8
+        </div>
+
+
+        <div>
+            9️⃣ @Player9
+        </div>
+
+
+        <div>
+            🔟 @Player10
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================================= -->
 <!-- МАГАЗИН -->
-<!-- ============================== -->
+<!-- ================================= -->
 
 <section
     id="shop"
     class="page hidden"
 >
 
+
     <h2>
-        🏪 Магазин
+        🏪 МАГАЗИН
     </h2>
 
 
-    <button onclick="buyClick()">
-
-        ⚡ Улучшить клик
-
-        <br>
-
-        Цена:
-
-        <span id="clickPrice">
-            100
-        </span>
-
-        🪙
-
-    </button>
+    <div class="shop-card">
 
 
-    <button onclick="buyAuto()">
+        <h3>
+            ⚡ Улучшение клика
+        </h3>
 
-        🤖 Автоклик
 
-        <br>
+        <p>
+            Сила:
 
-        5000 🪙
+            <span id="shopClickPower">
+                1
+            </span>
+        </p>
 
-    </button>
+
+        <p>
+            Цена:
+
+            <span id="clickPrice">
+                100
+            </span>
+
+            🪙
+
+        </p>
+
+
+        <button onclick="buyClick()">
+
+            ⚡ УЛУЧШИТЬ
+
+        </button>
+
+
+    </div>
+
+
+    <div class="shop-card">
+
+
+        <h3>
+            🤖 Автоклик
+        </h3>
+
+
+        <p>
+            +1 🪙 каждую секунду
+        </p>
+
+
+        <button onclick="buyAuto()">
+
+            🤖 КУПИТЬ
+
+        </button>
+
+
+    </div>
 
 
 </section>
 
 
-<!-- ============================== -->
+<!-- ================================= -->
 <!-- КЕЙСЫ -->
-<!-- ============================== -->
+<!-- ================================= -->
 
 <section
     id="cases"
     class="page hidden"
 >
 
+
     <h2>
-        🎁 Кейсы
+        🎁 КЕЙСЫ
     </h2>
 
 
-    <button
-        onclick="openCase('common')"
-    >
+    <button onclick="openCase('common')">
 
         🎁 Обычный
 
         <br>
 
-        5000 🪙
+        5 000 🪙
 
     </button>
 
 
-    <button
-        onclick="openCase('rare')"
-    >
+    <button onclick="openCase('rare')">
 
         💎 Редкий
 
         <br>
 
-        12000 🪙
+        12 000 🪙
 
     </button>
 
 
-    <button
-        onclick="openCase('legend')"
-    >
+    <button onclick="openCase('legend')">
 
         👑 Легендарный
 
         <br>
 
-        100000 🪙
+        100 000 🪙
 
     </button>
 
@@ -699,17 +1039,18 @@
 </section>
 
 
-<!-- ============================== -->
+<!-- ================================= -->
 <!-- ПИТОМЦЫ -->
-<!-- ============================== -->
+<!-- ================================= -->
 
 <section
     id="pets"
     class="page hidden"
 >
 
+
     <h2>
-        🐾 Питомцы
+        🐾 ПИТОМЦЫ
     </h2>
 
 
@@ -721,53 +1062,126 @@
 </section>
 
 
-<!-- ============================== -->
+<!-- ================================= -->
 <!-- ПРОФИЛЬ -->
-<!-- ============================== -->
+<!-- ================================= -->
 
 <section
     id="profile"
     class="page hidden"
 >
 
+
     <h2>
-        👤 Профиль
+        👤 ПРОФИЛЬ
     </h2>
 
 
-    <p>
+    <div class="profile-card">
 
-        Ник:
 
-        <span id="nickname">
+        <div class="profile-avatar">
+            👤
+        </div>
+
+
+        <h3 id="nickname">
             Игрок
-        </span>
-
-    </p>
+        </h3>
 
 
-    <p>
+        <p>
+            🪙 Баланс:
 
-        Монеты:
+            <b id="profileCoins">
+                0
+            </b>
 
-        <span id="profileCoins">
-            0
-        </span>
+        </p>
 
-    </p>
+
+        <p>
+            ⚡ Сила клика:
+
+            <b id="profileClickPower">
+                1
+            </b>
+
+        </p>
+
+
+    </div>
 
 
 </section>
 
 
-<!-- ============================== -->
+<!-- ================================= -->
+<!-- НИЖНЕЕ МЕНЮ -->
+<!-- ================================= -->
+
+<nav class="bottom-menu">
+
+
+    <button onclick="showPage('home')">
+
+        🏠
+        <span>
+            Главная
+        </span>
+
+    </button>
+
+
+    <button onclick="showPage('casino')">
+
+        🎰
+        <span>
+            Казино
+        </span>
+
+    </button>
+
+
+    <button onclick="showPage('top')">
+
+        🏆
+        <span>
+            Топ
+        </span>
+
+    </button>
+
+
+    <button onclick="showPage('shop')">
+
+        🏪
+        <span>
+            Магазин
+        </span>
+
+    </button>
+
+
+    <button onclick="showPage('profile')">
+
+        👤
+        <span>
+            Профиль
+        </span>
+
+    </button>
+
+
+</nav>
+
+
+<!-- ================================= -->
 <!-- JAVASCRIPT -->
-<!-- ============================== -->
+<!-- ================================= -->
 
 <script src="script.js"></script>
 
-
-<!-- TELEGRAM MINI APP -->
 
 <script>
 
@@ -783,8 +1197,10 @@ if (
 
     tg.expand();
 
+
     const user =
         tg.initDataUnsafe?.user;
+
 
     if (user) {
 
@@ -792,6 +1208,7 @@ if (
             document.getElementById(
                 "nickname"
             );
+
 
         if (nickname) {
 
@@ -801,11 +1218,6 @@ if (
                 : user.first_name || "Игрок";
 
         }
-
-        console.log(
-            "Telegram ID:",
-            user.id
-        );
 
     }
 
