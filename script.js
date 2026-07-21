@@ -928,7 +928,7 @@ save();
 
 
 // ==============================
-// 📱 TELEGRAM MINI APP
+// 📱 TELEGRAM ПРОФИЛЬ
 // ==============================
 
 if (
@@ -936,15 +936,51 @@ if (
     window.Telegram.WebApp
 ) {
 
-    const tg =
-        window.Telegram.WebApp;
+    const tg = window.Telegram.WebApp;
 
     tg.ready();
 
     tg.expand();
 
-    console.log(
-        "Telegram Mini App запущен"
-    );
+    const user =
+        tg.initDataUnsafe?.user;
+
+    if (user) {
+
+        let nickname =
+            document.getElementById("nickname");
+
+        if (nickname) {
+
+            if (user.username) {
+
+                nickname.textContent =
+                    "@" + user.username;
+
+            } else {
+
+                nickname.textContent =
+                    user.first_name || "Игрок";
+
+            }
+
+        }
+
+        console.log(
+            "Telegram ID:",
+            user.id
+        );
+
+        console.log(
+            "Telegram username:",
+            user.username
+        );
+
+        console.log(
+            "Telegram name:",
+            user.first_name
+        );
+
+    }
 
 }
