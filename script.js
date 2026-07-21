@@ -30,30 +30,41 @@ function save() {
 
 
 // ==============================
-// 🔄 ОБНОВЛЕНИЕ ИНТЕРФЕЙСА
+// 🔄 ОБНОВЛЕНИЕ
 // ==============================
 
 function update() {
 
-    let coinsElement = document.getElementById("coins");
-    let clickPowerElement = document.getElementById("clickPower");
-    let clickPriceElement = document.getElementById("clickPrice");
-    let profileCoinsElement = document.getElementById("profileCoins");
+    const coinsElement =
+        document.getElementById("coins");
+
+    const clickPowerElement =
+        document.getElementById("clickPower");
+
+    const clickPriceElement =
+        document.getElementById("clickPrice");
+
+    const profileCoinsElement =
+        document.getElementById("profileCoins");
 
     if (coinsElement) {
-        coinsElement.textContent = Math.floor(coins);
+        coinsElement.textContent =
+            Math.floor(coins);
     }
 
     if (clickPowerElement) {
-        clickPowerElement.textContent = clickPower;
+        clickPowerElement.textContent =
+            clickPower;
     }
 
     if (clickPriceElement) {
-        clickPriceElement.textContent = clickPrice;
+        clickPriceElement.textContent =
+            clickPrice;
     }
 
     if (profileCoinsElement) {
-        profileCoinsElement.textContent = Math.floor(coins);
+        profileCoinsElement.textContent =
+            Math.floor(coins);
     }
 
 }
@@ -63,41 +74,34 @@ function update() {
 // 🪙 КЛИКЕР
 // ==============================
 
-function clickCoin() {
-
-    coins += clickPower;
-
-    save();
-    update();
-
-}
-
-
-// Если кнопка имеет id="clickButton"
-
-let clickButton = document.getElementById("clickButton");
+const clickButton =
+    document.getElementById("clickButton");
 
 if (clickButton) {
 
-    clickButton.addEventListener("click", function() {
+    clickButton.addEventListener(
+        "click",
+        function() {
 
-        coins += clickPower;
+            coins += clickPower;
 
-        save();
-        update();
+            save();
+            update();
 
-    });
+        }
+    );
 
 }
 
 
 // ==============================
-// 📄 ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ
+// 📄 СТРАНИЦЫ
 // ==============================
 
 function showPage(pageName) {
 
-    let pages = document.querySelectorAll(".page");
+    const pages =
+        document.querySelectorAll(".page");
 
     pages.forEach(function(page) {
 
@@ -105,7 +109,8 @@ function showPage(pageName) {
 
     });
 
-    let page = document.getElementById(pageName);
+    const page =
+        document.getElementById(pageName);
 
     if (page) {
 
@@ -124,7 +129,9 @@ function buyClick() {
 
     if (coins < clickPrice) {
 
-        alert("❌ Недостаточно монет!");
+        alert(
+            "❌ Недостаточно монет!"
+        );
 
         return;
 
@@ -139,8 +146,6 @@ function buyClick() {
     save();
     update();
 
-    alert("⚡ Сила клика увеличена!");
-
 }
 
 
@@ -152,7 +157,9 @@ function buyAuto() {
 
     if (coins < 5000) {
 
-        alert("❌ Нужно 5000 монет!");
+        alert(
+            "❌ Нужно 5000 монет!"
+        );
 
         return;
 
@@ -165,12 +172,8 @@ function buyAuto() {
     save();
     update();
 
-    alert("🤖 Автоклик куплен!");
-
 }
 
-
-// Автоклик каждую секунду
 
 setInterval(function() {
 
@@ -192,17 +195,47 @@ setInterval(function() {
 
 function playSlot() {
 
-    if (coins < 100) {
+    const input =
+        document.getElementById("slotBet");
 
-        alert("❌ Нужно 100 монет!");
+    const bet =
+        Number(input.value);
+
+    const result =
+        document.getElementById("slotResult");
+
+    if (!bet || bet <= 0) {
+
+        alert(
+            "❌ Введите ставку!"
+        );
 
         return;
 
     }
 
-    coins -= 100;
+    if (coins < bet) {
 
-    let reels = [
+        alert(
+            "❌ Недостаточно монет!"
+        );
+
+        return;
+
+    }
+
+    coins -= bet;
+
+    const symbols = [
+        "🍀",
+        "💎",
+        "⭐",
+        "🍒",
+        "7️⃣",
+        "🔔"
+    ];
+
+    const reels = [
 
         document.getElementById("slot1"),
         document.getElementById("slot2"),
@@ -210,124 +243,113 @@ function playSlot() {
 
     ];
 
-    let symbols = [
+    if (result) {
 
-        "🍀",
-        "💎",
-        "⭐",
-        "🍒",
-        "7️⃣",
-        "🔔"
-
-    ];
-
-    if (
-        reels[0] &&
-        reels[1] &&
-        reels[2]
-    ) {
-
-        reels.forEach(function(reel) {
-
-            reel.classList.add("slot-spin");
-
-        });
-
-    }
-
-    let resultElement =
-        document.getElementById("casinoResult");
-
-    if (resultElement) {
-
-        resultElement.textContent =
+        result.textContent =
             "🎰 Крутим...";
 
     }
 
+    reels.forEach(function(reel) {
+
+        if (reel) {
+
+            reel.classList.add(
+                "slot-spin"
+            );
+
+        }
+
+    });
+
+    save();
+    update();
+
     setTimeout(function() {
 
-        let result = [
+        const a =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
 
-            symbols[Math.floor(Math.random() * symbols.length)],
+        const b =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
 
-            symbols[Math.floor(Math.random() * symbols.length)],
-
-            symbols[Math.floor(Math.random() * symbols.length)]
-
-        ];
+        const c =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
 
         if (reels[0]) {
-            reels[0].textContent = result[0];
+            reels[0].textContent = a;
         }
 
         if (reels[1]) {
-            reels[1].textContent = result[1];
+            reels[1].textContent = b;
         }
 
         if (reels[2]) {
-            reels[2].textContent = result[2];
+            reels[2].textContent = c;
         }
 
         reels.forEach(function(reel) {
 
             if (reel) {
 
-                reel.classList.remove("slot-spin");
+                reel.classList.remove(
+                    "slot-spin"
+                );
 
             }
 
         });
 
-        if (
-            result[0] === result[1] &&
-            result[1] === result[2]
-        ) {
+        let win = 0;
 
-            let win = 5000;
+        if (a === b && b === c) {
 
-            coins += win;
-
-            if (resultElement) {
-
-                resultElement.textContent =
-                    "🎉💎 ДЖЕКПОТ! +" +
-                    win +
-                    " 🪙";
-
-            }
+            win = bet * 10;
 
         }
 
         else if (
-            result[0] === result[1] ||
-            result[1] === result[2] ||
-            result[0] === result[2]
+            a === b ||
+            b === c ||
+            a === c
         ) {
 
-            let win = 300;
+            win = bet * 2;
+
+        }
+
+        if (win > 0) {
 
             coins += win;
 
-            if (resultElement) {
-
-                resultElement.textContent =
-                    "🎉 Выигрыш +" +
-                    win +
-                    " 🪙";
-
-            }
+            result.textContent =
+                "🎉 Выигрыш: +" +
+                win +
+                " 🪙";
 
         }
 
         else {
 
-            if (resultElement) {
-
-                resultElement.textContent =
-                    "😢 Не повезло!";
-
-            }
+            result.textContent =
+                "😢 Проигрыш: " +
+                bet +
+                " 🪙";
 
         }
 
@@ -345,27 +367,39 @@ function playSlot() {
 
 function playDice() {
 
-    if (coins < 100) {
+    const input =
+        document.getElementById("diceBet");
 
-        alert("❌ Нужно 100 монет!");
+    const bet =
+        Number(input.value);
+
+    const numberElement =
+        document.getElementById("diceNumber");
+
+    const resultElement =
+        document.getElementById("diceResult");
+
+    if (!bet || bet <= 0) {
+
+        alert(
+            "❌ Введите ставку!"
+        );
 
         return;
 
     }
 
-    coins -= 100;
+    if (coins < bet) {
 
-    let dice =
-        document.getElementById("diceVisual");
+        alert(
+            "❌ Недостаточно монет!"
+        );
 
-    let resultElement =
-        document.getElementById("casinoResult");
-
-    if (dice) {
-
-        dice.classList.add("dice-roll");
+        return;
 
     }
+
+    coins -= bet;
 
     if (resultElement) {
 
@@ -374,49 +408,63 @@ function playDice() {
 
     }
 
+    const dice =
+        document.getElementById("diceVisual");
+
+    if (dice) {
+
+        dice.classList.add(
+            "dice-roll"
+        );
+
+    }
+
+    save();
+    update();
+
     setTimeout(function() {
 
-        let result =
-            Math.floor(Math.random() * 6) + 1;
+        const number =
+            Math.floor(
+                Math.random() * 6
+            ) + 1;
 
         if (dice) {
 
-            dice.textContent =
-                "🎲";
-
-            dice.classList.remove("dice-roll");
+            dice.classList.remove(
+                "dice-roll"
+            );
 
         }
 
-        if (result >= 5) {
+        if (numberElement) {
 
-            let win = 500;
+            numberElement.textContent =
+                "🎲 Выпало число: " +
+                number;
+
+        }
+
+        if (number >= 5) {
+
+            const win =
+                bet * 2;
 
             coins += win;
 
-            if (resultElement) {
-
-                resultElement.textContent =
-                    "🎲 Выпало " +
-                    result +
-                    "! 🎉 +" +
-                    win +
-                    " 🪙";
-
-            }
+            resultElement.textContent =
+                "🎉 Победа! +" +
+                win +
+                " 🪙";
 
         }
 
         else {
 
-            if (resultElement) {
-
-                resultElement.textContent =
-                    "🎲 Выпало " +
-                    result +
-                    ". 😢";
-
-            }
+            resultElement.textContent =
+                "😢 Ты проиграл " +
+                bet +
+                " 🪙";
 
         }
 
@@ -427,78 +475,78 @@ function playDice() {
 
 }
 
+
 // ==============================
-// 🎡 РУЛЕТКА СО СТАВКОЙ
+// 🎡 РУЛЕТКА
 // ==============================
 
 let selectedRouletteColor = null;
 
 
-// ==============================
-// 🎯 ВЫБОР ЦВЕТА
-// ==============================
-
 function selectRouletteColor(color) {
 
-    selectedRouletteColor = color;
+    selectedRouletteColor =
+        color;
 
     const selected =
         document.getElementById(
             "selectedRouletteColor"
         );
 
+    if (!selected) {
+        return;
+    }
 
     if (color === "red") {
 
         selected.textContent =
-            "🔴 Выбрано: Красное";
+            "🔴 Выбрано: Красное x2";
 
     }
-
 
     if (color === "black") {
 
         selected.textContent =
-            "⚫ Выбрано: Чёрное";
+            "⚫ Выбрано: Чёрное x2";
 
     }
-
 
     if (color === "green") {
 
         selected.textContent =
-            "🟢 Выбрано: Зелёное";
+            "🟢 Выбрано: Зелёное x14";
 
     }
 
 }
 
 
-// ==============================
-// 🎡 ИГРА В РУЛЕТКУ
-// ==============================
-
 function playRoulette() {
-
-
-    // Получаем ставку
 
     const betInput =
         document.getElementById(
             "rouletteBet"
         );
 
-
     const bet =
         Number(betInput.value);
 
+    const resultElement =
+        document.getElementById(
+            "rouletteResult"
+        );
 
-    // Проверяем ставку
+    const numberElement =
+        document.getElementById(
+            "rouletteNumber"
+        );
 
-    if (
-        !bet ||
-        bet <= 0
-    ) {
+    const wheel =
+        document.getElementById(
+            "rouletteWheel"
+        );
+
+    if (!bet || bet <= 0) {
 
         alert(
             "❌ Введите ставку!"
@@ -508,12 +556,7 @@ function playRoulette() {
 
     }
 
-
-    // Проверяем цвет
-
-    if (
-        !selectedRouletteColor
-    ) {
+    if (!selectedRouletteColor) {
 
         alert(
             "❌ Выберите цвет!"
@@ -523,12 +566,7 @@ function playRoulette() {
 
     }
 
-
-    // Проверяем монеты
-
-    if (
-        coins < bet
-    ) {
+    if (coins < bet) {
 
         alert(
             "❌ Недостаточно монет!"
@@ -538,37 +576,7 @@ function playRoulette() {
 
     }
 
-
-    // Забираем ставку
-
     coins -= bet;
-
-    save();
-
-    update();
-
-
-    // Получаем элементы
-
-    const wheel =
-        document.getElementById(
-            "rouletteWheel"
-        );
-
-
-    const resultElement =
-        document.getElementById(
-            "casinoResult"
-        );
-
-
-    const numberElement =
-        document.getElementById(
-            "rouletteNumber"
-        );
-
-
-    // Анимация рулетки
 
     if (wheel) {
 
@@ -584,72 +592,49 @@ function playRoulette() {
 
     }
 
+    if (numberElement) {
 
-    resultElement.textContent =
-        "🎡 Рулетка вращается...";
+        numberElement.textContent =
+            "🎡 Вращение...";
 
+    }
 
-    numberElement.textContent =
-        "🎡 Вращение...";
+    if (resultElement) {
 
+        resultElement.textContent =
+            "🎡 Рулетка вращается...";
 
-    // Результат через 1.5 секунды
+    }
+
+    save();
+    update();
+
+    const playerColor =
+        selectedRouletteColor;
 
     setTimeout(function() {
 
-
-        // Число от 0 до 36
-
-        const result =
+        const number =
             Math.floor(
                 Math.random() * 37
             );
 
-
         let resultColor;
 
-
-        // ==============================
-        // 🟢 ЗЕЛЁНОЕ
-        // ==============================
-
-        if (
-            result === 0
-        ) {
+        if (number === 0) {
 
             resultColor =
                 "green";
 
         }
 
-
-        // ==============================
-        // 🔴 КРАСНОЕ
-        // ==============================
-
         else if (
-
             [
-                1,
-                3,
-                5,
-                7,
-                9,
-                12,
-                14,
-                16,
-                18,
-                19,
-                21,
-                23,
-                25,
-                27,
-                30,
-                32,
-                34,
-                36
-            ].includes(result)
-
+                1, 3, 5, 7, 9,
+                12, 14, 16, 18,
+                19, 21, 23, 25,
+                27, 30, 32, 34, 36
+            ].includes(number)
         ) {
 
             resultColor =
@@ -657,20 +642,12 @@ function playRoulette() {
 
         }
 
-
-        // ==============================
-        // ⚫ ЧЁРНОЕ
-        // ==============================
-
         else {
 
             resultColor =
                 "black";
 
         }
-
-
-        // Останавливаем анимацию
 
         if (wheel) {
 
@@ -680,281 +657,269 @@ function playRoulette() {
 
         }
 
+        if (numberElement) {
 
-        // Показываем результат
+            if (resultColor === "red") {
+
+                numberElement.textContent =
+                    number +
+                    " — 🔴 КРАСНОЕ";
+
+            }
+
+            else if (
+                resultColor === "black"
+            ) {
+
+                numberElement.textContent =
+                    number +
+                    " — ⚫ ЧЁРНОЕ";
+
+            }
+
+            else {
+
+                numberElement.textContent =
+                    "0 — 🟢 ЗЕЛЁНОЕ";
+
+            }
+
+        }
+
+        let win = 0;
 
         if (
-            result === 0
+            playerColor ===
+            resultColor
         ) {
-
-            numberElement.textContent =
-                "0 — 🟢 ЗЕЛЁНОЕ";
-
-        }
-
-        else if (
-            resultColor === "red"
-        ) {
-
-            numberElement.textContent =
-                result +
-                " — 🔴 КРАСНОЕ";
-
-        }
-
-        else {
-
-            numberElement.textContent =
-                result +
-                " — ⚫ ЧЁРНОЕ";
-
-        }
-
-
-        // ==============================
-        // 🟢 ЗЕЛЁНОЕ x14
-        // ==============================
-
-        if (
-            resultColor === "green"
-        ) {
-
 
             if (
-                selectedRouletteColor ===
+                resultColor ===
                 "green"
             ) {
 
-                const win =
+                win =
                     bet * 14;
 
-
-                coins += win;
-
-
-                resultElement.textContent =
-                    "🎉🟢 ЗЕЛЁНОЕ! " +
-                    "Ты выиграл " +
-                    win +
-                    " 🪙!";
-
-
             }
 
             else {
 
-                resultElement.textContent =
-                    "🟢 ЗЕЛЁНОЕ! " +
-                    "😢 Ты проиграл " +
-                    bet +
-                    " 🪙.";
-
-            }
-
-        }
-
-
-        // ==============================
-        // 🔴 КРАСНОЕ x2
-        // ==============================
-
-        else if (
-            resultColor === "red"
-        ) {
-
-
-            if (
-                selectedRouletteColor ===
-                "red"
-            ) {
-
-                const win =
+                win =
                     bet * 2;
 
-
-                coins += win;
-
-
-                resultElement.textContent =
-                    "🎉🔴 КРАСНОЕ! " +
-                    "Ты выиграл " +
-                    win +
-                    " 🪙!";
-
-
             }
 
-            else {
+            coins += win;
 
-                resultElement.textContent =
-                    "🔴 КРАСНОЕ! " +
-                    "😢 Ты проиграл " +
-                    bet +
-                    " 🪙.";
-
-            }
+            resultElement.textContent =
+                "🎉 ПОБЕДА! Ставка " +
+                bet +
+                " 🪙 → выигрыш +" +
+                win +
+                " 🪙";
 
         }
-
-
-        // ==============================
-        // ⚫ ЧЁРНОЕ x2
-        // ==============================
 
         else {
 
-
-            if (
-                selectedRouletteColor ===
-                "black"
-            ) {
-
-                const win =
-                    bet * 2;
-
-
-                coins += win;
-
-
-                resultElement.textContent =
-                    "🎉⚫ ЧЁРНОЕ! " +
-                    "Ты выиграл " +
-                    win +
-                    " 🪙!";
-
-
-            }
-
-            else {
-
-                resultElement.textContent =
-                    "⚫ ЧЁРНОЕ! " +
-                    "😢 Ты проиграл " +
-                    bet +
-                    " 🪙.";
-
-            }
+            resultElement.textContent =
+                "😢 Проигрыш! Ставка " +
+                bet +
+                " 🪙";
 
         }
 
-
-        // Сохраняем
-
         save();
-
         update();
-
-
-        // Сбрасываем выбор цвета
 
         selectedRouletteColor =
             null;
 
+        const selected =
+            document.getElementById(
+                "selectedRouletteColor"
+            );
 
-        document.getElementById(
-            "selectedRouletteColor"
-        ).textContent =
-            "Цвет не выбран";
+        if (selected) {
 
+            selected.textContent =
+                "Цвет не выбран";
 
-        // Очищаем поле ставки
+        }
 
         betInput.value = "";
-
 
     }, 1500);
 
 }
+
+
 // ==============================
 // 📈 ЛЕСЕНКА
 // ==============================
 
+let ladderActive = false;
+let ladderBet = 0;
+let ladderLevel = 0;
+
+
 function playLadder() {
 
-    if (coins < 100) {
+    const input =
+        document.getElementById(
+            "ladderBet"
+        );
 
-        alert("❌ Нужно 100 монет!");
+    const result =
+        document.getElementById(
+            "ladderResult"
+        );
 
-        return;
+    if (!ladderActive) {
 
-    }
+        const bet =
+            Number(input.value);
 
-    coins -= 100;
+        if (!bet || bet <= 0) {
 
-    let level = 0;
-
-    function nextLevel() {
-
-        level++;
-
-        let chance =
-            Math.random();
-
-        if (chance < 0.4) {
-
-            let resultElement =
-                document.getElementById("casinoResult");
-
-            if (resultElement) {
-
-                resultElement.textContent =
-                    "💥 Ты упал на уровне " +
-                    level +
-                    "!";
-
-            }
-
-            save();
-            update();
+            alert(
+                "❌ Введите ставку!"
+            );
 
             return;
 
         }
 
-        let reward =
-            level * 200;
+        if (coins < bet) {
 
-        let go =
-            confirm(
-                "📈 Уровень " +
-                level +
-                " пройден!\n\n" +
-                "💰 Награда: " +
-                reward +
-                " монет\n\n" +
-                "Продолжить?"
+            alert(
+                "❌ Недостаточно монет!"
             );
 
-        if (go) {
+            return;
 
-            nextLevel();
+        }
+
+        coins -= bet;
+
+        ladderBet = bet;
+
+        ladderLevel = 0;
+
+        ladderActive = true;
+
+        result.textContent =
+            "📈 Лесенка начата!";
+
+    }
+
+    if (ladderActive) {
+
+        ladderLevel++;
+
+        const multiplier =
+            1 +
+            ladderLevel * 0.5;
+
+        const possibleWin =
+            Math.floor(
+                ladderBet *
+                multiplier
+            );
+
+        document.getElementById(
+            "ladderLevel"
+        ).textContent =
+            "Уровень: " +
+            ladderLevel;
+
+        document.getElementById(
+            "ladderMultiplier"
+        ).textContent =
+            "Множитель: x" +
+            multiplier.toFixed(1);
+
+        document.getElementById(
+            "ladderWin"
+        ).textContent =
+            "Можно забрать: " +
+            possibleWin +
+            " 🪙";
+
+        const chance =
+            Math.random();
+
+        if (chance < 0.35) {
+
+            result.textContent =
+                "💥 Ты упал! Ставка потеряна.";
+
+            ladderActive = false;
+
+            ladderBet = 0;
+
+            ladderLevel = 0;
 
         }
 
         else {
 
-            coins += reward;
-
-            let resultElement =
-                document.getElementById("casinoResult");
-
-            if (resultElement) {
-
-                resultElement.textContent =
-                    "🏆 Ты забрал " +
-                    reward +
-                    " 🪙!";
-
-            }
-
-            save();
-            update();
+            result.textContent =
+                "📈 Уровень пройден!";
 
         }
 
+        save();
+        update();
+
     }
 
-    nextLevel();
+}
+
+
+function cashOutLadder() {
+
+    if (!ladderActive) {
+
+        alert(
+            "❌ Сначала начни лесенку!"
+        );
+
+        return;
+
+    }
+
+    const multiplier =
+        1 +
+        ladderLevel * 0.5;
+
+    const win =
+        Math.floor(
+            ladderBet *
+            multiplier
+        );
+
+    coins += win;
+
+    const result =
+        document.getElementById(
+            "ladderResult"
+        );
+
+    result.textContent =
+        "🏆 Ты забрал " +
+        win +
+        " 🪙!";
+
+    ladderActive = false;
+
+    ladderBet = 0;
+
+    ladderLevel = 0;
+
+    save();
+    update();
 
 }
 
@@ -965,61 +930,72 @@ function playLadder() {
 
 function playJackpot() {
 
-    if (coins < 1000) {
+    const input =
+        document.getElementById(
+            "jackpotBet"
+        );
 
-        alert("❌ Нужно 1000 монет!");
+    const bet =
+        Number(input.value);
+
+    const result =
+        document.getElementById(
+            "jackpotResult"
+        );
+
+    if (!bet || bet <= 0) {
+
+        alert(
+            "❌ Введите ставку!"
+        );
 
         return;
 
     }
 
-    coins -= 1000;
+    if (coins < bet) {
 
-    let jackpot =
-        document.getElementById("jackpotVisual");
+        alert(
+            "❌ Недостаточно монет!"
+        );
 
-    let resultElement =
-        document.getElementById("casinoResult");
-
-    if (jackpot) {
-
-        jackpot.classList.add("jackpot-animation");
+        return;
 
     }
 
-    if (resultElement) {
+    coins -= bet;
 
-        resultElement.textContent =
-            "💎 Испытываем удачу...";
+    result.textContent =
+        "💎 Испытываем удачу...";
 
-    }
+    save();
+    update();
 
     setTimeout(function() {
 
-        let chance =
+        const chance =
             Math.random();
 
         if (chance < 0.05) {
 
-            coins += 100000;
+            const win =
+                bet * 20;
 
-            if (resultElement) {
+            coins += win;
 
-                resultElement.textContent =
-                    "🎉🎉🎉 ДЖЕКПОТ!!! +100000 🪙 🎉🎉🎉";
-
-            }
+            result.textContent =
+                "🎉💎 ДЖЕКПОТ! +" +
+                win +
+                " 🪙";
 
         }
 
         else {
 
-            if (resultElement) {
-
-                resultElement.textContent =
-                    "💎 В этот раз не повезло 😢";
-
-            }
+            result.textContent =
+                "😢 Не повезло! Ставка " +
+                bet +
+                " 🪙 потеряна.";
 
         }
 
@@ -1032,68 +1008,70 @@ function playJackpot() {
 
 
 // ==============================
-// 🎁 КЕЙСЫ
+// 🎰 ОТКРЫТИЕ ИГРЫ
 // ==============================
 
-function openCase(type) {
+function openCasinoGame(game) {
 
-    let price = 0;
+    const casinoGame =
+        document.getElementById(
+            "casinoGame"
+        );
 
-    let reward = 0;
+    if (casinoGame) {
 
-    if (type === "common") {
-
-        price = 5000;
-
-        reward =
-            Math.floor(Math.random() * 10000) + 1000;
-
-    }
-
-    else if (type === "rare") {
-
-        price = 12000;
-
-        reward =
-            Math.floor(Math.random() * 30000) + 5000;
+        casinoGame.classList.remove(
+            "hidden"
+        );
 
     }
 
-    else if (type === "legend") {
+    document
+        .querySelectorAll(
+            ".casino-panel"
+        )
+        .forEach(function(panel) {
 
-        price = 100000;
+            panel.classList.add(
+                "hidden"
+            );
 
-        reward =
-            Math.floor(Math.random() * 300000) + 50000;
+        });
 
-    }
+    const selected =
+        document.getElementById(
+            game + "Game"
+        );
 
-    if (coins < price) {
+    if (selected) {
 
-        alert("❌ Недостаточно монет!");
-
-        return;
-
-    }
-
-    coins -= price;
-
-    coins += reward;
-
-    let caseResult =
-        document.getElementById("caseResult");
-
-    if (caseResult) {
-
-        caseResult.textContent =
-            "🎁 Ты открыл кейс и получил 💰 " +
-            reward +
-            " монет!";
+        selected.classList.remove(
+            "hidden"
+        );
 
     }
 
-    save();
-    update();
+}
+
+
+// ==============================
+// 🔙 НАЗАД
+// ==============================
+
+function closeCasinoGame() {
+
+    const casinoGame =
+        document.getElementById(
+            "casinoGame"
+        );
+
+    if (casinoGame) {
+
+        casinoGame.classList.add(
+            "hidden"
+        );
+
+    }
 
 }
 
@@ -1102,7 +1080,7 @@ function openCase(type) {
 // 🐾 ПИТОМЦЫ
 // ==============================
 
-let petList = [
+const petList = [
 
     "🐭 Мышь",
     "🐱 Кот",
@@ -1120,21 +1098,23 @@ let petList = [
 
 function showPets() {
 
-    let container =
-        document.getElementById("petsList");
+    const container =
+        document.getElementById(
+            "petsList"
+        );
 
     if (!container) {
-
         return;
-
     }
 
     container.innerHTML = "";
 
     petList.forEach(function(pet) {
 
-        let div =
-            document.createElement("div");
+        const div =
+            document.createElement(
+                "div"
+            );
 
         div.className =
             "pet";
@@ -1142,91 +1122,11 @@ function showPets() {
         div.textContent =
             pet;
 
-        container.appendChild(div);
+        container.appendChild(
+            div
+        );
 
     });
-
-}
-
-
-// ==============================
-// 🎰 ОТКРЫТИЕ ИГРЫ КАЗИНО
-// ==============================
-
-function openCasinoGame(game) {
-
-    let casinoGame =
-        document.getElementById("casinoGame");
-
-    if (casinoGame) {
-
-        casinoGame.classList.remove("hidden");
-
-    }
-
-    document
-        .querySelectorAll(".casino-panel")
-        .forEach(function(panel) {
-
-            panel.classList.add("hidden");
-
-        });
-
-    let selected =
-        document.getElementById(game + "Game");
-
-    if (selected) {
-
-        selected.classList.remove("hidden");
-
-    }
-
-    if (casinoGame) {
-
-        casinoGame.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }
-
-}
-
-
-// ==============================
-// 🔙 НАЗАД ИЗ КАЗИНО
-// ==============================
-
-function closeCasinoGame() {
-
-    let casinoGame =
-        document.getElementById("casinoGame");
-
-    if (casinoGame) {
-
-        casinoGame.classList.add("hidden");
-
-    }
-
-}
-
-
-// ==============================
-// 🎬 АНИМАЦИЯ
-// ==============================
-
-function casinoAnimation(element, className) {
-
-    if (!element) {
-
-        return;
-
-    }
-
-    element.classList.remove(className);
-
-    void element.offsetWidth;
-
-    element.classList.add(className);
 
 }
 
@@ -1239,11 +1139,9 @@ showPets();
 
 update();
 
-save();
-
 
 // ==============================
-// 📱 TELEGRAM ПРОФИЛЬ
+// 📱 TELEGRAM
 // ==============================
 
 if (
@@ -1251,7 +1149,8 @@ if (
     window.Telegram.WebApp
 ) {
 
-    const tg = window.Telegram.WebApp;
+    const tg =
+        window.Telegram.WebApp;
 
     tg.ready();
 
@@ -1262,39 +1161,20 @@ if (
 
     if (user) {
 
-        let nickname =
-            document.getElementById("nickname");
+        const nickname =
+            document.getElementById(
+                "nickname"
+            );
 
         if (nickname) {
 
-            if (user.username) {
-
-                nickname.textContent =
-                    "@" + user.username;
-
-            } else {
-
-                nickname.textContent =
-                    user.first_name || "Игрок";
-
-            }
+            nickname.textContent =
+                user.username
+                    ? "@" + user.username
+                    : user.first_name ||
+                      "Игрок";
 
         }
-
-        console.log(
-            "Telegram ID:",
-            user.id
-        );
-
-        console.log(
-            "Telegram username:",
-            user.username
-        );
-
-        console.log(
-            "Telegram name:",
-            user.first_name
-        );
 
     }
 
