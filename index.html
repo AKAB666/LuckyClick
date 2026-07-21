@@ -1,1 +1,199 @@
- 
+ <!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Click</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header>
+
+<h1>🍀 Lucky Click</h1>
+
+<div class="coins">
+💰 <span id="coins">0</span>
+</div>
+
+</header>
+
+<div class="menu">
+
+<button onclick="showPage('home')">
+🏠 Главная
+</button>
+
+<button onclick="showPage('casino')">
+🎰 Казино
+</button>
+
+<button onclick="showPage('shop')">
+🏪 Магазин
+</button>
+
+<button onclick="showPage('cases')">
+🎁 Кейсы
+</button>
+
+<button onclick="showPage('pets')">
+🐾 Питомцы
+</button>
+
+<button onclick="showPage('profile')">
+👤 Профиль
+</button>
+
+</div>
+
+<section id="home" class="page">
+
+<h2>Кликер</h2>
+
+<button id="clickButton">
+🪙 КЛИК
+</button>
+
+<p>
+
+Сила клика:
+<span id="clickPower">
+1
+</span>
+
+</p>
+
+</section>
+
+<section id="casino" class="page hidden">
+
+<h2>🎰 Казино</h2>
+
+<button onclick="playSlot()">
+🎰 Слот
+</button>
+
+<button onclick="playDice()">
+🎲 Кубик
+</button>
+
+<button onclick="playRoulette()">
+🎡 Рулетка
+</button>
+
+<button onclick="playLadder()">
+📈 Лесенка
+</button>
+
+<button onclick="playJackpot()">
+💎 Джекпот
+</button>
+
+<div id="casinoResult"></div>
+
+</section>
+
+<section id="shop" class="page hidden">
+
+<h2>🏪 Магазин</h2>
+
+<button onclick="buyClick()">
+
+Улучшить клик
+
+Цена:
+
+<span id="clickPrice">
+
+100
+
+</span>
+
+</button>
+
+<button onclick="buyAuto()">
+
+Автоклик
+
+5000
+
+</button>
+
+</section>
+
+<section id="cases" class="page hidden">
+
+<h2>🎁 Кейсы</h2>
+
+<button onclick="openCase('common')">
+
+Обычный
+
+5000
+
+</button>
+
+<button onclick="openCase('rare')">
+
+Редкий
+
+12000
+
+</button>
+
+<button onclick="openCase('legend')">
+
+Легендарный
+
+100000
+
+</button>
+
+<div id="caseResult"></div>
+
+</section>
+
+<section id="pets" class="page hidden">
+
+<h2>🐾 Питомцы</h2>
+
+<div id="petsList"></div>
+
+</section>
+
+<section id="profile" class="page hidden">
+
+<h2>👤 Профиль</h2>
+
+<p>
+
+Ник:
+
+<span id="nickname">
+
+Игрок
+
+</span>
+
+</p>
+
+<p>
+
+Монеты:
+
+<span id="profileCoins">
+
+0
+
+</span>
+
+</p>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
