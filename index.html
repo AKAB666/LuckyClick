@@ -4,17 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-    <style>
-html, body {
-    touch-action: manipulation;
-    -webkit-text-size-adjust: 100%;
-}
-
-button {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-</style>
 
 <meta
     name="viewport"
@@ -25,7 +14,6 @@ button {
 
 <link rel="stylesheet" href="style.css">
 
-<!-- Telegram Mini App -->
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 </head>
@@ -43,17 +31,14 @@ button {
     <h1>🍀 Lucky Click</h1>
 
     <div class="coins">
-
-        💰
-        <span id="coins">0</span>
-
+        💰 <span id="coins">0</span>
     </div>
 
 </header>
 
 
 <!-- ============================== -->
-<!-- MENU -->
+<!-- МЕНЮ -->
 <!-- ============================== -->
 
 <div class="menu">
@@ -93,20 +78,16 @@ button {
 
     <h2>🪙 Кликер</h2>
 
-    <button id="clickButton">
-
+    <button
+        id="clickButton"
+        class="click-button"
+    >
         🪙 КЛИК
-
     </button>
 
     <p>
-
         Сила клика:
-
-        <span id="clickPower">
-            1
-        </span>
-
+        <span id="clickPower">1</span>
     </p>
 
 </section>
@@ -132,309 +113,132 @@ button {
     </div>
 
 
-   <section id="casino" class="page hidden">
+    <!-- СПИСОК ИГР -->
 
-<h2>🎰 LUCKY CASINO</h2>
-<p>Испытай удачу!</p>
+    <div
+        id="casinoGames"
+        class="casino-games"
+    >
 
-<!-- ============================== -->
-<!-- 🎰 ВЫБОР ИГРЫ -->
-<!-- ============================== -->
 
-<div class="casino-games">
+        <!-- СЛОТ -->
 
-<button class="game-card" onclick="openCasinoGame('slot')">
-🎰 СЛОТ
-</button>
+        <button
+            class="game-card"
+            onclick="openCasinoGame('slot')"
+        >
 
-<button class="game-card" onclick="openCasinoGame('dice')">
-🎲 КУБИК
-</button>
+            <span class="game-icon">
+                🎰
+            </span>
 
-<button class="game-card" onclick="openCasinoGame('roulette')">
-🎡 РУЛЕТКА
-</button>
+            <span class="game-title">
+                СЛОТ
+            </span>
 
-<button class="game-card" onclick="openCasinoGame('ladder')">
-📈 ЛЕСЕНКА
-</button>
+            <span class="game-subtitle">
+                Крути барабаны
+            </span>
 
-<button class="game-card" onclick="openCasinoGame('jackpot')">
-💎 ДЖЕКПОТ
-</button>
+        </button>
 
-</div>
 
+        <!-- КУБИК -->
 
-<!-- ============================== -->
-<!-- 🎮 ИГРЫ -->
-<!-- ============================== -->
+        <button
+            class="game-card"
+            onclick="openCasinoGame('dice')"
+        >
 
-<div id="casinoGame" class="casino-game hidden">
+            <span class="game-icon">
+                🎲
+            </span>
 
-<button onclick="closeCasinoGame()">
-← Назад
-</button>
+            <span class="game-title">
+                КУБИК
+            </span>
 
+            <span class="game-subtitle">
+                Испытай удачу
+            </span>
 
-<!-- ============================== -->
-<!-- 🎰 СЛОТ -->
-<!-- ============================== -->
+        </button>
 
-<div id="slotGame" class="casino-panel hidden">
 
-<h3>🎰 СЛОТ</h3>
+        <!-- РУЛЕТКА -->
 
-<div class="slot-machine">
+        <button
+            class="game-card"
+            onclick="openCasinoGame('roulette')"
+        >
 
-<div class="slot-reel" id="slot1">🍀</div>
-<div class="slot-reel" id="slot2">💎</div>
-<div class="slot-reel" id="slot3">⭐</div>
+            <span class="game-icon">
+                🎡
+            </span>
 
-</div>
+            <span class="game-title">
+                РУЛЕТКА
+            </span>
 
-<p>💰 Ваша ставка:</p>
+            <span class="game-subtitle">
+                🔴 Красное ×2
+                ⚫ Чёрное ×2
+                🟢 Зелёное ×14
+            </span>
 
-<input
-type="number"
-id="slotBet"
-placeholder="Введите ставку"
-min="1"
->
+        </button>
 
-<button
-class="play-button"
-onclick="playSlot()"
->
-🎰 КРУТИТЬ
-</button>
 
-<div id="slotResult">
-Введите ставку
-</div>
+        <!-- ЛЕСЕНКА -->
 
-</div>
+        <button
+            class="game-card"
+            onclick="openCasinoGame('ladder')"
+        >
 
+            <span class="game-icon">
+                📈
+            </span>
 
-<!-- ============================== -->
-<!-- 🎲 КУБИК -->
-<!-- ============================== -->
+            <span class="game-title">
+                ЛЕСЕНКА
+            </span>
 
-<div id="diceGame" class="casino-panel hidden">
+            <span class="game-subtitle">
+                Рискни ради большего
+            </span>
 
-<h3>🎲 КУБИК</h3>
+        </button>
 
-<div id="diceVisual">
-🎲
-</div>
 
-<p>💰 Ваша ставка:</p>
+        <!-- ДЖЕКПОТ -->
 
-<input
-type="number"
-id="diceBet"
-placeholder="Введите ставку"
-min="1"
->
-
-<p id="diceNumber">
-Нажми «Бросить»
-</p>
-
-<button
-class="play-button"
-onclick="playDice()"
->
-🎲 БРОСИТЬ
-</button>
-
-<div id="diceResult">
-Введите ставку
-</div>
-
-</div>
-
-
-<!-- ============================== -->
-<!-- 🎡 РУЛЕТКА -->
-<!-- ============================== -->
-
-<div id="rouletteGame" class="casino-panel hidden">
-
-<h3>🎡 РУЛЕТКА</h3>
-
-<div class="roulette-container">
-
-<div class="roulette-pointer">
-▼
-</div>
-
-<div id="rouletteWheel">
-
-<div class="roulette-center">
-🎡
-</div>
-
-</div>
-
-</div>
-
-<p id="rouletteNumber">
-Нажми «Крутить»
-</p>
-
-<p>💰 Ваша ставка:</p>
-
-<input
-type="number"
-id="rouletteBet"
-placeholder="Введите ставку"
-min="1"
->
-
-<p>🎯 Выберите цвет:</p>
-
-<div class="roulette-bets">
-
-<button
-class="red-bet"
-onclick="selectRouletteColor('red')"
->
-🔴 Красное x2
-</button>
-
-<button
-class="black-bet"
-onclick="selectRouletteColor('black')"
->
-⚫ Чёрное x2
-</button>
-
-<button
-class="green-bet"
-onclick="selectRouletteColor('green')"
->
-🟢 Зелёное x14
-</button>
-
-</div>
-
-<p id="selectedRouletteColor">
-Цвет не выбран
-</p>
-
-<button
-class="play-button"
-onclick="playRoulette()"
->
-🎡 КРУТИТЬ РУЛЕТКУ
-</button>
-
-<div id="rouletteResult">
-Введите ставку и выберите цвет
-</div>
-
-</div>
-
-
-<!-- ============================== -->
-<!-- 📈 ЛЕСЕНКА -->
-<!-- ============================== -->
-
-<div id="ladderGame" class="casino-panel hidden">
-
-<h3>📈 ЛЕСЕНКА</h3>
-
-<p>💰 Ваша ставка:</p>
-
-<input
-type="number"
-id="ladderBet"
-placeholder="Введите ставку"
-min="1"
->
-
-<p id="ladderLevel">
-Уровень: 0
-</p>
-
-<p id="ladderMultiplier">
-Множитель: x1
-</p>
-
-<p id="ladderWin">
-Можно забрать: 0 🪙
-</p>
-
-<button
-class="play-button"
-onclick="playLadder()"
->
-📈 НАЧАТЬ
-</button>
-
-<button
-class="play-button"
-onclick="cashOutLadder()"
->
-💰 ЗАБРАТЬ ВЫИГРЫШ
-</button>
-
-<div id="ladderResult">
-Введите ставку
-</div>
-
-</div>
-
-
-<!-- ============================== -->
-<!-- 💎 ДЖЕКПОТ -->
-<!-- ============================== -->
-
-<div id="jackpotGame" class="casino-panel hidden">
-
-<h3>💎 ДЖЕКПОТ</h3>
-
-<div id="jackpotVisual">
-💎
-</div>
-
-<p>💰 Ваша ставка:</p>
-
-<input
-type="number"
-id="jackpotBet"
-placeholder="Введите ставку"
-min="1"
->
-
-<p>
-Шанс на джекпот: 5%
-</p>
-
-<button
-class="play-button"
-onclick="playJackpot()"
->
-💎 ИСПЫТАТЬ УДАЧУ
-</button>
-
-<div id="jackpotResult">
-Введите ставку
-</div>
-
-</div>
-
-
-</div>
-
-</section>
+        <button
+            class="game-card jackpot-card"
+            onclick="openCasinoGame('jackpot')"
+        >
+
+            <span class="game-icon">
+                💎
+            </span>
+
+            <span class="game-title">
+                ДЖЕКПОТ
+            </span>
+
+            <span class="game-subtitle">
+                Сорви главный приз
+            </span>
+
+        </button>
 
 
     </div>
 
 
-    <!-- ОБЛАСТЬ ИГРЫ -->
+    <!-- ============================== -->
+    <!-- ОКНО ИГРЫ -->
+    <!-- ============================== -->
 
     <div
         id="casinoGame"
@@ -442,15 +246,13 @@ onclick="playJackpot()"
     >
 
 
-        <!-- КНОПКА НАЗАД -->
+        <!-- НАЗАД -->
 
         <button
             class="back-game"
             onclick="closeCasinoGame()"
         >
-
             ← Назад к играм
-
         </button>
 
 
@@ -467,9 +269,12 @@ onclick="playJackpot()"
                 🎰 СЛОТ
             </h3>
 
+            <p>
+                💰 Ставка: 100 🪙
+            </p>
+
 
             <div class="slot-machine">
-
 
                 <div
                     class="slot-reel"
@@ -478,14 +283,12 @@ onclick="playJackpot()"
                     🍀
                 </div>
 
-
                 <div
                     class="slot-reel"
                     id="slot2"
                 >
                     💎
                 </div>
-
 
                 <div
                     class="slot-reel"
@@ -494,24 +297,20 @@ onclick="playJackpot()"
                     ⭐
                 </div>
 
-
             </div>
 
 
-            <p>
-                Ставка: 100 🪙
-            </p>
+            <div id="slotResult">
+                Нажми «Крутить»
+            </div>
 
 
             <button
                 class="play-button"
                 onclick="playSlot()"
             >
-
                 🎰 КРУТИТЬ
-
             </button>
-
 
         </div>
 
@@ -530,27 +329,27 @@ onclick="playJackpot()"
             </h3>
 
 
+            <p>
+                💰 Ставка: 100 🪙
+            </p>
+
+
             <div id="diceVisual">
-
                 🎲
-
             </div>
 
 
-            <p>
-                Ставка: 100 🪙
-            </p>
+            <div id="diceResult">
+                Нажми «Бросить»
+            </div>
 
 
             <button
                 class="play-button"
                 onclick="playDice()"
             >
-
                 🎲 БРОСИТЬ
-
             </button>
-
 
         </div>
 
@@ -571,29 +370,23 @@ onclick="playJackpot()"
 
             <div class="roulette-container">
 
-
                 <div class="roulette-pointer">
-
                     ▼
-
                 </div>
 
 
                 <div id="rouletteWheel">
 
-
                     <div class="roulette-center">
-
                         🎡
-
                     </div>
-
 
                 </div>
 
-
             </div>
 
+
+            <!-- ЧИСЛО -->
 
             <div id="rouletteNumber">
 
@@ -602,52 +395,81 @@ onclick="playJackpot()"
             </div>
 
 
-           <p>💰 Ваша ставка:</p>
+            <!-- СТАВКА -->
 
-<input
-    type="number"
-    id="rouletteBet"
-    placeholder="Введите ставку"
-    min="1"
->
+            <p>
+                💰 Ваша ставка:
+            </p>
 
-<p>🎯 Выберите цвет:</p>
 
-<div class="roulette-bets">
+            <input
+                type="number"
+                id="rouletteBet"
+                placeholder="Введите ставку"
+                min="1"
+                step="1"
+            >
 
-    <button
-        class="red-bet"
-        onclick="selectRouletteColor('red')"
-    >
-        🔴 Красное
-    </button>
 
-    <button
-        class="black-bet"
-        onclick="selectRouletteColor('black')"
-    >
-        ⚫ Чёрное
-    </button>
+            <!-- ВЫБОР ЦВЕТА -->
 
-    <button
-        class="green-bet"
-        onclick="selectRouletteColor('green')"
-    >
-        🟢 Зелёное
-    </button>
+            <p>
+                🎯 Выберите цвет:
+            </p>
 
-</div>
 
-<p id="selectedRouletteColor">
-    Цвет не выбран
-</p>
+            <div class="roulette-bets">
 
-<button
-    class="play-button"
-    onclick="playRoulette()"
->
-    🎡 КРУТИТЬ РУЛЕТКУ
-</button>
+
+                <button
+                    class="red-bet"
+                    onclick="selectRouletteColor('red')"
+                >
+                    🔴 Красное ×2
+                </button>
+
+
+                <button
+                    class="black-bet"
+                    onclick="selectRouletteColor('black')"
+                >
+                    ⚫ Чёрное ×2
+                </button>
+
+
+                <button
+                    class="green-bet"
+                    onclick="selectRouletteColor('green')"
+                >
+                    🟢 Зелёное ×14
+                </button>
+
+
+            </div>
+
+
+            <!-- ВЫБРАННЫЙ ЦВЕТ -->
+
+            <p id="selectedRouletteColor">
+
+                Цвет не выбран
+
+            </p>
+
+
+            <!-- РЕЗУЛЬТАТ -->
+
+            <div id="rouletteResult">
+
+            </div>
+
+
+            <button
+                class="play-button"
+                onclick="playRoulette()"
+            >
+                🎡 КРУТИТЬ РУЛЕТКУ
+            </button>
 
 
         </div>
@@ -667,51 +489,49 @@ onclick="playJackpot()"
             </h3>
 
 
-            <div id="ladderVisual">
+            <p>
+                💰 Ставка: 100 🪙
+            </p>
 
+
+            <div id="ladderVisual">
 
                 <div>
                     🏆
                 </div>
 
-
                 <div>
                     💎
                 </div>
-
 
                 <div>
                     ⭐
                 </div>
 
-
                 <div>
                     🍀
                 </div>
-
 
                 <div>
                     🪙
                 </div>
 
-
             </div>
 
 
-            <p>
-                Ставка: 100 🪙
-            </p>
+            <div id="ladderResult">
+
+                Начни игру
+
+            </div>
 
 
             <button
                 class="play-button"
                 onclick="playLadder()"
             >
-
                 📈 НАЧАТЬ
-
             </button>
-
 
         </div>
 
@@ -730,6 +550,11 @@ onclick="playJackpot()"
             </h3>
 
 
+            <p>
+                💰 Ставка: 1000 🪙
+            </p>
+
+
             <div id="jackpotVisual">
 
                 💎
@@ -737,30 +562,25 @@ onclick="playJackpot()"
             </div>
 
 
-            <p>
-                Главный приз: 100 000 🪙
-            </p>
+            <div id="jackpotResult">
 
+                Главный приз:
+                100 000 🪙
 
-            <p>
-                Ставка: 1 000 🪙
-            </p>
+            </div>
 
 
             <button
                 class="play-button"
                 onclick="playJackpot()"
             >
-
                 💎 ИСПЫТАТЬ УДАЧУ
-
             </button>
-
 
         </div>
 
 
-        <!-- РЕЗУЛЬТАТ КАЗИНО -->
+        <!-- ОБЩИЙ РЕЗУЛЬТАТ -->
 
         <div id="casinoResult">
 
@@ -781,7 +601,6 @@ onclick="playJackpot()"
     id="shop"
     class="page hidden"
 >
-
 
     <h2>
         🏪 Магазин
@@ -811,7 +630,7 @@ onclick="playJackpot()"
 
         <br>
 
-        Цена: 5000 🪙
+        5000 🪙
 
     </button>
 
@@ -828,15 +647,16 @@ onclick="playJackpot()"
     class="page hidden"
 >
 
-
     <h2>
         🎁 Кейсы
     </h2>
 
 
-    <button onclick="openCase('common')">
+    <button
+        onclick="openCase('common')"
+    >
 
-        📦 Обычный
+        🎁 Обычный
 
         <br>
 
@@ -845,7 +665,9 @@ onclick="playJackpot()"
     </button>
 
 
-    <button onclick="openCase('rare')">
+    <button
+        onclick="openCase('rare')"
+    >
 
         💎 Редкий
 
@@ -856,7 +678,9 @@ onclick="playJackpot()"
     </button>
 
 
-    <button onclick="openCase('legend')">
+    <button
+        onclick="openCase('legend')"
+    >
 
         👑 Легендарный
 
@@ -884,7 +708,6 @@ onclick="playJackpot()"
     class="page hidden"
 >
 
-
     <h2>
         🐾 Питомцы
     </h2>
@@ -907,7 +730,6 @@ onclick="playJackpot()"
     class="page hidden"
 >
 
-
     <h2>
         👤 Профиль
     </h2>
@@ -918,9 +740,7 @@ onclick="playJackpot()"
         Ник:
 
         <span id="nickname">
-
             Игрок
-
         </span>
 
     </p>
@@ -928,12 +748,10 @@ onclick="playJackpot()"
 
     <p>
 
-        💰 Монеты:
+        Монеты:
 
         <span id="profileCoins">
-
             0
-
         </span>
 
     </p>
@@ -947,6 +765,53 @@ onclick="playJackpot()"
 <!-- ============================== -->
 
 <script src="script.js"></script>
+
+
+<!-- TELEGRAM MINI APP -->
+
+<script>
+
+if (
+    window.Telegram &&
+    window.Telegram.WebApp
+) {
+
+    const tg =
+        window.Telegram.WebApp;
+
+    tg.ready();
+
+    tg.expand();
+
+    const user =
+        tg.initDataUnsafe?.user;
+
+    if (user) {
+
+        const nickname =
+            document.getElementById(
+                "nickname"
+            );
+
+        if (nickname) {
+
+            nickname.textContent =
+                user.username
+                ? "@" + user.username
+                : user.first_name || "Игрок";
+
+        }
+
+        console.log(
+            "Telegram ID:",
+            user.id
+        );
+
+    }
+
+}
+
+</script>
 
 
 </body>
