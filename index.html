@@ -65,33 +65,148 @@
 
 </p>
 
-</section>
-
 <section id="casino" class="page hidden">
 
-<h2>🎰 Казино</h2>
+    <div class="casino-header">
+        <h2>🎰 LUCKY CASINO</h2>
+        <p>Испытай удачу!</p>
+    </div>
 
-<button onclick="playSlot()">
-🎰 Слот
-</button>
+    <div class="casino-games">
 
-<button onclick="playDice()">
-🎲 Кубик
-</button>
+        <button class="game-card" onclick="openCasinoGame('slot')">
+            <span class="game-icon">🎰</span>
+            <span class="game-title">СЛОТ</span>
+            <span class="game-subtitle">Крути барабаны</span>
+        </button>
 
-<button onclick="playRoulette()">
-🎡 Рулетка
-</button>
+        <button class="game-card" onclick="openCasinoGame('dice')">
+            <span class="game-icon">🎲</span>
+            <span class="game-title">КУБИК</span>
+            <span class="game-subtitle">Испытай удачу</span>
+        </button>
 
-<button onclick="playLadder()">
-📈 Лесенка
-</button>
+        <button class="game-card" onclick="openCasinoGame('roulette')">
+            <span class="game-icon">🎡</span>
+            <span class="game-title">РУЛЕТКА</span>
+            <span class="game-subtitle">Красное или чёрное</span>
+        </button>
 
-<button onclick="playJackpot()">
-💎 Джекпот
-</button>
+        <button class="game-card" onclick="openCasinoGame('ladder')">
+            <span class="game-icon">📈</span>
+            <span class="game-title">ЛЕСЕНКА</span>
+            <span class="game-subtitle">Рискни ради большего</span>
+        </button>
 
-<div id="casinoResult"></div>
+        <button class="game-card jackpot-card" onclick="openCasinoGame('jackpot')">
+            <span class="game-icon">💎</span>
+            <span class="game-title">ДЖЕКПОТ</span>
+            <span class="game-subtitle">Сорви главный приз</span>
+        </button>
+
+    </div>
+
+    <div id="casinoGame" class="casino-game hidden">
+
+        <button class="back-game" onclick="closeCasinoGame()">
+            ← Назад к играм
+        </button>
+
+        <div id="slotGame" class="casino-panel hidden">
+
+            <h3>🎰 СЛОТ</h3>
+
+            <div class="slot-machine">
+
+                <div class="slot-reel" id="slot1">🍀</div>
+                <div class="slot-reel" id="slot2">💎</div>
+                <div class="slot-reel" id="slot3">⭐</div>
+
+            </div>
+
+            <p>Ставка: 100 🪙</p>
+
+            <button class="play-button" onclick="playSlot()">
+                🎰 КРУТИТЬ
+            </button>
+
+        </div>
+
+
+        <div id="diceGame" class="casino-panel hidden">
+
+            <h3>🎲 КУБИК</h3>
+
+            <div id="diceVisual">
+                🎲
+            </div>
+
+            <p>Ставка: 100 🪙</p>
+
+            <button class="play-button" onclick="playDice()">
+                🎲 БРОСИТЬ
+            </button>
+
+        </div>
+
+
+        <div id="rouletteGame" class="casino-panel hidden">
+
+            <h3>🎡 РУЛЕТКА</h3>
+
+            <div id="rouletteWheel">
+                🎡
+            </div>
+
+            <p>Ставка: 100 🪙</p>
+
+            <button class="play-button" onclick="playRoulette()">
+                🎡 КРУТИТЬ РУЛЕТКУ
+            </button>
+
+        </div>
+
+
+        <div id="ladderGame" class="casino-panel hidden">
+
+            <h3>📈 ЛЕСЕНКА</h3>
+
+            <div id="ladderVisual">
+
+                <div>🏆</div>
+                <div>💎</div>
+                <div>⭐</div>
+                <div>🍀</div>
+                <div>🪙</div>
+
+            </div>
+
+            <button class="play-button" onclick="playLadder()">
+                📈 НАЧАТЬ
+            </button>
+
+        </div>
+
+
+        <div id="jackpotGame" class="casino-panel hidden">
+
+            <h3>💎 ДЖЕКПОТ</h3>
+
+            <div id="jackpotVisual">
+                💎
+            </div>
+
+            <p>Главный приз: 100 000 🪙</p>
+
+            <button class="play-button" onclick="playJackpot()">
+                💎 ИСПЫТАТЬ УДАЧУ
+            </button>
+
+        </div>
+
+        <div id="casinoResult"></div>
+
+    </div>
 
 </section>
 
