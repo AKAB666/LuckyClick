@@ -147,3 +147,243 @@ font-size:24px;
 }
 
 }
+/* =========================
+   АНИМАЦИИ КАЗИНО
+========================= */
+
+#casino:not(.hidden) {
+    animation: casinoOpen 0.5s ease;
+}
+
+@keyframes casinoOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#casino h2 {
+    animation: casinoTitle 0.7s ease;
+}
+
+@keyframes casinoTitle {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#casino button {
+    animation: casinoButton 0.5s ease backwards;
+}
+
+#casino button:nth-of-type(1) {
+    animation-delay: 0.1s;
+}
+
+#casino button:nth-of-type(2) {
+    animation-delay: 0.2s;
+}
+
+#casino button:nth-of-type(3) {
+    animation-delay: 0.3s;
+}
+
+#casino button:nth-of-type(4) {
+    animation-delay: 0.4s;
+}
+
+#casino button:nth-of-type(5) {
+    animation-delay: 0.5s;
+}
+
+@keyframes casinoButton {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Результат игры */
+
+#casinoResult {
+    min-height: 50px;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+/* Анимация выигрыша */
+
+.win-animation {
+    animation: win 0.8s ease;
+}
+
+@keyframes win {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.2) rotate(-3deg);
+    }
+
+    60% {
+        transform: scale(1.1) rotate(3deg);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Анимация проигрыша */
+
+.lose-animation {
+    animation: lose 0.5s ease;
+}
+
+@keyframes lose {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Слот */
+
+.slot-spin {
+    animation: slotSpin 1s ease;
+}
+
+@keyframes slotSpin {
+    0% {
+        transform: rotateX(0);
+    }
+
+    30% {
+        transform: rotateX(360deg);
+    }
+
+    60% {
+        transform: rotateX(720deg);
+    }
+
+    100% {
+        transform: rotateX(1080deg);
+    }
+}
+
+/* Кубик */
+
+.dice-roll {
+    animation: diceRoll 0.8s ease;
+}
+
+@keyframes diceRoll {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(360deg) scale(1.4);
+    }
+
+    100% {
+        transform: rotate(720deg) scale(1);
+    }
+}
+
+/* Рулетка */
+
+.roulette-spin {
+    animation: rouletteSpin 1.5s ease-out;
+}
+
+@keyframes rouletteSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(1080deg);
+    }
+}
+
+/* Джекпот */
+
+.jackpot-animation {
+    animation: jackpot 1s infinite;
+}
+
+@keyframes jackpot {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0px transparent;
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 30px #facc15;
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0px transparent;
+    }
+}
+
+/* Нажатие кнопок */
+
+#casino button:active {
+    transform: scale(0.94);
+}
+
+/* Эффект появления результата */
+
+.result-show {
+    animation: resultShow 0.5s ease;
+}
+
+@keyframes resultShow {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
