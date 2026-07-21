@@ -665,3 +665,538 @@ function animateResult(type) {
 
     result.classList.add("result-show");
 }
+// ==============================
+// НОВОЕ КАЗИНО
+// ==============================
+
+function openCasinoGame(game) {
+
+    // Показываем игровую область
+    document.getElementById("casinoGame")
+        .classList.remove("hidden");
+
+    // Скрываем все игры
+    document.querySelectorAll(".casino-panel")
+        .forEach(function(panel) {
+
+            panel.classList.add("hidden");
+
+        });
+
+
+    // Открываем выбранную игру
+    let selected =
+        document.getElementById(game + "Game");
+
+    if (selected) {
+
+        selected.classList.remove("hidden");
+
+    }
+
+
+    // Прокручиваем к игре
+    document.getElementById("casinoGame")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+// ==============================
+// НАЗАД К ИГРАМ
+// ==============================
+
+function closeCasinoGame() {
+
+    document.getElementById("casinoGame")
+        .classList.add("hidden");
+
+}
+
+
+// ==============================
+// АНИМАЦИЯ РЕЗУЛЬТАТА
+// ==============================
+
+function casinoAnimation(element, className) {
+
+    element.classList.remove(className);
+
+    void element.offsetWidth;
+
+    element.classList.add(className);
+
+}
+
+
+// ==============================
+// 🎰 НОВЫЙ СЛОТ
+// ==============================
+
+function playSlot() {
+
+    if (coins < 100) {
+
+        alert("❌ Нужно 100 монет!");
+
+        return;
+
+    }
+
+
+    coins -= 100;
+
+    update();
+    save();
+
+
+    let reels = [
+
+        document.getElementById("slot1"),
+        document.getElementById("slot2"),
+        document.getElementById("slot3")
+
+    ];
+
+
+    let symbols = [
+
+        "🍀",
+        "💎",
+        "⭐",
+        "🍒",
+        "7️⃣",
+        "🔔"
+
+    ];
+
+
+    // Анимация вращения
+
+    reels.forEach(function(reel) {
+
+        reel.classList.add("slot-spin");
+
+    });
+
+
+    document.getElementById("casinoResult")
+        .textContent = "🎰 Крутим...";
+
+
+    setTimeout(function() {
+
+        let result = [
+
+            symbols[Math.floor(Math.random() * symbols.length)],
+
+            symbols[Math.floor(Math.random() * symbols.length)],
+
+            symbols[Math.floor(Math.random() * symbols.length)]
+
+        ];
+
+
+        reels[0].textContent = result[0];
+
+        reels[1].textContent = result[1];
+
+        reels[2].textContent = result[2];
+
+
+        reels.forEach(function(reel) {
+
+            reel.classList.remove("slot-spin");
+
+        });
+
+
+        if (
+            result[0] === result[1] &&
+            result[1] === result[2]
+        ) {
+
+            let win = 5000;
+
+            coins += win;
+
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "🎉💎 ДЖЕКПОТ! +" +
+                win +
+                " 🪙";
+
+
+            casinoAnimation(
+                document.getElementById("casinoResult"),
+                "jackpot-animation"
+            );
+
+        }
+
+        else if (
+            result[0] === result[1] ||
+            result[1] === result[2] ||
+            result[0] === result[2]
+        ) {
+
+            let win = 300;
+
+            coins += win;
+
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "🎉 Выигрыш +" +
+                win +
+                " 🪙";
+
+        }
+
+        else {
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "😢 Не повезло!";
+
+        }
+
+
+        update();
+        save();
+
+
+    }, 1500);
+
+}
+
+
+// ==============================
+// 🎲 НОВЫЙ КУБИК
+// ==============================
+
+function playDice() {
+
+    if (coins < 100) {
+
+        alert("❌ Нужно 100 монет!");
+
+        return;
+
+    }
+
+
+    coins -= 100;
+
+
+    let dice =
+        document.getElementById("diceVisual");
+
+
+    casinoAnimation(
+        dice,
+        "dice-roll"
+    );
+
+
+    document.getElementById("casinoResult")
+        .textContent =
+        "🎲 Бросаем кубик...";
+
+
+    setTimeout(function() {
+
+        let result =
+            Math.floor(Math.random() * 6) + 1;
+
+
+        dice.textContent =
+            "🎲";
+
+
+        if (result >= 5) {
+
+            let win = 500;
+
+            coins += win;
+
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "🎲 Выпало " +
+                result +
+                "! 🎉 +" +
+                win +
+                " 🪙";
+
+        }
+
+        else {
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "🎲 Выпало " +
+                result +
+                ". 😢";
+
+        }
+
+
+        update();
+        save();
+
+
+    }, 1000);
+
+}
+
+
+// ==============================
+// 🎡 НОВАЯ РУЛЕТКА
+// ==============================
+
+function playRoulette() {
+
+    if (coins < 100) {
+
+        alert("❌ Нужно 100 монет!");
+
+        return;
+
+    }
+
+
+    coins -= 100;
+
+
+    let wheel =
+        document.getElementById("rouletteWheel");
+
+
+    casinoAnimation(
+        wheel,
+        "roulette-spin"
+    );
+
+
+    document.getElementById("casinoResult")
+        .textContent =
+        "🎡 Рулетка вращается...";
+
+
+    setTimeout(function() {
+
+        let colors = [
+
+            "🔴 Красное",
+
+            "⚫ Чёрное"
+
+        ];
+
+
+        let result =
+            colors[Math.floor(
+                Math.random() * colors.length
+            )];
+
+
+        if (result === "🔴 Красное") {
+
+            coins += 200;
+
+            document.getElementById("casinoResult")
+                .textContent =
+                result +
+                " 🎉 Вы выиграли 200 🪙!";
+
+        }
+
+        else {
+
+            document.getElementById("casinoResult")
+                .textContent =
+                result +
+                " 😢 Вы проиграли!";
+
+        }
+
+
+        update();
+        save();
+
+
+    }, 1500);
+
+}
+
+
+// ==============================
+// 📈 ЛЕСЕНКА
+// ==============================
+
+function playLadder() {
+
+    if (coins < 100) {
+
+        alert("❌ Нужно 100 монет!");
+
+        return;
+
+    }
+
+
+    coins -= 100;
+
+
+    let level = 0;
+
+
+    function nextLevel() {
+
+        level++;
+
+
+        let chance =
+            Math.random();
+
+
+        if (chance < 0.4) {
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "💥 Ты упал на уровне " +
+                level +
+                "!";
+
+            update();
+            save();
+
+            return;
+
+        }
+
+
+        let reward =
+            level * 200;
+
+
+        coins += reward;
+
+
+        let go =
+            confirm(
+                "📈 Уровень " +
+                level +
+                " пройден!\n\n" +
+                "💰 Награда: " +
+                reward +
+                " монет\n\n" +
+                "Продолжить?"
+            );
+
+
+        if (go) {
+
+            coins -= reward;
+
+            nextLevel();
+
+        }
+
+        else {
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "🏆 Ты забрал " +
+                reward +
+                " 🪙!";
+
+            update();
+            save();
+
+        }
+
+    }
+
+
+    nextLevel();
+
+}
+
+
+// ==============================
+// 💎 ДЖЕКПОТ
+// ==============================
+
+function playJackpot() {
+
+    if (coins < 1000) {
+
+        alert("❌ Нужно 1000 монет!");
+
+        return;
+
+    }
+
+
+    coins -= 1000;
+
+
+    let jackpot =
+        document.getElementById("jackpotVisual");
+
+
+    casinoAnimation(
+        jackpot,
+        "jackpot-animation"
+    );
+
+
+    document.getElementById("casinoResult")
+        .textContent =
+        "💎 Испытываем удачу...";
+
+
+    setTimeout(function() {
+
+        let chance =
+            Math.random();
+
+
+        if (chance < 0.05) {
+
+            coins += 100000;
+
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "🎉🎉🎉 ДЖЕКПОТ!!! 🎉🎉🎉";
+
+
+            casinoAnimation(
+                document.getElementById("casinoResult"),
+                "jackpot-animation"
+            );
+
+        }
+
+        else {
+
+            document.getElementById("casinoResult")
+                .textContent =
+                "💎 В этот раз не повезло 😢";
+
+        }
+
+
+        update();
+        save();
+
+
+    }, 2000);
+
+}
