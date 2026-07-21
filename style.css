@@ -1,3 +1,7 @@
+/* =====================================================
+   🍀 LUCKY CLICK — CASINO STYLE
+   ===================================================== */
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -10,64 +14,57 @@ html {
 body {
     margin: 0;
     padding: 0;
-    padding-bottom: 90px;
+
+    min-height: 100vh;
 
     font-family:
         -apple-system,
         BlinkMacSystemFont,
-        "SF Pro Display",
         "Segoe UI",
+        Roboto,
+        Arial,
         sans-serif;
 
     color: #ffffff;
 
     background:
         radial-gradient(
-            circle at top,
-            #1c3150 0%,
-            #0b1422 35%,
-            #050910 100%
+            circle at 50% -10%,
+            rgba(0, 255, 150, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #07110e 0%,
+            #0b1512 45%,
+            #050807 100%
         );
 
-    min-height: 100vh;
+    padding-bottom: 100px;
 
     overflow-x: hidden;
-
-    user-select: none;
-    -webkit-user-select: none;
 }
 
 
-/* ========================================= */
-/* 📱 ВЕРХНЯЯ ПАНЕЛЬ */
-/* ========================================= */
+/* =====================================================
+   🔝 ВЕРХНЯЯ ПАНЕЛЬ
+   ===================================================== */
 
 .topbar {
-
     position: sticky;
-
     top: 0;
-
     z-index: 100;
 
     height: 64px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    padding:
-        0 16px;
+    padding: 0 18px;
 
     background:
-        rgba(
-            7,
-            14,
-            25,
-            0.88
-        );
+        rgba(7, 15, 12, 0.92);
 
     backdrop-filter:
         blur(18px);
@@ -76,1564 +73,1328 @@ body {
         blur(18px);
 
     border-bottom:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.08
-        );
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.35);
 }
 
 
 .logo {
-
     font-size: 20px;
-
     font-weight: 800;
 
-    letter-spacing:
-        -0.5px;
+    color: #ffffff;
 
+    text-shadow:
+        0 0 15px rgba(0, 255, 150, 0.5);
 }
 
 
 .balance {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    padding:
-        9px 14px;
+    min-width: 105px;
 
-    border-radius:
-        20px;
+    padding: 9px 14px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    color: #ffe36e;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.08
+        linear-gradient(
+            135deg,
+            rgba(255, 214, 70, 0.18),
+            rgba(255, 170, 0, 0.06)
         );
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
-
-    font-weight:
-        700;
-
-    color:
-        #ffd84d;
+        1px solid rgba(255, 216, 76, 0.25);
 
     box-shadow:
-        0 5px 20px
-        rgba(
-            0,
-            0,
-            0,
-            0.25
-        );
+        0 0 18px rgba(255, 205, 50, 0.08);
 }
 
 
-/* ========================================= */
-/* 📄 СТРАНИЦЫ */
-/* ========================================= */
+/* =====================================================
+   📄 СТРАНИЦЫ
+   ===================================================== */
 
 .page {
+    width: 100%;
+    max-width: 650px;
 
-    min-height:
-        calc(
-            100vh - 64px
-        );
+    margin: 0 auto;
 
-    padding:
-        20px 16px 110px;
+    padding: 22px 16px 120px;
 
     animation:
-        pageAppear
-        0.25s
-        ease;
-
+        pageAppear 0.3s ease;
 }
 
-
 .hidden {
-
-    display:
-        none !important;
-
+    display: none !important;
 }
 
 
 @keyframes pageAppear {
 
     from {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(
-                10px
-            );
-
+        opacity: 0;
+        transform: translateY(8px);
     }
 
     to {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(
-                0
-            );
-
+        opacity: 1;
+        transform: translateY(0);
     }
 
 }
 
 
-/* ========================================= */
-/* 👤 МИНИ ПРОФИЛЬ */
-/* ========================================= */
+/* =====================================================
+   👤 MINI ПРОФИЛЬ
+   ===================================================== */
 
 .profile-mini {
 
-    display:
-        flex;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-    align-items:
-        center;
+    margin-bottom: 18px;
 
-    gap:
-        12px;
+    padding: 13px;
 
-    padding:
-        14px;
-
-    margin-bottom:
-        20px;
-
-    border-radius:
-        20px;
+    border-radius: 18px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.06
-        );
+        rgba(255, 255, 255, 0.045);
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.08
-        );
-
+        1px solid rgba(255, 255, 255, 0.07);
 }
 
 
 .avatar {
 
-    width:
-        48px;
+    width: 48px;
+    height: 48px;
 
-    height:
-        48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    display:
-        flex;
+    border-radius: 50%;
 
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        50%;
-
-    font-size:
-        26px;
+    font-size: 25px;
 
     background:
         linear-gradient(
             135deg,
-            #38d996,
-            #147dff
+            #19d98b,
+            #087a52
         );
 
     box-shadow:
-        0 8px 25px
-        rgba(
-            20,
-            125,
-            255,
-            0.3
-        );
-
+        0 0 25px rgba(0, 255, 150, 0.25);
 }
 
 
-/* ========================================= */
-/* 🪙 КЛИКЕР */
-/* ========================================= */
+.profile-mini b {
+    display: block;
+
+    font-size: 16px;
+}
+
+
+.profile-mini small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #8caaa0;
+}
+
+
+/* =====================================================
+   🏠 КЛИКЕР
+   ===================================================== */
 
 .clicker-card {
 
-    position:
-        relative;
+    position: relative;
 
-    text-align:
-        center;
+    overflow: hidden;
 
-    padding:
-        30px 20px;
+    text-align: center;
 
-    margin-bottom:
-        18px;
+    padding: 28px 18px 25px;
 
-    border-radius:
-        30px;
+    border-radius: 28px;
 
     background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0, 255, 150, 0.14),
+            transparent 45%
+        ),
         linear-gradient(
             145deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.1
-            ),
-            rgba(
-                255,
-                255,
-                255,
-                0.035
-            )
+            #10251c,
+            #09110e
         );
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
+        1px solid rgba(0, 255, 150, 0.14);
 
     box-shadow:
-        0 20px 60px
-        rgba(
-            0,
-            0,
-            0,
-            0.35
-        );
-
-    overflow:
-        hidden;
-
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        inset 0 1px rgba(255,255,255,0.04);
 }
 
 
 .clicker-title {
 
-    font-size:
-        26px;
+    font-size: 25px;
+    font-weight: 900;
 
-    font-weight:
-        900;
+    letter-spacing: 1px;
 
+    color: #63ffbd;
 }
 
 
 .clicker-subtitle {
 
-    margin-top:
-        6px;
+    margin-top: 5px;
 
-    margin-bottom:
-        25px;
+    font-size: 11px;
+    font-weight: 700;
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.55
-        );
+    letter-spacing: 2px;
 
-    font-size:
-        12px;
-
-    letter-spacing:
-        2px;
-
+    color: #6d8d81;
 }
 
 
 .coin-button {
 
-    width:
-        190px;
+    position: relative;
 
-    height:
-        190px;
+    width: 185px;
+    height: 185px;
 
-    border:
-        none;
+    margin: 35px auto 20px;
 
-    border-radius:
-        50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    font-size:
-        90px;
+    border-radius: 50%;
 
-    cursor:
-        pointer;
+    border: 0;
+
+    font-size: 90px;
+
+    cursor: pointer;
 
     background:
         radial-gradient(
             circle at 35% 25%,
-            #fff4a8,
-            #ffd229 30%,
-            #f09b00 70%,
-            #a95c00 100%
+            #fff4a3,
+            #ffd42e 35%,
+            #d58b00 75%,
+            #7b4c00 100%
         );
 
     box-shadow:
-        0 12px 0
-        #9b5b00,
-
-        0 25px 45px
-        rgba(
-            255,
-            174,
-            0,
-            0.3
-        );
+        0 10px 0 #704600,
+        0 20px 45px rgba(255, 190, 0, 0.25),
+        inset 0 4px 8px rgba(255,255,255,0.65);
 
     transition:
-        transform
-        0.08s
-        ease;
-
+        transform 0.08s,
+        box-shadow 0.08s;
 }
 
 
 .coin-button:active {
 
     transform:
-        scale(
-            0.91
-        )
-        translateY(
-            5px
-        );
+        translateY(7px)
+        scale(0.96);
 
     box-shadow:
-        0 5px 0
-        #9b5b00;
-
+        0 3px 0 #704600,
+        0 10px 25px rgba(255, 190, 0, 0.2);
 }
 
 
 .click-info {
 
-    margin-top:
-        25px;
+    color: #7f9d91;
 
-    font-size:
-        15px;
-
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.6
-        );
-
+    font-size: 14px;
 }
 
 
 .click-power {
 
-    color:
-        #ffd84d;
+    color: #ffe36e;
 
+    margin-left: 5px;
 }
 
 
-/* ========================================= */
-/* ✨ ЭФФЕКТ КЛИКА */
-/* ========================================= */
+/* =====================================================
+   ✨ ЭФФЕКТЫ КЛИКА
+   ===================================================== */
 
 .click-effects {
 
-    position:
-        absolute;
+    position: absolute;
 
-    left:
-        0;
+    top: 110px;
+    left: 0;
 
-    right:
-        0;
+    width: 100%;
 
-    top:
-        50%;
-
-    pointer-events:
-        none;
-
+    pointer-events: none;
 }
 
 
 .click-effect {
 
-    position:
-        absolute;
+    position: absolute;
 
-    left:
-        50%;
+    left: 50%;
 
     transform:
-        translateX(
-            -50%
-        );
+        translateX(-50%);
 
-    color:
-        #ffd84d;
+    color: #ffe36e;
 
-    font-size:
-        20px;
+    font-weight: 900;
 
-    font-weight:
-        900;
+    font-size: 18px;
 
     animation:
-        clickFloat
-        1.2s
-        ease
-        forwards;
+        coinFloat 1.2s ease forwards;
 
-    white-space:
-        nowrap;
+    white-space: nowrap;
 
+    text-shadow:
+        0 0 10px rgba(255, 210, 50, 0.7);
 }
 
 
-@keyframes clickFloat {
+@keyframes coinFloat {
 
     0% {
-
-        opacity:
-            1;
-
+        opacity: 0;
         transform:
-            translate(
-                -50%,
-                0
-            )
-            scale(
-                1
-            );
+            translate(-50%, 20px)
+            scale(0.8);
+    }
 
+    20% {
+        opacity: 1;
     }
 
     100% {
-
-        opacity:
-            0;
-
+        opacity: 0;
         transform:
-            translate(
-                -50%,
-                -80px
-            )
-            scale(
-                1.2
-            );
-
+            translate(-50%, -80px)
+            scale(1.1);
     }
 
 }
 
 
-/* ========================================= */
-/* 🔘 КНОПКИ */
-/* ========================================= */
+/* =====================================================
+   🔘 КНОПКИ
+   ===================================================== */
+
+.main-button,
+.cashout-button {
+
+    width: 100%;
+
+    min-height: 52px;
+
+    margin-top: 12px;
+
+    border: 0;
+
+    border-radius: 16px;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.1s,
+        filter 0.2s;
+}
+
 
 .main-button {
-
-    width:
-        100%;
-
-    min-height:
-        54px;
-
-    border:
-        none;
-
-    border-radius:
-        16px;
-
-    padding:
-        12px 18px;
-
-    margin-top:
-        12px;
-
-    color:
-        #ffffff;
-
-    font-size:
-        16px;
-
-    font-weight:
-        800;
 
     background:
         linear-gradient(
             135deg,
-            #287cff,
-            #635bff
+            #16d989,
+            #087e54
         );
 
     box-shadow:
-        0 8px 25px
-        rgba(
-            53,
-            100,
-            255,
-            0.25
-        );
-
-    cursor:
-        pointer;
-
-    transition:
-        transform
-        0.15s
-        ease;
-
+        0 8px 20px rgba(0, 220, 140, 0.18);
 }
 
 
-.main-button:active {
+.cashout-button {
 
-    transform:
-        scale(
-            0.97
+    background:
+        linear-gradient(
+            135deg,
+            #ffbd35,
+            #c76c00
         );
 
+    box-shadow:
+        0 8px 20px rgba(255, 160, 0, 0.16);
+}
+
+
+.main-button:active,
+.cashout-button:active {
+
+    transform:
+        scale(0.97);
+}
+
+
+.main-button:hover,
+.cashout-button:hover {
+
+    filter:
+        brightness(1.1);
 }
 
 
 .click-price {
 
-    display:
-        block;
+    margin-left: 8px;
 
-    margin-top:
-        4px;
-
-    color:
-        #d7e3ff;
-
-    font-size:
-        12px;
-
+    color: #ffe36e;
 }
 
 
-/* ========================================= */
-/* 🎰 ЗАГОЛОВКИ */
-/* ========================================= */
+/* =====================================================
+   🎰 ЗАГОЛОВКИ
+   ===================================================== */
 
 .page-title {
 
-    text-align:
-        center;
+    margin-top: 5px;
 
-    font-size:
-        28px;
+    font-size: 27px;
+    font-weight: 900;
 
-    font-weight:
-        900;
+    text-align: center;
 
-    margin-top:
-        10px;
+    letter-spacing: 1px;
 
+    color: #ffffff;
 }
 
 
 .page-subtitle {
 
-    text-align:
-        center;
+    text-align: center;
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.5
-        );
+    color: #769187;
 
-    margin-bottom:
-        25px;
-
+    margin-top: 7px;
+    margin-bottom: 25px;
 }
 
 
-/* ========================================= */
-/* 🎰 КАЗИНО */
-/* ========================================= */
+/* =====================================================
+   🎰 МЕНЮ КАЗИНО
+   ===================================================== */
 
 .casino-grid {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(
-            2,
-            1fr
-        );
+        repeat(2, 1fr);
 
-    gap:
-        12px;
-
+    gap: 12px;
 }
 
 
 .game-card {
 
-    min-height:
-        150px;
+    position: relative;
+
+    min-height: 155px;
+
+    padding: 18px 12px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    border-radius: 22px;
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.09
-        );
+        1px solid rgba(255,255,255,0.08);
 
-    border-radius:
-        24px;
-
-    color:
-        #ffffff;
+    color: white;
 
     background:
         linear-gradient(
             145deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.1
-            ),
-            rgba(
-                255,
-                255,
-                255,
-                0.035
-            )
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.025)
         );
 
-    display:
-        flex;
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.25);
 
-    flex-direction:
-        column;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    gap:
-        8px;
-
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
-        transform
-        0.15s
-        ease;
-
+        transform 0.15s,
+        border 0.15s,
+        background 0.15s;
 }
 
 
 .game-card:active {
 
     transform:
-        scale(
-            0.95
-        );
+        scale(0.95);
+}
 
+
+.game-card:hover {
+
+    border-color:
+        rgba(0,255,150,0.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,255,150,0.13),
+            rgba(255,255,255,0.035)
+        );
 }
 
 
 .game-icon {
 
-    font-size:
-        48px;
+    font-size: 46px;
 
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(0,0,0,0.4)
+        );
 }
 
 
 .game-card b {
 
-    font-size:
-        15px;
+    font-size: 15px;
 
+    letter-spacing: 0.5px;
 }
 
 
 .game-card small {
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.45
-        );
+    color: #7e9a8e;
 
+    font-size: 11px;
 }
 
 
-/* ========================================= */
-/* 🎮 ЭКРАН ИГРЫ */
-/* ========================================= */
+/* =====================================================
+   🎮 ЭКРАНЫ ИГР
+   ===================================================== */
 
 .game-screen {
 
     animation:
-        pageAppear
-        0.3s
-        ease;
+        gameAppear 0.3s ease;
+
+    text-align: center;
+}
+
+
+@keyframes gameAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.97)
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
 
 }
 
 
 .game-screen h2 {
 
-    text-align:
-        center;
+    margin:
+        15px 0 22px;
 
-    font-size:
-        27px;
-
+    font-size: 27px;
 }
 
+
+.game-screen p {
+
+    color: #8ca79b;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   🔙 НАЗАД
+   ===================================================== */
 
 .back-button {
 
+    display: block;
+
+    margin-bottom: 10px;
+
+    padding: 9px 14px;
+
+    border-radius: 12px;
+
     border:
-        none;
+        1px solid rgba(255,255,255,0.08);
+
+    color: #b8d0c5;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.08
-        );
+        rgba(255,255,255,0.05);
 
-    color:
-        white;
-
-    padding:
-        10px 16px;
-
-    border-radius:
-        12px;
-
-    cursor:
-        pointer;
-
+    cursor: pointer;
 }
 
 
+/* =====================================================
+   📝 INPUT
+   ===================================================== */
+
 input {
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        54px;
+    height: 52px;
 
-    margin-top:
-        15px;
+    margin-top: 15px;
 
-    padding:
-        0 18px;
+    padding: 0 16px;
+
+    border-radius: 15px;
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.12
-        );
+        1px solid rgba(255,255,255,0.1);
 
-    border-radius:
-        16px;
+    outline: none;
 
-    outline:
-        none;
+    color: white;
+
+    font-size: 16px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.07
-        );
-
-    color:
-        white;
-
-    font-size:
-        16px;
-
+        rgba(255,255,255,0.055);
 }
 
 
 input::placeholder {
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.4
-        );
-
+    color: #6e847a;
 }
 
 
-/* ========================================= */
-/* 🎰 СЛОТ */
-/* ========================================= */
+input:focus {
+
+    border-color:
+        rgba(0,255,150,0.45);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0,255,150,0.08);
+}
+
+
+/* =====================================================
+   🎰 СЛОТ
+   ===================================================== */
 
 .slot-machine {
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    gap:
-        10px;
+    gap: 9px;
 
-    padding:
-        25px 15px;
+    margin: 25px 0;
 
-    margin:
-        20px 0;
+    padding: 20px;
 
-    border-radius:
-        24px;
+    border-radius: 25px;
 
     background:
         linear-gradient(
             145deg,
-            #1c2738,
-            #080d15
+            #181818,
+            #070707
         );
 
     border:
-        2px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.08
-        );
+        2px solid #b98a25;
 
+    box-shadow:
+        0 0 30px
+        rgba(255,190,0,0.12),
+        inset 0 0 20px
+        rgba(0,0,0,0.8);
 }
 
 
 .slot-machine div {
 
-    width:
-        80px;
+    width: 88px;
+    height: 95px;
 
-    height:
-        90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    display:
-        flex;
+    border-radius: 15px;
 
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        15px;
+    font-size: 52px;
 
     background:
-        #ffffff;
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #cfcfcf
+        );
 
-    font-size:
-        48px;
-
+    box-shadow:
+        inset 0 0 10px
+        rgba(0,0,0,0.4);
 }
 
 
-.slot-spin {
-
-    animation:
-        slotSpin
-        0.15s
-        linear
-        infinite;
-
-}
-
-
-@keyframes slotSpin {
-
-    0% {
-
-        transform:
-            translateY(
-                -5px
-            );
-
-    }
-
-    50% {
-
-        transform:
-            translateY(
-                5px
-            );
-
-    }
-
-    100% {
-
-        transform:
-            translateY(
-                -5px
-            );
-
-    }
-
-}
-
-
-/* ========================================= */
-/* 🎡 РУЛЕТКА */
-/* ========================================= */
+/* =====================================================
+   🎡 РУЛЕТКА
+   ===================================================== */
 
 .roulette-wheel {
 
-    width:
-        260px;
+    position: relative;
 
-    height:
-        260px;
+    width: 240px;
+    height: 240px;
 
-    margin:
-        25px
-        auto;
+    margin: 20px auto;
 
-    border-radius:
-        50%;
-
-    border:
-        12px
-        solid
-        #c89b3c;
+    border-radius: 50%;
 
     background:
         conic-gradient(
-
-            #d92727
-            0deg 10deg,
-
-            #111
-            10deg 20deg,
-
-            #d92727
-            20deg 30deg,
-
-            #111
-            30deg 40deg,
-
-            #d92727
-            40deg 50deg,
-
-            #111
-            50deg 60deg,
-
-            #d92727
-            60deg 70deg,
-
-            #111
-            70deg 80deg,
-
-            #d92727
-            80deg 90deg,
-
-            #111
-            90deg 100deg,
-
-            #d92727
-            100deg 110deg,
-
-            #111
-            110deg 120deg,
-
-            #d92727
-            120deg 130deg,
-
-            #111
-            130deg 140deg,
-
-            #d92727
-            140deg 150deg,
-
-            #111
-            150deg 160deg,
-
-            #d92727
-            160deg 170deg,
-
-            #111
-            170deg 180deg,
-
-            #d92727
-            180deg 190deg,
-
-            #111
-            190deg 200deg,
-
-            #d92727
-            200deg 210deg,
-
-            #111
-            210deg 220deg,
-
-            #d92727
-            220deg 230deg,
-
-            #111
-            230deg 240deg,
-
-            #d92727
-            240deg 250deg,
-
-            #111
-            250deg 260deg,
-
-            #d92727
-            260deg 270deg,
-
-            #111
-            270deg 280deg,
-
-            #d92727
-            280deg 290deg,
-
-            #111
-            290deg 300deg,
-
-            #d92727
-            300deg 310deg,
-
-            #111
-            310deg 320deg,
-
-            #d92727
-            320deg 330deg,
-
-            #111
-            330deg 340deg,
-
-            #0b8f55
-            340deg 360deg
-
+            #168344 0deg 10deg,
+            #111 10deg 20deg,
+            #c92727 20deg 30deg,
+            #111 30deg 40deg,
+            #c92727 40deg 50deg,
+            #111 50deg 60deg,
+            #c92727 60deg 70deg,
+            #111 70deg 80deg,
+            #c92727 80deg 90deg,
+            #111 90deg 100deg,
+            #c92727 100deg 110deg,
+            #111 110deg 120deg,
+            #c92727 120deg 130deg,
+            #111 130deg 140deg,
+            #c92727 140deg 150deg,
+            #111 150deg 160deg,
+            #c92727 160deg 170deg,
+            #111 170deg 180deg,
+            #c92727 180deg 190deg,
+            #111 190deg 200deg,
+            #c92727 200deg 210deg,
+            #111 210deg 220deg,
+            #c92727 220deg 230deg,
+            #111 230deg 240deg,
+            #c92727 240deg 250deg,
+            #111 250deg 260deg,
+            #c92727 260deg 270deg,
+            #111 270deg 280deg,
+            #c92727 280deg 290deg,
+            #111 290deg 300deg,
+            #c92727 300deg 310deg,
+            #111 310deg 320deg,
+            #c92727 320deg 330deg,
+            #111 330deg 340deg,
+            #c92727 340deg 350deg,
+            #111 350deg 360deg
         );
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
+    border:
+        8px solid #c79b32;
 
     box-shadow:
-        0 15px 50px
-        rgba(
-            0,
-            0,
-            0,
-            0.5
-        );
+        0 0 0 5px #221b0a,
+        0 15px 35px
+        rgba(0,0,0,0.6);
+}
 
+
+.roulette-wheel::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -15px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        10px solid transparent;
+
+    border-right:
+        10px solid transparent;
+
+    border-top:
+        20px solid #ffd64d;
+
+    z-index: 5;
 }
 
 
 .roulette-center {
 
-    width:
-        80px;
+    position: absolute;
 
-    height:
-        80px;
+    top: 50%;
+    left: 50%;
 
-    display:
-        flex;
+    transform:
+        translate(-50%, -50%);
 
-    align-items:
-        center;
+    width: 80px;
+    height: 80px;
 
-    justify-content:
-        center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
+
+    color: #ffe36e;
+
+    font-size: 13px;
+    font-weight: 900;
 
     background:
-        #111;
+        radial-gradient(
+            circle,
+            #222,
+            #050505
+        );
 
-    font-weight:
-        900;
-
+    border:
+        4px solid #c79b32;
 }
 
 
-.color-buttons {
+.roulette-result {
 
-    display:
-        grid;
+    margin: 15px auto;
+
+    font-size: 40px;
+    font-weight: 900;
+
+    color: #ffe36e;
+}
+
+
+/* =====================================================
+   🔢 ЧИСЛА
+   ===================================================== */
+
+.number-grid {
+
+    display: grid;
 
     grid-template-columns:
-        repeat(
-            3,
-            1fr
-        );
+        repeat(6, 1fr);
 
-    gap:
-        8px;
+    gap: 6px;
 
-    margin:
-        15px 0;
+    margin: 15px 0;
+}
 
+
+.number-grid button {
+
+    height: 40px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    color: white;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+
+.number-grid button:active {
+
+    background:
+        #0ba968;
+
+    transform:
+        scale(0.92);
+}
+
+
+#selectedRouletteNumber,
+#selectedRouletteColor,
+#selectedDiceNumber {
+
+    margin: 12px 0;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    color: #b4cfc2;
+
+    background:
+        rgba(255,255,255,0.04);
+}
+
+
+/* =====================================================
+   🎨 ЦВЕТА РУЛЕТКИ
+   ===================================================== */
+
+.color-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin: 15px 0;
 }
 
 
 .color-buttons button {
 
-    border:
-        none;
+    min-height: 48px;
 
-    border-radius:
-        12px;
+    border: 0;
 
-    padding:
-        14px 5px;
+    border-radius: 12px;
 
-    color:
-        white;
+    color: white;
 
-    font-weight:
-        700;
+    font-weight: 800;
 
+    cursor: pointer;
 }
 
 
 .red-button {
 
     background:
-        #c92828;
-
+        linear-gradient(
+            135deg,
+            #e53935,
+            #8d1717
+        );
 }
 
 
 .black-button {
 
     background:
-        #161616;
-
+        linear-gradient(
+            135deg,
+            #333,
+            #050505
+        );
 }
 
 
 .green-button {
 
     background:
-        #08884e;
-
+        linear-gradient(
+            135deg,
+            #18b968,
+            #075b35
+        );
 }
 
 
-/* ========================================= */
-/* 🎲 КУБИК */
-/* ========================================= */
+/* =====================================================
+   🎲 КУБИК
+   ===================================================== */
 
 .dice-number {
 
-    width:
-        120px;
+    width: 130px;
+    height: 130px;
 
-    height:
-        120px;
+    margin: 25px auto;
 
-    margin:
-        25px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    display:
-        flex;
+    border-radius: 25px;
 
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        70px;
-
-    border-radius:
-        25px;
+    font-size: 55px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.08
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #c9c9c9
         );
 
+    box-shadow:
+        0 15px 30px
+        rgba(0,0,0,0.4);
+
+    color: #111;
 }
 
 
-.number-grid {
+/* =====================================================
+   📈 ЛЕСЕНКА
+   ===================================================== */
 
-    display:
-        grid;
+#ladderLevel {
 
-    grid-template-columns:
-        repeat(
-            3,
-            1fr
-        );
+    margin-top: 15px;
 
-    gap:
-        10px;
-
-    margin:
-        20px 0;
-
+    font-size: 18px;
+    font-weight: 800;
 }
 
 
-.number-grid button {
+#ladderMultiplier {
 
-    height:
-        55px;
+    margin: 10px;
 
-    border:
-        none;
+    font-size: 38px;
+    font-weight: 900;
 
-    border-radius:
-        15px;
+    color: #ffe36e;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
-
-    color:
-        white;
-
-    font-size:
-        20px;
-
-    font-weight:
-        800;
-
+    text-shadow:
+        0 0 20px
+        rgba(255,200,40,0.3);
 }
 
-
-/* ========================================= */
-/* 📈 ЛЕСЕНКА */
-/* ========================================= */
 
 .ladder {
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column-reverse;
+    flex-direction: column;
 
-    gap:
-        8px;
+    gap: 7px;
 
-    margin:
-        25px 0;
-
+    margin-top: 22px;
 }
 
 
 .ladder div {
 
-    padding:
-        16px;
+    padding: 13px;
 
-    border-radius:
-        14px;
+    border-radius: 12px;
 
-    text-align:
-        center;
+    text-align: center;
+
+    font-weight: 800;
 
     background:
         linear-gradient(
             90deg,
-            #1c3558,
-            #172238
+            rgba(0,255,150,0.1),
+            rgba(255,255,255,0.04)
         );
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.07
-        );
-
+        1px solid rgba(0,255,150,0.08);
 }
 
 
-/* ========================================= */
-/* 💣 МИНЁР */
-/* ========================================= */
+/* =====================================================
+   💣 MINES
+   ===================================================== */
+
+#minesMultiplier {
+
+    margin: 15px;
+
+    font-size: 34px;
+    font-weight: 900;
+
+    color: #63ffbd;
+}
+
 
 .mines-board {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(
-            4,
-            1fr
-        );
+        repeat(4, 1fr);
 
-    gap:
-        8px;
+    gap: 9px;
 
-    margin:
-        25px 0;
-
+    margin: 20px 0;
 }
 
 
 .mines-board button {
 
-    aspect-ratio:
-        1;
+    aspect-ratio: 1;
 
-    border:
-        none;
+    border: 0;
 
-    border-radius:
-        14px;
+    border-radius: 14px;
 
-    color:
-        white;
+    font-size: 28px;
 
-    font-size:
-        22px;
+    color: white;
 
     background:
         linear-gradient(
             145deg,
-            #253b58,
-            #111c2d
+            #263c34,
+            #0d1914
         );
 
+    box-shadow:
+        inset 0 1px
+        rgba(255,255,255,0.05),
+        0 5px 12px
+        rgba(0,0,0,0.3);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.12s;
 }
 
 
-/* ========================================= */
-/* ✈️ CRASH */
-/* ========================================= */
+.mines-board button:active {
+
+    transform:
+        scale(0.9);
+}
+
+
+/* =====================================================
+   ✈️ CRASH
+   ===================================================== */
 
 .crash-area {
 
-    position:
-        relative;
+    position: relative;
 
-    height:
-        330px;
+    height: 330px;
 
-    margin:
-        20px 0;
+    margin: 20px 0;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    border-radius:
-        25px;
+    border-radius: 25px;
 
     background:
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(0,255,150,0.15),
+            transparent 50%
+        ),
         linear-gradient(
             180deg,
-            #152b4c,
-            #07111e
+            #071b25,
+            #07100e
         );
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
+        rgba(0,255,150,0.1);
+}
 
+
+.crash-area::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 30px;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        rgba(255,255,255,0.08);
 }
 
 
 .crash-multiplier {
 
-    position:
-        absolute;
+    position: relative;
 
-    top:
-        25px;
+    z-index: 2;
 
-    width:
-        100%;
+    padding-top: 40px;
 
-    text-align:
-        center;
+    font-size: 48px;
+    font-weight: 900;
 
-    font-size:
-        42px;
+    color: #63ffbd;
 
-    font-weight:
-        900;
-
-    color:
-        #57e6a3;
-
+    text-shadow:
+        0 0 25px
+        rgba(0,255,150,0.45);
 }
 
 
 .crash-plane {
 
-    position:
-        absolute;
+    position: absolute;
 
-    left:
-        10%;
+    left: 20px;
+    bottom: 45px;
 
-    bottom:
-        20%;
+    font-size: 50px;
 
-    font-size:
-        50px;
+    animation:
+        planeFly 3s
+        ease-in-out
+        infinite alternate;
+}
 
-    transform:
-        rotate(
-            -15deg
-        );
+
+@keyframes planeFly {
+
+    from {
+
+        transform:
+            translate(0, 30px)
+            rotate(-8deg);
+
+    }
+
+    to {
+
+        transform:
+            translate(220px, -150px)
+            rotate(-18deg);
+
+    }
 
 }
 
 
-.cashout-button {
-
-    width:
-        100%;
-
-    min-height:
-        54px;
-
-    margin-top:
-        10px;
-
-    border:
-        none;
-
-    border-radius:
-        16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #00b978,
-            #00e18b
-        );
-
-    color:
-        white;
-
-    font-size:
-        17px;
-
-    font-weight:
-        900;
-
-}
-
-
-/* ========================================= */
-/* 💎 ДЖЕКПОТ */
-/* ========================================= */
+/* =====================================================
+   💎 ДЖЕКПОТ
+   ===================================================== */
 
 .jackpot-icon {
 
-    text-align:
-        center;
+    width: 150px;
+    height: 150px;
 
-    font-size:
-        100px;
+    margin: 30px auto;
 
-    margin:
-        30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 80px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,255,150,0.25),
+            rgba(0,0,0,0.1)
+        );
+
+    box-shadow:
+        0 0 60px
+        rgba(0,255,150,0.2);
 
     animation:
-        jackpotPulse
-        1.5s
+        jackpotPulse 2s
         infinite;
-
 }
 
 
@@ -1641,578 +1402,577 @@ input::placeholder {
 
     0%,
     100% {
-
         transform:
-            scale(
-                1
-            );
-
+            scale(1);
     }
 
     50% {
-
         transform:
-            scale(
-                1.12
-            );
-
+            scale(1.06);
     }
 
 }
 
 
-/* ========================================= */
-/* 🎁 КЕЙСЫ */
-/* ========================================= */
+/* =====================================================
+   🎁 КЕЙСЫ
+   ===================================================== */
 
 .cases-grid {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(
-            2,
-            1fr
-        );
+        repeat(2, 1fr);
 
-    gap:
-        12px;
-
+    gap: 12px;
 }
 
 
 .case-card {
 
-    padding:
-        20px 12px;
+    padding: 20px 12px;
 
-    text-align:
-        center;
+    text-align: center;
 
-    border-radius:
-        22px;
+    border-radius: 22px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.1
-            ),
-            rgba(
-                255,
-                255,
-                255,
-                0.035
-            )
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.025)
         );
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.08
-        );
-
+        1px solid rgba(255,255,255,0.08);
 }
 
 
 .case-icon {
 
-    font-size:
-        55px;
+    font-size: 55px;
 
-    margin-bottom:
-        10px;
+    margin-bottom: 8px;
+}
 
+
+.case-card h3 {
+
+    margin: 7px 0;
+
+    font-size: 16px;
+}
+
+
+.case-card p {
+
+    color: #ffe36e;
+
+    font-weight: 800;
 }
 
 
 .case-card button {
 
-    width:
-        100%;
+    width: 100%;
 
-    padding:
-        11px;
+    padding: 11px;
 
-    border:
-        none;
+    border: 0;
 
-    border-radius:
-        12px;
+    border-radius: 11px;
 
-    color:
-        white;
+    color: white;
 
-    font-weight:
-        800;
+    font-weight: 800;
 
     background:
-        #287cff;
+        linear-gradient(
+            135deg,
+            #16d989,
+            #087e54
+        );
 
+    cursor: pointer;
 }
 
 
 .case-result {
 
-    margin-top:
-        25px;
-
-    text-align:
-        center;
-
+    margin-top: 20px;
 }
 
 
 .gift-result {
 
-    padding:
-        25px;
+    padding: 25px;
 
-    border-radius:
-        25px;
+    text-align: center;
+
+    border-radius: 24px;
 
     background:
         linear-gradient(
             145deg,
-            #1b3150,
-            #101827
+            rgba(0,255,150,0.12),
+            rgba(255,255,255,0.04)
         );
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
+        rgba(0,255,150,0.2);
 
     animation:
-        giftAppear
-        0.5s
-        ease;
-
+        gameAppear 0.4s ease;
 }
 
 
 .gift-big {
 
-    font-size:
-        100px;
+    font-size: 90px;
 
+    margin-bottom: 10px;
 }
 
 
-@keyframes giftAppear {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            scale(
-                0.5
-            )
-            rotate(
-                -10deg
-            );
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            scale(
-                1
-            )
-            rotate(
-                0
-            );
-
-    }
-
-}
-
-
-/* ========================================= */
-/* 🎒 ИНВЕНТАРЬ */
-/* ========================================= */
+/* =====================================================
+   🎒 КОЛЛЕКЦИЯ
+   ===================================================== */
 
 .inventory {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(
-            2,
-            1fr
-        );
+        repeat(2, 1fr);
 
-    gap:
-        12px;
-
+    gap: 12px;
 }
 
 
 .inventory-card {
 
-    padding:
-        15px;
+    display: flex;
 
-    text-align:
-        center;
+    flex-direction: column;
 
-    border-radius:
-        20px;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 18px 10px;
+
+    text-align: center;
+
+    border-radius: 20px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.06
-        );
+        rgba(255,255,255,0.05);
 
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
 }
 
 
-.inventory-icon {
+.inventory-card > div {
 
-    font-size:
-        50px;
-
+    font-size: 48px;
 }
 
 
-.inventory-card span,
+.inventory-card span {
+
+    color: #9bb5a9;
+
+    font-size: 12px;
+}
+
+
 .inventory-card small {
 
-    display:
-        block;
+    color: #63ffbd;
 
-    margin-top:
-        5px;
-
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.5
-        );
-
+    font-weight: 800;
 }
 
 
 .inventory-card button {
 
-    margin-top:
-        10px;
+    width: 100%;
 
-    width:
-        100%;
+    padding: 9px;
 
-    padding:
-        9px;
+    border: 0;
 
-    border:
-        none;
+    border-radius: 10px;
 
-    border-radius:
-        10px;
-
-    color:
-        white;
+    color: white;
 
     background:
-        #c83232;
+        linear-gradient(
+            135deg,
+            #d99425,
+            #8b4e00
+        );
 
+    font-weight: 700;
 }
 
 
-/* ========================================= */
-/* 🏆 ПРОФИЛЬ */
-/* ========================================= */
+/* =====================================================
+   👤 ПРОФИЛЬ
+   ===================================================== */
 
 .profile-card {
 
-    text-align:
-        center;
+    margin-top: 25px;
 
-    padding:
-        35px 20px;
+    padding: 30px 20px;
 
-    border-radius:
-        25px;
+    text-align: center;
+
+    border-radius: 25px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.06
+        linear-gradient(
+            145deg,
+            rgba(0,255,150,0.1),
+            rgba(255,255,255,0.035)
         );
 
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
 }
 
 
 .profile-card .avatar {
 
-    margin:
-        0 auto 15px;
+    width: 90px;
+    height: 90px;
 
+    margin: 0 auto 15px;
+
+    font-size: 45px;
 }
 
 
-/* ========================================= */
-/* 💬 СООБЩЕНИЯ */
-/* ========================================= */
+.profile-card .balance {
 
-.game-message {
+    margin: 15px auto;
 
-    position:
-        fixed;
+    font-size: 22px;
+}
 
-    left:
-        50%;
 
-    bottom:
-        100px;
+/* =====================================================
+   🏆 ТОП ИГРОКОВ
+   ===================================================== */
 
-    z-index:
-        200;
+.leaderboard {
 
-    transform:
-        translateX(
-            -50%
-        )
-        translateY(
-            20px
-        );
+    display: flex;
 
-    opacity:
-        0;
+    flex-direction: column;
 
-    pointer-events:
-        none;
+    gap: 10px;
 
-    padding:
-        12px 18px;
+    margin-top: 20px;
+}
 
-    border-radius:
-        14px;
+
+.leaderboard::before {
+
+    content:
+        "🏆 1. Lucky Player    💰 0 🪙\A\A🥈 2. Casino King      💰 0 🪙\A\A🥉 3. Lucky Star       💰 0 🪙";
+
+    white-space: pre;
+
+    display: block;
+
+    padding: 25px;
+
+    line-height: 1.8;
+
+    border-radius: 20px;
 
     background:
-        rgba(
-            20,
-            30,
-            45,
-            0.95
-        );
+        rgba(255,255,255,0.05);
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
+        rgba(255,255,255,0.08);
+
+    color: #d8e8df;
+}
+
+
+/* =====================================================
+   💬 СООБЩЕНИЯ
+   ===================================================== */
+
+.game-message {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 95px;
+
+    z-index: 999;
+
+    max-width: calc(100% - 32px);
+
+    padding: 13px 20px;
+
+    border-radius: 15px;
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    background:
+        rgba(18, 30, 25, 0.96);
+
+    border:
+        1px solid
+        rgba(0,255,150,0.2);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,0.5);
+
+    transform:
+        translate(-50%, 30px);
+
+    opacity: 0;
+
+    pointer-events: none;
 
     transition:
-        0.25s
-        ease;
-
+        opacity 0.25s,
+        transform 0.25s;
 }
 
 
 .game-message.show {
 
-    opacity:
-        1;
+    opacity: 1;
 
     transform:
-        translateX(
-            -50%
-        )
-        translateY(
-            0
-        );
-
+        translate(-50%, 0);
 }
 
 
-/* ========================================= */
-/* 📱 НИЖНЯЯ НАВИГАЦИЯ */
-/* ========================================= */
+/* =====================================================
+   📱 НИЖНЕЕ МЕНЮ
+   ===================================================== */
 
 .bottom-nav {
 
-    position:
-        fixed;
+    position: fixed;
 
-    left:
-        10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    right:
-        10px;
+    z-index: 200;
 
-    bottom:
-        10px;
+    height: 76px;
 
-    z-index:
-        150;
-
-    height:
-        68px;
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(
-            5,
-            1fr
-        );
+        repeat(5, 1fr);
 
-    align-items:
-        center;
-
-    border-radius:
-        22px;
+    padding:
+        7px 5px
+        env(safe-area-inset-bottom);
 
     background:
-        rgba(
-            10,
-            18,
-            30,
-            0.92
-        );
+        rgba(5, 10, 8, 0.95);
 
     backdrop-filter:
-        blur(
-            20px
-        );
+        blur(20px);
 
     -webkit-backdrop-filter:
-        blur(
-            20px
-        );
+        blur(20px);
 
-    border:
+    border-top:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.08
-        );
+        rgba(255,255,255,0.08);
 
     box-shadow:
-        0 10px 40px
-        rgba(
-            0,
-            0,
-            0,
-            0.4
-        );
-
+        0 -10px 35px
+        rgba(0,0,0,0.35);
 }
 
 
 .bottom-nav button {
 
-    height:
-        100%;
+    display: flex;
 
-    display:
-        flex;
+    flex-direction: column;
 
-    flex-direction:
-        column;
+    align-items: center;
+    justify-content: center;
 
-    align-items:
-        center;
+    gap: 3px;
 
-    justify-content:
-        center;
+    border: 0;
 
-    gap:
-        3px;
+    color: #789187;
 
-    border:
-        none;
+    background: transparent;
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.55
-        );
+    font-size: 22px;
 
-    background:
-        transparent;
+    cursor: pointer;
 
-    font-size:
-        20px;
-
+    transition:
+        color 0.2s,
+        transform 0.2s;
 }
 
 
-.bottom-nav span {
+.bottom-nav button span {
 
-    font-size:
-        9px;
+    font-size: 10px;
 
+    font-weight: 700;
 }
 
 
-/* ========================================= */
-/* 📱 АДАПТАЦИЯ */
-/* ========================================= */
+.bottom-nav button:active {
+
+    transform:
+        scale(0.88);
+}
+
+
+.bottom-nav button:hover {
+
+    color: #63ffbd;
+}
+
+
+/* =====================================================
+   📱 МОБИЛЬНАЯ АДАПТАЦИЯ
+   ===================================================== */
 
 @media (
-    min-width: 600px
+    max-width: 420px
 ) {
 
-    body {
+    .page {
 
-        max-width:
-            520px;
+        padding-left: 12px;
+        padding-right: 12px;
 
-        margin:
-            0 auto;
+    }
 
-        border-left:
-            1px solid
-            rgba(
-                255,
-                255,
-                255,
-                0.05
-            );
 
-        border-right:
-            1px solid
-            rgba(
-                255,
-                255,
-                255,
-                0.05
-            );
+    .coin-button {
+
+        width: 165px;
+        height: 165px;
+
+        font-size: 78px;
+
+    }
+
+
+    .slot-machine div {
+
+        width: 75px;
+        height: 82px;
+
+        font-size: 43px;
+
+    }
+
+
+    .roulette-wheel {
+
+        width: 215px;
+        height: 215px;
+
+    }
+
+
+    .number-grid {
+
+        gap: 4px;
+
+    }
+
+
+    .number-grid button {
+
+        height: 37px;
+
+        font-size: 12px;
+
+    }
+
+
+    .game-card {
+
+        min-height: 140px;
+
+    }
+
+
+    .game-icon {
+
+        font-size: 40px;
+
+    }
+
+}
+
+
+/* =====================================================
+   📱 ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ
+   ===================================================== */
+
+@media (
+    max-width: 350px
+) {
+
+    .bottom-nav button {
+
+        font-size: 18px;
+
+    }
+
+
+    .bottom-nav button span {
+
+        font-size: 9px;
+
+    }
+
+
+    .casino-grid,
+    .cases-grid,
+    .inventory {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .slot-machine div {
+
+        width: 65px;
+        height: 75px;
+
+        font-size: 37px;
 
     }
 
