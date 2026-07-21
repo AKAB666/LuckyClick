@@ -1,9 +1,12 @@
 /* =====================================================
-   🍀 LUCKY CLICK — CASINO STYLE
-   ===================================================== */
+   🍀 LUCKY CLICK — STYLE.CSS
+   Telegram Mini App / Casino Style
+===================================================== */
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -12,139 +15,92 @@ html {
 }
 
 body {
-    margin: 0;
-    padding: 0;
-
-    min-height: 100vh;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
-
-    color: #ffffff;
-
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(0, 255, 150, 0.18),
-            transparent 35%
-        ),
-        linear-gradient(
-            180deg,
-            #07110e 0%,
-            #0b1512 45%,
-            #050807 100%
-        );
-
-    padding-bottom: 100px;
-
+        radial-gradient(circle at top, #1c2440 0%, #0b0f1d 45%, #05070d 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding-bottom: 90px;
     overflow-x: hidden;
 }
 
-
 /* =====================================================
-   🔝 ВЕРХНЯЯ ПАНЕЛЬ
-   ===================================================== */
+   🔝 TOP BAR
+===================================================== */
 
 .topbar {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 
     height: 64px;
+    padding: 0 16px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 18px;
+    background: rgba(10, 14, 28, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-    background:
-        rgba(7, 15, 12, 0.92);
-
-    backdrop-filter:
-        blur(18px);
-
-    -webkit-backdrop-filter:
-        blur(18px);
-
-    border-bottom:
-        1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
     box-shadow:
         0 5px 25px rgba(0, 0, 0, 0.35);
 }
 
-
 .logo {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 800;
-
-    color: #ffffff;
-
-    text-shadow:
-        0 0 15px rgba(0, 255, 150, 0.5);
+    letter-spacing: 0.3px;
 }
 
-
 .balance {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
     min-width: 105px;
-
     padding: 9px 14px;
+
+    text-align: center;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255, 193, 7, 0.18),
+        rgba(255, 152, 0, 0.08)
+    );
+
+    border: 1px solid rgba(255, 193, 7, 0.35);
 
     border-radius: 14px;
 
-    font-size: 15px;
+    color: #ffd54f;
     font-weight: 800;
 
-    color: #ffe36e;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 214, 70, 0.18),
-            rgba(255, 170, 0, 0.06)
-        );
-
-    border:
-        1px solid rgba(255, 216, 76, 0.25);
-
     box-shadow:
-        0 0 18px rgba(255, 205, 50, 0.08);
+        0 0 15px rgba(255, 193, 7, 0.08);
 }
-
 
 /* =====================================================
-   📄 СТРАНИЦЫ
-   ===================================================== */
+   📄 PAGES
+===================================================== */
 
 .page {
+    display: block;
     width: 100%;
-    max-width: 650px;
-
+    max-width: 700px;
     margin: 0 auto;
 
-    padding: 22px 16px 120px;
+    padding: 20px 15px 100px;
 
-    animation:
-        pageAppear 0.3s ease;
+    animation: pageOpen 0.25s ease;
 }
 
-.hidden {
+.page.hidden,
+.game-screen.hidden,
+#casinoMenu.hidden {
     display: none !important;
 }
 
-
-@keyframes pageAppear {
-
+@keyframes pageOpen {
     from {
         opacity: 0;
         transform: translateY(8px);
@@ -154,36 +110,36 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
-
 /* =====================================================
-   👤 MINI ПРОФИЛЬ
-   ===================================================== */
+   👤 MINI PROFILE
+===================================================== */
 
 .profile-mini {
-
     display: flex;
     align-items: center;
     gap: 12px;
 
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 
-    padding: 13px;
+    padding: 14px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
 
     border-radius: 18px;
-
-    background:
-        rgba(255, 255, 255, 0.045);
-
-    border:
-        1px solid rgba(255, 255, 255, 0.07);
 }
 
+.profile-mini small {
+    display: block;
+    margin-top: 3px;
+
+    color: #8e99b5;
+}
 
 .avatar {
-
     width: 48px;
     height: 48px;
 
@@ -191,533 +147,365 @@ body {
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
-
     font-size: 25px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #19d98b,
-            #087a52
-        );
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #29335f,
+        #151a31
+    );
 
     box-shadow:
-        0 0 25px rgba(0, 255, 150, 0.25);
+        0 5px 20px rgba(0, 0, 0, 0.3);
 }
-
-
-.profile-mini b {
-    display: block;
-
-    font-size: 16px;
-}
-
-
-.profile-mini small {
-
-    display: block;
-
-    margin-top: 3px;
-
-    color: #8caaa0;
-}
-
 
 /* =====================================================
-   🏠 КЛИКЕР
-   ===================================================== */
+   🍀 CLICKER
+===================================================== */
 
 .clicker-card {
-
     position: relative;
 
-    overflow: hidden;
+    padding: 25px 15px 30px;
 
     text-align: center;
 
-    padding: 28px 18px 25px;
+    overflow: hidden;
 
     border-radius: 28px;
 
     background:
         radial-gradient(
-            circle at 50% 30%,
-            rgba(0, 255, 150, 0.14),
-            transparent 45%
-        ),
-        linear-gradient(
-            145deg,
-            #10251c,
-            #09110e
+            circle at center,
+            rgba(54, 75, 150, 0.5),
+            rgba(16, 22, 43, 0.95)
         );
 
-    border:
-        1px solid rgba(0, 255, 150, 0.14);
+    border: 1px solid rgba(110, 140, 255, 0.2);
 
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.4),
-        inset 0 1px rgba(255,255,255,0.04);
+        0 20px 50px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
-
 
 .clicker-title {
-
-    font-size: 25px;
+    font-size: 26px;
     font-weight: 900;
-
-    letter-spacing: 1px;
-
-    color: #63ffbd;
 }
-
 
 .clicker-subtitle {
-
-    margin-top: 5px;
-
-    font-size: 11px;
-    font-weight: 700;
-
+    margin-top: 6px;
+    color: #8995b7;
+    font-size: 12px;
     letter-spacing: 2px;
-
-    color: #6d8d81;
 }
 
-
 .coin-button {
-
     position: relative;
 
-    width: 185px;
-    height: 185px;
+    width: 190px;
+    height: 190px;
 
-    margin: 35px auto 20px;
+    margin: 30px auto 20px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
-
-    border: 0;
-
     font-size: 90px;
+
+    border: none;
+    border-radius: 50%;
 
     cursor: pointer;
 
     background:
         radial-gradient(
-            circle at 35% 25%,
-            #fff4a3,
-            #ffd42e 35%,
-            #d58b00 75%,
-            #7b4c00 100%
+            circle at 35% 30%,
+            #fff3a1,
+            #ffc107 35%,
+            #e69200 70%,
+            #8d5100 100%
         );
 
     box-shadow:
-        0 10px 0 #704600,
-        0 20px 45px rgba(255, 190, 0, 0.25),
-        inset 0 4px 8px rgba(255,255,255,0.65);
+        0 10px 0 #8c5700,
+        0 20px 45px rgba(255, 174, 0, 0.25);
 
     transition:
-        transform 0.08s,
-        box-shadow 0.08s;
+        transform 0.1s,
+        box-shadow 0.1s;
 }
-
 
 .coin-button:active {
-
-    transform:
-        translateY(7px)
-        scale(0.96);
+    transform: translateY(8px) scale(0.96);
 
     box-shadow:
-        0 3px 0 #704600,
-        0 10px 25px rgba(255, 190, 0, 0.2);
+        0 3px 0 #8c5700,
+        0 10px 25px rgba(255, 174, 0, 0.2);
 }
-
 
 .click-info {
-
-    color: #7f9d91;
-
-    font-size: 14px;
+    color: #a8b1ca;
 }
-
 
 .click-power {
-
-    color: #ffe36e;
-
-    margin-left: 5px;
+    color: #ffd54f;
+    font-weight: 800;
 }
 
-
 /* =====================================================
-   ✨ ЭФФЕКТЫ КЛИКА
-   ===================================================== */
+   ✨ CLICK EFFECTS
+===================================================== */
 
 .click-effects {
-
     position: absolute;
 
-    top: 110px;
+    top: 120px;
     left: 0;
 
     width: 100%;
+    height: 180px;
 
     pointer-events: none;
 }
 
-
 .click-effect {
-
     position: absolute;
 
     left: 50%;
+    top: 50%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
-    color: #ffe36e;
-
+    color: #ffd54f;
+    font-size: 18px;
     font-weight: 900;
 
-    font-size: 18px;
-
-    animation:
-        coinFloat 1.2s ease forwards;
+    animation: coinFloat 1.2s ease-out forwards;
 
     white-space: nowrap;
-
-    text-shadow:
-        0 0 10px rgba(255, 210, 50, 0.7);
 }
 
-
 @keyframes coinFloat {
-
     0% {
-        opacity: 0;
-        transform:
-            translate(-50%, 20px)
-            scale(0.8);
-    }
-
-    20% {
         opacity: 1;
+        transform: translate(-50%, 0) scale(1);
     }
 
     100% {
         opacity: 0;
-        transform:
-            translate(-50%, -80px)
-            scale(1.1);
+        transform: translate(-50%, -80px) scale(1.2);
     }
-
 }
 
-
 /* =====================================================
-   🔘 КНОПКИ
-   ===================================================== */
+   🔘 BUTTONS
+===================================================== */
 
 .main-button,
-.cashout-button {
-
+.cashout-button,
+.case-card button {
     width: 100%;
 
     min-height: 52px;
 
-    margin-top: 12px;
+    margin-top: 14px;
 
-    border: 0;
-
+    border: none;
     border-radius: 16px;
+
+    color: #ffffff;
 
     font-size: 15px;
     font-weight: 800;
 
-    color: #ffffff;
-
     cursor: pointer;
 
+    background:
+        linear-gradient(
+            135deg,
+            #5865f2,
+            #7657ff
+        );
+
+    box-shadow:
+        0 8px 20px rgba(88, 101, 242, 0.22);
+
     transition:
-        transform 0.1s,
-        filter 0.2s;
+        transform 0.15s,
+        filter 0.15s;
 }
-
-
-.main-button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #16d989,
-            #087e54
-        );
-
-    box-shadow:
-        0 8px 20px rgba(0, 220, 140, 0.18);
-}
-
-
-.cashout-button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffbd35,
-            #c76c00
-        );
-
-    box-shadow:
-        0 8px 20px rgba(255, 160, 0, 0.16);
-}
-
 
 .main-button:active,
-.cashout-button:active {
-
-    transform:
-        scale(0.97);
+.cashout-button:active,
+.case-card button:active {
+    transform: scale(0.97);
+    filter: brightness(0.85);
 }
 
+.cashout-button {
+    background:
+        linear-gradient(
+            135deg,
+            #00b894,
+            #00cec9
+        );
 
-.main-button:hover,
-.cashout-button:hover {
-
-    filter:
-        brightness(1.1);
+    box-shadow:
+        0 8px 20px rgba(0, 206, 201, 0.2);
 }
-
 
 .click-price {
+    display: block;
 
-    margin-left: 8px;
+    margin-top: 4px;
 
-    color: #ffe36e;
+    color: #ffd54f;
 }
 
-
 /* =====================================================
-   🎰 ЗАГОЛОВКИ
-   ===================================================== */
+   🎰 TITLES
+===================================================== */
 
 .page-title {
-
-    margin-top: 5px;
-
-    font-size: 27px;
+    font-size: 28px;
     font-weight: 900;
-
     text-align: center;
 
-    letter-spacing: 1px;
-
-    color: #ffffff;
+    margin: 8px 0;
 }
-
 
 .page-subtitle {
-
     text-align: center;
 
-    color: #769187;
+    color: #8995b7;
 
-    margin-top: 7px;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 }
 
-
 /* =====================================================
-   🎰 МЕНЮ КАЗИНО
-   ===================================================== */
+   🎰 CASINO GRID
+===================================================== */
 
 .casino-grid {
-
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 12px;
 }
 
-
 .game-card {
+    min-height: 150px;
 
-    position: relative;
-
-    min-height: 155px;
-
-    padding: 18px 12px;
+    padding: 18px 10px;
 
     display: flex;
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
 
-    gap: 6px;
-
-    border-radius: 22px;
-
-    border:
-        1px solid rgba(255,255,255,0.08);
+    gap: 7px;
 
     color: white;
 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 22px;
+
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,0.08),
-            rgba(255,255,255,0.025)
+            rgba(40, 49, 85, 0.9),
+            rgba(18, 23, 45, 0.95)
         );
-
-    box-shadow:
-        0 12px 25px rgba(0,0,0,0.25);
 
     cursor: pointer;
 
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.2);
+
     transition:
         transform 0.15s,
-        border 0.15s,
-        background 0.15s;
+        border-color 0.15s;
 }
-
 
 .game-card:active {
-
-    transform:
-        scale(0.95);
+    transform: scale(0.95);
 }
-
 
 .game-card:hover {
-
-    border-color:
-        rgba(0,255,150,0.35);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0,255,150,0.13),
-            rgba(255,255,255,0.035)
-        );
+    border-color: rgba(105, 125, 255, 0.5);
 }
-
 
 .game-icon {
-
-    font-size: 46px;
-
-    filter:
-        drop-shadow(
-            0 5px 10px
-            rgba(0,0,0,0.4)
-        );
+    font-size: 45px;
 }
-
 
 .game-card b {
-
     font-size: 15px;
-
-    letter-spacing: 0.5px;
 }
-
 
 .game-card small {
-
-    color: #7e9a8e;
-
-    font-size: 11px;
+    color: #8f9ab9;
 }
-
 
 /* =====================================================
-   🎮 ЭКРАНЫ ИГР
-   ===================================================== */
+   🎮 GAME SCREEN
+===================================================== */
 
 .game-screen {
-
-    animation:
-        gameAppear 0.3s ease;
-
-    text-align: center;
+    animation: gameOpen 0.25s ease;
 }
 
-
-@keyframes gameAppear {
-
+@keyframes gameOpen {
     from {
         opacity: 0;
-        transform:
-            scale(0.97)
-            translateY(10px);
+        transform: scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform:
-            scale(1)
-            translateY(0);
+        transform: scale(1);
     }
-
 }
-
 
 .game-screen h2 {
+    margin: 15px 0;
 
-    margin:
-        15px 0 22px;
-
-    font-size: 27px;
+    font-size: 26px;
+    text-align: center;
 }
 
-
 .game-screen p {
-
-    color: #8ca79b;
-
+    text-align: center;
+    color: #8995b7;
     line-height: 1.5;
 }
 
-
-/* =====================================================
-   🔙 НАЗАД
-   ===================================================== */
-
 .back-button {
+    padding: 10px 15px;
 
-    display: block;
-
-    margin-bottom: 10px;
-
-    padding: 9px 14px;
-
+    border: none;
     border-radius: 12px;
 
-    border:
-        1px solid rgba(255,255,255,0.08);
+    color: #ffffff;
 
-    color: #b8d0c5;
+    background: rgba(255, 255, 255, 0.08);
 
-    background:
-        rgba(255,255,255,0.05);
+    font-weight: 700;
 
     cursor: pointer;
 }
 
-
 /* =====================================================
    📝 INPUT
-   ===================================================== */
+===================================================== */
 
 input {
-
     width: 100%;
 
     height: 52px;
@@ -726,207 +514,163 @@ input {
 
     padding: 0 16px;
 
-    border-radius: 15px;
-
-    border:
-        1px solid rgba(255,255,255,0.1);
-
-    outline: none;
-
     color: white;
 
     font-size: 16px;
 
-    background:
-        rgba(255,255,255,0.055);
+    outline: none;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background: rgba(255, 255, 255, 0.06);
+
+    transition:
+        border-color 0.2s,
+        background 0.2s;
 }
-
-
-input::placeholder {
-
-    color: #6e847a;
-}
-
 
 input:focus {
+    border-color: #6875f5;
 
-    border-color:
-        rgba(0,255,150,0.45);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(0,255,150,0.08);
+    background: rgba(255, 255, 255, 0.09);
 }
 
+input::placeholder {
+    color: #69738f;
+}
 
 /* =====================================================
-   🎰 СЛОТ
-   ===================================================== */
+   🎰 SLOT MACHINE
+===================================================== */
 
 .slot-machine {
-
     display: flex;
 
     justify-content: center;
-
-    gap: 9px;
+    gap: 10px;
 
     margin: 25px 0;
 
-    padding: 20px;
+    padding: 22px;
 
     border-radius: 25px;
 
     background:
         linear-gradient(
             145deg,
-            #181818,
-            #070707
+            #161b32,
+            #090c18
         );
 
-    border:
-        2px solid #b98a25;
+    border: 2px solid rgba(255, 193, 7, 0.25);
 
     box-shadow:
-        0 0 30px
-        rgba(255,190,0,0.12),
-        inset 0 0 20px
-        rgba(0,0,0,0.8);
+        inset 0 0 30px rgba(0, 0, 0, 0.7),
+        0 15px 40px rgba(0, 0, 0, 0.35);
 }
 
-
 .slot-machine div {
-
-    width: 88px;
-    height: 95px;
+    width: 82px;
+    height: 90px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 15px;
+    font-size: 48px;
 
-    font-size: 52px;
+    border-radius: 15px;
 
     background:
         linear-gradient(
-            180deg,
             #ffffff,
-            #cfcfcf
+            #dfe4ed
         );
 
     box-shadow:
-        inset 0 0 10px
-        rgba(0,0,0,0.4);
+        inset 0 3px 8px rgba(0, 0, 0, 0.25);
 }
 
-
 /* =====================================================
-   🎡 РУЛЕТКА
-   ===================================================== */
+   🎡 ROULETTE
+===================================================== */
 
 .roulette-wheel {
-
-    position: relative;
-
-    width: 240px;
-    height: 240px;
+    width: 250px;
+    height: 250px;
 
     margin: 20px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 50%;
 
     background:
         conic-gradient(
-            #168344 0deg 10deg,
+            #b71c1c 0deg 10deg,
             #111 10deg 20deg,
-            #c92727 20deg 30deg,
+            #b71c1c 20deg 30deg,
             #111 30deg 40deg,
-            #c92727 40deg 50deg,
+            #b71c1c 40deg 50deg,
             #111 50deg 60deg,
-            #c92727 60deg 70deg,
+            #b71c1c 60deg 70deg,
             #111 70deg 80deg,
-            #c92727 80deg 90deg,
+            #b71c1c 80deg 90deg,
             #111 90deg 100deg,
-            #c92727 100deg 110deg,
+            #b71c1c 100deg 110deg,
             #111 110deg 120deg,
-            #c92727 120deg 130deg,
+            #b71c1c 120deg 130deg,
             #111 130deg 140deg,
-            #c92727 140deg 150deg,
+            #b71c1c 140deg 150deg,
             #111 150deg 160deg,
-            #c92727 160deg 170deg,
+            #b71c1c 160deg 170deg,
             #111 170deg 180deg,
-            #c92727 180deg 190deg,
+            #b71c1c 180deg 190deg,
             #111 190deg 200deg,
-            #c92727 200deg 210deg,
+            #b71c1c 200deg 210deg,
             #111 210deg 220deg,
-            #c92727 220deg 230deg,
+            #b71c1c 220deg 230deg,
             #111 230deg 240deg,
-            #c92727 240deg 250deg,
+            #b71c1c 240deg 250deg,
             #111 250deg 260deg,
-            #c92727 260deg 270deg,
+            #b71c1c 260deg 270deg,
             #111 270deg 280deg,
-            #c92727 280deg 290deg,
+            #b71c1c 280deg 290deg,
             #111 290deg 300deg,
-            #c92727 300deg 310deg,
+            #b71c1c 300deg 310deg,
             #111 310deg 320deg,
-            #c92727 320deg 330deg,
+            #b71c1c 320deg 330deg,
             #111 330deg 340deg,
-            #c92727 340deg 350deg,
-            #111 350deg 360deg
+            #b71c1c 340deg 350deg,
+            #0b8f52 350deg 360deg
         );
 
-    border:
-        8px solid #c79b32;
+    border: 10px solid #c89b3c;
 
     box-shadow:
-        0 0 0 5px #221b0a,
-        0 15px 35px
-        rgba(0,0,0,0.6);
+        0 0 0 5px #5e4317,
+        0 15px 40px rgba(0, 0, 0, 0.6);
+
+    animation: rouletteIdle 8s linear infinite;
 }
 
+@keyframes rouletteIdle {
+    from {
+        transform: rotate(0deg);
+    }
 
-.roulette-wheel::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: -15px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    width: 0;
-    height: 0;
-
-    border-left:
-        10px solid transparent;
-
-    border-right:
-        10px solid transparent;
-
-    border-top:
-        20px solid #ffd64d;
-
-    z-index: 5;
+    to {
+        transform: rotate(360deg);
+    }
 }
-
 
 .roulette-center {
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    width: 80px;
-    height: 80px;
+    width: 105px;
+    height: 105px;
 
     display: flex;
     align-items: center;
@@ -934,120 +678,75 @@ input:focus {
 
     border-radius: 50%;
 
-    color: #ffe36e;
-
-    font-size: 13px;
-    font-weight: 900;
-
     background:
         radial-gradient(
             circle,
-            #222,
-            #050505
+            #2c3558,
+            #101426
         );
 
-    border:
-        4px solid #c79b32;
-}
+    border: 6px solid #c89b3c;
 
+    font-weight: 900;
+}
 
 .roulette-result {
+    text-align: center;
 
-    margin: 15px auto;
+    margin: 15px;
 
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 900;
 
-    color: #ffe36e;
+    color: #ffd54f;
 }
 
-
-/* =====================================================
-   🔢 ЧИСЛА
-   ===================================================== */
-
 .number-grid {
-
     display: grid;
 
-    grid-template-columns:
-        repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 
     gap: 6px;
 
-    margin: 15px 0;
+    margin: 12px 0;
 }
 
-
 .number-grid button {
+    min-height: 42px;
 
-    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
     border-radius: 9px;
-
-    border:
-        1px solid rgba(255,255,255,0.08);
 
     color: white;
 
     background:
-        rgba(255,255,255,0.07);
-
-    cursor: pointer;
+        rgba(255, 255, 255, 0.07);
 
     font-weight: 700;
-}
 
+    cursor: pointer;
+}
 
 .number-grid button:active {
-
-    background:
-        #0ba968;
-
-    transform:
-        scale(0.92);
+    background: #5865f2;
+    transform: scale(0.93);
 }
-
-
-#selectedRouletteNumber,
-#selectedRouletteColor,
-#selectedDiceNumber {
-
-    margin: 12px 0;
-
-    padding: 12px;
-
-    border-radius: 12px;
-
-    color: #b4cfc2;
-
-    background:
-        rgba(255,255,255,0.04);
-}
-
-
-/* =====================================================
-   🎨 ЦВЕТА РУЛЕТКИ
-   ===================================================== */
 
 .color-buttons {
-
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 8px;
 
-    margin: 15px 0;
+    margin: 12px 0;
 }
 
-
 .color-buttons button {
-
     min-height: 48px;
 
-    border: 0;
+    border: none;
 
     border-radius: 12px;
 
@@ -1058,48 +757,25 @@ input:focus {
     cursor: pointer;
 }
 
-
 .red-button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #e53935,
-            #8d1717
-        );
+    background: #c62828;
 }
-
 
 .black-button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #333,
-            #050505
-        );
+    background: #151515;
 }
-
 
 .green-button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #18b968,
-            #075b35
-        );
+    background: #078f50;
 }
 
-
 /* =====================================================
-   🎲 КУБИК
-   ===================================================== */
+   🎲 DICE
+===================================================== */
 
 .dice-number {
-
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
 
     margin: 25px auto;
 
@@ -1107,267 +783,215 @@ input:focus {
     align-items: center;
     justify-content: center;
 
-    border-radius: 25px;
+    font-size: 42px;
 
-    font-size: 55px;
+    border-radius: 25px;
 
     background:
         linear-gradient(
             145deg,
             #ffffff,
-            #c9c9c9
+            #cdd3df
         );
 
-    box-shadow:
-        0 15px 30px
-        rgba(0,0,0,0.4);
-
     color: #111;
-}
 
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.35);
+}
 
 /* =====================================================
-   📈 ЛЕСЕНКА
-   ===================================================== */
+   📈 LADDER
+===================================================== */
 
-#ladderLevel {
-
-    margin-top: 15px;
-
-    font-size: 18px;
-    font-weight: 800;
-}
-
-
+#ladderLevel,
 #ladderMultiplier {
+    text-align: center;
 
     margin: 10px;
 
-    font-size: 38px;
     font-weight: 900;
-
-    color: #ffe36e;
-
-    text-shadow:
-        0 0 20px
-        rgba(255,200,40,0.3);
 }
 
+#ladderMultiplier {
+    font-size: 34px;
+    color: #ffd54f;
+}
 
 .ladder {
-
     display: flex;
-
     flex-direction: column;
 
-    gap: 7px;
+    gap: 8px;
 
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
-
 .ladder div {
+    padding: 15px;
 
-    padding: 13px;
-
-    border-radius: 12px;
+    border-radius: 14px;
 
     text-align: center;
-
-    font-weight: 800;
 
     background:
         linear-gradient(
             90deg,
-            rgba(0,255,150,0.1),
-            rgba(255,255,255,0.04)
+            rgba(88, 101, 242, 0.2),
+            rgba(118, 87, 255, 0.08)
         );
 
-    border:
-        1px solid rgba(0,255,150,0.08);
-}
+    border: 1px solid rgba(100, 120, 255, 0.15);
 
+    font-weight: 800;
+}
 
 /* =====================================================
    💣 MINES
-   ===================================================== */
+===================================================== */
 
 #minesMultiplier {
-
-    margin: 15px;
+    text-align: center;
 
     font-size: 34px;
+
+    color: #ffd54f;
+
     font-weight: 900;
 
-    color: #63ffbd;
+    margin: 15px;
 }
 
-
 .mines-board {
-
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 9px;
 
     margin: 20px 0;
 }
 
-
 .mines-board button {
-
     aspect-ratio: 1;
 
-    border: 0;
+    border: none;
 
-    border-radius: 14px;
+    border-radius: 15px;
 
-    font-size: 28px;
+    font-size: 27px;
 
     color: white;
 
     background:
         linear-gradient(
             145deg,
-            #263c34,
-            #0d1914
+            #303a68,
+            #171d39
         );
 
     box-shadow:
-        inset 0 1px
-        rgba(255,255,255,0.05),
-        0 5px 12px
-        rgba(0,0,0,0.3);
+        inset 0 2px 5px rgba(255, 255, 255, 0.05),
+        0 5px 12px rgba(0, 0, 0, 0.25);
 
     cursor: pointer;
 
     transition:
-        transform 0.12s;
+        transform 0.15s,
+        background 0.15s;
 }
-
 
 .mines-board button:active {
-
-    transform:
-        scale(0.9);
+    transform: scale(0.9);
 }
-
 
 /* =====================================================
    ✈️ CRASH
-   ===================================================== */
+===================================================== */
 
 .crash-area {
-
     position: relative;
 
-    height: 330px;
+    height: 300px;
 
     margin: 20px 0;
 
     overflow: hidden;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border-radius: 25px;
 
     background:
-        radial-gradient(
-            circle at 50% 100%,
-            rgba(0,255,150,0.15),
-            transparent 50%
-        ),
         linear-gradient(
             180deg,
-            #071b25,
-            #07100e
+            #17244c,
+            #090d1c
         );
 
-    border:
-        1px solid
-        rgba(0,255,150,0.1);
+    border: 1px solid rgba(100, 130, 255, 0.2);
 }
 
-
 .crash-area::after {
-
     content: "";
 
     position: absolute;
 
+    bottom: 0;
     left: 0;
-    bottom: 30px;
 
     width: 100%;
     height: 2px;
 
-    background:
-        rgba(255,255,255,0.08);
-}
+    background: #5865f2;
 
+    box-shadow:
+        0 0 15px #5865f2;
+}
 
 .crash-multiplier {
-
-    position: relative;
-
-    z-index: 2;
-
-    padding-top: 40px;
-
-    font-size: 48px;
-    font-weight: 900;
-
-    color: #63ffbd;
-
-    text-shadow:
-        0 0 25px
-        rgba(0,255,150,0.45);
-}
-
-
-.crash-plane {
-
     position: absolute;
 
-    left: 20px;
-    bottom: 45px;
+    top: 35px;
 
-    font-size: 50px;
+    font-size: 42px;
 
-    animation:
-        planeFly 3s
-        ease-in-out
-        infinite alternate;
+    font-weight: 900;
+
+    color: #ffd54f;
+
+    z-index: 2;
 }
 
+.crash-plane {
+    position: absolute;
+
+    left: 20%;
+
+    bottom: 40px;
+
+    font-size: 55px;
+
+    animation: planeFly 3s ease-in-out infinite alternate;
+}
 
 @keyframes planeFly {
-
     from {
-
-        transform:
-            translate(0, 30px)
-            rotate(-8deg);
-
+        transform: translate(0, 30px) rotate(-5deg);
     }
 
     to {
-
-        transform:
-            translate(220px, -150px)
-            rotate(-18deg);
-
+        transform: translate(100px, -100px) rotate(-15deg);
     }
-
 }
 
-
 /* =====================================================
-   💎 ДЖЕКПОТ
-   ===================================================== */
+   💎 JACKPOT
+===================================================== */
 
 .jackpot-icon {
-
     width: 150px;
     height: 150px;
 
@@ -1377,258 +1001,261 @@ input:focus {
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
-
     font-size: 80px;
+
+    border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(0,255,150,0.25),
-            rgba(0,0,0,0.1)
+            #6d5dfc,
+            #211c50
         );
 
     box-shadow:
-        0 0 60px
-        rgba(0,255,150,0.2);
+        0 0 50px rgba(109, 93, 252, 0.35);
 
-    animation:
-        jackpotPulse 2s
-        infinite;
+    animation: jackpotPulse 1.5s ease-in-out infinite;
 }
 
-
 @keyframes jackpotPulse {
-
     0%,
     100% {
-        transform:
-            scale(1);
+        transform: scale(1);
     }
 
     50% {
-        transform:
-            scale(1.06);
+        transform: scale(1.08);
     }
-
 }
 
-
 /* =====================================================
-   🎁 КЕЙСЫ
-   ===================================================== */
+   🎁 CASES
+===================================================== */
 
 .cases-grid {
-
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 12px;
 }
-
 
 .case-card {
-
-    padding: 20px 12px;
-
-    text-align: center;
-
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.07),
-            rgba(255,255,255,0.025)
-        );
-
-    border:
-        1px solid rgba(255,255,255,0.08);
-}
-
-
-.case-icon {
-
-    font-size: 55px;
-
-    margin-bottom: 8px;
-}
-
-
-.case-card h3 {
-
-    margin: 7px 0;
-
-    font-size: 16px;
-}
-
-
-.case-card p {
-
-    color: #ffe36e;
-
-    font-weight: 800;
-}
-
-
-.case-card button {
-
-    width: 100%;
-
-    padding: 11px;
-
-    border: 0;
-
-    border-radius: 11px;
-
-    color: white;
-
-    font-weight: 800;
-
-    background:
-        linear-gradient(
-            135deg,
-            #16d989,
-            #087e54
-        );
-
-    cursor: pointer;
-}
-
-
-.case-result {
-
-    margin-top: 20px;
-}
-
-
-.gift-result {
-
-    padding: 25px;
-
-    text-align: center;
-
-    border-radius: 24px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0,255,150,0.12),
-            rgba(255,255,255,0.04)
-        );
-
-    border:
-        1px solid
-        rgba(0,255,150,0.2);
-
-    animation:
-        gameAppear 0.4s ease;
-}
-
-
-.gift-big {
-
-    font-size: 90px;
-
-    margin-bottom: 10px;
-}
-
-
-/* =====================================================
-   🎒 КОЛЛЕКЦИЯ
-   ===================================================== */
-
-.inventory {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 12px;
-}
-
-
-.inventory-card {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 7px;
-
-    padding: 18px 10px;
+    padding: 18px 12px;
 
     text-align: center;
 
     border-radius: 20px;
 
     background:
-        rgba(255,255,255,0.05);
+        linear-gradient(
+            145deg,
+            rgba(40, 48, 82, 0.95),
+            rgba(15, 19, 38, 0.95)
+        );
 
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.case-icon {
+    font-size: 55px;
 
-.inventory-card > div {
-
-    font-size: 48px;
+    margin-bottom: 8px;
 }
 
-
-.inventory-card span {
-
-    color: #9bb5a9;
-
-    font-size: 12px;
+.case-card h3 {
+    margin-bottom: 5px;
 }
 
-
-.inventory-card small {
-
-    color: #63ffbd;
+.case-card p {
+    color: #ffd54f;
 
     font-weight: 800;
 }
 
+.case-card button {
+    min-height: 42px;
+
+    margin-top: 12px;
+
+    font-size: 12px;
+}
+
+/* =====================================================
+   🎁 CASE RESULT
+===================================================== */
+
+.case-result {
+    margin-top: 25px;
+}
+
+.gift-result {
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(111, 93, 252, 0.4),
+            rgba(20, 24, 47, 0.95)
+        );
+
+    border: 1px solid rgba(130, 110, 255, 0.3);
+
+    animation: giftAppear 0.4s ease;
+}
+
+@keyframes giftAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(-3deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.gift-big {
+    font-size: 90px;
+
+    margin-bottom: 10px;
+}
+
+.gift-result h2 {
+    color: #ffd54f;
+}
+
+.gift-result p {
+    margin-top: 8px;
+}
+
+/* =====================================================
+   🎒 INVENTORY
+===================================================== */
+
+.inventory {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+.inventory-card {
+    padding: 16px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40, 48, 82, 0.95),
+            rgba(15, 19, 38, 0.95)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.inventory-card > div {
+    font-size: 55px;
+}
+
+.inventory-card b {
+    display: block;
+
+    margin: 8px 0;
+}
+
+.inventory-card span {
+    display: block;
+
+    color: #aab3cb;
+
+    font-size: 12px;
+}
+
+.inventory-card small {
+    display: block;
+
+    margin: 7px;
+
+    color: #ffd54f;
+
+    font-weight: 800;
+}
 
 .inventory-card button {
-
     width: 100%;
 
-    padding: 9px;
+    min-height: 38px;
 
-    border: 0;
+    border: none;
 
     border-radius: 10px;
 
     color: white;
 
+    background: #5865f2;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* =====================================================
+   🏆 LEADERBOARD
+===================================================== */
+
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.leaderboard::before {
+    content:
+        "🥇 Lucky King     999 999 🪙\A"
+        "🥈 Casino Master  777 777 🪙\A"
+        "🥉 Lucky Player   555 555 🪙\A"
+        "4️⃣ Big Winner     333 333 🪙\A"
+        "5️⃣ New Legend     111 111 🪙";
+
+    white-space: pre;
+
+    display: block;
+
+    padding: 20px;
+
+    line-height: 2.2;
+
+    border-radius: 20px;
+
     background:
         linear-gradient(
-            135deg,
-            #d99425,
-            #8b4e00
+            145deg,
+            rgba(40, 48, 82, 0.95),
+            rgba(15, 19, 38, 0.95)
         );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
     font-weight: 700;
 }
 
-
 /* =====================================================
-   👤 ПРОФИЛЬ
-   ===================================================== */
+   👤 PROFILE CARD
+===================================================== */
 
 .profile-card {
-
-    margin-top: 25px;
-
     padding: 30px 20px;
 
     text-align: center;
@@ -1638,181 +1265,114 @@ input:focus {
     background:
         linear-gradient(
             145deg,
-            rgba(0,255,150,0.1),
-            rgba(255,255,255,0.035)
+            rgba(40, 48, 82, 0.95),
+            rgba(15, 19, 38, 0.95)
         );
 
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-
 .profile-card .avatar {
-
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
 
     margin: 0 auto 15px;
 
-    font-size: 45px;
+    font-size: 42px;
 }
-
 
 .profile-card .balance {
+    display: inline-block;
 
-    margin: 15px auto;
-
-    font-size: 22px;
+    margin-top: 10px;
 }
-
 
 /* =====================================================
-   🏆 ТОП ИГРОКОВ
-   ===================================================== */
-
-.leaderboard {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-
-    margin-top: 20px;
-}
-
-
-.leaderboard::before {
-
-    content:
-        "🏆 1. Lucky Player    💰 0 🪙\A\A🥈 2. Casino King      💰 0 🪙\A\A🥉 3. Lucky Star       💰 0 🪙";
-
-    white-space: pre;
-
-    display: block;
-
-    padding: 25px;
-
-    line-height: 1.8;
-
-    border-radius: 20px;
-
-    background:
-        rgba(255,255,255,0.05);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    color: #d8e8df;
-}
-
-
-/* =====================================================
-   💬 СООБЩЕНИЯ
-   ===================================================== */
+   💬 MESSAGE
+===================================================== */
 
 .game-message {
-
     position: fixed;
 
     left: 50%;
 
     bottom: 95px;
 
-    z-index: 999;
+    z-index: 2000;
 
-    max-width: calc(100% - 32px);
+    width: calc(100% - 30px);
+    max-width: 450px;
 
-    padding: 13px 20px;
+    padding: 15px 18px;
+
+    text-align: center;
 
     border-radius: 15px;
 
-    color: white;
-
-    font-size: 14px;
-    font-weight: 700;
-
     background:
-        rgba(18, 30, 25, 0.96);
+        rgba(20, 25, 45, 0.95);
 
-    border:
-        1px solid
-        rgba(0,255,150,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
     box-shadow:
-        0 10px 35px
-        rgba(0,0,0,0.5);
+        0 15px 40px rgba(0, 0, 0, 0.4);
 
-    transform:
-        translate(-50%, 30px);
+    backdrop-filter: blur(15px);
 
     opacity: 0;
 
     pointer-events: none;
+
+    transform:
+        translate(-50%, 20px);
 
     transition:
         opacity 0.25s,
         transform 0.25s;
 }
 
-
 .game-message.show {
-
     opacity: 1;
 
     transform:
         translate(-50%, 0);
 }
 
-
 /* =====================================================
-   📱 НИЖНЕЕ МЕНЮ
-   ===================================================== */
+   📱 BOTTOM NAVIGATION
+===================================================== */
 
 .bottom-nav {
-
     position: fixed;
 
     left: 0;
     right: 0;
     bottom: 0;
 
-    z-index: 200;
+    z-index: 1500;
 
-    height: 76px;
+    height: 75px;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 
     padding:
-        7px 5px
-        env(safe-area-inset-bottom);
+        7px
+        8px
+        calc(7px + env(safe-area-inset-bottom));
 
     background:
-        rgba(5, 10, 8, 0.95);
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
+        rgba(8, 11, 22, 0.94);
 
     border-top:
-        1px solid
-        rgba(255,255,255,0.08);
+        1px solid rgba(255, 255, 255, 0.08);
 
-    box-shadow:
-        0 -10px 35px
-        rgba(0,0,0,0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
-
 .bottom-nav button {
-
     display: flex;
 
     flex-direction: column;
@@ -1822,158 +1382,191 @@ input:focus {
 
     gap: 3px;
 
-    border: 0;
-
-    color: #789187;
+    border: none;
 
     background: transparent;
 
-    font-size: 22px;
+    color: #747e9c;
+
+    font-size: 20px;
 
     cursor: pointer;
-
-    transition:
-        color 0.2s,
-        transform 0.2s;
 }
 
-
-.bottom-nav button span {
-
+.bottom-nav span {
     font-size: 10px;
 
-    font-weight: 700;
+    font-weight: 600;
 }
-
 
 .bottom-nav button:active {
+    transform: scale(0.9);
 
-    transform:
-        scale(0.88);
+    color: #ffffff;
 }
-
-
-.bottom-nav button:hover {
-
-    color: #63ffbd;
-}
-
 
 /* =====================================================
-   📱 МОБИЛЬНАЯ АДАПТАЦИЯ
-   ===================================================== */
+   📱 MOBILE
+===================================================== */
 
-@media (
-    max-width: 420px
-) {
+@media (max-width: 480px) {
 
     .page {
-
         padding-left: 12px;
         padding-right: 12px;
-
     }
 
-
-    .coin-button {
-
-        width: 165px;
-        height: 165px;
-
-        font-size: 78px;
-
+    .casino-grid {
+        gap: 9px;
     }
-
-
-    .slot-machine div {
-
-        width: 75px;
-        height: 82px;
-
-        font-size: 43px;
-
-    }
-
-
-    .roulette-wheel {
-
-        width: 215px;
-        height: 215px;
-
-    }
-
-
-    .number-grid {
-
-        gap: 4px;
-
-    }
-
-
-    .number-grid button {
-
-        height: 37px;
-
-        font-size: 12px;
-
-    }
-
 
     .game-card {
-
-        min-height: 140px;
-
+        min-height: 135px;
     }
 
-
     .game-icon {
+        font-size: 38px;
+    }
 
-        font-size: 40px;
+    .coin-button {
+        width: 170px;
+        height: 170px;
 
+        font-size: 80px;
+    }
+
+    .roulette-wheel {
+        width: 220px;
+        height: 220px;
+    }
+
+    .slot-machine div {
+        width: 75px;
+        height: 80px;
+
+        font-size: 42px;
+    }
+
+    .number-grid {
+        gap: 5px;
+    }
+
+    .number-grid button {
+        min-height: 38px;
+
+        font-size: 12px;
+    }
+
+    .cases-grid,
+    .inventory {
+        gap: 9px;
     }
 
 }
 
-
 /* =====================================================
-   📱 ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ
-   ===================================================== */
+   📱 VERY SMALL SCREEN
+===================================================== */
 
-@media (
-    max-width: 350px
-) {
+@media (max-width: 350px) {
 
-    .bottom-nav button {
-
-        font-size: 18px;
-
+    .logo {
+        font-size: 16px;
     }
 
+    .balance {
+        min-width: 90px;
 
-    .bottom-nav button span {
+        padding: 8px;
 
-        font-size: 9px;
-
+        font-size: 13px;
     }
 
+    .coin-button {
+        width: 150px;
+        height: 150px;
 
-    .casino-grid,
-    .cases-grid,
-    .inventory {
-
-        grid-template-columns:
-            1fr;
-
+        font-size: 70px;
     }
 
+    .slot-machine {
+        gap: 5px;
+        padding: 15px;
+    }
 
     .slot-machine div {
-
         width: 65px;
         height: 75px;
 
-        font-size: 37px;
-
+        font-size: 36px;
     }
 
+}
+
+/* =====================================================
+   ✨ SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080b15;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #343d66;
+
+    border-radius: 10px;
+}
+
+/* =====================================================
+   🚫 USER SELECT
+===================================================== */
+
+button,
+.coin-button,
+.game-card {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* =====================================================
+   🎰 EXTRA CASINO GLOW
+===================================================== */
+
+.game-card:nth-child(1) {
+    box-shadow:
+        0 10px 25px rgba(255, 80, 80, 0.08);
+}
+
+.game-card:nth-child(2) {
+    box-shadow:
+        0 10px 25px rgba(0, 200, 100, 0.08);
+}
+
+.game-card:nth-child(3) {
+    box-shadow:
+        0 10px 25px rgba(255, 255, 255, 0.08);
+}
+
+.game-card:nth-child(4) {
+    box-shadow:
+        0 10px 25px rgba(100, 100, 255, 0.12);
+}
+
+.game-card:nth-child(5) {
+    box-shadow:
+        0 10px 25px rgba(0, 255, 200, 0.08);
+}
+
+.game-card:nth-child(6) {
+    box-shadow:
+        0 10px 25px rgba(255, 150, 0, 0.1);
+}
+
+.game-card:nth-child(7) {
+    box-shadow:
+        0 10px 25px rgba(180, 100, 255, 0.12);
 }
