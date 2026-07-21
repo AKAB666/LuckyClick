@@ -321,6 +321,27 @@
 </section>
 
 <script src="script.js"></script>
+<script src="script.js"></script>
 
+<script>
+    const tg = window.Telegram.WebApp;
+
+    tg.ready();
+    tg.expand();
+
+    const user = tg.initDataUnsafe?.user;
+
+    if (user) {
+        const username = user.username
+            ? "@" + user.username
+            : user.first_name;
+
+        console.log("Игрок:", username);
+        console.log("Telegram ID:", user.id);
+    }
+</script>
+
+</body>
+</html>
 </body>
 </html>
