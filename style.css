@@ -1,6 +1,6 @@
 /* =========================================================
-🍀 LUCKY CLICK — PREMIUM CASINO STYLE
-FULL STYLE.CSS
+   🍀 LUCKY CLICK — PREMIUM CASINO STYLE
+   STYLE.CSS — FULL VERSION
 ========================================================= */
 
 * {
@@ -16,6 +16,7 @@ html {
 
 body {
     min-height: 100vh;
+    overflow-x: hidden;
     color: #fff;
     font-family:
         -apple-system,
@@ -27,62 +28,72 @@ body {
     background:
         radial-gradient(
             circle at 50% -10%,
-            rgba(0, 210, 130, 0.12),
+            rgba(30, 110, 255, 0.20),
             transparent 35%
         ),
         radial-gradient(
-            circle at 100% 40%,
-            rgba(180, 0, 40, 0.12),
+            circle at 0% 50%,
+            rgba(0, 255, 160, 0.07),
             transparent 30%
         ),
         linear-gradient(
             180deg,
-            #050609 0%,
-            #080a0f 45%,
-            #040507 100%
+            #070b12 0%,
+            #080b12 50%,
+            #05070c 100%
         );
-
-    overflow-x: hidden;
 }
 
-/* =========================================================
-SCROLLBAR
-========================================================= */
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+button:active {
+    transform: scale(0.97);
+}
 
 ::-webkit-scrollbar {
     width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #050609;
+    background: #05070c;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #303744;
+    background: #29364c;
     border-radius: 10px;
 }
 
 /* =========================================================
-APP
+   APP
 ========================================================= */
 
 #app {
-    width: 100%;
-    max-width: 600px;
-    min-height: 100vh;
-    margin: auto;
-    padding-bottom: 110px;
     position: relative;
+    width: 100%;
+    max-width: 620px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding-bottom: 110px;
 }
 
 /* =========================================================
-PAGES
+   PAGE
 ========================================================= */
 
 .page {
     width: 100%;
     min-height: calc(100vh - 80px);
-    padding: 18px 14px 30px;
+    padding: 18px 14px 35px;
     animation: pageIn 0.3s ease;
 }
 
@@ -92,6 +103,10 @@ PAGES
 
 .page.active {
     display: block;
+}
+
+.hidden {
+    display: none !important;
 }
 
 @keyframes pageIn {
@@ -107,7 +122,7 @@ PAGES
 }
 
 /* =========================================================
-TOP HEADER
+   HEADER
 ========================================================= */
 
 .top-header {
@@ -119,23 +134,25 @@ TOP HEADER
     align-items: center;
     justify-content: space-between;
 
-    padding: 12px 14px;
+    padding: 12px 15px;
 
     background:
-        rgba(5, 7, 11, 0.88);
+        linear-gradient(
+            180deg,
+            rgba(7, 11, 18, 0.96),
+            rgba(7, 11, 18, 0.80)
+        );
+
+    border-bottom: 1px solid rgba(255,255,255,0.06);
 
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(22px);
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.06);
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
 
     font-size: 18px;
     font-weight: 900;
@@ -143,7 +160,7 @@ TOP HEADER
 }
 
 .logo span {
-    color: #4dffae;
+    color: #55ffad;
 }
 
 .balance-box {
@@ -151,24 +168,21 @@ TOP HEADER
     align-items: center;
     gap: 6px;
 
-    padding: 8px 12px;
+    padding: 8px 13px;
 
     border-radius: 14px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.10),
             rgba(255,255,255,0.025)
         );
 
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
 
     box-shadow:
-        0 5px 25px
-        rgba(0,0,0,0.3);
+        0 8px 25px rgba(0,0,0,0.25);
 }
 
 .balance {
@@ -177,26 +191,31 @@ TOP HEADER
 }
 
 /* =========================================================
-HEADINGS
+   TITLES
 ========================================================= */
 
 h1,
 h2,
 h3 {
-    letter-spacing: -0.5px;
+    letter-spacing: -0.4px;
 }
 
 h2 {
-    font-size: 25px;
     margin-bottom: 16px;
+    font-size: 25px;
 }
 
 h3 {
     font-size: 18px;
 }
 
+p {
+    color: #8995a8;
+    line-height: 1.45;
+}
+
 /* =========================================================
-CARDS
+   CARDS
 ========================================================= */
 
 .card,
@@ -206,7 +225,17 @@ CARDS
 .quest-card,
 .game-card,
 .inventory-item,
-.promo-card {
+.promo-card,
+.ladder-card,
+.mines-card,
+.jackpot-screen {
+
+    position: relative;
+
+    padding: 18px;
+    margin-bottom: 14px;
+
+    border-radius: 22px;
 
     background:
         linear-gradient(
@@ -216,25 +245,15 @@ CARDS
         );
 
     border:
-        1px solid
-        rgba(255,255,255,0.07);
-
-    border-radius: 22px;
-
-    padding: 18px;
-
-    margin-bottom: 14px;
+        1px solid rgba(255,255,255,0.075);
 
     box-shadow:
-        0 15px 45px
-        rgba(0,0,0,0.32),
-
-        inset 0 1px 0
-        rgba(255,255,255,0.04);
+        0 18px 50px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 /* =========================================================
-BALANCE HERO
+   BALANCE
 ========================================================= */
 
 .balance-card {
@@ -242,6 +261,7 @@ BALANCE HERO
     overflow: hidden;
 
     padding: 28px 20px;
+    margin-bottom: 14px;
 
     text-align: center;
 
@@ -250,45 +270,101 @@ BALANCE HERO
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(77,255,174,0.17),
+            rgba(83,255,173,0.18),
             transparent 55%
         ),
-
         linear-gradient(
             145deg,
-            #121923,
-            #07090d
+            #121b2b,
+            #080c14
         );
 
-    border:
-        1px solid
-        rgba(77,255,174,0.13);
+    border: 1px solid rgba(83,255,173,0.14);
 
     box-shadow:
-        0 20px 65px
-        rgba(0,0,0,0.5);
+        0 25px 70px rgba(0,0,0,0.42);
+}
+
+.balance-label {
+    color: #8995a8;
+    font-size: 13px;
+    margin-bottom: 5px;
 }
 
 .balance-card .balance {
-    position: relative;
-
     font-size: 36px;
-    font-weight: 900;
-
+    font-weight: 950;
     color: #ffd95a;
+}
 
-    text-shadow:
-        0 0 25px
-        rgba(255,217,90,0.18);
+.coin-label {
+    color: #6f7b8f;
+    margin-top: 4px;
 }
 
 /* =========================================================
-CLICKER
+   PLAYER
+========================================================= */
+
+.player-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.player-level {
+    color: #53ffad;
+    font-weight: 900;
+}
+
+.player-xp,
+.xp-needed {
+    color: #9ca8ba;
+    font-weight: 700;
+}
+
+.xp-bar {
+    height: 8px;
+    margin-top: 12px;
+    overflow: hidden;
+
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+}
+
+#xpProgress {
+    width: 0%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00c879,
+            #66ffc5
+        );
+
+    box-shadow:
+        0 0 15px rgba(0,208,132,0.4);
+
+    transition: width 0.5s ease;
+}
+
+/* =========================================================
+   CLICKER
 ========================================================= */
 
 .clicker-area {
+    padding: 20px 0;
     text-align: center;
-    padding: 22px 0;
+}
+
+.clicker-title {
+    margin-bottom: 18px;
+    color: #aeb8c8;
+    font-weight: 700;
 }
 
 .coin-button {
@@ -300,35 +376,34 @@ CLICKER
     border: none;
     border-radius: 50%;
 
-    cursor: pointer;
-
     font-size: 82px;
 
     background:
         radial-gradient(
-            circle at 35% 20%,
-            #fff5ad,
+            circle at 35% 25%,
+            #fff8b8,
             #ffd83d 30%,
-            #e59b00 65%,
-            #8a4e00 100%
+            #e69c00 65%,
+            #7b4300 100%
         );
 
     box-shadow:
-        0 0 0 8px
-        rgba(255,215,70,0.05),
-
-        0 0 55px
-        rgba(255,190,0,0.25),
-
-        inset 0 8px 15px
-        rgba(255,255,255,0.5),
-
-        inset 0 -12px 20px
-        rgba(0,0,0,0.35);
+        0 0 0 8px rgba(255,215,70,0.06),
+        0 0 55px rgba(255,190,0,0.30),
+        inset 0 8px 15px rgba(255,255,255,0.45),
+        inset 0 -15px 25px rgba(0,0,0,0.30);
 
     transition:
         transform 0.12s,
         box-shadow 0.2s;
+}
+
+.coin-button:hover {
+    box-shadow:
+        0 0 0 10px rgba(255,215,70,0.07),
+        0 0 70px rgba(255,190,0,0.42),
+        inset 0 8px 15px rgba(255,255,255,0.45),
+        inset 0 -15px 25px rgba(0,0,0,0.30);
 }
 
 .coin-button:active {
@@ -343,16 +418,12 @@ CLICKER
 
     border-radius: 50%;
 
-    border:
-        1px solid
-        rgba(255,215,70,0.3);
+    border: 1px solid rgba(255,215,70,0.28);
 
-    animation:
-        coinPulse 2s infinite;
+    animation: coinPulse 2s infinite;
 }
 
 @keyframes coinPulse {
-
     0%,
     100% {
         transform: scale(1);
@@ -365,102 +436,55 @@ CLICKER
     }
 }
 
-/* =========================================================
-CLICK EFFECT
-========================================================= */
-
-#clickEffects {
-    position: fixed;
-    inset: 0;
-
-    pointer-events: none;
-    z-index: 999;
+.click-power-text {
+    margin-top: 18px;
+    color: #8b96a8;
 }
 
-.click-effect {
-    position: absolute;
-
+.click-power {
     color: #ffd95a;
-
-    font-size: 20px;
-    font-weight: 900;
-
-    text-shadow:
-        0 2px 10px
-        rgba(255,190,0,0.3);
-
-    animation:
-        clickFloat 1s ease forwards;
 }
 
-@keyframes clickFloat {
-
-    0% {
-        opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-    100% {
-        opacity: 0;
-        transform:
-            translateY(-80px)
-            scale(1.2);
-    }
+.click-stat {
+    margin-top: 7px;
+    color: #657186;
+    font-size: 13px;
 }
 
 /* =========================================================
-BUTTONS
+   BUTTONS
 ========================================================= */
-
-button {
-    font-family: inherit;
-}
 
 button:not(.nav-button) {
-
     width: 100%;
 
-    border: none;
+    padding: 14px 16px;
+    margin-top: 8px;
 
-    padding:
-        14px 16px;
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 800;
 
     border-radius: 15px;
 
-    color: #fff;
+    border: 1px solid rgba(255,255,255,0.08);
 
     background:
         linear-gradient(
             135deg,
             #1d293b,
-            #0e141e
+            #111827
         );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    font-size: 15px;
-    font-weight: 750;
-
-    cursor: pointer;
 
     transition:
         transform 0.15s,
         filter 0.15s,
         box-shadow 0.15s;
-
-    margin-top: 8px;
-}
-
-button:not(.nav-button):active {
-    transform: scale(0.97);
 }
 
 button:not(.nav-button):hover {
-    filter: brightness(1.15);
+    filter: brightness(1.14);
 }
 
 .primary-button {
@@ -472,17 +496,7 @@ button:not(.nav-button):hover {
         ) !important;
 
     box-shadow:
-        0 8px 25px
-        rgba(0,208,132,0.2);
-}
-
-.danger-button {
-    background:
-        linear-gradient(
-            135deg,
-            #ff4757,
-            #9d1528
-        ) !important;
+        0 8px 25px rgba(0,208,132,0.18);
 }
 
 .gold-button {
@@ -491,147 +505,325 @@ button:not(.nav-button):hover {
     background:
         linear-gradient(
             135deg,
-            #ffe47a,
-            #e9a71e
+            #ffe681,
+            #f2ad1d
+        ) !important;
+
+    box-shadow:
+        0 8px 25px rgba(255,190,40,0.15);
+}
+
+.danger-button {
+    background:
+        linear-gradient(
+            135deg,
+            #ff4757,
+            #a81228
         ) !important;
 }
 
+.mythical-button {
+    color: white !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8d39ff,
+            #4b13a5
+        ) !important;
+
+    box-shadow:
+        0 0 25px rgba(150,70,255,0.25);
+}
+
+.small-button {
+    width: auto !important;
+    padding: 8px 13px !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+}
+
 /* =========================================================
-INPUTS
+   INPUTS
 ========================================================= */
 
 input,
 select {
-
     width: 100%;
 
-    padding:
-        14px 15px;
-
+    padding: 14px 15px;
     margin-top: 8px;
-
-    border-radius: 14px;
 
     outline: none;
 
     color: #fff;
+    font-size: 16px;
+
+    border-radius: 14px;
 
     background:
-        rgba(0,0,0,0.3);
+        rgba(0,0,0,0.32);
 
     border:
-        1px solid
-        rgba(255,255,255,0.09);
+        1px solid rgba(255,255,255,0.09);
 
-    font-size: 16px;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: #657186;
 }
 
 input:focus,
 select:focus {
-
-    border-color:
-        rgba(77,255,174,0.5);
+    border-color: rgba(83,255,173,0.55);
 
     box-shadow:
-        0 0 0 3px
-        rgba(77,255,174,0.08);
+        0 0 0 3px rgba(83,255,173,0.08);
 }
 
 /* =========================================================
-XP
+   SHOP
 ========================================================= */
 
-.xp-bar {
-
-    height: 8px;
-
-    margin-top: 10px;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background:
-        rgba(255,255,255,0.08);
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
 }
 
-#xpProgress {
-
-    height: 100%;
-
-    width: 0%;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(
-            90deg,
-            #00d084,
-            #62ffc3
-        );
-
-    transition:
-        width 0.5s ease;
+.shop-card {
+    margin: 0;
+    text-align: center;
 }
 
-/* =========================================================
-CASINO
-========================================================= */
+.shop-icon {
+    margin-bottom: 8px;
+    font-size: 40px;
+    filter: drop-shadow(0 8px 15px rgba(0,0,0,0.35));
+}
 
-#casino {
+.shop-card h3 {
+    margin-bottom: 5px;
+}
+
+.shop-card p {
+    min-height: 42px;
+    font-size: 12px;
+}
+
+.vip-shop-card {
+    border-color: rgba(255,205,65,0.35);
 
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(90,40,255,0.12),
+            rgba(255,205,65,0.12),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.02)
+        );
+}
+
+/* =========================================================
+   CASES
+========================================================= */
+
+.cases-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cases-header p {
+    font-size: 13px;
+}
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.case-card {
+    margin: 0;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.case-card:active {
+    transform: scale(0.96);
+}
+
+.case-icon {
+    margin-bottom: 10px;
+    font-size: 55px;
+    filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
+}
+
+.case-card.common {
+    border-color: rgba(180,180,180,0.25);
+}
+
+.case-card.rare {
+    border-color: rgba(50,150,255,0.35);
+    box-shadow: 0 0 25px rgba(50,150,255,0.06);
+}
+
+.case-card.legendary {
+    border-color: rgba(255,190,40,0.45);
+    box-shadow: 0 0 30px rgba(255,190,40,0.10);
+}
+
+.case-card.mythical {
+    border-color: rgba(180,70,255,0.5);
+    box-shadow: 0 0 40px rgba(180,70,255,0.12);
+}
+
+/* =========================================================
+   INVENTORY
+========================================================= */
+
+.section-title-row,
+.page-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.inventory-description {
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.inventory-item {
+    margin: 0;
+    padding: 14px;
+    cursor: pointer;
+}
+
+.inventory-item strong {
+    display: block;
+    margin-top: 8px;
+    color: #ffd95a;
+}
+
+.empty-inventory {
+    grid-column: 1 / -1;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    color: #667286;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px dashed rgba(255,255,255,0.08);
+}
+
+/* =========================================================
+   PROMO
+========================================================= */
+
+.promo-card {
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(130,70,255,0.18),
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(85,50,180,0.18),
+            rgba(20,15,40,0.55)
+        );
+}
+
+.promo-icon {
+    font-size: 32px;
+    margin-bottom: 7px;
+}
+
+#promoMessage {
+    min-height: 22px;
+    margin-top: 10px;
+    text-align: center;
+    color: #53ffad;
+    font-size: 13px;
+}
+
+/* =========================================================
+   CASINO
+========================================================= */
+
+#casino {
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(70,45,255,0.15),
             transparent 40%
         );
 }
 
 .casino-header {
-
     text-align: center;
-
     margin-bottom: 20px;
 }
 
+.casino-logo {
+    font-size: 60px;
+    margin-bottom: 5px;
+
+    filter:
+        drop-shadow(
+            0 10px 25px
+            rgba(120,70,255,0.35)
+        );
+}
+
 .casino-header h2 {
-
+    margin-bottom: 5px;
     font-size: 30px;
-
-    text-shadow:
-        0 0 30px
-        rgba(255,255,255,0.12);
 }
 
 .casino-header p {
-
-    color: #8994a8;
+    color: #7e8a9e;
 }
 
 .casino-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
 }
 
 .game-card {
-
     min-height: 150px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: space-between;
 
-    cursor: pointer;
+    margin: 0;
 
-    position: relative;
+    cursor: pointer;
 
     overflow: hidden;
 
@@ -639,192 +831,162 @@ CASINO
         transform 0.2s,
         border-color 0.2s,
         box-shadow 0.2s;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,34,52,0.92),
+            rgba(9,13,22,0.96)
+        );
 }
 
 .game-card::before {
-
     content: "";
 
     position: absolute;
 
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 
-    top: -50px;
-    right: -50px;
+    right: -40px;
+    top: -40px;
 
     border-radius: 50%;
 
-    background:
-        rgba(83,255,173,0.08);
+    background: rgba(83,255,173,0.08);
 
-    filter: blur(30px);
-}
-
-.game-card:active {
-
-    transform:
-        scale(0.96);
+    filter: blur(25px);
 }
 
 .game-card:hover {
-
-    border-color:
-        rgba(83,255,173,0.3);
+    border-color: rgba(83,255,173,0.28);
 
     box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.4);
+        0 15px 40px rgba(0,0,0,0.35),
+        0 0 25px rgba(83,255,173,0.05);
+}
+
+.game-card:active {
+    transform: scale(0.96);
 }
 
 .game-icon {
-
-    font-size: 42px;
-
-    filter:
-        drop-shadow(
-            0 5px 10px
-            rgba(0,0,0,0.4)
-        );
+    font-size: 45px;
 }
 
 .game-card h3 {
-
     margin-top: 8px;
 }
 
 .game-card p {
-
-    color: #7f8ba1;
-
     font-size: 12px;
 }
 
 /* =========================================================
-GAME SCREEN
+   GAME SCREEN
 ========================================================= */
 
 .game-screen {
-
-    animation:
-        pageIn 0.3s ease;
+    animation: pageIn 0.3s ease;
 }
 
 .game-screen.hidden {
-
     display: none !important;
 }
 
 .game-top {
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     margin-bottom: 16px;
 }
 
+.game-top h2 {
+    margin: 0;
+}
+
 .back-button {
-
     width: auto !important;
-
-    padding:
-        10px 14px !important;
-
     margin: 0 !important;
+    padding: 10px 14px !important;
 }
 
 /* =========================================================
-SLOT MACHINE
+   SLOT MACHINE
 ========================================================= */
 
 .slot-machine {
-
-    padding: 20px;
+    padding: 22px;
 
     border-radius: 28px;
 
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(255,190,50,0.12),
-            transparent 45%
+            rgba(255,210,70,0.10),
+            transparent 40%
         ),
-
         linear-gradient(
             145deg,
-            #202838,
-            #07090d
+            #202a3d,
+            #080c14
         );
 
     border:
-        2px solid
-        #343e52;
+        2px solid #3a465b;
 
     box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.6),
-
-        inset 0 0 30px
-        rgba(0,0,0,0.5);
+        0 25px 70px rgba(0,0,0,0.55),
+        inset 0 0 35px rgba(0,0,0,0.45);
 }
 
 .slot-title {
-
     text-align: center;
 
-    font-size: 23px;
-
-    font-weight: 900;
+    margin-bottom: 18px;
 
     color: #ffd95a;
 
-    margin-bottom: 18px;
+    font-size: 23px;
+    font-weight: 950;
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 20px rgba(255,210,70,0.3);
 }
 
 .slot-reels {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 8px;
 
     padding: 10px;
 
     border-radius: 18px;
 
-    background:
-        #030405;
+    background: #03050a;
 
     box-shadow:
-        inset 0 0 25px
-        #000;
+        inset 0 0 30px #000;
 }
 
 .slot-reel {
-
-    height: 90px;
+    height: 95px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     overflow: hidden;
 
-    border-radius: 12px;
+    border-radius: 13px;
 
     background:
         linear-gradient(
             180deg,
-            #fff,
-            #cbd1da 50%,
-            #fff
+            #ffffff,
+            #d1d6de 50%,
+            #ffffff
         );
 
     color: #111;
@@ -832,198 +994,345 @@ SLOT MACHINE
     font-size: 46px;
 
     box-shadow:
-        inset 0 0 15px
-        rgba(0,0,0,0.3);
+        inset 0 0 18px rgba(0,0,0,0.25),
+        0 4px 10px rgba(0,0,0,0.4);
 }
 
 .slot-reel.spinning {
-
-    animation:
-        slotSpin 0.12s
-        linear infinite;
+    animation: slotSpin 0.12s linear infinite;
 }
 
 @keyframes slotSpin {
-
     0% {
-        transform:
-            translateY(-5px);
+        transform: translateY(-5px);
     }
 
     50% {
-        transform:
-            translateY(5px);
+        transform: translateY(5px);
     }
 
     100% {
-        transform:
-            translateY(-5px);
+        transform: translateY(-5px);
     }
 }
 
 /* =========================================================
-REALISTIC ROULETTE TABLE
+   EUROPEAN ROULETTE
 ========================================================= */
 
 .roulette-table {
+    position: relative;
 
     padding: 18px;
 
-    border-radius: 28px;
+    border-radius: 30px;
 
     background:
         radial-gradient(
-            circle at 50% 30%,
-            #168052,
-            #063522 70%,
-            #031b11
+            circle at 50% 0%,
+            rgba(40,180,100,0.15),
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            #07502f,
+            #032517
         );
 
     border:
-        3px solid
-        #b98b32;
+        3px solid #bd9138;
 
     box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.6);
+        0 25px 80px rgba(0,0,0,0.65),
+        inset 0 0 40px rgba(0,0,0,0.35);
 }
 
-/* =========================================================
-ROULETTE WHEEL
-========================================================= */
+/* Wheel wrapper */
 
-.roulette-wheel {
-
-    width: 240px;
-    height: 240px;
-
-    margin:
-        18px auto;
-
-    border-radius: 50%;
-
+.roulette-wheel-wrapper {
     position: relative;
 
-    background:
+    width: 300px;
+    height: 300px;
 
-        conic-gradient(
-            #0b0b0b 0deg 9.73deg,
-            #c92038 9.73deg 19.46deg,
-            #0b0b0b 19.46deg 29.19deg,
-            #c92038 29.19deg 38.92deg,
-            #0b0b0b 38.92deg 48.65deg,
-            #c92038 48.65deg 58.38deg,
-            #0b0b0b 58.38deg 68.11deg,
-            #c92038 68.11deg 77.84deg,
-            #0b0b0b 77.84deg 87.57deg,
-            #c92038 87.57deg 97.3deg,
-            #0b0b0b 97.3deg 107.03deg,
-            #c92038 107.03deg 116.76deg,
-            #0b0b0b 116.76deg 126.49deg,
-            #c92038 126.49deg 136.22deg,
-            #0b0b0b 136.22deg 145.95deg,
-            #c92038 145.95deg 155.68deg,
-            #0b0b0b 155.68deg 165.41deg,
-            #c92038 165.41deg 175.14deg,
-            #0b0b0b 175.14deg 184.87deg,
-            #c92038 184.87deg 194.6deg,
-            #0b0b0b 194.6deg 204.33deg,
-            #c92038 204.33deg 214.06deg,
-            #0b0b0b 214.06deg 223.79deg,
-            #c92038 223.79deg 233.52deg,
-            #0b0b0b 233.52deg 243.25deg,
-            #c92038 243.25deg 252.98deg,
-            #0b0b0b 252.98deg 262.71deg,
-            #c92038 262.71deg 272.44deg,
-            #0b0b0b 272.44deg 282.17deg,
-            #c92038 282.17deg 291.9deg,
-            #0b0b0b 291.9deg 301.63deg,
-            #c92038 301.63deg 311.36deg,
-            #0b0b0b 311.36deg 321.09deg,
-            #c92038 321.09deg 330.82deg,
-            #0b0b0b 330.82deg 340.55deg,
-            #c92038 340.55deg 350.28deg,
-            #0b0b0b 350.28deg 360deg
-        );
+    margin: 15px auto 25px;
 
-    border:
-        9px solid
-        #d5a642;
-
-    box-shadow:
-
-        0 0 0 5px
-        #291d08,
-
-        0 20px 45px
-        rgba(0,0,0,0.65),
-
-        inset 0 0 25px
-        rgba(0,0,0,0.7);
-
-    transition:
-        transform 4s
-        cubic-bezier(.12,.8,.18,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.roulette-wheel::before {
+/* Outer wheel */
 
-    content: "";
+.roulette-wheel {
+    position: relative;
 
-    position: absolute;
-
-    inset: 30px;
+    width: 290px;
+    height: 290px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            #d5a642 0 8%,
-            #171717 9% 35%,
-            #b98b32 36% 40%,
-            #111 41% 100%
+            #bd8b2d 0%,
+            #6f4b12 5%,
+            #111 7%,
+            #111 64%,
+            #bd8b2d 65%,
+            #f2cc68 69%,
+            #4b320b 72%,
+            #bd8b2d 76%,
+            #111 78%,
+            #111 100%
         );
 
     border:
-        3px solid
-        #d5a642;
+        8px solid #d6a947;
 
     box-shadow:
-        inset 0 0 20px
-        rgba(0,0,0,0.8);
+        0 0 0 5px #261b08,
+        0 15px 45px rgba(0,0,0,0.65),
+        inset 0 0 25px rgba(0,0,0,0.8);
+
+    transition:
+        transform 5s cubic-bezier(.12,.8,.18,1);
+
+    transform-origin: center;
 }
 
-.roulette-wheel.spinning {
+/* Inner roulette numbers */
 
-    transform:
-        rotate(2160deg);
+.roulette-numbers {
+    position: absolute;
+    inset: 14px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #087d46 0deg 9.73deg,
+            #111 9.73deg 19.46deg,
+            #c9283e 19.46deg 29.19deg,
+            #111 29.19deg 38.92deg,
+            #c9283e 38.92deg 48.65deg,
+            #111 48.65deg 58.38deg,
+            #c9283e 58.38deg 68.11deg,
+            #111 68.11deg 77.84deg,
+            #c9283e 77.84deg 87.57deg,
+            #111 87.57deg 97.30deg,
+            #c9283e 97.30deg 107.03deg,
+            #111 107.03deg 116.76deg,
+            #c9283e 116.76deg 126.49deg,
+            #111 126.49deg 136.22deg,
+            #c9283e 136.22deg 145.95deg,
+            #111 145.95deg 155.68deg,
+            #c9283e 155.68deg 165.41deg,
+            #111 165.41deg 175.14deg,
+            #c9283e 175.14deg 184.87deg,
+            #111 184.87deg 194.60deg,
+            #c9283e 194.60deg 204.33deg,
+            #111 204.33deg 214.06deg,
+            #c9283e 214.06deg 223.79deg,
+            #111 223.79deg 233.52deg,
+            #c9283e 233.52deg 243.25deg,
+            #111 243.25deg 252.98deg,
+            #c9283e 252.98deg 262.71deg,
+            #111 262.71deg 272.44deg,
+            #c9283e 272.44deg 282.17deg,
+            #111 282.17deg 291.90deg,
+            #c9283e 291.90deg 301.63deg,
+            #111 301.63deg 311.36deg,
+            #c9283e 311.36deg 321.09deg,
+            #111 321.09deg 330.82deg,
+            #c9283e 330.82deg 340.55deg,
+            #111 340.55deg 350.28deg,
+            #c9283e 350.28deg 360deg
+        );
+
+    border:
+        4px solid #d5a642;
+
+    box-shadow:
+        inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* Number positions */
+
+.roulette-number {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 25px;
+    height: 25px;
+
+    margin-left: -12.5px;
+    margin-top: -12.5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    text-shadow:
+        0 1px 2px #000;
+
+    transform-origin:
+        50% 50%;
+
+    /* numbers are distributed around the wheel */
+}
+
+/* Individual number positions */
+
+.roulette-number:nth-child(1)  { transform: rotate(0deg) translateY(-105px); }
+.roulette-number:nth-child(2)  { transform: rotate(9.73deg) translateY(-105px); }
+.roulette-number:nth-child(3)  { transform: rotate(19.46deg) translateY(-105px); }
+.roulette-number:nth-child(4)  { transform: rotate(29.19deg) translateY(-105px); }
+.roulette-number:nth-child(5)  { transform: rotate(38.92deg) translateY(-105px); }
+.roulette-number:nth-child(6)  { transform: rotate(48.65deg) translateY(-105px); }
+.roulette-number:nth-child(7)  { transform: rotate(58.38deg) translateY(-105px); }
+.roulette-number:nth-child(8)  { transform: rotate(68.11deg) translateY(-105px); }
+.roulette-number:nth-child(9)  { transform: rotate(77.84deg) translateY(-105px); }
+.roulette-number:nth-child(10) { transform: rotate(87.57deg) translateY(-105px); }
+.roulette-number:nth-child(11) { transform: rotate(97.30deg) translateY(-105px); }
+.roulette-number:nth-child(12) { transform: rotate(107.03deg) translateY(-105px); }
+.roulette-number:nth-child(13) { transform: rotate(116.76deg) translateY(-105px); }
+.roulette-number:nth-child(14) { transform: rotate(126.49deg) translateY(-105px); }
+.roulette-number:nth-child(15) { transform: rotate(136.22deg) translateY(-105px); }
+.roulette-number:nth-child(16) { transform: rotate(145.95deg) translateY(-105px); }
+.roulette-number:nth-child(17) { transform: rotate(155.68deg) translateY(-105px); }
+.roulette-number:nth-child(18) { transform: rotate(165.41deg) translateY(-105px); }
+.roulette-number:nth-child(19) { transform: rotate(175.14deg) translateY(-105px); }
+.roulette-number:nth-child(20) { transform: rotate(184.87deg) translateY(-105px); }
+.roulette-number:nth-child(21) { transform: rotate(194.60deg) translateY(-105px); }
+.roulette-number:nth-child(22) { transform: rotate(204.33deg) translateY(-105px); }
+.roulette-number:nth-child(23) { transform: rotate(214.06deg) translateY(-105px); }
+.roulette-number:nth-child(24) { transform: rotate(223.79deg) translateY(-105px); }
+.roulette-number:nth-child(25) { transform: rotate(233.52deg) translateY(-105px); }
+.roulette-number:nth-child(26) { transform: rotate(243.25deg) translateY(-105px); }
+.roulette-number:nth-child(27) { transform: rotate(252.98deg) translateY(-105px); }
+.roulette-number:nth-child(28) { transform: rotate(262.71deg) translateY(-105px); }
+.roulette-number:nth-child(29) { transform: rotate(272.44deg) translateY(-105px); }
+.roulette-number:nth-child(30) { transform: rotate(282.17deg) translateY(-105px); }
+.roulette-number:nth-child(31) { transform: rotate(291.90deg) translateY(-105px); }
+.roulette-number:nth-child(32) { transform: rotate(301.63deg) translateY(-105px); }
+.roulette-number:nth-child(33) { transform: rotate(311.36deg) translateY(-105px); }
+.roulette-number:nth-child(34) { transform: rotate(321.09deg) translateY(-105px); }
+.roulette-number:nth-child(35) { transform: rotate(330.82deg) translateY(-105px); }
+.roulette-number:nth-child(36) { transform: rotate(340.55deg) translateY(-105px); }
+.roulette-number:nth-child(37) { transform: rotate(350.28deg) translateY(-105px); }
+
+.roulette-number.red {
+    color: #fff;
+}
+
+.roulette-number.black {
+    color: #fff;
+}
+
+.roulette-number.green {
+    color: #fff;
+    font-weight: 950;
+}
+
+/* Center */
+
+.roulette-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 70px;
+    height: 70px;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #e5bd55,
+            #8a611a
+        );
+
+    border:
+        5px solid #d9ae45;
+
+    box-shadow:
+        0 0 0 4px #2a1d08,
+        inset 0 0 15px rgba(0,0,0,0.5);
 }
 
 .roulette-result {
+    margin: 15px 0;
 
     text-align: center;
 
-    font-size: 36px;
-
-    font-weight: 900;
-
-    margin: 15px 0;
+    font-size: 38px;
+    font-weight: 950;
 
     color: #ffd95a;
 
     text-shadow:
-        0 0 20px
-        rgba(255,217,90,0.25);
+        0 0 20px rgba(255,210,70,0.25);
 }
 
-/* =========================================================
-ROULETTE NUMBERS
-BLACK / RED
-========================================================= */
+/* Roulette color buttons */
 
-.roulette-numbers {
+.roulette-color-bets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
 
+.roulette-color-bets button {
+    padding: 12px 5px;
+    font-size: 12px;
+}
+
+.roulette-red {
+    background:
+        linear-gradient(
+            135deg,
+            #e6334c,
+            #8e1227
+        ) !important;
+}
+
+.roulette-black {
+    background:
+        linear-gradient(
+            135deg,
+            #252b36,
+            #050609
+        ) !important;
+}
+
+.roulette-green {
+    background:
+        linear-gradient(
+            135deg,
+            #10a96b,
+            #075c3c
+        ) !important;
+}
+
+/* Number grid */
+
+.roulette-number-grid {
     display: grid;
 
     grid-template-columns:
@@ -1031,168 +1340,181 @@ BLACK / RED
 
     gap: 5px;
 
-    margin-top: 15px;
-}
-
-.roulette-number {
-
-    min-height: 40px;
-
-    margin: 0 !important;
-
-    padding: 6px 2px !important;
-
-    border-radius: 7px;
-
-    font-size: 13px !important;
-
-    font-weight: 900;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.1) !important;
-}
-
-.roulette-number.red {
-
-    background:
-        linear-gradient(
-            145deg,
-            #e52b43,
-            #8f1022
-        ) !important;
-}
-
-.roulette-number.black {
-
-    background:
-        linear-gradient(
-            145deg,
-            #252525,
-            #050505
-        ) !important;
-}
-
-.roulette-number.green {
-
-    background:
-        linear-gradient(
-            145deg,
-            #00a86b,
-            #005c3c
-        ) !important;
-}
-
-/* =========================================================
-ROULETTE COLOR BUTTONS
-========================================================= */
-
-.roulette-colors {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 8px;
-
     margin-top: 12px;
 }
 
-.roulette-red {
+.roulette-number-grid button {
+    min-height: 42px;
+
+    margin: 0 !important;
+    padding: 5px !important;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151a22,
+            #080a0e
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.roulette-number-grid button:nth-child(2n) {
+    background:
+        linear-gradient(
+            145deg,
+            #151a22,
+            #07090d
+        );
+}
+
+.roulette-number-grid button:hover {
+    border-color: rgba(255,255,255,0.25);
+}
+
+.roulette-number-grid .green-number {
+    grid-column: span 6;
 
     background:
         linear-gradient(
             135deg,
-            #ff3b50,
-            #941326
+            #11a86a,
+            #075a3a
         ) !important;
 }
 
-.roulette-black {
-
-    background:
-        linear-gradient(
-            135deg,
-            #252525,
-            #050505
-        ) !important;
-}
-
-.roulette-green {
-
-    background:
-        linear-gradient(
-            135deg,
-            #00b878,
-            #00603f
-        ) !important;
-}
-
-/* =========================================================
-DICE
-========================================================= */
-
-.dice-container {
+.selected-bet {
+    margin-top: 8px;
+    padding: 10px;
 
     text-align: center;
 
+    color: #aeb8c8;
+
+    border-radius: 10px;
+
+    background:
+        rgba(0,0,0,0.22);
+}
+
+/* =========================================================
+   DICE
+========================================================= */
+
+.dice-container {
     padding: 25px;
+    text-align: center;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0.015)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.07);
 }
 
 .dice-number {
+    display: inline-block;
+
+    margin: 20px;
 
     font-size: 90px;
-
-    margin: 25px;
-
-    display: inline-block;
 
     filter:
         drop-shadow(
             0 15px 25px
-            rgba(0,0,0,0.6)
+            rgba(0,0,0,0.5)
         );
 }
 
 .dice-number.rolling {
-
     animation:
-        diceRoll 0.6s
-        ease infinite;
+        diceRoll 0.6s ease infinite;
 }
 
 @keyframes diceRoll {
-
     0% {
-        transform:
-            rotate(0deg)
-            scale(1);
+        transform: rotate(0deg) scale(1);
     }
 
     50% {
-        transform:
-            rotate(180deg)
-            scale(1.2);
+        transform: rotate(180deg) scale(1.2);
     }
 
     100% {
-        transform:
-            rotate(360deg)
-            scale(1);
+        transform: rotate(360deg) scale(1);
     }
 }
 
+.dice-select-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.dice-select-grid button {
+    margin: 0 !important;
+}
+
 /* =========================================================
-LADDER
+   LADDER
 ========================================================= */
 
-.ladder-board {
+.ladder-card {
+    text-align: center;
+}
 
+.ladder-multiplier {
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(83,255,173,0.12),
+            transparent 70%
+        );
+}
+
+.ladder-multiplier span {
+    display: block;
+
+    color: #7d899b;
+    font-size: 13px;
+}
+
+.ladder-multiplier strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #53ffad;
+
+    font-size: 42px;
+    font-weight: 950;
+}
+
+.ladder-level {
+    margin: 10px 0;
+    color: #8995a8;
+}
+
+.ladder-board {
     display: flex;
 
-    flex-direction:
-        column-reverse;
+    flex-direction: column-reverse;
 
     gap: 8px;
 
@@ -1200,30 +1522,28 @@ LADDER
 }
 
 .ladder-step {
-
     padding: 14px;
-
-    border-radius: 12px;
 
     text-align: center;
 
-    background:
-        rgba(255,255,255,0.05);
+    color: #718096;
 
-    color: #7f8ba1;
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.045);
 
     transition:
         0.3s;
 }
 
 .ladder-step.active {
-
-    color: #fff;
+    color: white;
 
     background:
         linear-gradient(
             90deg,
-            #008f5d,
+            #009b64,
             #00d084
         );
 
@@ -1232,15 +1552,31 @@ LADDER
 
     box-shadow:
         0 5px 25px
-        rgba(0,208,132,0.3);
+        rgba(0,208,132,0.25);
 }
 
 /* =========================================================
-MINES
+   MINES
 ========================================================= */
 
-.mines-board {
+.mines-card {
+    text-align: center;
+}
 
+.mines-multiplier {
+    padding: 20px;
+
+    color: #8995a8;
+
+    font-size: 15px;
+}
+
+.mines-multiplier strong {
+    color: #53ffad;
+    font-size: 30px;
+}
+
+.mines-board {
     display: grid;
 
     grid-template-columns:
@@ -1252,31 +1588,29 @@ MINES
 }
 
 .mine-cell {
-
     aspect-ratio: 1;
-
-    margin: 0 !important;
-
-    padding: 0 !important;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
+    margin: 0 !important;
+    padding: 0 !important;
+
     font-size: 25px;
+
+    border-radius: 12px !important;
 
     background:
         linear-gradient(
             145deg,
             #182235,
-            #080d16
+            #090e18
         ) !important;
 
     border:
-        1px solid
-        rgba(255,255,255,0.08) !important;
+        1px solid rgba(255,255,255,0.08) !important;
 
     box-shadow:
         inset 0 3px 10px
@@ -1284,13 +1618,11 @@ MINES
 }
 
 .mine-cell:hover {
-
     background:
-        #202e45 !important;
+        #25344b !important;
 }
 
 .mine-cell.mine-safe {
-
     background:
         linear-gradient(
             145deg,
@@ -1300,7 +1632,6 @@ MINES
 }
 
 .mine-cell.mine-danger {
-
     background:
         linear-gradient(
             145deg,
@@ -1310,65 +1641,59 @@ MINES
 }
 
 /* =========================================================
-CRASH
+   CRASH
 ========================================================= */
 
 .crash-screen {
-
     position: relative;
 
     min-height: 330px;
 
     overflow: hidden;
 
-    border-radius: 25px;
+    border-radius: 26px;
 
     background:
         radial-gradient(
-            circle at 50% 100%,
-            rgba(0,208,132,0.12),
-            transparent 45%
+            circle at 20% 80%,
+            rgba(83,255,173,0.10),
+            transparent 35%
         ),
-
         linear-gradient(
             180deg,
-            #101d32,
-            #05070b
+            #101e34,
+            #060910
         );
 
     border:
-        1px solid
-        rgba(255,255,255,0.07);
+        1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        inset 0 0 40px rgba(0,0,0,0.45);
 }
 
 .crash-multiplier {
-
     position: absolute;
 
-    top: 30px;
-
+    top: 28px;
     left: 0;
     right: 0;
 
     text-align: center;
 
-    font-size: 54px;
-
-    font-weight: 900;
-
     color: #53ffad;
 
+    font-size: 55px;
+    font-weight: 950;
+
     text-shadow:
-        0 0 25px
-        rgba(83,255,173,0.3);
+        0 0 25px rgba(83,255,173,0.25);
 }
 
 #crashPlane {
-
     position: absolute;
 
     left: 5%;
-
     top: 55%;
 
     font-size: 45px;
@@ -1384,19 +1709,16 @@ CRASH
 }
 
 .crash-line {
-
     position: absolute;
 
     left: 0;
-
     bottom: 0;
 
     width: 100%;
-
     height: 2px;
 
     background:
-        rgba(83,255,173,0.3);
+        rgba(83,255,173,0.35);
 
     transform:
         rotate(-15deg);
@@ -1406,105 +1728,59 @@ CRASH
 }
 
 /* =========================================================
-CASES
+   JACKPOT
 ========================================================= */
 
-.cases-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 12px;
-}
-
-.case-card {
-
-    position: relative;
-
+.jackpot-screen {
     text-align: center;
+
+    padding: 40px 20px;
 
     overflow: hidden;
 
-    padding: 22px 14px;
-
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,210,60,0.18),
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            #1b1725,
+            #080b12
+        );
 }
 
-.case-card:active {
-
-    transform:
-        scale(0.96);
-}
-
-.case-icon {
-
-    font-size: 55px;
+.jackpot-icon {
+    font-size: 85px;
 
     margin-bottom: 10px;
 
     filter:
         drop-shadow(
-            0 8px 15px
-            rgba(0,0,0,0.5)
+            0 0 25px
+            rgba(255,210,60,0.35)
         );
 }
 
-.case-card.common {
-
-    border-color:
-        rgba(180,180,180,0.25);
-}
-
-.case-card.rare {
-
-    border-color:
-        rgba(50,150,255,0.35);
-
-    box-shadow:
-        0 0 25px
-        rgba(50,150,255,0.08);
-}
-
-.case-card.legendary {
-
-    border-color:
-        rgba(255,190,40,0.45);
-
-    box-shadow:
-        0 0 30px
-        rgba(255,190,40,0.1);
-}
-
-.case-card.mythical {
-
-    border-color:
-        rgba(190,80,255,0.5);
-
-    box-shadow:
-        0 0 35px
-        rgba(190,80,255,0.15);
+.jackpot-screen h2 {
+    color: #ffd95a;
+    font-size: 34px;
 }
 
 /* =========================================================
-CASE OPENING
+   CASE OPENING
 ========================================================= */
 
 .case-opening {
-
-    display: none;
-
     position: fixed;
-
     inset: 0;
 
     z-index: 1000;
 
-    align-items: center;
+    display: none;
 
+    align-items: center;
     justify-content: center;
 
     padding: 20px;
@@ -1517,14 +1793,11 @@ CASE OPENING
 }
 
 .case-opening.active {
-
     display: flex;
 }
 
 .case-opening-box {
-
     width: 100%;
-
     max-width: 500px;
 
     padding: 25px;
@@ -1539,21 +1812,38 @@ CASE OPENING
         );
 
     border:
-        1px solid
-        rgba(255,255,255,0.1);
+        1px solid rgba(255,255,255,0.1);
 
     box-shadow:
-        0 30px 100px
-        rgba(0,0,0,0.8);
+        0 30px 100px rgba(0,0,0,0.75);
+}
+
+.case-opening-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.case-opening-header h2 {
+    margin: 0;
+}
+
+.close-button {
+    width: auto !important;
+
+    margin: 0 !important;
+
+    padding: 8px 12px !important;
+
+    font-size: 18px !important;
 }
 
 .case-track {
-
     position: relative;
 
-    overflow: hidden;
-
     height: 130px;
+
+    overflow: hidden;
 
     margin: 20px 0;
 
@@ -1563,19 +1853,19 @@ CASE OPENING
         #05070b;
 
     border:
-        2px solid
-        rgba(255,255,255,0.08);
+        2px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        inset 0 0 30px #000;
 }
 
 .case-track::after {
-
     content: "";
 
     position: absolute;
 
     top: 0;
     bottom: 0;
-
     left: 50%;
 
     width: 3px;
@@ -1587,14 +1877,12 @@ CASE OPENING
         #ffd95a;
 
     box-shadow:
-        0 0 20px
-        #ffd95a;
+        0 0 20px #ffd95a;
 
     z-index: 10;
 }
 
 .case-track-items {
-
     display: flex;
 
     gap: 10px;
@@ -1604,21 +1892,22 @@ CASE OPENING
     align-items: center;
 
     padding: 10px;
+
+    transform:
+        translateX(0);
 }
 
 .case-track-item {
-
     min-width: 105px;
-
     height: 105px;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
+
+    flex-shrink: 0;
 
     border-radius: 15px;
 
@@ -1630,148 +1919,83 @@ CASE OPENING
         );
 
     border:
-        1px solid
-        rgba(255,255,255,0.08);
+        1px solid rgba(255,255,255,0.08);
 
     font-size: 35px;
-
-    flex-shrink: 0;
 }
 
 .case-track-item span {
-
-    font-size: 10px;
-
     margin-top: 5px;
 
-    color:
-        #aab4c4;
+    color: #aab4c4;
+
+    font-size: 10px;
 }
 
 /* =========================================================
-INVENTORY
+   LOCKED
 ========================================================= */
 
-.inventory-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 10px;
-}
-
-.inventory-item {
-
-    margin: 0;
-
-    padding: 14px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.15s,
-        border-color 0.15s;
-}
-
-.inventory-item:active {
-
-    transform:
-        scale(0.96);
-}
-
-.inventory-item strong {
-
-    display: block;
-
-    color: #ffd95a;
-
-    margin-top: 8px;
-}
-
-/* =========================================================
-SHOP
-========================================================= */
-
-.shop-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 12px;
-}
-
-.shop-card {
-
-    margin: 0;
+.locked-box {
+    padding: 35px 20px;
 
     text-align: center;
-}
 
-.shop-icon {
-
-    font-size: 38px;
-
-    margin-bottom: 8px;
-}
-
-/* =========================================================
-PROMO
-========================================================= */
-
-.promo-card {
+    border-radius: 25px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(85,50,180,0.22),
-            rgba(20,15,40,0.55)
+            #111827,
+            #080b12
         );
 
-    border-color:
-        rgba(150,100,255,0.18);
+    border:
+        1px solid rgba(255,255,255,0.06);
 }
 
-#promoMessage {
-
-    min-height: 22px;
-
-    margin-top: 10px;
-
-    text-align: center;
-
-    font-size: 13px;
-
-    color: #53ffad;
+.locked-box .lock-icon {
+    margin-bottom: 15px;
+    font-size: 60px;
 }
 
 /* =========================================================
-PROFILE
+   QUESTS
+========================================================= */
+
+.quest-card.completed {
+    border-color:
+        rgba(83,255,173,0.4);
+}
+
+.quest-progress {
+    margin-top: 7px;
+
+    color: #53ffad;
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   PROFILE
 ========================================================= */
 
 .profile-card {
-
-    text-align: center;
-
     padding: 30px 20px;
+    text-align: center;
 }
 
 .profile-avatar {
-
     width: 90px;
     height: 90px;
-
-    margin:
-        0 auto 15px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
+
+    margin:
+        0 auto 15px;
 
     border-radius: 50%;
 
@@ -1786,43 +2010,17 @@ PROFILE
 
     box-shadow:
         0 0 40px
-        rgba(83,255,173,0.25);
+        rgba(83,255,173,0.2);
 }
 
 /* =========================================================
-QUESTS
-========================================================= */
-
-.quest-card {
-
-    position: relative;
-}
-
-.quest-card.completed {
-
-    border-color:
-        rgba(83,255,173,0.4);
-}
-
-.quest-progress {
-
-    color: #53ffad;
-
-    font-size: 13px;
-
-    margin-top: 7px;
-}
-
-/* =========================================================
-GAME MESSAGE
+   MESSAGE
 ========================================================= */
 
 .game-message {
-
     position: fixed;
 
     left: 50%;
-
     bottom: 95px;
 
     z-index: 2000;
@@ -1830,8 +2028,7 @@ GAME MESSAGE
     max-width:
         calc(100% - 30px);
 
-    padding:
-        13px 18px;
+    padding: 13px 18px;
 
     border-radius: 15px;
 
@@ -1839,12 +2036,10 @@ GAME MESSAGE
         rgba(20,25,35,0.97);
 
     border:
-        1px solid
-        rgba(255,255,255,0.1);
+        1px solid rgba(255,255,255,0.1);
 
     box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.6);
+        0 15px 40px rgba(0,0,0,0.5);
 
     transform:
         translate(-50%, 30px);
@@ -1858,7 +2053,6 @@ GAME MESSAGE
 }
 
 .game-message.show {
-
     transform:
         translate(-50%, 0);
 
@@ -1866,63 +2060,24 @@ GAME MESSAGE
 }
 
 .game-message.success {
-
     border-color:
-        rgba(83,255,173,0.4);
+        rgba(83,255,173,0.35);
 }
 
 .game-message.error {
-
     border-color:
-        rgba(255,71,87,0.4);
+        rgba(255,71,87,0.35);
 }
 
 /* =========================================================
-LOCKED
-========================================================= */
-
-.locked-box {
-
-    padding:
-        35px 20px;
-
-    text-align: center;
-
-    border-radius: 25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #111827,
-            #080b12
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
-}
-
-.locked-box .lock-icon {
-
-    font-size: 60px;
-
-    margin-bottom: 15px;
-}
-
-/* =========================================================
-BOTTOM NAVIGATION
+   BOTTOM NAV
 ========================================================= */
 
 .bottom-nav {
-
     position: fixed;
 
     left: 50%;
-
     bottom: 10px;
-
-    transform:
-        translateX(-50%);
 
     z-index: 500;
 
@@ -1936,14 +2091,16 @@ BOTTOM NAVIGATION
 
     padding: 7px;
 
+    transform:
+        translateX(-50%);
+
     border-radius: 22px;
 
     background:
-        rgba(12,16,25,0.92);
+        rgba(12,16,25,0.91);
 
     border:
-        1px solid
-        rgba(255,255,255,0.08);
+        1px solid rgba(255,255,255,0.08);
 
     backdrop-filter:
         blur(25px);
@@ -1953,17 +2110,15 @@ BOTTOM NAVIGATION
 
     box-shadow:
         0 15px 50px
-        rgba(0,0,0,0.6);
+        rgba(0,0,0,0.55);
 }
 
 .nav-button {
-
     width: 100%;
 
     margin: 0 !important;
 
-    padding:
-        9px 4px !important;
+    padding: 9px 4px !important;
 
     border: none !important;
 
@@ -1983,7 +2138,6 @@ BOTTOM NAVIGATION
 }
 
 .nav-button.active {
-
     color: #53ffad;
 
     background:
@@ -1991,64 +2145,115 @@ BOTTOM NAVIGATION
 }
 
 .nav-icon {
-
     display: block;
 
-    font-size: 21px;
-
     margin-bottom: 3px;
+
+    font-size: 21px;
 }
 
 /* =========================================================
-MOBILE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 420px) {
 
     .page {
-
         padding-left: 10px;
-
         padding-right: 10px;
     }
 
     .coin-button {
-
         width: 165px;
-
         height: 165px;
-
         font-size: 70px;
     }
 
     .casino-grid,
     .cases-grid,
     .shop-grid {
-
         gap: 8px;
     }
 
     .game-card {
+        min-height: 135px;
+    }
 
-        min-height: 130px;
+    .roulette-wheel-wrapper {
+        width: 270px;
+        height: 270px;
     }
 
     .roulette-wheel {
-
-        width: 205px;
-
-        height: 205px;
+        width: 260px;
+        height: 260px;
     }
 
-    .roulette-numbers {
+    .roulette-number {
+        font-size: 9px;
+    }
 
+    .roulette-number:nth-child(1)  { transform: rotate(0deg) translateY(-93px); }
+    .roulette-number:nth-child(2)  { transform: rotate(9.73deg) translateY(-93px); }
+    .roulette-number:nth-child(3)  { transform: rotate(19.46deg) translateY(-93px); }
+    .roulette-number:nth-child(4)  { transform: rotate(29.19deg) translateY(-93px); }
+    .roulette-number:nth-child(5)  { transform: rotate(38.92deg) translateY(-93px); }
+    .roulette-number:nth-child(6)  { transform: rotate(48.65deg) translateY(-93px); }
+    .roulette-number:nth-child(7)  { transform: rotate(58.38deg) translateY(-93px); }
+    .roulette-number:nth-child(8)  { transform: rotate(68.11deg) translateY(-93px); }
+    .roulette-number:nth-child(9)  { transform: rotate(77.84deg) translateY(-93px); }
+    .roulette-number:nth-child(10) { transform: rotate(87.57deg) translateY(-93px); }
+    .roulette-number:nth-child(11) { transform: rotate(97.30deg) translateY(-93px); }
+    .roulette-number:nth-child(12) { transform: rotate(107.03deg) translateY(-93px); }
+    .roulette-number:nth-child(13) { transform: rotate(116.76deg) translateY(-93px); }
+    .roulette-number:nth-child(14) { transform: rotate(126.49deg) translateY(-93px); }
+    .roulette-number:nth-child(15) { transform: rotate(136.22deg) translateY(-93px); }
+    .roulette-number:nth-child(16) { transform: rotate(145.95deg) translateY(-93px); }
+    .roulette-number:nth-child(17) { transform: rotate(155.68deg) translateY(-93px); }
+    .roulette-number:nth-child(18) { transform: rotate(165.41deg) translateY(-93px); }
+    .roulette-number:nth-child(19) { transform: rotate(175.14deg) translateY(-93px); }
+    .roulette-number:nth-child(20) { transform: rotate(184.87deg) translateY(-93px); }
+    .roulette-number:nth-child(21) { transform: rotate(194.60deg) translateY(-93px); }
+    .roulette-number:nth-child(22) { transform: rotate(204.33deg) translateY(-93px); }
+    .roulette-number:nth-child(23) { transform: rotate(214.06deg) translateY(-93px); }
+    .roulette-number:nth-child(24) { transform: rotate(223.79deg) translateY(-93px); }
+    .roulette-number:nth-child(25) { transform: rotate(233.52deg) translateY(-93px); }
+    .roulette-number:nth-child(26) { transform: rotate(243.25deg) translateY(-93px); }
+    .roulette-number:nth-child(27) { transform: rotate(252.98deg) translateY(-93px); }
+    .roulette-number:nth-child(28) { transform: rotate(262.71deg) translateY(-93px); }
+    .roulette-number:nth-child(29) { transform: rotate(272.44deg) translateY(-93px); }
+    .roulette-number:nth-child(30) { transform: rotate(282.17deg) translateY(-93px); }
+    .roulette-number:nth-child(31) { transform: rotate(291.90deg) translateY(-93px); }
+    .roulette-number:nth-child(32) { transform: rotate(301.63deg) translateY(-93px); }
+    .roulette-number:nth-child(33) { transform: rotate(311.36deg) translateY(-93px); }
+    .roulette-number:nth-child(34) { transform: rotate(321.09deg) translateY(-93px); }
+    .roulette-number:nth-child(35) { transform: rotate(330.82deg) translateY(-93px); }
+    .roulette-number:nth-child(36) { transform: rotate(340.55deg) translateY(-93px); }
+    .roulette-number:nth-child(37) { transform: rotate(350.28deg) translateY(-93px); }
+
+    .roulette-center {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+    }
+
+    .roulette-color-bets {
+        grid-template-columns: 1fr;
+    }
+
+    .roulette-number-grid {
         grid-template-columns:
-            repeat(5, 1fr);
+            repeat(6, 1fr);
+    }
+
+    .roulette-number-grid button {
+        min-height: 38px;
+        font-size: 11px;
     }
 }
 
 /* =========================================================
-IPHONE SAFE AREA
+   IPHONE SAFE AREA
 ========================================================= */
 
 @supports (
@@ -2057,24 +2262,18 @@ IPHONE SAFE AREA
 ) {
 
     .bottom-nav {
-
         bottom:
             calc(
                 8px +
-                env(
-                    safe-area-inset-bottom
-                )
+                env(safe-area-inset-bottom)
             );
     }
 
     #app {
-
         padding-bottom:
             calc(
-                110px +
-                env(
-                    safe-area-inset-bottom
-                )
+                105px +
+                env(safe-area-inset-bottom)
             );
     }
 }
