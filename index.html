@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>🍀 Lucky Click</title>
+<title>Lucky Click</title>
 
 <style>
 * {
@@ -15,174 +15,242 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background:
-        radial-gradient(circle at top, #18254a 0%, #080c1c 45%, #050711 100%);
+    background: #090d18;
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-button,
-input {
-    font: inherit;
-}
-
 button {
-    border: 0;
+    border: none;
     cursor: pointer;
     color: white;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .hidden {
     display: none !important;
 }
 
-.app {
-    max-width: 600px;
-    min-height: 100vh;
-    margin: auto;
-    padding-bottom: 90px;
-}
-
 /* HEADER */
 
 .header {
-    padding: 20px 16px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 18px 15px;
+    background: linear-gradient(135deg, #111a31, #0b1020);
+    border-bottom: 1px solid #26314d;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .logo {
-    font-size: 22px;
+    font-size: 25px;
     font-weight: 900;
 }
 
 .balance-box {
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.12);
+    margin-top: 10px;
+    background: #171f35;
     border-radius: 15px;
-    padding: 9px 13px;
+    padding: 12px;
+    text-align: center;
+    font-size: 20px;
     font-weight: bold;
 }
 
 /* PAGES */
 
 .page {
-    padding: 10px 16px;
+    padding: 18px 15px 100px;
+    min-height: calc(100vh - 80px);
 }
 
-.page-title {
-    font-size: 27px;
-    font-weight: 900;
-    margin: 10px 0 20px;
-}
-
-/* CARDS */
-
-.card {
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 22px;
-    padding: 18px;
-    margin-bottom: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.2);
-}
-
-.card h3 {
+.page h2 {
     margin-top: 0;
 }
 
 /* CLICKER */
 
 .clicker-card {
+    background: linear-gradient(145deg, #151e35, #0e1527);
+    border: 1px solid #263657;
+    border-radius: 25px;
+    padding: 25px 15px;
     text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
 }
 
-.click-coin {
-    width: 210px;
-    height: 210px;
+.level {
+    color: #9fb5ff;
+    margin-bottom: 8px;
+}
+
+.xp-bar {
+    height: 8px;
+    background: #242d43;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px 0 20px;
+}
+
+#xpProgress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#6d5dfc,#00d4ff);
+    transition: .3s;
+}
+
+.coin-button {
+    width: 190px;
+    height: 190px;
     border-radius: 50%;
-    margin: 25px auto;
-    display: block;
-    font-size: 85px;
-    background:
-        radial-gradient(circle at 30% 25%, #fff6a0, #ffc400 35%, #e58c00 75%);
+    background: radial-gradient(circle at 35% 30%, #ffe78a, #f3a900 55%, #bd6900);
+    font-size: 80px;
     box-shadow:
-        0 0 30px rgba(255,193,7,.4),
-        inset 0 -15px 20px rgba(0,0,0,.2);
-    transition: .1s;
+        0 0 0 8px rgba(255,190,30,.1),
+        0 15px 35px rgba(255,150,0,.3);
+    transition: .12s;
 }
 
-.click-coin:active {
-    transform: scale(.93);
+.coin-button:active {
+    transform: scale(.92);
 }
 
-.click-power-text {
-    color: #bfc8e8;
-    margin-bottom: 15px;
+.click-power {
+    color: #ffd45c;
 }
 
-.upgrade-btn,
-.main-btn {
+.upgrade-button {
     width: 100%;
     padding: 15px;
-    border-radius: 15px;
-    background: linear-gradient(135deg,#6d5dfc,#8b5cf6);
-    font-weight: 800;
-    margin-top: 8px;
+    margin-top: 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg,#6d5dfc,#4d3be8);
 }
 
-.main-btn:active,
-.upgrade-btn:active {
-    transform: scale(.98);
+/* CARDS */
+
+.card {
+    background: #121a2d;
+    border: 1px solid #263554;
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 14px;
+}
+
+.card button,
+.game-button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 9px;
+    border-radius: 12px;
+    background: #283758;
+}
+
+.card button:active,
+.game-button:active {
+    transform: scale(.97);
+}
+
+.green {
+    background: linear-gradient(135deg,#14b866,#08783e) !important;
+}
+
+.red {
+    background: linear-gradient(135deg,#e53935,#9d1616) !important;
+}
+
+.blue {
+    background: linear-gradient(135deg,#287cff,#1749a7) !important;
+}
+
+.purple {
+    background: linear-gradient(135deg,#8e4dff,#5321ae) !important;
+}
+
+.gold {
+    background: linear-gradient(135deg,#f7b733,#d47a00) !important;
 }
 
 /* NAV */
 
-.bottom-nav {
+.nav {
     position: fixed;
-    z-index: 100;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(600px,100%);
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    gap: 5px;
-    background: rgba(7,10,25,.95);
-    backdrop-filter: blur(15px);
-    border-top: 1px solid rgba(255,255,255,.1);
+    left: 0;
+    right: 0;
+    height: 75px;
+    background: rgba(10,15,28,.96);
+    border-top: 1px solid #26314d;
+    display: flex;
+    z-index: 100;
+    backdrop-filter: blur(12px);
 }
 
 .nav-button {
+    flex: 1;
     background: transparent;
-    color: #8991ad;
-    padding: 8px 2px;
-    border-radius: 12px;
-    font-size: 11px;
+    color: #7e8aa5;
+    font-size: 12px;
+}
+
+.nav-button span {
+    display: block;
+    font-size: 23px;
+    margin-bottom: 3px;
 }
 
 .nav-button.active {
-    background: rgba(111,92,255,.2);
-    color: white;
+    color: #fff;
 }
 
-/* SHOP */
+/* LOCK */
 
-.shop-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+.lock-card {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(145deg,#141b2e,#0d1322);
+    border: 1px solid #303b58;
+    border-radius: 22px;
 }
 
-.shop-item button {
-    background: #6d5dfc;
-    padding: 10px 13px;
-    border-radius: 12px;
-    font-weight: bold;
+.lock-icon {
+    font-size: 65px;
+}
+
+/* CASINO */
+
+.casino-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.casino-card {
+    min-height: 125px;
+    border-radius: 18px;
+    padding: 15px;
+    background: linear-gradient(145deg,#18223b,#10182b);
+    border: 1px solid #2a3a5e;
+    text-align: center;
+}
+
+.casino-icon {
+    font-size: 45px;
+}
+
+.game-screen {
+    background: #121a2d;
+    border-radius: 20px;
+    padding: 18px;
+}
+
+.back-button {
+    background: #263451;
+    padding: 10px 16px;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 /* INPUT */
@@ -190,162 +258,109 @@ button {
 input {
     width: 100%;
     padding: 14px;
-    margin: 7px 0;
-    border-radius: 13px;
-    border: 1px solid rgba(255,255,255,.12);
-    outline: none;
-    background: rgba(0,0,0,.3);
-    color: white;
-}
-
-/* CASINO */
-
-.casino-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 12px;
-}
-
-.casino-game {
-    padding: 22px 10px;
-    border-radius: 20px;
-    background: linear-gradient(145deg,#171e3d,#0e1328);
-    border: 1px solid rgba(255,255,255,.1);
-    text-align: center;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-.casino-game span {
-    display: block;
-    font-size: 42px;
-    margin-bottom: 8px;
-}
-
-/* GAME */
-
-.game-screen {
-    animation: fade .25s ease;
-}
-
-@keyframes fade {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.back-btn {
-    background: rgba(255,255,255,.1);
-    padding: 10px 15px;
     border-radius: 12px;
-    margin-bottom: 15px;
+    border: 1px solid #33415f;
+    background: #0b1120;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    margin: 7px 0;
 }
 
 /* SLOT */
 
 .slot-machine {
-    text-align: center;
-}
-
-.slot-reels {
     display: flex;
-    justify-content: center;
     gap: 8px;
+    justify-content: center;
     margin: 25px 0;
 }
 
-.slot-reel {
+.slot {
     width: 85px;
-    height: 90px;
+    height: 85px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 45px;
-    background: white;
-    color: #111;
+    font-size: 42px;
+    background: #080d18;
+    border: 2px solid #354362;
     border-radius: 15px;
 }
 
 .spinning {
-    animation: shake .12s infinite;
+    animation: spin .2s infinite;
 }
 
-@keyframes shake {
-    0% { transform: translateY(-3px); }
-    50% { transform: translateY(3px); }
-    100% { transform: translateY(-3px); }
+@keyframes spin {
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 /* ROULETTE */
 
-.roulette {
-    text-align: center;
-}
-
 .roulette-wheel {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     margin: 20px auto;
-    position: relative;
     background:
         conic-gradient(
-            #111 0deg 10deg,
-            #c92332 10deg 20deg,
-            #111 20deg 30deg,
-            #c92332 30deg 40deg,
-            #111 40deg 50deg,
-            #c92332 50deg 60deg,
-            #111 60deg 70deg,
-            #c92332 70deg 80deg,
-            #111 80deg 90deg,
-            #c92332 90deg 100deg,
-            #111 100deg 110deg,
-            #c92332 110deg 120deg,
-            #111 120deg 130deg,
-            #c92332 130deg 140deg,
-            #111 140deg 150deg,
-            #c92332 150deg 160deg,
-            #111 160deg 170deg,
-            #c92332 170deg 180deg,
-            #111 180deg 190deg,
-            #c92332 190deg 200deg,
-            #111 200deg 210deg,
-            #c92332 210deg 220deg,
-            #111 220deg 230deg,
-            #c92332 230deg 240deg,
-            #111 240deg 250deg,
-            #c92332 250deg 260deg,
-            #111 260deg 270deg,
-            #c92332 270deg 280deg,
-            #111 280deg 290deg,
-            #c92332 290deg 300deg,
-            #111 300deg 310deg,
-            #c92332 310deg 320deg,
-            #111 320deg 330deg,
-            #c92332 330deg 340deg,
-            #111 340deg 360deg
+            #d92727 0deg 10deg,
+            #111 10deg 20deg,
+            #d92727 20deg 30deg,
+            #111 30deg 40deg,
+            #d92727 40deg 50deg,
+            #111 50deg 60deg,
+            #0a9b4b 60deg 70deg,
+            #111 70deg 80deg,
+            #d92727 80deg 90deg,
+            #111 90deg 100deg,
+            #d92727 100deg 110deg,
+            #111 110deg 120deg,
+            #d92727 120deg 130deg,
+            #111 130deg 140deg,
+            #d92727 140deg 150deg,
+            #111 150deg 160deg,
+            #d92727 160deg 170deg,
+            #111 170deg 180deg,
+            #d92727 180deg 190deg,
+            #111 190deg 200deg,
+            #d92727 200deg 210deg,
+            #111 210deg 220deg,
+            #d92727 220deg 230deg,
+            #111 230deg 240deg,
+            #d92727 240deg 250deg,
+            #111 250deg 260deg,
+            #d92727 260deg 270deg,
+            #111 270deg 280deg,
+            #d92727 280deg 290deg,
+            #111 290deg 300deg,
+            #d92727 300deg 310deg,
+            #111 310deg 320deg,
+            #d92727 320deg 330deg,
+            #111 330deg 340deg,
+            #d92727 340deg 350deg,
+            #111 350deg 360deg
         );
-    border: 10px solid #caa84a;
-    box-shadow: 0 0 30px rgba(255,200,50,.25);
+    border: 8px solid #d8a83b;
+    box-shadow: 0 0 35px rgba(255,180,0,.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.roulette-wheel::after {
-    content: "";
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: #171717;
-    border: 8px solid #d6b45a;
+.roulette-center {
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    background: #10172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .roulette-wheel.spinning {
@@ -353,93 +368,46 @@ input {
 }
 
 @keyframes rouletteSpin {
-    from {
-        transform: rotate(0);
-    }
     to {
-        transform: rotate(1800deg);
+        transform: rotate(1440deg);
     }
+}
+
+.roulette-numbers {
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 5px;
+}
+
+.roulette-number {
+    padding: 8px 2px;
+    border-radius: 6px;
+    background: #222;
+    font-size: 12px;
 }
 
 .roulette-result {
-    font-size: 42px;
-    font-weight: 900;
-    margin: 10px;
-}
-
-.roulette-result.red {
-    color: #ff394b;
-}
-
-.roulette-result.black {
-    color: white;
-}
-
-.roulette-result.green {
-    color: #26df7a;
-}
-
-.color-buttons,
-.number-buttons,
-.dice-buttons {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 7px;
-    margin: 12px 0;
-}
-
-.color-buttons button,
-.number-buttons button,
-.dice-buttons button {
-    padding: 11px 5px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.red-btn {
-    background: #c92332;
-}
-
-.black-btn {
-    background: #151515;
-    border: 1px solid #444 !important;
-}
-
-.green-btn {
-    background: #159447;
+    text-align: center;
+    font-size: 35px;
+    margin: 15px;
 }
 
 /* DICE */
 
 .dice-number {
     text-align: center;
-    font-size: 100px;
+    font-size: 90px;
     margin: 20px;
 }
 
 .rolling {
-    animation: diceRoll .5s infinite;
+    animation: diceRoll .8s infinite;
 }
 
 @keyframes diceRoll {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.1); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-
-/* LADDER */
-
-.ladder-multiplier {
-    text-align: center;
-    font-size: 45px;
-    font-weight: 900;
-    margin: 20px;
-}
-
-.ladder-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    25% { transform: rotate(20deg); }
+    50% { transform: rotate(-20deg); }
+    75% { transform: rotate(20deg); }
 }
 
 /* MINES */
@@ -454,108 +422,63 @@ input {
 .mine-cell {
     aspect-ratio: 1;
     border-radius: 12px;
-    background: linear-gradient(145deg,#29345e,#11182f);
+    background: #263451;
     font-size: 25px;
 }
 
 .mine-safe {
-    background: #146b50;
+    background: #126d49 !important;
 }
 
 .mine-danger {
-    background: #9e2635;
+    background: #9d2020 !important;
 }
 
-/* CRASH */
+/* LADDER */
 
-.crash-area {
-    height: 230px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 18px;
-    background: linear-gradient(180deg,#101c3b,#090d20);
-    margin: 20px 0;
-}
-
-.crash-plane {
-    position: absolute;
-    left: 5%;
-    bottom: 25px;
-    font-size: 50px;
-    transition: left .1s linear;
-}
-
-.crash-multiplier {
-    position: absolute;
-    width: 100%;
+.ladder-box,
+.crash-box,
+.jackpot-box {
     text-align: center;
-    top: 60px;
-    font-size: 48px;
+    padding: 25px;
+}
+
+.multiplier {
+    font-size: 50px;
     font-weight: 900;
-}
-
-/* PROMO */
-
-.promo-message {
-    min-height: 25px;
-    margin-top: 10px;
-    color: #74f6a8;
-}
-
-/* INVENTORY */
-
-.inventory-item {
-    display: grid;
-    grid-template-columns: 50px 1fr auto;
-    align-items: center;
-    gap: 8px;
-    padding: 12px;
-    background: rgba(255,255,255,.06);
-    border-radius: 14px;
-    margin-bottom: 8px;
-}
-
-.inventory-icon {
-    font-size: 30px;
-}
-
-.inventory-item button {
-    grid-column: 2 / 4;
-    background: #1c9b65;
-    padding: 9px;
-    border-radius: 10px;
+    color: #65f5a5;
+    margin: 20px;
 }
 
 /* MESSAGE */
 
 .game-message {
     position: fixed;
-    z-index: 200;
-    top: 20px;
+    top: 85px;
     left: 50%;
-    transform: translate(-50%,-30px);
-    width: calc(100% - 30px);
-    max-width: 500px;
-    padding: 14px;
-    text-align: center;
-    border-radius: 14px;
-    background: rgba(29,38,72,.97);
-    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    transform: translateX(-50%) translateY(-20px);
+    background: #1c2944;
+    border: 1px solid #415477;
+    padding: 12px 18px;
+    border-radius: 12px;
+    z-index: 200;
     opacity: 0;
     pointer-events: none;
     transition: .25s;
+    max-width: 90%;
+    text-align: center;
 }
 
 .game-message.show {
     opacity: 1;
-    transform: translate(-50%,0);
+    transform: translateX(-50%) translateY(0);
 }
 
 .game-message.error {
-    background: rgba(150,30,45,.97);
+    background: #541d25;
 }
 
-/* EFFECTS */
+/* EFFECT */
 
 #clickEffects {
     position: fixed;
@@ -566,10 +489,10 @@ input {
 
 .click-effect {
     position: absolute;
-    color: #ffe45e;
-    font-size: 22px;
+    color: #ffd34d;
+    font-size: 20px;
     font-weight: bold;
-    animation: floatUp 1s ease forwards;
+    animation: floatUp 1s forwards;
 }
 
 @keyframes floatUp {
@@ -577,59 +500,80 @@ input {
         opacity: 1;
         transform: translateY(0);
     }
+
     to {
         opacity: 0;
         transform: translateY(-80px);
     }
 }
 
-/* PROFILE */
+/* INVENTORY */
 
-.profile-level {
-    font-size: 50px;
+.inventory-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #18223a;
+    border-radius: 14px;
+    margin-bottom: 8px;
+}
+
+.inventory-icon {
+    font-size: 30px;
+}
+
+.inventory-item strong {
+    flex: 1;
+}
+
+.inventory-item button {
+    background: #283758;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+/* CASE */
+
+.case-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.case-card {
     text-align: center;
-    font-weight: 900;
+    padding: 20px 10px;
+    background: linear-gradient(145deg,#1b2742,#11192b);
+    border-radius: 18px;
+    border: 1px solid #334568;
 }
 
-.xp-bar {
-    height: 10px;
-    background: rgba(255,255,255,.1);
-    border-radius: 20px;
-    overflow: hidden;
+.case-icon {
+    font-size: 50px;
 }
 
-.xp-progress {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg,#6d5dfc,#c15cff);
-    transition: .3s;
-}
+/* RESPONSIVE */
 
-/* MOBILE */
-
-@media(max-width:400px) {
-
-    .click-coin {
-        width: 175px;
-        height: 175px;
-        font-size: 70px;
+@media(max-width:360px) {
+    .coin-button {
+        width: 160px;
+        height: 160px;
+        font-size: 65px;
     }
 
-    .roulette-wheel {
-        width: 210px;
-        height: 210px;
+    .casino-grid {
+        grid-template-columns: 1fr;
     }
-
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
-
 <header class="header">
     <div class="logo">🍀 Lucky Click</div>
+
     <div class="balance-box">
         🪙 <span class="balance">0</span>
     </div>
@@ -638,35 +582,41 @@ input {
 <div id="gameMessage" class="game-message"></div>
 <div id="clickEffects"></div>
 
-<!-- ================= ГЛАВНАЯ ================= -->
+<!-- HOME -->
 
 <section id="home" class="page">
 
-    <h1 class="page-title">Главная</h1>
+    <div class="clicker-card">
 
-    <div class="card clicker-card">
+        <div class="level">
+            ⭐ Уровень <span class="player-level">1</span>
+        </div>
 
-        <div>Твой баланс</div>
+        <div>
+            XP:
+            <span class="player-xp">0</span>
+            /
+            <span class="xp-needed">100</span>
+        </div>
 
-        <h2>
-            🪙 <span class="balance">0</span>
-        </h2>
+        <div class="xp-bar">
+            <div id="xpProgress"></div>
+        </div>
 
         <button
             id="clickButton"
-            class="click-coin"
+            class="coin-button"
             onclick="clickCoin()"
         >
             🪙
         </button>
 
-        <div class="click-power-text">
-            За клик:
-            <b>+<span class="click-power">0.5</span> 🪙</b>
-        </div>
+        <h3>
+            +<span class="click-power">0.5</span> 🪙 за клик
+        </h3>
 
         <button
-            class="upgrade-btn"
+            class="upgrade-button"
             onclick="upgradeClick()"
         >
             ⚡ Улучшить клик —
@@ -677,607 +627,691 @@ input {
 
     <div class="card">
         <h3>📊 Статистика</h3>
-        Кликов:
-        <b class="total-clicks">0</b>
-        <br><br>
-        Уровень:
-        <b class="player-level">1</b>
+        <p>👆 Кликов: <span class="total-clicks">0</span></p>
+        <p>🎰 Игр в казино: <span id="casinoGames">0</span></p>
+        <p>🎁 Кейсов открыто: <span id="casesOpened">0</span></p>
+    </div>
+
+    <div class="card">
+        <h3>🎒 Инвентарь</h3>
+        <div id="homeInventory"></div>
     </div>
 
 </section>
 
-<!-- ================= МАГАЗИН ================= -->
+<!-- SHOP -->
 
 <section id="shop" class="page hidden">
 
-<h1 class="page-title">🏪 Магазин</h1>
+    <h2>🏪 Магазин</h2>
 
-<div class="card shop-item">
-    <div>
-        ⚡ Double Click
-        <br>
-        <small>×2 клик на 60 секунд</small>
+    <div class="card">
+        <h3>⚡ Double Click</h3>
+        <p>Удваивает силу клика на 60 секунд.</p>
+        <button onclick="buyBooster('double')">
+            Купить за 1 000 🪙
+        </button>
     </div>
-    <button onclick="buyBooster('double')">
-        1000 🪙
-    </button>
-</div>
 
-<div class="card shop-item">
-    <div>
-        🍀 Lucky Boost
-        <br>
-        <small>Больше шанс бонуса</small>
+    <div class="card">
+        <h3>🍀 Lucky Boost</h3>
+        <p>Увеличивает шанс Lucky Bonus.</p>
+        <button onclick="buyBooster('lucky')">
+            Купить за 2 500 🪙
+        </button>
     </div>
-    <button onclick="buyBooster('lucky')">
-        2500 🪙
-    </button>
-</div>
 
-<div class="card shop-item">
-    <div>
-        🔥 Mega Click
-        <br>
-        <small>+1 к силе клика</small>
+    <div class="card">
+        <h3>🔥 Mega Click</h3>
+        <button onclick="buyShopItem('megaClick')">
+            +1 к силе клика — 5 000 🪙
+        </button>
     </div>
-    <button onclick="buyShopItem('megaClick')">
-        5000 🪙
-    </button>
-</div>
 
-<div class="card shop-item">
-    <div>
-        🚀 Super Click
-        <br>
-        <small>+5 к силе клика</small>
+    <div class="card">
+        <h3>🚀 Super Click</h3>
+        <button onclick="buyShopItem('superClick')">
+            +5 к силе клика — 25 000 🪙
+        </button>
     </div>
-    <button onclick="buyShopItem('superClick')">
-        25000 🪙
-    </button>
-</div>
 
-<div class="card shop-item">
-    <div>
-        💎 Luck
-        <br>
-        <small>Увеличивает шанс Lucky Bonus</small>
+    <div class="card">
+        <h3>💎 Luck</h3>
+        <button onclick="buyShopItem('luck')">
+            +10 удачи — 15 000 🪙
+        </button>
     </div>
-    <button onclick="buyShopItem('luck')">
-        15000 🪙
-    </button>
-</div>
 
-<div class="card shop-item">
-    <div>
-        👑 VIP
+    <div class="card">
+        <h3>🤖 Автокликер</h3>
+        <button onclick="buyShopItem('autoClick')">
+            Купить — 50 000 🪙
+        </button>
     </div>
-    <button onclick="buyShopItem('vip')">
-        100000 🪙
-    </button>
-</div>
 
-<div class="card shop-item">
-    <div>
-        🤖 Автокликер
+    <div class="card">
+        <h3>👑 VIP</h3>
+        <button class="gold" onclick="buyShopItem('vip')">
+            Купить VIP — 100 000 🪙
+        </button>
     </div>
-    <button onclick="buyShopItem('autoClick')">
-        50000 🪙
-    </button>
-</div>
 
 </section>
 
-<!-- ================= КЕЙСЫ ================= -->
+<!-- CASES -->
 
 <section id="cases" class="page hidden">
 
-<h1 class="page-title">🎁 Кейсы</h1>
+    <h2>🎁 Кейсы</h2>
 
-<div class="card">
-    <h3>📦 Обычный кейс</h3>
-    <button class="main-btn" onclick="openCase('common')">
-        Открыть за 5000 🪙
-    </button>
-</div>
+    <div id="casesLocked" class="lock-card">
 
-<div class="card">
-    <h3>💎 Редкий кейс</h3>
-    <button class="main-btn" onclick="openCase('rare')">
-        Открыть за 25000 🪙
-    </button>
-</div>
+        <div class="lock-icon">🔒</div>
 
-<div class="card">
-    <h3>👑 Легендарный кейс</h3>
-    <button class="main-btn" onclick="openCase('legendary')">
-        Открыть за 100000 🪙
-    </button>
-</div>
+        <h2>Кейсы закрыты</h2>
 
-<div class="card">
-    <h3>🌌 Мифический кейс</h3>
-    <button class="main-btn" onclick="openCase('mythical')">
-        Открыть за 500000 🪙
-    </button>
-</div>
+        <p>
+            Откроются на <b>5 уровне</b>
+        </p>
+
+        <p>
+            Твой уровень:
+            <span class="player-level">1</span>
+        </p>
+
+    </div>
+
+    <div id="casesContent" class="hidden">
+
+        <div class="case-grid">
+
+            <div class="case-card">
+                <div class="case-icon">📦</div>
+                <h3>Обычный</h3>
+                <p>5 000 🪙</p>
+                <button onclick="openCase('common')">
+                    Открыть
+                </button>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">💎</div>
+                <h3>Редкий</h3>
+                <p>25 000 🪙</p>
+                <button onclick="openCase('rare')">
+                    Открыть
+                </button>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">👑</div>
+                <h3>Легендарный</h3>
+                <p>100 000 🪙</p>
+                <button onclick="openCase('legendary')">
+                    Открыть
+                </button>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🌌</div>
+                <h3>Мифический</h3>
+                <p>500 000 🪙</p>
+                <button onclick="openCase('mythical')">
+                    Открыть
+                </button>
+            </div>
+
+        </div>
+
+        <div class="card" style="margin-top:15px">
+            <h3>🎒 Инвентарь</h3>
+            <div id="inventory"></div>
+        </div>
+
+    </div>
 
 </section>
 
-<!-- ================= КАЗИНО ================= -->
+<!-- CASINO -->
 
 <section id="casino" class="page hidden">
 
-<h1 class="page-title">🎰 Казино</h1>
+    <h2>🎰 Казино</h2>
 
-<div class="casino-grid">
+    <div id="casinoLocked" class="lock-card">
 
-<button class="casino-game" onclick="openGame('slotGame')">
-    <span>🎰</span>
-    Слот
-</button>
+        <div class="lock-icon">🔒</div>
 
-<button class="casino-game" onclick="openGame('rouletteGame')">
-    <span>🎡</span>
-    Рулетка
-</button>
+        <h2>Казино закрыто</h2>
 
-<button class="casino-game" onclick="openGame('diceGame')">
-    <span>🎲</span>
-    Кубик
-</button>
+        <p>
+            Казино открывается на <b>7 уровне</b>
+        </p>
 
-<button class="casino-game" onclick="openGame('ladderGame')">
-    <span>📈</span>
-    Лесенка
-</button>
+        <p>
+            Твой уровень:
+            <span class="player-level">1</span>
+        </p>
 
-<button class="casino-game" onclick="openGame('minesGame')">
-    <span>💣</span>
-    Мины
-</button>
+    </div>
 
-<button class="casino-game" onclick="openGame('crashGame')">
-    <span>✈️</span>
-    Crash
-</button>
+    <div id="casinoContent" class="hidden">
 
-<button class="casino-game" onclick="openGame('jackpotGame')">
-    <span>💎</span>
-    Jackpot
-</button>
+        <div class="casino-grid">
 
-</div>
+            <div class="casino-card"
+                 onclick="openGame('slotGame')">
+                <div class="casino-icon">🎰</div>
+                <b>Слот</b>
+            </div>
 
-<!-- SLOT -->
+            <div class="casino-card"
+                 onclick="openGame('rouletteGame')">
+                <div class="casino-icon">🎡</div>
+                <b>Рулетка</b>
+            </div>
 
-<div id="slotGame" class="game-screen hidden">
+            <div class="casino-card"
+                 onclick="openGame('diceGame')">
+                <div class="casino-icon">🎲</div>
+                <b>Кубик</b>
+            </div>
 
-<button class="back-btn" onclick="backToCasino()">← Назад</button>
+            <div class="casino-card"
+                 onclick="openGame('ladderGame')">
+                <div class="casino-icon">📈</div>
+                <b>Лесенка</b>
+            </div>
+
+            <div class="casino-card"
+                 onclick="openGame('minesGame')">
+                <div class="casino-icon">💣</div>
+                <b>Мины</b>
+            </div>
+
+            <div class="casino-card"
+                 onclick="openGame('crashGame')">
+                <div class="casino-icon">✈️</div>
+                <b>Crash</b>
+            </div>
+
+            <div class="casino-card"
+                 onclick="openGame('jackpotGame')">
+                <div class="casino-icon">💎</div>
+                <b>Jackpot</b>
+            </div>
+
+        </div>
+
+        <!-- SLOT -->
+
+        <div id="slotGame" class="game-screen hidden">
+
+            <button class="back-button"
+                    onclick="backToCasino()">
+                ← Назад
+            </button>
+
+            <h2>🎰 Слот</h2>
+
+            <div class="slot-machine">
+
+                <div id="slot1" class="slot">🍒</div>
+                <div id="slot2" class="slot">🍋</div>
+                <div id="slot3" class="slot">🍊</div>
+
+            </div>
+
+            <input
+                id="slotBet"
+                type="number"
+                placeholder="Ставка"
+            >
+
+            <button
+                class="game-button purple"
+                onclick="playSlot()"
+            >
+                🎰 Крутить
+            </button>
+
+        </div>
 
-<div class="card slot-machine">
-
-<h2>🎰 Слот</h2>
-
-<div class="slot-reels">
-    <div id="slot1" class="slot-reel">🍒</div>
-    <div id="slot2" class="slot-reel">🍋</div>
-    <div id="slot3" class="slot-reel">🍊</div>
-</div>
-
-<input
-    id="slotBet"
-    type="number"
-    placeholder="Ставка"
-/>
-
-<button class="main-btn" onclick="playSlot()">
-    🎰 Крутить
-</button>
-
-</div>
-</div>
-
-<!-- ROULETTE -->
-
-<div id="rouletteGame" class="game-screen hidden">
-
-<button class="back-btn" onclick="backToCasino()">← Назад</button>
-
-<div class="card roulette">
-
-<h2>🎡 Европейская рулетка</h2>
-
-<div id="rouletteWheel" class="roulette-wheel"></div>
-
-<div id="rouletteNumber" class="roulette-result">
-    ?
-</div>
-
-<p id="selectedRouletteColor">
-    Цвет не выбран
-</p>
-
-<p id="selectedRouletteNumber">
-    Число не выбрано
-</p>
-
-<input
-    id="rouletteBet"
-    type="number"
-    placeholder="Ставка"
-/>
-
-<div class="color-buttons">
-
-<button
-    class="red-btn"
-    onclick="selectRouletteColor('red')"
->
-    🔴 Красное ×2
-</button>
-
-<button
-    class="black-btn"
-    onclick="selectRouletteColor('black')"
->
-    ⚫ Чёрное ×2
-</button>
-
-<button
-    class="green-btn"
-    onclick="selectRouletteColor('green')"
->
-    🟢 Зелёное ×14
-</button>
-
-</div>
-
-<div class="number-buttons">
-
-<script>
-for(let i=0;i<=36;i++){
-    document.write(
-        `<button onclick="selectRouletteNumber(${i})">${i}</button>`
-    );
-}
-</script>
-
-</div>
-
-<button class="main-btn" onclick="playRoulette()">
-    🎡 Крутить рулетку
-</button>
-
-</div>
-</div>
-
-<!-- DICE -->
-
-<div id="diceGame" class="game-screen hidden">
-
-<button class="back-btn" onclick="backToCasino()">← Назад</button>
-
-<div class="card">
-
-<h2>🎲 Кубик</h2>
-
-<div class="dice-number">⚀</div>
-
-<p id="selectedDiceNumber">
-    Число не выбрано
-</p>
-
-<input
-    id="diceBet"
-    type="number"
-    placeholder="Ставка"
-/>
-
-<div class="dice-buttons">
-
-<button onclick="selectDiceNumber(1)">⚀ 1</button>
-<button onclick="selectDiceNumber(2)">⚁ 2</button>
-<button onclick="selectDiceNumber(3)">⚂ 3</button>
-<button onclick="selectDiceNumber(4)">⚃ 4</button>
-<button onclick="selectDiceNumber(5)">⚄ 5</button>
-<button onclick="selectDiceNumber(6)">⚅ 6</button>
-
-</div>
-
-<button class="main-btn" onclick="playDice()">
-    🎲 Бросить
-</button>
-
-</div>
-</div>
-
-<!-- LADDER -->
-
-<div id="ladderGame" class="game-screen hidden">
-
-<button class="back-btn" onclick="backToCasino()">← Назад</button>
-
-<div class="card">
-
-<h2>📈 Лесенка</h2>
-
-<div
-    id="ladderMultiplier"
-    class="ladder-multiplier"
->
-    ×1.00
-</div>
-
-<p id="ladderLevel">
-    Уровень 0 / 10
-</p>
-
-<input
-    id="ladderBet"
-    type="number"
-    placeholder="Ставка"
-/>
-
-<div class="ladder-buttons">
-
-<button
-    class="main-btn"
-    onclick="startLadder()"
->
-    🚀 Начать
-</button>
-
-<button
-    class="main-btn"
-    onclick="ladderNext()"
->
-    ⬆️ Следующий
-</button>
-
-</div>
-
-<button
-    class="main-btn"
-    onclick="ladderCashout()"
->
-    💰 Забрать выигрыш
-</button>
-
-</div>
-</div>
-
-<!-- MINES -->
-
-<div id="minesGame" class="game-screen hidden">
-
-<button class="back-btn" onclick="backToCasino()">← Назад</button>
-
-<div class="card">
-
-<h2>💣 Мины</h2>
-
-<input
-    id="minesBet"
-    type="number"
-    placeholder="Ставка"
-/>
-
-<button
-    class="main-btn"
-    onclick="startMines()"
->
-    💣 Начать игру
-</button>
-
-<div class="mines-board"></div>
-
-<button
-    class="main-btn"
-    onclick="cashoutMines()"
->
-    💰 Забрать
-</button>
-
-</div>
-</div>
-
-<!-- CRASH -->
-
-<div id="crashGame" class="game-screen hidden">
-
-<button class="back-btn" onclick="backToCasino()">← Назад</button>
-
-<div class="card">
-
-<h2>✈️ Crash</h2>
-
-<div class="crash-area">
-
-<div
-    id="crashMultiplier"
-    class="crash-multiplier"
->
-    ×1.00
-</div>
-
-<div
-    id="crashPlane"
-    class="crash-plane"
->
-    ✈️
-</div>
-
-</div>
-
-<input
-    id="crashBet"
-    type="number"
-    placeholder="Ставка"
-/>
-
-<button
-    class="main-btn"
-    onclick="startCrash()"
->
-    ✈️ Старт
-</button>
-
-<button
-    class="main-btn"
-    onclick="cashoutCrash()"
->
-    💰 Забрать
-</button>
-
-</div>
-</div>
-
-<!-- JACKPOT -->
-
-<div id="jackpotGame" class="game-screen hidden">
-
-<button class="back-btn" onclick="backToCasino()">← Назад</button>
-
-<div class="card">
-
-<h2>💎 Jackpot</h2>
-
-<p>
-Шанс огромного выигрыша!
-</p>
-
-<input
-    id="jackpotBet"
-    type="number"
-    placeholder="Ставка"
-/>
-
-<button
-    class="main-btn"
-    onclick="playJackpot()"
->
-    💎 Испытать удачу
-</button>
-
-</div>
-</div>
+        <!-- ROULETTE -->
+
+        <div id="rouletteGame" class="game-screen hidden">
+
+            <button class="back-button"
+                    onclick="backToCasino()">
+                ← Назад
+            </button>
+
+            <h2>🎡 Рулетка</h2>
+
+            <div
+                id="rouletteWheel"
+                class="roulette-wheel"
+            >
+                <div
+                    id="rouletteNumber"
+                    class="roulette-center"
+                >
+                    ?
+                </div>
+            </div>
+
+            <p id="selectedRouletteColor">
+                Цвет не выбран
+            </p>
+
+            <p id="selectedRouletteNumber">
+                Число не выбрано
+            </p>
+
+            <button
+                class="red"
+                onclick="selectRouletteColor('red')"
+            >
+                🔴 Красное ×2
+            </button>
+
+            <button
+                class="game-button"
+                onclick="selectRouletteColor('black')"
+            >
+                ⚫ Чёрное ×2
+            </button>
+
+            <button
+                class="green"
+                onclick="selectRouletteColor('green')"
+            >
+                🟢 Зелёное ×14
+            </button>
+
+            <div class="roulette-numbers">
+
+                <script>
+                for(let i=0;i<=36;i++){
+                    document.write(
+                        `<button class="roulette-number"
+                        onclick="selectRouletteNumber(${i})">${i}</button>`
+                    );
+                }
+                </script>
+
+            </div>
+
+            <input
+                id="rouletteBet"
+                type="number"
+                placeholder="Ставка"
+            >
+
+            <button
+                class="game-button purple"
+                onclick="playRoulette()"
+            >
+                🎡 Крутить рулетку
+            </button>
+
+        </div>
+
+        <!-- DICE -->
+
+        <div id="diceGame" class="game-screen hidden">
+
+            <button class="back-button"
+                    onclick="backToCasino()">
+                ← Назад
+            </button>
+
+            <h2>🎲 Кубик</h2>
+
+            <div class="dice-number">⚀</div>
+
+            <p id="selectedDiceNumber">
+                Выберите число
+            </p>
+
+            <div class="casino-grid">
+
+                <button onclick="selectDiceNumber(1)">1</button>
+                <button onclick="selectDiceNumber(2)">2</button>
+                <button onclick="selectDiceNumber(3)">3</button>
+                <button onclick="selectDiceNumber(4)">4</button>
+                <button onclick="selectDiceNumber(5)">5</button>
+                <button onclick="selectDiceNumber(6)">6</button>
+
+            </div>
+
+            <input
+                id="diceBet"
+                type="number"
+                placeholder="Ставка"
+            >
+
+            <button
+                class="game-button"
+                onclick="playDice()"
+            >
+                🎲 Бросить
+            </button>
+
+        </div>
+
+        <!-- LADDER -->
+
+        <div id="ladderGame" class="game-screen hidden">
+
+            <button class="back-button"
+                    onclick="backToCasino()">
+                ← Назад
+            </button>
+
+            <h2>📈 Лесенка</h2>
+
+            <div class="ladder-box">
+
+                <div
+                    id="ladderMultiplier"
+                    class="multiplier"
+                >
+                    ×1.00
+                </div>
+
+                <p id="ladderLevel">
+                    Уровень 0 / 10
+                </p>
+
+                <input
+                    id="ladderBet"
+                    type="number"
+                    placeholder="Ставка"
+                >
+
+                <button
+                    class="game-button"
+                    onclick="startLadder()"
+                >
+                    ▶️ Начать
+                </button>
+
+                <button
+                    class="game-button blue"
+                    onclick="ladderNext()"
+                >
+                    ⬆️ Следующая ступень
+                </button>
+
+                <button
+                    class="game-button green"
+                    onclick="ladderCashout()"
+                >
+                    💰 Забрать выигрыш
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- MINES -->
+
+        <div id="minesGame" class="game-screen hidden">
+
+            <button class="back-button"
+                    onclick="backToCasino()">
+                ← Назад
+            </button>
+
+            <h2>💣 Мины</h2>
+
+            <input
+                id="minesBet"
+                type="number"
+                placeholder="Ставка"
+            >
+
+            <button
+                class="game-button"
+                onclick="startMines()"
+            >
+                💣 Начать игру
+            </button>
+
+            <div
+                id="minesMultiplier"
+                class="multiplier"
+            >
+                ×1.00
+            </div>
+
+            <div class="mines-board"></div>
+
+            <button
+                class="game-button green"
+                onclick="cashoutMines()"
+            >
+                💰 Забрать
+            </button>
+
+        </div>
+
+        <!-- CRASH -->
+
+        <div id="crashGame" class="game-screen hidden">
+
+            <button class="back-button"
+                    onclick="backToCasino()">
+                ← Назад
+            </button>
+
+            <h2>✈️ Crash</h2>
+
+            <div class="crash-box">
+
+                <div
+                    id="crashMultiplier"
+                    class="multiplier"
+                >
+                    ×1.00
+                </div>
+
+                <div
+                    id="crashPlane"
+                    style="font-size:50px;position:relative"
+                >
+                    ✈️
+                </div>
+
+                <input
+                    id="crashBet"
+                    type="number"
+                    placeholder="Ставка"
+                >
+
+                <button
+                    class="game-button"
+                    onclick="startCrash()"
+                >
+                    ✈️ Старт
+                </button>
+
+                <button
+                    class="game-button green"
+                    onclick="cashoutCrash()"
+                >
+                    💰 Забрать
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- JACKPOT -->
+
+        <div id="jackpotGame" class="game-screen hidden">
+
+            <button class="back-button"
+                    onclick="backToCasino()">
+                ← Назад
+            </button>
+
+            <h2>💎 Jackpot</h2>
+
+            <div class="jackpot-box">
+
+                <div style="font-size:80px">
+                    💎
+                </div>
+
+                <p>
+                    Шанс сорвать огромный выигрыш!
+                </p>
+
+                <input
+                    id="jackpotBet"
+                    type="number"
+                    placeholder="Ставка"
+                >
+
+                <button
+                    class="game-button gold"
+                    onclick="playJackpot()"
+                >
+                    💎 ИГРАТЬ
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
-<!-- ================= ПРОФИЛЬ ================= -->
+<!-- PROFILE -->
 
 <section id="profile" class="page hidden">
 
-<h1 class="page-title">👤 Профиль</h1>
+    <h2>👤 Профиль</h2>
 
-<div class="card">
+    <div class="card">
 
-<div class="profile-level">
-    <span class="player-level">1</span>
-</div>
+        <h3>🍀 Lucky Player</h3>
 
-<p style="text-align:center">
-    Уровень игрока
-</p>
+        <p>
+            ⭐ Уровень:
+            <b class="player-level">1</b>
+        </p>
 
-<p>
-XP:
-<span class="player-xp">0</span>
-/
-<span class="xp-needed">100</span>
-</p>
+        <p>
+            🪙 Баланс:
+            <b class="balance">0</b>
+        </p>
 
-<div class="xp-bar">
-    <div id="xpProgress" class="xp-progress"></div>
-</div>
+        <p>
+            👆 Кликов:
+            <b class="total-clicks">0</b>
+        </p>
 
-</div>
+    </div>
 
-<div class="card">
+    <div class="card">
 
-<h3>🎟 Промокод</h3>
+        <h3>🎟️ Промокод</h3>
 
-<input
-    id="promoInput"
-    placeholder="Введите промокод"
-/>
+        <input
+            id="promoInput"
+            placeholder="Введите промокод"
+        >
 
-<button
-    class="main-btn"
-    onclick="activatePromo()"
->
-    Активировать
-</button>
+        <button
+            onclick="activatePromo()"
+        >
+            🎁 Активировать
+        </button>
 
-<div
-    id="promoMessage"
-    class="promo-message"
-></div>
+        <p id="promoMessage"></p>
 
-</div>
-
-<div class="card">
-
-<h3>🎒 Инвентарь</h3>
-
-<div id="inventory">
-    <p>Инвентарь пуст</p>
-</div>
-
-</div>
+    </div>
 
 </section>
 
-</div>
+<!-- NAVIGATION -->
 
-<!-- ================= NAV ================= -->
+<nav class="nav">
 
-<nav class="bottom-nav">
+    <button
+        class="nav-button active"
+        onclick="
+            openPage('home');
+            setActiveNav(this);
+        "
+    >
+        <span>🏠</span>
+        Главная
+    </button>
 
-<button
-    class="nav-button active"
-    onclick="openPage('home');setActiveNav(this)"
->
-    🏠<br>Главная
-</button>
+    <button
+        class="nav-button"
+        onclick="
+            openPage('shop');
+            setActiveNav(this);
+        "
+    >
+        <span>🏪</span>
+        Магазин
+    </button>
 
-<button
-    class="nav-button"
-    onclick="openPage('shop');setActiveNav(this)"
->
-    🏪<br>Магазин
-</button>
+    <button
+        class="nav-button"
+        onclick="
+            openPage('cases');
+            setActiveNav(this);
+        "
+    >
+        <span>🎁</span>
+        Кейсы
+    </button>
 
-<button
-    class="nav-button"
-    onclick="openPage('cases');setActiveNav(this)"
->
-    🎁<br>Кейсы
-</button>
+    <button
+        class="nav-button"
+        onclick="
+            openPage('casino');
+            setActiveNav(this);
+        "
+    >
+        <span>🎰</span>
+        Казино
+    </button>
 
-<button
-    class="nav-button"
-    onclick="openPage('casino');setActiveNav(this)"
->
-    🎰<br>Казино
-</button>
-
-<button
-    class="nav-button"
-    onclick="openPage('profile');setActiveNav(this)"
->
-    👤<br>Профиль
-</button>
+    <button
+        class="nav-button"
+        onclick="
+            openPage('profile');
+            setActiveNav(this);
+        "
+    >
+        <span>👤</span>
+        Профиль
+    </button>
 
 </nav>
 
 <script>
-
-/* =========================
-   LUCKY CLICK GAME
-========================= */
-
 "use strict";
+
+/* TELEGRAM */
+
+const tg = window.Telegram?.WebApp;
+
+if (tg) {
+    tg.ready();
+    tg.expand();
+}
+
+/* STATE */
 
 const defaultState = {
     balance: 0,
@@ -1303,12 +1337,11 @@ const defaultState = {
     }
 };
 
-let state =
-    JSON.parse(
-        localStorage.getItem("luckyClickState")
-    ) || JSON.parse(
-        JSON.stringify(defaultState)
-    );
+let state = JSON.parse(
+    localStorage.getItem("luckyClickState")
+) || JSON.parse(JSON.stringify(defaultState));
+
+let messageTimer;
 
 function saveGame() {
 
@@ -1318,6 +1351,7 @@ function saveGame() {
     );
 
     updateUI();
+
 }
 
 function formatNumber(number) {
@@ -1331,38 +1365,26 @@ function formatNumber(number) {
 
 }
 
-let messageTimer;
-
-function showMessage(
-    text,
-    type = "success"
-) {
+function showMessage(text, type="success") {
 
     const el =
-        document.getElementById(
-            "gameMessage"
-        );
+        document.getElementById("gameMessage");
 
     if (!el) return;
 
     el.textContent = text;
 
     el.className =
-        "game-message show " +
-        type;
+        "game-message show " + type;
 
-    clearTimeout(
-        messageTimer
-    );
+    clearTimeout(messageTimer);
 
     messageTimer =
         setTimeout(() => {
 
-            el.classList.remove(
-                "show"
-            );
+            el.classList.remove("show");
 
-        }, 2500);
+        },2500);
 
 }
 
@@ -1385,11 +1407,12 @@ function addXP(amount) {
         state.level++;
 
         showMessage(
-            "🎉 Новый уровень: " +
-            state.level
+            `🎉 Новый уровень: ${state.level}`
         );
 
     }
+
+    saveGame();
 
 }
 
@@ -1400,9 +1423,7 @@ function updateUI() {
         .forEach(el => {
 
             el.textContent =
-                formatNumber(
-                    state.balance
-                );
+                formatNumber(state.balance);
 
         });
 
@@ -1411,9 +1432,7 @@ function updateUI() {
         .forEach(el => {
 
             el.textContent =
-                formatNumber(
-                    state.clicks
-                );
+                formatNumber(state.clicks);
 
         });
 
@@ -1422,9 +1441,7 @@ function updateUI() {
         .forEach(el => {
 
             el.textContent =
-                formatNumber(
-                    state.clickPower
-                );
+                formatNumber(state.clickPower);
 
         });
 
@@ -1433,9 +1450,7 @@ function updateUI() {
         .forEach(el => {
 
             el.textContent =
-                formatNumber(
-                    state.clickPrice
-                ) +
+                formatNumber(state.clickPrice) +
                 " 🪙";
 
         });
@@ -1468,25 +1483,84 @@ function updateUI() {
         });
 
     const progress =
-        document.getElementById(
-            "xpProgress"
-        );
+        document.getElementById("xpProgress");
 
     if (progress) {
 
         progress.style.width =
             Math.min(
                 100,
-                state.xp /
-                xpNeeded() *
-                100
+                state.xp / xpNeeded() * 100
             ) + "%";
 
     }
 
+    updateLocks();
     updateInventory();
 
+    const casinoGames =
+        document.getElementById("casinoGames");
+
+    if (casinoGames)
+        casinoGames.textContent =
+            state.stats.casinoGames;
+
+    const casesOpened =
+        document.getElementById("casesOpened");
+
+    if (casesOpened)
+        casesOpened.textContent =
+            state.stats.casesOpened;
+
 }
+
+/* LOCKS */
+
+function updateLocks() {
+
+    const casesLocked =
+        document.getElementById("casesLocked");
+
+    const casesContent =
+        document.getElementById("casesContent");
+
+    if (state.level >= 5) {
+
+        casesLocked?.classList.add("hidden");
+
+        casesContent?.classList.remove("hidden");
+
+    } else {
+
+        casesLocked?.classList.remove("hidden");
+
+        casesContent?.classList.add("hidden");
+
+    }
+
+    const casinoLocked =
+        document.getElementById("casinoLocked");
+
+    const casinoContent =
+        document.getElementById("casinoContent");
+
+    if (state.level >= 7) {
+
+        casinoLocked?.classList.add("hidden");
+
+        casinoContent?.classList.remove("hidden");
+
+    } else {
+
+        casinoLocked?.classList.remove("hidden");
+
+        casinoContent?.classList.add("hidden");
+
+    }
+
+}
+
+/* CLICK */
 
 function clickCoin() {
 
@@ -1514,22 +1588,19 @@ function clickCoin() {
         power *= 10;
 
         showMessage(
-            "🍀 LUCKY BONUS ×10!"
+            `🍀 LUCKY BONUS ×10! +${formatNumber(power)} 🪙`
         );
 
     }
 
-    state.balance +=
-        power;
+    state.balance += power;
 
     state.clicks++;
 
     addXP(1);
 
     createClickEffect(
-        "+" +
-        formatNumber(power) +
-        " 🪙"
+        `+${formatNumber(power)} 🪙`
     );
 
     saveGame();
@@ -1544,9 +1615,7 @@ function createClickEffect(text) {
         );
 
     const el =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     el.className =
         "click-effect";
@@ -1555,26 +1624,17 @@ function createClickEffect(text) {
         text;
 
     el.style.left =
-        Math.random() *
-        80 +
-        10 +
-        "%";
+        Math.random()*80+10+"%";
 
     el.style.top =
-        Math.random() *
-        50 +
-        25 +
-        "%";
+        Math.random()*50+25+"%";
 
-    container.appendChild(
-        el
+    container.appendChild(el);
+
+    setTimeout(
+        () => el.remove(),
+        1000
     );
-
-    setTimeout(() => {
-
-        el.remove();
-
-    }, 1000);
 
 }
 
@@ -1597,23 +1657,19 @@ function upgradeClick() {
     state.balance -=
         state.clickPrice;
 
-    state.clickPower +=
-        0.5;
+    state.clickPower += 0.5;
 
-    state.clickPrice *=
-        2;
+    state.clickPrice *= 2;
 
     showMessage(
-        "⚡ Клик улучшен!"
+        `⚡ Клик улучшен! Теперь +${formatNumber(state.clickPower)} 🪙`
     );
 
     saveGame();
 
 }
 
-/* =========================
-NAVIGATION
-========================= */
+/* NAVIGATION */
 
 function openPage(id) {
 
@@ -1621,45 +1677,26 @@ function openPage(id) {
         .querySelectorAll(".page")
         .forEach(page => {
 
-            page.classList.add(
-                "hidden"
-            );
+            page.classList.add("hidden");
+            page.classList.remove("active");
 
         });
 
-    const page =
-        document.getElementById(id);
-
-    if (page) {
-
-        page.classList.remove(
-            "hidden"
-        );
-
-    }
+    document
+        .getElementById(id)
+        ?.classList.remove("hidden");
 
     document
         .querySelectorAll(".game-screen")
         .forEach(game => {
 
-            game.classList.add(
-                "hidden"
-            );
+            game.classList.add("hidden");
 
         });
 
-    const casinoGrid =
-        document.querySelector(
-            ".casino-grid"
-        );
-
-    if (casinoGrid) {
-
-        casinoGrid.classList.remove(
-            "hidden"
-        );
-
-    }
+    document
+        .querySelector(".casino-grid")
+        ?.classList.remove("hidden");
 
     updateUI();
 
@@ -1668,26 +1705,16 @@ function openPage(id) {
 function setActiveNav(button) {
 
     document
-        .querySelectorAll(
-            ".nav-button"
-        )
-        .forEach(btn => {
+        .querySelectorAll(".nav-button")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
 
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-    button.classList.add(
-        "active"
-    );
+    button.classList.add("active");
 
 }
 
-/* =========================
-SHOP
-========================= */
+/* SHOP */
 
 function buyBooster(type) {
 
@@ -1696,10 +1723,7 @@ function buyBooster(type) {
             ? 1000
             : 2500;
 
-    if (
-        state.balance <
-        price
-    ) {
+    if (state.balance < price) {
 
         showMessage(
             "❌ Недостаточно монет",
@@ -1710,32 +1734,35 @@ function buyBooster(type) {
 
     }
 
-    state.balance -=
-        price;
+    state.balance -= price;
 
-    if (
-        type === "double"
-    ) {
+    if (type === "double") {
 
         state.boosters.double =
-            Date.now() +
-            60000;
+            Date.now()+60000;
 
         showMessage(
             "⚡ Double Click активирован!"
         );
 
-    }
+    } else {
 
-    if (
-        type === "lucky"
-    ) {
+        state.boosters.lucky =
+            Date.now()+60000;
 
         state.luck += 20;
 
         showMessage(
             "🍀 Lucky Boost активирован!"
         );
+
+        setTimeout(() => {
+
+            state.luck -= 20;
+
+            saveGame();
+
+        },60000);
 
     }
 
@@ -1747,35 +1774,35 @@ function buyShopItem(item) {
 
     const items = {
 
-        megaClick: [
-            5000,
-            () => state.clickPower += 1,
-            "🔥 Сила клика +1!"
-        ],
+        megaClick: {
+            price:5000,
+            action:()=>state.clickPower+=1,
+            text:"🔥 Сила клика +1!"
+        },
 
-        superClick: [
-            25000,
-            () => state.clickPower += 5,
-            "🚀 Сила клика +5!"
-        ],
+        superClick: {
+            price:25000,
+            action:()=>state.clickPower+=5,
+            text:"🚀 Сила клика +5!"
+        },
 
-        luck: [
-            15000,
-            () => state.luck += 10,
-            "💎 Удача увеличена!"
-        ],
+        luck: {
+            price:15000,
+            action:()=>state.luck+=10,
+            text:"💎 Удача увеличена!"
+        },
 
-        vip: [
-            100000,
-            () => state.vip = true,
-            "👑 VIP активирован!"
-        ],
+        vip: {
+            price:100000,
+            action:()=>state.vip=true,
+            text:"👑 VIP активирован!"
+        },
 
-        autoClick: [
-            50000,
-            () => state.autoClick = true,
-            "🤖 Автокликер активирован!"
-        ]
+        autoClick: {
+            price:50000,
+            action:()=>state.autoClick=true,
+            text:"🤖 Автокликер активирован!"
+        }
 
     };
 
@@ -1786,7 +1813,7 @@ function buyShopItem(item) {
 
     if (
         state.balance <
-        selected[0]
+        selected.price
     ) {
 
         showMessage(
@@ -1799,30 +1826,28 @@ function buyShopItem(item) {
     }
 
     state.balance -=
-        selected[0];
+        selected.price;
 
-    selected[1]();
+    selected.action();
 
     showMessage(
-        selected[2]
+        selected.text
     );
 
     saveGame();
 
 }
 
-/* =========================
-PROMO
-========================= */
+/* PROMO */
 
 const promoCodes = {
 
-    LUCKY: 1000,
-    LUCKYCLICK: 5000,
-    BONUS: 10000,
-    VIP: 50000,
-    START: 2500,
-    CASINO: 25000
+    LUCKY:1000,
+    LUCKYCLICK:5000,
+    BONUS:10000,
+    VIP:50000,
+    START:2500,
+    CASINO:25000
 
 };
 
@@ -1840,17 +1865,24 @@ function activatePromo() {
 
     const code =
         input.value
-            .trim()
-            .toUpperCase();
+        .trim()
+        .toUpperCase();
+
+    if (!code) {
+
+        message.textContent =
+            "Введите промокод";
+
+        return;
+
+    }
 
     if (
-        state.promoUsed.includes(
-            code
-        )
+        state.promoUsed.includes(code)
     ) {
 
         message.textContent =
-            "❌ Уже использован";
+            "❌ Промокод уже использован";
 
         return;
 
@@ -1860,83 +1892,115 @@ function activatePromo() {
         promoCodes[code]
     ) {
 
-        state.balance +=
+        const reward =
             promoCodes[code];
 
-        state.promoUsed.push(
-            code
-        );
+        state.balance +=
+            reward;
+
+        state.promoUsed.push(code);
 
         message.textContent =
-            "🎉 Получено " +
-            formatNumber(
-                promoCodes[code]
-            ) +
-            " 🪙";
+            `🎉 Получено ${formatNumber(reward)} 🪙`;
 
         input.value = "";
 
         saveGame();
 
-    } else {
-
-        message.textContent =
-            "❌ Неверный промокод";
+        return;
 
     }
 
+    message.textContent =
+        "❌ Неверный промокод";
+
 }
 
-/* =========================
-CASES
-========================= */
+/* CASES */
 
 const casePrices = {
 
-    common: 5000,
-    rare: 25000,
-    legendary: 100000,
-    mythical: 500000
+    common:5000,
+    rare:25000,
+    legendary:100000,
+    mythical:500000
 
 };
 
 const caseItems = {
 
-    common: [
-        ["🪙","Монета",500],
-        ["💎","Кристалл",1500],
-        ["👑","Корона",5000],
-        ["🌟","Легенда",15000],
-        ["🌌","Миф",50000]
-    ],
+common:[
+{name:"Монета",icon:"🪙",value:500,chance:45},
+{name:"Кристалл",icon:"💎",value:1500,chance:30},
+{name:"Корона",icon:"👑",value:5000,chance:15},
+{name:"Легенда",icon:"🌟",value:15000,chance:8},
+{name:"Миф",icon:"🌌",value:50000,chance:2}
+],
 
-    rare: [
-        ["💎","Кристалл",5000],
-        ["👑","Корона",15000],
-        ["🐉","Дракон",50000],
-        ["🌟","Звезда",100000],
-        ["🌌","Мифический",250000]
-    ],
+rare:[
+{name:"Кристалл",icon:"💎",value:5000,chance:40},
+{name:"Корона",icon:"👑",value:15000,chance:30},
+{name:"Дракон",icon:"🐉",value:50000,chance:20},
+{name:"Звезда",icon:"🌟",value:100000,chance:8},
+{name:"Мифический",icon:"🌌",value:250000,chance:2}
+],
 
-    legendary: [
-        ["👑","Корона",50000],
-        ["🐉","Дракон",150000],
-        ["💎","Алмаз",500000],
-        ["🏆","Трофей",1000000],
-        ["🌌","Мега Джекпот",5000000]
-    ],
+legendary:[
+{name:"Корона",icon:"👑",value:50000,chance:40},
+{name:"Дракон",icon:"🐉",value:150000,chance:30},
+{name:"Алмаз",icon:"💎",value:500000,chance:20},
+{name:"Трофей",icon:"🏆",value:1000000,chance:9},
+{name:"Мега Джекпот",icon:"🌌",value:5000000,chance:1}
+],
 
-    mythical: [
-        ["💎","Алмаз",500000],
-        ["🐉","Дракон",1000000],
-        ["👑","Богатство",2500000],
-        ["🌌","Артефакт",5000000],
-        ["💠","ULTIMATE",25000000]
-    ]
+mythical:[
+{name:"Алмаз",icon:"💎",value:500000,chance:50},
+{name:"Дракон",icon:"🐉",value:1000000,chance:30},
+{name:"Богатство",icon:"👑",value:2500000,chance:15},
+{name:"Артефакт",icon:"🌌",value:5000000,chance:4},
+{name:"ULTIMATE",icon:"💠",value:25000000,chance:1}
+]
 
 };
 
+function randomCaseItem(type) {
+
+    const items =
+        caseItems[type];
+
+    let random =
+        Math.random()*100;
+
+    let current = 0;
+
+    for (const item of items) {
+
+        current +=
+            item.chance;
+
+        if (random <= current)
+            return item;
+
+    }
+
+    return items[0];
+
+}
+
 function openCase(type) {
+
+    if (
+        state.level < 5
+    ) {
+
+        showMessage(
+            "🔒 Кейсы доступны с 5 уровня",
+            "error"
+        );
+
+        return;
+
+    }
 
     const price =
         casePrices[type];
@@ -1955,34 +2019,23 @@ function openCase(type) {
 
     }
 
-    state.balance -=
-        price;
+    state.balance -= price;
 
-    const items =
-        caseItems[type];
-
-    const item =
-        items[
-            Math.floor(
-                Math.random() *
-                items.length
-            )
-        ];
+    const winner =
+        randomCaseItem(type);
 
     state.inventory.push({
 
-        icon: item[0],
-        name: item[1],
-        value: item[2],
-        id: Date.now()
+        ...winner,
+
+        id:Date.now()
 
     });
 
+    state.stats.casesOpened++;
+
     showMessage(
-        "🎁 Выпало: " +
-        item[0] +
-        " " +
-        item[1]
+        `🎁 Выпало: ${winner.icon} ${winner.name} — ${formatNumber(winner.value)} 🪙`
     );
 
     saveGame();
@@ -1991,41 +2044,42 @@ function openCase(type) {
 
 function updateInventory() {
 
-    const inventory =
-        document.getElementById(
-            "inventory"
-        );
+    const containers = [
 
-    if (!inventory)
-        return;
+        document.getElementById("inventory"),
+        document.getElementById("homeInventory")
 
-    if (
-        state.inventory.length === 0
-    ) {
+    ];
 
-        inventory.innerHTML =
-            "<p>🎒 Инвентарь пуст</p>";
+    containers.forEach(container => {
 
-        return;
+        if (!container) return;
 
-    }
+        container.innerHTML = "";
 
-    inventory.innerHTML = "";
+        if (
+            state.inventory.length === 0
+        ) {
 
-    state.inventory
+            container.innerHTML =
+                "<p>🎒 Инвентарь пуст</p>";
+
+            return;
+
+        }
+
+        state.inventory
         .slice()
         .reverse()
         .forEach(item => {
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+            const el =
+                document.createElement("div");
 
-            div.className =
+            el.className =
                 "inventory-item";
 
-            div.innerHTML = `
+            el.innerHTML = `
 
                 <div class="inventory-icon">
                     ${item.icon}
@@ -2042,16 +2096,16 @@ function updateInventory() {
                 <button
                     onclick="sellItem(${item.id})"
                 >
-                    💰 Продать
+                    💰
                 </button>
 
             `;
 
-            inventory.appendChild(
-                div
-            );
+            container.appendChild(el);
 
         });
+
+    });
 
 }
 
@@ -2071,11 +2125,10 @@ function sellItem(id) {
 
     const price =
         Math.floor(
-            item.value * .7
+            item.value*.7
         );
 
-    state.balance +=
-        price;
+    state.balance += price;
 
     state.inventory.splice(
         index,
@@ -2083,86 +2136,76 @@ function sellItem(id) {
     );
 
     showMessage(
-        "💰 Продано за " +
-        formatNumber(price) +
-        " 🪙"
+        `💰 Продано за ${formatNumber(price)} 🪙`
     );
 
     saveGame();
 
 }
 
-/* =========================
-CASINO
-========================= */
+/* CASINO */
 
 function openGame(id) {
 
+    if (
+        state.level < 7
+    ) {
+
+        showMessage(
+            "🔒 Казино доступно с 7 уровня",
+            "error"
+        );
+
+        return;
+
+    }
+
     document
-        .querySelectorAll(
-            ".game-screen"
-        )
-        .forEach(game => {
-
-            game.classList.add(
-                "hidden"
-            );
-
-        });
+        .querySelector(".casino-grid")
+        ?.classList.add("hidden");
 
     document
-        .querySelector(
-            ".casino-grid"
-        )
-        .classList.add(
-            "hidden"
+        .querySelectorAll(".game-screen")
+        .forEach(game =>
+            game.classList.add("hidden")
         );
 
     document
         .getElementById(id)
-        .classList.remove(
-            "hidden"
-        );
+        ?.classList.remove("hidden");
 
 }
 
 function backToCasino() {
 
     document
-        .querySelectorAll(
-            ".game-screen"
-        )
-        .forEach(game => {
-
-            game.classList.add(
-                "hidden"
-            );
-
-        });
+        .querySelectorAll(".game-screen")
+        .forEach(game =>
+            game.classList.add("hidden")
+        );
 
     document
-        .querySelector(
-            ".casino-grid"
-        )
-        .classList.remove(
-            "hidden"
-        );
+        .querySelector(".casino-grid")
+        ?.classList.remove("hidden");
 
 }
 
-/* =========================
-SLOT
-========================= */
+/* SLOT */
 
 const slotSymbols = [
-    "🍒",
-    "🍋",
-    "🍊",
-    "🍇",
-    "🔔",
-    "💎",
-    "7️⃣"
+    "🍒","🍋","🍊","🍇","🔔","💎","7️⃣"
 ];
+
+function randomSlot() {
+
+    return slotSymbols[
+        Math.floor(
+            Math.random() *
+            slotSymbols.length
+        )
+    ];
+
+}
 
 function playSlot() {
 
@@ -2188,121 +2231,76 @@ function playSlot() {
 
     }
 
-    state.balance -=
-        bet;
+    state.balance -= bet;
 
-    const reels = [
+    state.stats.casinoGames++;
 
-        document.getElementById("slot1"),
-        document.getElementById("slot2"),
-        document.getElementById("slot3")
+    const result = [
+
+        randomSlot(),
+        randomSlot(),
+        randomSlot()
 
     ];
 
-    reels.forEach(
-        reel =>
-            reel.classList.add(
-                "spinning"
-            )
-    );
+    document.getElementById("slot1")
+        .textContent = result[0];
 
-    setTimeout(() => {
+    document.getElementById("slot2")
+        .textContent = result[1];
 
-        const result = [
+    document.getElementById("slot3")
+        .textContent = result[2];
 
-            randomSlot(),
-            randomSlot(),
-            randomSlot()
+    let multiplier = 0;
 
-        ];
+    if (
+        result[0] === result[1] &&
+        result[1] === result[2]
+    ) {
 
-        result.forEach(
-            (symbol,index) => {
+        multiplier =
+            result[0] === "7️⃣"
+            ? 25
+            : 10;
 
-                reels[index].textContent =
-                    symbol;
+    } else if (
+        result[0] === result[1] ||
+        result[1] === result[2] ||
+        result[0] === result[2]
+    ) {
 
-                reels[index]
-                    .classList.remove(
-                        "spinning"
-                    );
+        multiplier = 2;
 
-            }
+    }
+
+    if (multiplier) {
+
+        const win =
+            bet*multiplier;
+
+        state.balance += win;
+
+        state.stats.totalWon += win;
+
+        showMessage(
+            `🎉 Выигрыш ×${multiplier}: +${formatNumber(win)} 🪙`
         );
 
-        let multiplier = 0;
+    } else {
 
-        if (
-            result[0] ===
-            result[1] &&
-            result[1] ===
-            result[2]
-        ) {
+        showMessage(
+            "😢 Не повезло",
+            "error"
+        );
 
-            multiplier =
-                result[0] === "7️⃣"
-                    ? 25
-                    : 10;
+    }
 
-        } else if (
-
-            result[0] === result[1] ||
-            result[1] === result[2] ||
-            result[0] === result[2]
-
-        ) {
-
-            multiplier = 2;
-
-        }
-
-        if (multiplier) {
-
-            const win =
-                bet *
-                multiplier;
-
-            state.balance +=
-                win;
-
-            state.stats.totalWon +=
-                win;
-
-            showMessage(
-                "🎉 Выигрыш ×" +
-                multiplier +
-                "!"
-            );
-
-        } else {
-
-            showMessage(
-                "😢 Не повезло",
-                "error"
-            );
-
-        }
-
-        saveGame();
-
-    },1200);
+    saveGame();
 
 }
 
-function randomSlot() {
-
-    return slotSymbols[
-        Math.floor(
-            Math.random() *
-            slotSymbols.length
-        )
-    ];
-
-}
-
-/* =========================
-ROULETTE
-========================= */
+/* ROULETTE */
 
 const redNumbers = [
 
@@ -2326,8 +2324,7 @@ function selectRouletteColor(color) {
             "selectedRouletteColor"
         )
         .textContent =
-        "Выбрано: " +
-        color;
+        "Выбрано: " + color;
 
 }
 
@@ -2341,8 +2338,7 @@ function selectRouletteNumber(number) {
             "selectedRouletteNumber"
         )
         .textContent =
-        "Выбрано число: " +
-        number;
+        "Выбрано число: " + number;
 
 }
 
@@ -2351,9 +2347,7 @@ function getRouletteColor(number) {
     if (number === 0)
         return "green";
 
-    return redNumbers.includes(
-        number
-    )
+    return redNumbers.includes(number)
         ? "red"
         : "black";
 
@@ -2396,105 +2390,60 @@ function playRoulette() {
 
     }
 
-    state.balance -=
-        bet;
-
-    const wheel =
-        document.getElementById(
-            "rouletteWheel"
-        );
-
-    wheel.classList.add(
-        "spinning"
-    );
+    state.balance -= bet;
 
     const result =
         Math.floor(
-            Math.random() * 37
+            Math.random()*37
         );
 
     const color =
-        getRouletteColor(
-            result
+        getRouletteColor(result);
+
+    let win = 0;
+
+    if (
+        selectedRouletteNumber === result
+    ) {
+
+        win = bet*36;
+
+    } else if (
+        selectedRouletteColor === color
+    ) {
+
+        win =
+            color === "green"
+            ? bet*14
+            : bet*2;
+
+    }
+
+    if (win) {
+
+        state.balance += win;
+
+        showMessage(
+            `🎉 Выпало ${result}! +${formatNumber(win)} 🪙`
         );
 
-    setTimeout(() => {
+    } else {
 
-        wheel.classList.remove(
-            "spinning"
+        showMessage(
+            `🎡 Выпало ${result}. Проигрыш`,
+            "error"
         );
 
-        const resultEl =
-            document.getElementById(
-                "rouletteNumber"
-            );
+    }
 
-        resultEl.textContent =
-            result;
+    selectedRouletteColor = null;
+    selectedRouletteNumber = null;
 
-        resultEl.className =
-            "roulette-result " +
-            color;
-
-        let win = 0;
-
-        if (
-            selectedRouletteNumber ===
-            result
-        ) {
-
-            win =
-                bet * 36;
-
-        } else if (
-            selectedRouletteColor ===
-            color
-        ) {
-
-            win =
-                color === "green"
-                    ? bet * 14
-                    : bet * 2;
-
-        }
-
-        if (win) {
-
-            state.balance +=
-                win;
-
-            showMessage(
-                "🎉 Выигрыш " +
-                formatNumber(win) +
-                " 🪙"
-            );
-
-        } else {
-
-            showMessage(
-                "🎡 Выпало " +
-                result +
-                ". Проигрыш",
-                "error"
-            );
-
-        }
-
-        selectedRouletteColor =
-            null;
-
-        selectedRouletteNumber =
-            null;
-
-        saveGame();
-
-    },3000);
+    saveGame();
 
 }
 
-/* =========================
-DICE
-========================= */
+/* DICE */
 
 let selectedDiceNumber = null;
 
@@ -2508,8 +2457,7 @@ function selectDiceNumber(number) {
             "selectedDiceNumber"
         )
         .textContent =
-        "Выбрано число: " +
-        number;
+        "Выбрано число: " + number;
 
 }
 
@@ -2524,12 +2472,11 @@ function playDice() {
 
     if (
         !bet ||
-        state.balance < bet ||
-        !selectedDiceNumber
+        state.balance < bet
     ) {
 
         showMessage(
-            "❌ Выберите число и ставку",
+            "❌ Неверная ставка",
             "error"
         );
 
@@ -2537,80 +2484,62 @@ function playDice() {
 
     }
 
-    state.balance -=
-        bet;
+    if (!selectedDiceNumber) {
 
-    const dice =
-        document.querySelector(
-            ".dice-number"
+        showMessage(
+            "❌ Выберите число",
+            "error"
         );
 
-    dice.classList.add(
-        "rolling"
-    );
+        return;
 
-    setTimeout(() => {
+    }
 
-        const result =
-            Math.floor(
-                Math.random() * 6
-            ) + 1;
+    state.balance -= bet;
 
-        dice.textContent =
-            [
-                "⚀",
-                "⚁",
-                "⚂",
-                "⚃",
-                "⚄",
-                "⚅"
-            ][result-1];
+    const result =
+        Math.floor(
+            Math.random()*6
+        )+1;
 
-        dice.classList.remove(
-            "rolling"
+    document
+        .querySelector(".dice-number")
+        .textContent =
+        ["⚀","⚁","⚂","⚃","⚄","⚅"]
+        [result-1];
+
+    if (
+        result === selectedDiceNumber
+    ) {
+
+        const win =
+            bet*5;
+
+        state.balance += win;
+
+        showMessage(
+            `🎲 Победа! +${formatNumber(win)} 🪙`
         );
 
-        if (
-            result ===
-            selectedDiceNumber
-        ) {
+    } else {
 
-            const win =
-                bet * 5;
+        showMessage(
+            `🎲 Выпало ${result}`,
+            "error"
+        );
 
-            state.balance +=
-                win;
+    }
 
-            showMessage(
-                "🎲 Победа! +" +
-                formatNumber(win) +
-                " 🪙"
-            );
-
-        } else {
-
-            showMessage(
-                "🎲 Выпало " +
-                result,
-                "error"
-            );
-
-        }
-
-        saveGame();
-
-    },1000);
+    saveGame();
 
 }
 
-/* =========================
-LADDER
-========================= */
+/* LADDER */
 
 let ladderActive = false;
 let ladderBet = 0;
-let ladderMultiplier = 1;
 let ladderLevel = 0;
+let ladderMultiplier = 1;
 
 function startLadder() {
 
@@ -2635,20 +2564,12 @@ function startLadder() {
 
     }
 
-    state.balance -=
-        bet;
+    state.balance -= bet;
 
-    ladderBet =
-        bet;
-
-    ladderMultiplier =
-        1;
-
-    ladderLevel =
-        0;
-
-    ladderActive =
-        true;
+    ladderBet = bet;
+    ladderLevel = 0;
+    ladderMultiplier = 1;
+    ladderActive = true;
 
     updateLadder();
 
@@ -2662,17 +2583,14 @@ function ladderNext() {
         return;
 
     const chance =
-        .75 -
-        ladderLevel *
-        .04;
+        0.75 -
+        ladderLevel*.04;
 
     if (
-        Math.random() >
-        chance
+        Math.random() > chance
     ) {
 
-        ladderActive =
-            false;
+        ladderActive = false;
 
         showMessage(
             "💥 Вы проиграли!",
@@ -2685,8 +2603,7 @@ function ladderNext() {
 
     ladderLevel++;
 
-    ladderMultiplier *=
-        1.35;
+    ladderMultiplier *= 1.35;
 
     updateLadder();
 
@@ -2695,7 +2612,8 @@ function ladderNext() {
 function ladderCashout() {
 
     if (
-        !ladderActive
+        !ladderActive ||
+        ladderLevel === 0
     )
         return;
 
@@ -2703,16 +2621,12 @@ function ladderCashout() {
         ladderBet *
         ladderMultiplier;
 
-    state.balance +=
-        win;
+    state.balance += win;
 
-    ladderActive =
-        false;
+    ladderActive = false;
 
     showMessage(
-        "💰 Забрали " +
-        formatNumber(win) +
-        " 🪙"
+        `💰 Забрали ${formatNumber(win)} 🪙`
     );
 
     saveGame();
@@ -2734,15 +2648,11 @@ function updateLadder() {
             "ladderLevel"
         )
         .textContent =
-        "Уровень " +
-        ladderLevel +
-        " / 10";
+        `Уровень ${ladderLevel} / 10`;
 
 }
 
-/* =========================
-MINES
-========================= */
+/* MINES */
 
 let minesActive = false;
 let minesBet = 0;
@@ -2772,40 +2682,28 @@ function startMines() {
 
     }
 
-    state.balance -=
-        bet;
+    state.balance -= bet;
 
-    minesBet =
-        bet;
-
-    minesMultiplier =
-        1;
-
-    minesActive =
-        true;
+    minesBet = bet;
+    minesMultiplier = 1;
+    minesActive = true;
 
     minePositions = [];
 
     while (
-        minePositions.length <
-        5
+        minePositions.length < 5
     ) {
 
         const pos =
             Math.floor(
-                Math.random() *
-                16
+                Math.random()*16
             );
 
         if (
-            !minePositions.includes(
-                pos
-            )
+            !minePositions.includes(pos)
         ) {
 
-            minePositions.push(
-                pos
-            );
+            minePositions.push(pos);
 
         }
 
@@ -2818,11 +2716,7 @@ function startMines() {
 
     board.innerHTML = "";
 
-    for(
-        let i=0;
-        i<16;
-        i++
-    ){
+    for(let i=0;i<16;i++){
 
         const cell =
             document.createElement(
@@ -2837,14 +2731,9 @@ function startMines() {
 
         cell.onclick =
             () =>
-                revealMine(
-                    cell,
-                    i
-                );
+                revealMine(cell,i);
 
-        board.appendChild(
-            cell
-        );
+        board.appendChild(cell);
 
     }
 
@@ -2852,32 +2741,21 @@ function startMines() {
 
 }
 
-function revealMine(
-    cell,
-    index
-) {
+function revealMine(cell,index) {
 
     if (!minesActive)
         return;
 
     if (
-        minePositions.includes(
-            index
-        )
+        minePositions.includes(index)
     ) {
 
-        cell.textContent =
-            "💣";
+        cell.textContent = "💣";
 
-        cell.classList.add(
-            "mine-danger"
-        );
-
-        minesActive =
-            false;
+        minesActive = false;
 
         showMessage(
-            "💥 Мина!",
+            "💥 Мина! Вы проиграли",
             "error"
         );
 
@@ -2885,18 +2763,23 @@ function revealMine(
 
     }
 
-    cell.textContent =
-        "💎";
+    cell.textContent = "💎";
 
     cell.classList.add(
         "mine-safe"
     );
 
-    cell.disabled =
-        true;
+    cell.disabled = true;
 
-    minesMultiplier *=
-        1.25;
+    minesMultiplier *= 1.25;
+
+    document
+        .getElementById(
+            "minesMultiplier"
+        )
+        .textContent =
+        "×" +
+        minesMultiplier.toFixed(2);
 
 }
 
@@ -2909,25 +2792,19 @@ function cashoutMines() {
         minesBet *
         minesMultiplier;
 
-    state.balance +=
-        win;
+    state.balance += win;
 
-    minesActive =
-        false;
+    minesActive = false;
 
     showMessage(
-        "💰 Выигрыш " +
-        formatNumber(win) +
-        " 🪙"
+        `💰 Выигрыш ${formatNumber(win)} 🪙`
     );
 
     saveGame();
 
 }
 
-/* =========================
-CRASH
-========================= */
+/* CRASH */
 
 let crashActive = false;
 let crashBet = 0;
@@ -2957,41 +2834,26 @@ function startCrash() {
 
     }
 
-    state.balance -=
-        bet;
+    state.balance -= bet;
 
-    crashBet =
-        bet;
-
-    crashMultiplier =
-        1;
-
-    crashActive =
-        true;
-
-    const plane =
-        document.getElementById(
-            "crashPlane"
-        );
+    crashBet = bet;
+    crashMultiplier = 1;
+    crashActive = true;
 
     const start =
         Date.now();
 
-    clearInterval(
-        crashTimer
-    );
+    clearInterval(crashTimer);
 
     crashTimer =
         setInterval(() => {
 
             const elapsed =
-                (Date.now() -
-                start) / 1000;
+                (Date.now()-start)/1000;
 
             crashMultiplier =
                 1 +
-                elapsed *
-                .35;
+                elapsed*.35;
 
             document
                 .getElementById(
@@ -2999,22 +2861,11 @@ function startCrash() {
                 )
                 .textContent =
                 "×" +
-                crashMultiplier
-                    .toFixed(2);
-
-            plane.style.left =
-                Math.min(
-                    90,
-                    5 +
-                    elapsed *
-                    8
-                ) +
-                "%";
+                crashMultiplier.toFixed(2);
 
             if (
                 Math.random() <
-                .0015 *
-                crashMultiplier
+                .0015*crashMultiplier
             ) {
 
                 crashEnd();
@@ -3027,15 +2878,12 @@ function startCrash() {
 
 function crashEnd() {
 
-    clearInterval(
-        crashTimer
-    );
+    clearInterval(crashTimer);
 
-    crashActive =
-        false;
+    crashActive = false;
 
     showMessage(
-        "💥 Crash!",
+        `💥 Crash на ×${crashMultiplier.toFixed(2)}!`,
         "error"
     );
 
@@ -3050,29 +2898,21 @@ function cashoutCrash() {
         crashBet *
         crashMultiplier;
 
-    state.balance +=
-        win;
+    state.balance += win;
 
-    clearInterval(
-        crashTimer
-    );
+    clearInterval(crashTimer);
 
-    crashActive =
-        false;
+    crashActive = false;
 
     showMessage(
-        "✈️ Забрали " +
-        formatNumber(win) +
-        " 🪙"
+        `✈️ Забрали ${formatNumber(win)} 🪙`
     );
 
     saveGame();
 
 }
 
-/* =========================
-JACKPOT
-========================= */
+/* JACKPOT */
 
 function playJackpot() {
 
@@ -3097,59 +2937,40 @@ function playJackpot() {
 
     }
 
-    state.balance -=
-        bet;
+    state.balance -= bet;
 
     const chance =
         Math.random();
 
     let multiplier = 0;
 
-    if (
-        chance < .001
-    ) {
-
+    if(chance < .001)
         multiplier = 1000;
 
-    } else if (
-        chance < .01
-    ) {
-
+    else if(chance < .01)
         multiplier = 100;
 
-    } else if (
-        chance < .1
-    ) {
-
+    else if(chance < .1)
         multiplier = 10;
 
-    } else if (
-        chance < .3
-    ) {
-
+    else if(chance < .3)
         multiplier = 2;
 
-    }
-
-    if (multiplier) {
+    if(multiplier){
 
         const win =
-            bet *
-            multiplier;
+            bet*multiplier;
 
-        state.balance +=
-            win;
+        state.balance += win;
 
         showMessage(
-            "💎 JACKPOT ×" +
-            multiplier +
-            "!"
+            `💎 JACKPOT ×${multiplier}! +${formatNumber(win)} 🪙`
         );
 
     } else {
 
         showMessage(
-            "😢 Не повезло",
+            "😢 JACKPOT не сработал",
             "error"
         );
 
@@ -3159,25 +2980,16 @@ function playJackpot() {
 
 }
 
-/* =========================
-AUTO CLICK
-========================= */
+/* AUTO CLICK */
 
 setInterval(() => {
 
-    if (
-        state.autoClick
-    ) {
-
+    if(state.autoClick)
         clickCoin();
-
-    }
 
 },1000);
 
-/* =========================
-START
-========================= */
+/* START */
 
 document.addEventListener(
     "DOMContentLoaded",
