@@ -1,5 +1,5 @@
 /* =========================================================
-🍀 LUCKY CLICK — PREMIUM TELEGRAM MINI APP
+🍀 LUCKY CLICK — PREMIUM CASINO STYLE
 FULL STYLE.CSS
 ========================================================= */
 
@@ -8,36 +8,41 @@ FULL STYLE.CSS
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: transparent;
-    }
+}
 
 html {
-scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-min-height: 100vh;
-background:
-radial-gradient(
-circle at 50% -10%,
-rgba(40, 120, 255, 0.18),
-transparent 35%
-),
-radial-gradient(
-circle at 0% 50%,
-rgba(0, 255, 160, 0.08),
-transparent 30%
-),
-#070a11;
+    min-height: 100vh;
+    color: #fff;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        sans-serif;
 
-color: #ffffff;
-font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    sans-serif;
-overflow-x: hidden;
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(0, 210, 130, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 100% 40%,
+            rgba(180, 0, 40, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #050609 0%,
+            #080a0f 45%,
+            #040507 100%
+        );
 
+    overflow-x: hidden;
 }
 
 /* =========================================================
@@ -45,16 +50,16 @@ SCROLLBAR
 ========================================================= */
 
 ::-webkit-scrollbar {
-width: 4px;
+    width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-background: #080b12;
+    background: #050609;
 }
 
 ::-webkit-scrollbar-thumb {
-background: #263247;
-border-radius: 10px;
+    background: #303744;
+    border-radius: 10px;
 }
 
 /* =========================================================
@@ -62,44 +67,43 @@ APP
 ========================================================= */
 
 #app {
-width: 100%;
-max-width: 600px;
-min-height: 100vh;
-margin: auto;
-padding-bottom: 100px;
-position: relative;
+    width: 100%;
+    max-width: 600px;
+    min-height: 100vh;
+    margin: auto;
+    padding-bottom: 110px;
+    position: relative;
 }
 
 /* =========================================================
-PAGE
+PAGES
 ========================================================= */
 
 .page {
-width: 100%;
-min-height: calc(100vh - 90px);
-padding: 18px 14px 30px;
-animation: pageIn 0.3s ease;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    padding: 18px 14px 30px;
+    animation: pageIn 0.3s ease;
 }
 
 .page.hidden {
-display: none !important;
+    display: none !important;
 }
 
 .page.active {
-display: block;
+    display: block;
 }
 
 @keyframes pageIn {
-from {
-opacity: 0;
-transform: translateY(10px);
-}
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
 
-to {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================================================
@@ -107,76 +111,88 @@ TOP HEADER
 ========================================================= */
 
 .top-header {
-position: sticky;
-top: 0;
-z-index: 100;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 12px 14px;
-background: rgba(7, 10, 17, 0.82);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    padding: 12px 14px;
+
+    background:
+        rgba(5, 7, 11, 0.88);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.06);
 }
 
 .logo {
-display: flex;
-align-items: center;
-gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-font-size: 18px;
-font-weight: 900;
-
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
 }
 
 .logo span {
-color: #53ffad;
+    color: #4dffae;
 }
 
 .balance-box {
-display: flex;
-align-items: center;
-gap: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 
-padding: 8px 12px;
-border-radius: 14px;
-background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,0.09),
-        rgba(255,255,255,0.025)
-    );
-border: 1px solid rgba(255,255,255,0.08);
-box-shadow:
-    0 5px 25px rgba(0,0,0,0.25);
+    padding: 8px 12px;
 
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 5px 25px
+        rgba(0,0,0,0.3);
 }
 
 .balance {
-font-weight: 800;
-color: #ffd95a;
+    color: #ffd95a;
+    font-weight: 900;
 }
 
 /* =========================================================
-TITLES
+HEADINGS
 ========================================================= */
 
 h1,
 h2,
 h3 {
-letter-spacing: -0.4px;
+    letter-spacing: -0.5px;
 }
 
 h2 {
-font-size: 25px;
-margin-bottom: 16px;
+    font-size: 25px;
+    margin-bottom: 16px;
 }
 
 h3 {
-font-size: 18px;
+    font-size: 18px;
 }
 
 /* =========================================================
@@ -192,21 +208,29 @@ CARDS
 .inventory-item,
 .promo-card {
 
-background:
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,0.075),
-        rgba(255,255,255,0.025)
-    );
-border:
-    1px solid rgba(255,255,255,0.07);
-border-radius: 22px;
-padding: 18px;
-margin-bottom: 14px;
-box-shadow:
-    0 15px 40px rgba(0,0,0,0.28),
-    inset 0 1px 0 rgba(255,255,255,0.04);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.018)
+        );
 
+    border:
+        1px solid
+        rgba(255,255,255,0.07);
+
+    border-radius: 22px;
+
+    padding: 18px;
+
+    margin-bottom: 14px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,0.32),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.04);
 }
 
 /* =========================================================
@@ -214,51 +238,48 @@ BALANCE HERO
 ========================================================= */
 
 .balance-card {
-position: relative;
-overflow: hidden;
+    position: relative;
+    overflow: hidden;
 
-padding: 26px 20px;
-text-align: center;
-border-radius: 28px;
-background:
-    radial-gradient(
-        circle at 50% 0%,
-        rgba(83,255,173,0.16),
-        transparent 50%
-    ),
-    linear-gradient(
-        145deg,
-        #111827,
-        #080b12
-    );
-border: 1px solid rgba(83,255,173,0.12);
-box-shadow:
-    0 20px 60px rgba(0,0,0,0.4);
+    padding: 28px 20px;
 
-}
+    text-align: center;
 
-.balance-card::before {
-content: “”;
-position: absolute;
+    border-radius: 28px;
 
-width: 180px;
-height: 180px;
-top: -100px;
-left: 50%;
-transform: translateX(-50%);
-background: #53ffad;
-filter: blur(100px);
-opacity: 0.08;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(77,255,174,0.17),
+            transparent 55%
+        ),
 
+        linear-gradient(
+            145deg,
+            #121923,
+            #07090d
+        );
+
+    border:
+        1px solid
+        rgba(77,255,174,0.13);
+
+    box-shadow:
+        0 20px 65px
+        rgba(0,0,0,0.5);
 }
 
 .balance-card .balance {
-position: relative;
+    position: relative;
 
-font-size: 34px;
-font-weight: 900;
-color: #ffd95a;
+    font-size: 36px;
+    font-weight: 900;
 
+    color: #ffd95a;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,217,90,0.18);
 }
 
 /* =========================================================
@@ -266,66 +287,82 @@ CLICKER
 ========================================================= */
 
 .clicker-area {
-text-align: center;
-padding: 20px 0;
+    text-align: center;
+    padding: 22px 0;
 }
 
 .coin-button {
-position: relative;
+    position: relative;
 
-width: 190px;
-height: 190px;
-border: none;
-border-radius: 50%;
-cursor: pointer;
-font-size: 82px;
-background:
-    radial-gradient(
-        circle at 35% 25%,
-        #fff4a8,
-        #ffd83d 30%,
-        #e59b00 65%,
-        #8a4e00 100%
-    );
-box-shadow:
-    0 0 0 8px rgba(255,215,70,0.06),
-    0 0 50px rgba(255,190,0,0.25),
-    inset 0 8px 15px rgba(255,255,255,0.45),
-    inset 0 -12px 20px rgba(0,0,0,0.3);
-transition:
-    transform 0.12s,
-    box-shadow 0.2s;
+    width: 190px;
+    height: 190px;
 
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 82px;
+
+    background:
+        radial-gradient(
+            circle at 35% 20%,
+            #fff5ad,
+            #ffd83d 30%,
+            #e59b00 65%,
+            #8a4e00 100%
+        );
+
+    box-shadow:
+        0 0 0 8px
+        rgba(255,215,70,0.05),
+
+        0 0 55px
+        rgba(255,190,0,0.25),
+
+        inset 0 8px 15px
+        rgba(255,255,255,0.5),
+
+        inset 0 -12px 20px
+        rgba(0,0,0,0.35);
+
+    transition:
+        transform 0.12s,
+        box-shadow 0.2s;
 }
 
 .coin-button:active {
-transform: scale(0.91);
+    transform: scale(0.91);
 }
 
 .coin-button::after {
-content: “”;
+    content: "";
 
-position: absolute;
-inset: -12px;
-border-radius: 50%;
-border:
-    1px solid rgba(255,215,70,0.25);
-animation:
-    coinPulse 2s infinite;
+    position: absolute;
+    inset: -12px;
 
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,215,70,0.3);
+
+    animation:
+        coinPulse 2s infinite;
 }
 
 @keyframes coinPulse {
-0%, 100% {
-transform: scale(1);
-opacity: 0.5;
-}
 
-50% {
-    transform: scale(1.08);
-    opacity: 0;
-}
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
 
+    50% {
+        transform: scale(1.08);
+        opacity: 0;
+    }
 }
 
 /* =========================================================
@@ -333,36 +370,44 @@ CLICK EFFECT
 ========================================================= */
 
 #clickEffects {
-position: fixed;
-inset: 0;
+    position: fixed;
+    inset: 0;
 
-pointer-events: none;
-z-index: 999;
-
+    pointer-events: none;
+    z-index: 999;
 }
 
 .click-effect {
-position: absolute;
+    position: absolute;
 
-color: #ffd95a;
-font-size: 20px;
-font-weight: 900;
-animation:
-    clickFloat 1s ease forwards;
+    color: #ffd95a;
 
+    font-size: 20px;
+    font-weight: 900;
+
+    text-shadow:
+        0 2px 10px
+        rgba(255,190,0,0.3);
+
+    animation:
+        clickFloat 1s ease forwards;
 }
 
 @keyframes clickFloat {
-0% {
-opacity: 1;
-transform: translateY(0) scale(1);
-}
 
-100% {
-    opacity: 0;
-    transform: translateY(-80px) scale(1.2);
-}
+    0% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-80px)
+            scale(1.2);
+    }
 }
 
 /* =========================================================
@@ -370,75 +415,85 @@ BUTTONS
 ========================================================= */
 
 button {
-font-family: inherit;
+    font-family: inherit;
 }
 
 button:not(.nav-button) {
-width: 100%;
 
-border: none;
-padding: 14px 16px;
-border-radius: 15px;
-color: #fff;
-background:
-    linear-gradient(
-        135deg,
-        #1d293b,
-        #111827
-    );
-border:
-    1px solid rgba(255,255,255,0.08);
-font-size: 15px;
-font-weight: 750;
-cursor: pointer;
-transition:
-    transform 0.15s,
-    filter 0.15s,
-    background 0.15s;
-margin-top: 8px;
+    width: 100%;
 
+    border: none;
+
+    padding:
+        14px 16px;
+
+    border-radius: 15px;
+
+    color: #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d293b,
+            #0e141e
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    font-size: 15px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s,
+        filter 0.15s,
+        box-shadow 0.15s;
+
+    margin-top: 8px;
 }
 
 button:not(.nav-button):active {
-transform: scale(0.97);
+    transform: scale(0.97);
 }
 
 button:not(.nav-button):hover {
-filter: brightness(1.15);
+    filter: brightness(1.15);
 }
 
 .primary-button {
-background:
-linear-gradient(
-135deg,
-#00d084,
-#009b64
-) !important;
+    background:
+        linear-gradient(
+            135deg,
+            #00d084,
+            #008f5d
+        ) !important;
 
-box-shadow:
-    0 8px 25px rgba(0,208,132,0.18);
-
+    box-shadow:
+        0 8px 25px
+        rgba(0,208,132,0.2);
 }
 
 .danger-button {
-background:
-linear-gradient(
-135deg,
-#ff4757,
-#b5162b
-) !important;
+    background:
+        linear-gradient(
+            135deg,
+            #ff4757,
+            #9d1528
+        ) !important;
 }
 
 .gold-button {
-color: #17120a !important;
+    color: #17120a !important;
 
-background:
-    linear-gradient(
-        135deg,
-        #ffe47a,
-        #f3ad20
-    ) !important;
-
+    background:
+        linear-gradient(
+            135deg,
+            #ffe47a,
+            #e9a71e
+        ) !important;
 }
 
 /* =========================================================
@@ -447,28 +502,39 @@ INPUTS
 
 input,
 select {
-width: 100%;
 
-padding: 14px 15px;
-margin-top: 8px;
-border-radius: 14px;
-outline: none;
-color: white;
-background:
-    rgba(0,0,0,0.28);
-border:
-    1px solid rgba(255,255,255,0.09);
-font-size: 16px;
+    width: 100%;
 
+    padding:
+        14px 15px;
+
+    margin-top: 8px;
+
+    border-radius: 14px;
+
+    outline: none;
+
+    color: #fff;
+
+    background:
+        rgba(0,0,0,0.3);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.09);
+
+    font-size: 16px;
 }
 
 input:focus,
 select:focus {
-border-color: rgba(83,255,173,0.5);
 
-box-shadow:
-    0 0 0 3px rgba(83,255,173,0.08);
+    border-color:
+        rgba(77,255,174,0.5);
 
+    box-shadow:
+        0 0 0 3px
+        rgba(77,255,174,0.08);
 }
 
 /* =========================================================
@@ -476,29 +542,36 @@ XP
 ========================================================= */
 
 .xp-bar {
-height: 8px;
 
-margin-top: 10px;
-overflow: hidden;
-border-radius: 20px;
-background: rgba(255,255,255,0.08);
+    height: 8px;
 
+    margin-top: 10px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.08);
 }
 
 #xpProgress {
-height: 100%;
 
-width: 0%;
-border-radius: inherit;
-background:
-    linear-gradient(
-        90deg,
-        #00d084,
-        #5cffc1
-    );
-transition:
-    width 0.5s ease;
+    height: 100%;
 
+    width: 0%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00d084,
+            #62ffc3
+        );
+
+    transition:
+        width 0.5s ease;
 }
 
 /* =========================================================
@@ -506,71 +579,125 @@ CASINO
 ========================================================= */
 
 #casino {
-background:
-radial-gradient(
-circle at 50% 0%,
-rgba(92,50,255,0.12),
-transparent 35%
-);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(90,40,255,0.12),
+            transparent 40%
+        );
 }
 
 .casino-header {
-text-align: center;
-margin-bottom: 20px;
+
+    text-align: center;
+
+    margin-bottom: 20px;
 }
 
 .casino-header h2 {
-font-size: 30px;
+
+    font-size: 30px;
+
+    text-shadow:
+        0 0 30px
+        rgba(255,255,255,0.12);
 }
 
 .casino-header p {
-color: #8994a8;
+
+    color: #8994a8;
 }
 
 .casino-grid {
-display: grid;
 
-grid-template-columns:
-    repeat(2, 1fr);
-gap: 12px;
+    display: grid;
 
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
 }
 
 .game-card {
-min-height: 145px;
 
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-cursor: pointer;
-transition:
-    transform 0.2s,
-    border-color 0.2s;
-overflow: hidden;
-position: relative;
+    min-height: 150px;
 
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.game-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    top: -50px;
+    right: -50px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(83,255,173,0.08);
+
+    filter: blur(30px);
 }
 
 .game-card:active {
-transform: scale(0.97);
+
+    transform:
+        scale(0.96);
 }
 
 .game-card:hover {
-border-color:
-rgba(83,255,173,0.25);
+
+    border-color:
+        rgba(83,255,173,0.3);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.4);
 }
 
 .game-icon {
-font-size: 42px;
+
+    font-size: 42px;
+
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(0,0,0,0.4)
+        );
 }
 
 .game-card h3 {
-margin-top: 8px;
+
+    margin-top: 8px;
 }
 
 .game-card p {
-color: #7f8ba1;
-font-size: 12px;
+
+    color: #7f8ba1;
+
+    font-size: 12px;
 }
 
 /* =========================================================
@@ -578,30 +705,35 @@ GAME SCREEN
 ========================================================= */
 
 .game-screen {
-animation:
-pageIn 0.3s ease;
+
+    animation:
+        pageIn 0.3s ease;
 }
 
 .game-screen.hidden {
-display: none !important;
+
+    display: none !important;
 }
 
 .game-top {
-display: flex;
 
-align-items: center;
-gap: 10px;
-margin-bottom: 16px;
+    display: flex;
 
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
 }
 
 .back-button {
-width: auto !important;
 
-padding:
-    10px 14px !important;
-margin: 0 !important;
+    width: auto !important;
 
+    padding:
+        10px 14px !important;
+
+    margin: 0 !important;
 }
 
 /* =========================================================
@@ -609,180 +741,392 @@ SLOT MACHINE
 ========================================================= */
 
 .slot-machine {
-padding: 20px;
 
-border-radius: 26px;
-background:
-    linear-gradient(
-        145deg,
-        #202838,
-        #090d15
-    );
-border:
-    2px solid #343e52;
-box-shadow:
-    0 20px 60px rgba(0,0,0,0.5),
-    inset 0 0 30px rgba(0,0,0,0.4);
+    padding: 20px;
 
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,190,50,0.12),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            145deg,
+            #202838,
+            #07090d
+        );
+
+    border:
+        2px solid
+        #343e52;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.6),
+
+        inset 0 0 30px
+        rgba(0,0,0,0.5);
 }
 
 .slot-title {
-text-align: center;
 
-font-size: 22px;
-font-weight: 900;
-color: #ffd95a;
-margin-bottom: 18px;
+    text-align: center;
 
+    font-size: 23px;
+
+    font-weight: 900;
+
+    color: #ffd95a;
+
+    margin-bottom: 18px;
 }
 
 .slot-reels {
-display: grid;
 
-grid-template-columns:
-    repeat(3, 1fr);
-gap: 8px;
-padding: 10px;
-border-radius: 18px;
-background:
-    #05070b;
-box-shadow:
-    inset 0 0 25px #000;
+    display: grid;
 
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    padding: 10px;
+
+    border-radius: 18px;
+
+    background:
+        #030405;
+
+    box-shadow:
+        inset 0 0 25px
+        #000;
 }
 
 .slot-reel {
-height: 90px;
 
-display: flex;
-align-items: center;
-justify-content: center;
-overflow: hidden;
-border-radius: 12px;
-background:
-    linear-gradient(
-        180deg,
-        #fff,
-        #cbd1da 50%,
-        #fff
-    );
-color: #111;
-font-size: 46px;
-box-shadow:
-    inset 0 0 15px rgba(0,0,0,0.25);
+    height: 90px;
 
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff,
+            #cbd1da 50%,
+            #fff
+        );
+
+    color: #111;
+
+    font-size: 46px;
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(0,0,0,0.3);
 }
 
 .slot-reel.spinning {
-animation:
-slotSpin 0.12s
-linear infinite;
+
+    animation:
+        slotSpin 0.12s
+        linear infinite;
 }
 
 @keyframes slotSpin {
-0% {
-transform: translateY(-5px);
-}
 
-50% {
-    transform: translateY(5px);
-}
-100% {
-    transform: translateY(-5px);
-}
+    0% {
+        transform:
+            translateY(-5px);
+    }
 
+    50% {
+        transform:
+            translateY(5px);
+    }
+
+    100% {
+        transform:
+            translateY(-5px);
+    }
 }
 
 /* =========================================================
-ROULETTE
+REALISTIC ROULETTE TABLE
 ========================================================= */
 
 .roulette-table {
-padding: 18px;
 
-border-radius: 28px;
-background:
-    radial-gradient(
-        circle,
-        #12663e,
-        #06301f
-    );
-border:
-    3px solid #b98b32;
-box-shadow:
-    0 20px 60px rgba(0,0,0,0.5);
+    padding: 18px;
 
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #168052,
+            #063522 70%,
+            #031b11
+        );
+
+    border:
+        3px solid
+        #b98b32;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.6);
 }
 
+/* =========================================================
+ROULETTE WHEEL
+========================================================= */
+
 .roulette-wheel {
-width: 230px;
-height: 230px;
 
-margin: 15px auto;
-border-radius: 50%;
-background:
-    conic-gradient(
-        #d9273f 0deg 10deg,
-        #111 10deg 20deg,
-        #d9273f 20deg 30deg,
-        #111 30deg 40deg,
-        #d9273f 40deg 50deg,
-        #111 50deg 60deg,
-        #d9273f 60deg 70deg,
-        #111 70deg 80deg,
-        #d9273f 80deg 90deg,
-        #111 90deg 100deg,
-        #d9273f 100deg 110deg,
-        #111 110deg 120deg,
-        #d9273f 120deg 130deg,
-        #111 130deg 140deg,
-        #d9273f 140deg 150deg,
-        #111 150deg 160deg,
-        #d9273f 160deg 170deg,
-        #111 170deg 180deg,
-        #d9273f 180deg 190deg,
-        #111 190deg 200deg,
-        #d9273f 200deg 210deg,
-        #111 210deg 220deg,
-        #d9273f 220deg 230deg,
-        #111 230deg 240deg,
-        #d9273f 240deg 250deg,
-        #111 250deg 260deg,
-        #d9273f 260deg 270deg,
-        #111 270deg 280deg,
-        #d9273f 280deg 290deg,
-        #111 290deg 300deg,
-        #d9273f 300deg 310deg,
-        #111 310deg 320deg,
-        #d9273f 320deg 330deg,
-        #111 330deg 340deg,
-        #d9273f 340deg 350deg,
-        #111 350deg 360deg
-    );
-border:
-    8px solid #d5a642;
-box-shadow:
-    0 0 0 5px #291d08,
-    0 15px 35px rgba(0,0,0,0.5);
-transition:
-    transform 4s
-    cubic-bezier(.12,.8,.18,1);
+    width: 240px;
+    height: 240px;
 
+    margin:
+        18px auto;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    background:
+
+        conic-gradient(
+            #0b0b0b 0deg 9.73deg,
+            #c92038 9.73deg 19.46deg,
+            #0b0b0b 19.46deg 29.19deg,
+            #c92038 29.19deg 38.92deg,
+            #0b0b0b 38.92deg 48.65deg,
+            #c92038 48.65deg 58.38deg,
+            #0b0b0b 58.38deg 68.11deg,
+            #c92038 68.11deg 77.84deg,
+            #0b0b0b 77.84deg 87.57deg,
+            #c92038 87.57deg 97.3deg,
+            #0b0b0b 97.3deg 107.03deg,
+            #c92038 107.03deg 116.76deg,
+            #0b0b0b 116.76deg 126.49deg,
+            #c92038 126.49deg 136.22deg,
+            #0b0b0b 136.22deg 145.95deg,
+            #c92038 145.95deg 155.68deg,
+            #0b0b0b 155.68deg 165.41deg,
+            #c92038 165.41deg 175.14deg,
+            #0b0b0b 175.14deg 184.87deg,
+            #c92038 184.87deg 194.6deg,
+            #0b0b0b 194.6deg 204.33deg,
+            #c92038 204.33deg 214.06deg,
+            #0b0b0b 214.06deg 223.79deg,
+            #c92038 223.79deg 233.52deg,
+            #0b0b0b 233.52deg 243.25deg,
+            #c92038 243.25deg 252.98deg,
+            #0b0b0b 252.98deg 262.71deg,
+            #c92038 262.71deg 272.44deg,
+            #0b0b0b 272.44deg 282.17deg,
+            #c92038 282.17deg 291.9deg,
+            #0b0b0b 291.9deg 301.63deg,
+            #c92038 301.63deg 311.36deg,
+            #0b0b0b 311.36deg 321.09deg,
+            #c92038 321.09deg 330.82deg,
+            #0b0b0b 330.82deg 340.55deg,
+            #c92038 340.55deg 350.28deg,
+            #0b0b0b 350.28deg 360deg
+        );
+
+    border:
+        9px solid
+        #d5a642;
+
+    box-shadow:
+
+        0 0 0 5px
+        #291d08,
+
+        0 20px 45px
+        rgba(0,0,0,0.65),
+
+        inset 0 0 25px
+        rgba(0,0,0,0.7);
+
+    transition:
+        transform 4s
+        cubic-bezier(.12,.8,.18,1);
+}
+
+.roulette-wheel::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 30px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #d5a642 0 8%,
+            #171717 9% 35%,
+            #b98b32 36% 40%,
+            #111 41% 100%
+        );
+
+    border:
+        3px solid
+        #d5a642;
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(0,0,0,0.8);
 }
 
 .roulette-wheel.spinning {
-transform:
-rotate(1800deg);
+
+    transform:
+        rotate(2160deg);
 }
 
 .roulette-result {
-text-align: center;
 
-font-size: 35px;
-font-weight: 900;
-margin: 15px 0;
-color: #ffd95a;
+    text-align: center;
 
+    font-size: 36px;
+
+    font-weight: 900;
+
+    margin: 15px 0;
+
+    color: #ffd95a;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,217,90,0.25);
+}
+
+/* =========================================================
+ROULETTE NUMBERS
+BLACK / RED
+========================================================= */
+
+.roulette-numbers {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 5px;
+
+    margin-top: 15px;
+}
+
+.roulette-number {
+
+    min-height: 40px;
+
+    margin: 0 !important;
+
+    padding: 6px 2px !important;
+
+    border-radius: 7px;
+
+    font-size: 13px !important;
+
+    font-weight: 900;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1) !important;
+}
+
+.roulette-number.red {
+
+    background:
+        linear-gradient(
+            145deg,
+            #e52b43,
+            #8f1022
+        ) !important;
+}
+
+.roulette-number.black {
+
+    background:
+        linear-gradient(
+            145deg,
+            #252525,
+            #050505
+        ) !important;
+}
+
+.roulette-number.green {
+
+    background:
+        linear-gradient(
+            145deg,
+            #00a86b,
+            #005c3c
+        ) !important;
+}
+
+/* =========================================================
+ROULETTE COLOR BUTTONS
+========================================================= */
+
+.roulette-colors {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+.roulette-red {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff3b50,
+            #941326
+        ) !important;
+}
+
+.roulette-black {
+
+    background:
+        linear-gradient(
+            135deg,
+            #252525,
+            #050505
+        ) !important;
+}
+
+.roulette-green {
+
+    background:
+        linear-gradient(
+            135deg,
+            #00b878,
+            #00603f
+        ) !important;
 }
 
 /* =========================================================
@@ -790,49 +1134,53 @@ DICE
 ========================================================= */
 
 .dice-container {
-text-align: center;
 
-padding: 25px;
+    text-align: center;
 
+    padding: 25px;
 }
 
 .dice-number {
-font-size: 90px;
 
-margin: 25px;
-display: inline-block;
-filter:
-    drop-shadow(
-        0 15px 25px
-        rgba(0,0,0,0.5)
-    );
+    font-size: 90px;
 
+    margin: 25px;
+
+    display: inline-block;
+
+    filter:
+        drop-shadow(
+            0 15px 25px
+            rgba(0,0,0,0.6)
+        );
 }
 
 .dice-number.rolling {
-animation:
-diceRoll 0.6s
-ease infinite;
+
+    animation:
+        diceRoll 0.6s
+        ease infinite;
 }
 
 @keyframes diceRoll {
-0% {
-transform:
-rotate(0deg)
-scale(1);
-}
 
-50% {
-    transform:
-        rotate(180deg)
-        scale(1.2);
-}
-100% {
-    transform:
-        rotate(360deg)
-        scale(1);
-}
+    0% {
+        transform:
+            rotate(0deg)
+            scale(1);
+    }
 
+    50% {
+        transform:
+            rotate(180deg)
+            scale(1.2);
+    }
+
+    100% {
+        transform:
+            rotate(360deg)
+            scale(1);
+    }
 }
 
 /* =========================================================
@@ -840,42 +1188,51 @@ LADDER
 ========================================================= */
 
 .ladder-board {
-display: flex;
 
-flex-direction: column-reverse;
-gap: 8px;
-margin: 20px 0;
+    display: flex;
 
+    flex-direction:
+        column-reverse;
+
+    gap: 8px;
+
+    margin: 20px 0;
 }
 
 .ladder-step {
-padding: 14px;
 
-border-radius: 12px;
-text-align: center;
-background:
-    rgba(255,255,255,0.05);
-color: #7f8ba1;
-transition:
-    0.3s;
+    padding: 14px;
 
+    border-radius: 12px;
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color: #7f8ba1;
+
+    transition:
+        0.3s;
 }
 
 .ladder-step.active {
-color: #fff;
 
-background:
-    linear-gradient(
-        90deg,
-        #00a86b,
-        #00d084
-    );
-transform:
-    scale(1.03);
-box-shadow:
-    0 5px 25px
-    rgba(0,208,132,0.25);
+    color: #fff;
 
+    background:
+        linear-gradient(
+            90deg,
+            #008f5d,
+            #00d084
+        );
+
+    transform:
+        scale(1.03);
+
+    box-shadow:
+        0 5px 25px
+        rgba(0,208,132,0.3);
 }
 
 /* =========================================================
@@ -883,60 +1240,73 @@ MINES
 ========================================================= */
 
 .mines-board {
-display: grid;
 
-grid-template-columns:
-    repeat(4, 1fr);
-gap: 8px;
-margin: 20px 0;
+    display: grid;
 
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+
+    margin: 20px 0;
 }
 
 .mine-cell {
-aspect-ratio: 1;
 
-margin: 0 !important;
-padding: 0 !important;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 25px;
-background:
-    linear-gradient(
-        145deg,
-        #182235,
-        #0b111d
-    ) !important;
-border:
-    1px solid
-    rgba(255,255,255,0.08) !important;
-box-shadow:
-    inset 0 3px 10px
-    rgba(255,255,255,0.03);
+    aspect-ratio: 1;
 
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #182235,
+            #080d16
+        ) !important;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08) !important;
+
+    box-shadow:
+        inset 0 3px 10px
+        rgba(255,255,255,0.03);
 }
 
 .mine-cell:hover {
-background:
-#202e45 !important;
+
+    background:
+        #202e45 !important;
 }
 
 .mine-cell.mine-safe {
-background:
-linear-gradient(
-145deg,
-#075c43,
-#00a86b
-) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #075c43,
+            #00a86b
+        ) !important;
 }
 
 .mine-cell.mine-danger {
-background:
-linear-gradient(
-145deg,
-#7d1525,
-#e52b43
-) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #7d1525,
+            #e52b43
+        ) !important;
 }
 
 /* =========================================================
@@ -944,66 +1314,95 @@ CRASH
 ========================================================= */
 
 .crash-screen {
-position: relative;
 
-min-height: 330px;
-overflow: hidden;
-border-radius: 25px;
-background:
-    linear-gradient(
-        180deg,
-        #101d32,
-        #070a11
-    );
-border:
-    1px solid
-    rgba(255,255,255,0.07);
+    position: relative;
 
+    min-height: 330px;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(0,208,132,0.12),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            180deg,
+            #101d32,
+            #05070b
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.07);
 }
 
 .crash-multiplier {
-position: absolute;
 
-top: 30px;
-left: 0;
-right: 0;
-text-align: center;
-font-size: 54px;
-font-weight: 900;
-color: #53ffad;
+    position: absolute;
 
+    top: 30px;
+
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    font-size: 54px;
+
+    font-weight: 900;
+
+    color: #53ffad;
+
+    text-shadow:
+        0 0 25px
+        rgba(83,255,173,0.3);
 }
 
 #crashPlane {
-position: absolute;
 
-left: 5%;
-top: 55%;
-font-size: 45px;
-transition:
-    left 0.1s linear;
-filter:
-    drop-shadow(
-        0 0 15px
-        rgba(83,255,173,0.5)
-    );
+    position: absolute;
 
+    left: 5%;
+
+    top: 55%;
+
+    font-size: 45px;
+
+    transition:
+        left 0.1s linear;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(83,255,173,0.5)
+        );
 }
 
 .crash-line {
-position: absolute;
 
-left: 0;
-bottom: 0;
-width: 100%;
-height: 2px;
-background:
-    rgba(83,255,173,0.3);
-transform:
-    rotate(-15deg);
-transform-origin:
-    left center;
+    position: absolute;
 
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 2px;
+
+    background:
+        rgba(83,255,173,0.3);
+
+    transform:
+        rotate(-15deg);
+
+    transform-origin:
+        left center;
 }
 
 /* =========================================================
@@ -1011,70 +1410,83 @@ CASES
 ========================================================= */
 
 .cases-grid {
-display: grid;
 
-grid-template-columns:
-    repeat(2, 1fr);
-gap: 12px;
+    display: grid;
 
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
 }
 
 .case-card {
-position: relative;
 
-text-align: center;
-overflow: hidden;
-padding: 22px 14px;
-transition:
-    transform 0.2s;
+    position: relative;
 
+    text-align: center;
+
+    overflow: hidden;
+
+    padding: 22px 14px;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 .case-card:active {
-transform:
-scale(0.96);
+
+    transform:
+        scale(0.96);
 }
 
 .case-icon {
-font-size: 55px;
 
-margin-bottom: 10px;
-filter:
-    drop-shadow(
-        0 8px 15px
-        rgba(0,0,0,0.4)
-    );
+    font-size: 55px;
 
+    margin-bottom: 10px;
+
+    filter:
+        drop-shadow(
+            0 8px 15px
+            rgba(0,0,0,0.5)
+        );
 }
 
 .case-card.common {
-border-color:
-rgba(180,180,180,0.25);
+
+    border-color:
+        rgba(180,180,180,0.25);
 }
 
 .case-card.rare {
-border-color:
-rgba(50,150,255,0.35);
+
+    border-color:
+        rgba(50,150,255,0.35);
+
+    box-shadow:
+        0 0 25px
+        rgba(50,150,255,0.08);
 }
 
 .case-card.legendary {
-border-color:
-rgba(255,190,40,0.45);
 
-box-shadow:
-    0 0 25px
-    rgba(255,190,40,0.08);
+    border-color:
+        rgba(255,190,40,0.45);
 
+    box-shadow:
+        0 0 30px
+        rgba(255,190,40,0.1);
 }
 
 .case-card.mythical {
-border-color:
-rgba(190,80,255,0.5);
 
-box-shadow:
-    0 0 35px
-    rgba(190,80,255,0.1);
+    border-color:
+        rgba(190,80,255,0.5);
 
+    box-shadow:
+        0 0 35px
+        rgba(190,80,255,0.15);
 }
 
 /* =========================================================
@@ -1082,121 +1494,158 @@ CASE OPENING
 ========================================================= */
 
 .case-opening {
-display: none;
 
-position: fixed;
-inset: 0;
-z-index: 1000;
-align-items: center;
-justify-content: center;
-padding: 20px;
-background:
-    rgba(2,4,8,0.92);
-backdrop-filter:
-    blur(12px);
+    display: none;
 
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(2,4,8,0.94);
+
+    backdrop-filter:
+        blur(14px);
 }
 
 .case-opening.active {
-display: flex;
+
+    display: flex;
 }
 
 .case-opening-box {
-width: 100%;
-max-width: 500px;
 
-padding: 25px;
-border-radius: 28px;
-background:
-    linear-gradient(
-        145deg,
-        #182235,
-        #080b12
-    );
-border:
-    1px solid
-    rgba(255,255,255,0.1);
-box-shadow:
-    0 30px 100px
-    rgba(0,0,0,0.7);
+    width: 100%;
 
+    max-width: 500px;
+
+    padding: 25px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #182235,
+            #080b12
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,0.8);
 }
 
 .case-track {
-position: relative;
 
-overflow: hidden;
-height: 130px;
-margin: 20px 0;
-border-radius: 18px;
-background:
-    #05070b;
-border:
-    2px solid
-    rgba(255,255,255,0.08);
+    position: relative;
 
+    overflow: hidden;
+
+    height: 130px;
+
+    margin: 20px 0;
+
+    border-radius: 18px;
+
+    background:
+        #05070b;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.08);
 }
 
 .case-track::after {
-content: “”;
 
-position: absolute;
-top: 0;
-bottom: 0;
-left: 50%;
-width: 3px;
-transform:
-    translateX(-50%);
-background:
-    #ffd95a;
-box-shadow:
-    0 0 20px
-    #ffd95a;
-z-index: 10;
+    content: "";
 
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 3px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #ffd95a;
+
+    box-shadow:
+        0 0 20px
+        #ffd95a;
+
+    z-index: 10;
 }
 
 .case-track-items {
-display: flex;
 
-gap: 10px;
-height: 100%;
-align-items: center;
-padding: 10px;
-transform:
-    translateX(0);
+    display: flex;
 
+    gap: 10px;
+
+    height: 100%;
+
+    align-items: center;
+
+    padding: 10px;
 }
 
 .case-track-item {
-min-width: 105px;
-height: 105px;
 
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-border-radius: 15px;
-background:
-    linear-gradient(
-        145deg,
-        #1a2434,
-        #0c111b
-    );
-border:
-    1px solid
-    rgba(255,255,255,0.08);
-font-size: 35px;
-flex-shrink: 0;
+    min-width: 105px;
 
+    height: 105px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a2434,
+            #0c111b
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    font-size: 35px;
+
+    flex-shrink: 0;
 }
 
 .case-track-item span {
-font-size: 10px;
 
-margin-top: 5px;
-color: #aab4c4;
+    font-size: 10px;
 
+    margin-top: 5px;
+
+    color:
+        #aab4c4;
 }
 
 /* =========================================================
@@ -1204,36 +1653,41 @@ INVENTORY
 ========================================================= */
 
 .inventory-grid {
-display: grid;
 
-grid-template-columns:
-    repeat(2, 1fr);
-gap: 10px;
+    display: grid;
 
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
 }
 
 .inventory-item {
-margin: 0;
 
-padding: 14px;
-cursor: pointer;
-transition:
-    transform 0.15s,
-    border-color 0.15s;
+    margin: 0;
 
+    padding: 14px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s,
+        border-color 0.15s;
 }
 
 .inventory-item:active {
-transform:
-scale(0.96);
+
+    transform:
+        scale(0.96);
 }
 
 .inventory-item strong {
-display: block;
 
-color: #ffd95a;
-margin-top: 8px;
+    display: block;
 
+    color: #ffd95a;
+
+    margin-top: 8px;
 }
 
 /* =========================================================
@@ -1241,26 +1695,27 @@ SHOP
 ========================================================= */
 
 .shop-grid {
-display: grid;
 
-grid-template-columns:
-    repeat(2, 1fr);
-gap: 12px;
+    display: grid;
 
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
 }
 
 .shop-card {
-margin: 0;
 
-text-align: center;
+    margin: 0;
 
+    text-align: center;
 }
 
 .shop-icon {
-font-size: 38px;
 
-margin-bottom: 8px;
+    font-size: 38px;
 
+    margin-bottom: 8px;
 }
 
 /* =========================================================
@@ -1268,22 +1723,29 @@ PROMO
 ========================================================= */
 
 .promo-card {
-background:
-linear-gradient(
-145deg,
-rgba(85,50,180,0.2),
-rgba(20,15,40,0.5)
-);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(85,50,180,0.22),
+            rgba(20,15,40,0.55)
+        );
+
+    border-color:
+        rgba(150,100,255,0.18);
 }
 
 #promoMessage {
-min-height: 22px;
 
-margin-top: 10px;
-text-align: center;
-font-size: 13px;
-color: #53ffad;
+    min-height: 22px;
 
+    margin-top: 10px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    color: #53ffad;
 }
 
 /* =========================================================
@@ -1291,33 +1753,40 @@ PROFILE
 ========================================================= */
 
 .profile-card {
-text-align: center;
 
-padding: 30px 20px;
+    text-align: center;
 
+    padding: 30px 20px;
 }
 
 .profile-avatar {
-width: 90px;
-height: 90px;
 
-margin:
-    0 auto 15px;
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 50%;
-font-size: 48px;
-background:
-    radial-gradient(
-        circle,
-        #53ffad,
-        #08734c
-    );
-box-shadow:
-    0 0 40px
-    rgba(83,255,173,0.2);
+    width: 90px;
+    height: 90px;
 
+    margin:
+        0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 48px;
+
+    background:
+        radial-gradient(
+            circle,
+            #53ffad,
+            #08734c
+        );
+
+    box-shadow:
+        0 0 40px
+        rgba(83,255,173,0.25);
 }
 
 /* =========================================================
@@ -1325,68 +1794,119 @@ QUESTS
 ========================================================= */
 
 .quest-card {
-position: relative;
+
+    position: relative;
 }
 
 .quest-card.completed {
-border-color:
-rgba(83,255,173,0.4);
+
+    border-color:
+        rgba(83,255,173,0.4);
 }
 
 .quest-progress {
-color: #53ffad;
 
-font-size: 13px;
-margin-top: 7px;
+    color: #53ffad;
 
+    font-size: 13px;
+
+    margin-top: 7px;
 }
 
 /* =========================================================
-MESSAGE
+GAME MESSAGE
 ========================================================= */
 
 .game-message {
-position: fixed;
 
-left: 50%;
-bottom: 95px;
-z-index: 2000;
-max-width: calc(100% - 30px);
-padding: 13px 18px;
-border-radius: 15px;
-background:
-    rgba(20,25,35,0.96);
-border:
-    1px solid
-    rgba(255,255,255,0.1);
-box-shadow:
-    0 15px 40px
-    rgba(0,0,0,0.5);
-transform:
-    translate(-50%, 30px);
-opacity: 0;
-pointer-events: none;
-transition:
-    0.3s;
+    position: fixed;
 
+    left: 50%;
+
+    bottom: 95px;
+
+    z-index: 2000;
+
+    max-width:
+        calc(100% - 30px);
+
+    padding:
+        13px 18px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(20,25,35,0.97);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.6);
+
+    transform:
+        translate(-50%, 30px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        0.3s;
 }
 
 .game-message.show {
-transform:
-translate(-50%, 0);
 
-opacity: 1;
+    transform:
+        translate(-50%, 0);
 
+    opacity: 1;
 }
 
 .game-message.success {
-border-color:
-rgba(83,255,173,0.35);
+
+    border-color:
+        rgba(83,255,173,0.4);
 }
 
 .game-message.error {
-border-color:
-rgba(255,71,87,0.35);
+
+    border-color:
+        rgba(255,71,87,0.4);
+}
+
+/* =========================================================
+LOCKED
+========================================================= */
+
+.locked-box {
+
+    padding:
+        35px 20px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #080b12
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
+}
+
+.locked-box .lock-icon {
+
+    font-size: 60px;
+
+    margin-bottom: 15px;
 }
 
 /* =========================================================
@@ -1394,94 +1914,89 @@ BOTTOM NAVIGATION
 ========================================================= */
 
 .bottom-nav {
-position: fixed;
 
-left: 50%;
-bottom: 10px;
-transform:
-    translateX(-50%);
-z-index: 500;
-width:
-    min(94%, 570px);
-display: grid;
-grid-template-columns:
-    repeat(5, 1fr);
-padding: 7px;
-border-radius: 22px;
-background:
-    rgba(12,16,25,0.9);
-border:
-    1px solid
-    rgba(255,255,255,0.08);
-backdrop-filter:
-    blur(25px);
--webkit-backdrop-filter:
-    blur(25px);
-box-shadow:
-    0 15px 50px
-    rgba(0,0,0,0.5);
+    position: fixed;
 
+    left: 50%;
+
+    bottom: 10px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 500;
+
+    width:
+        min(94%, 570px);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    padding: 7px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(12,16,25,0.92);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,0.6);
 }
 
 .nav-button {
-width: 100%;
 
-margin: 0 !important;
-padding: 9px 4px !important;
-border: none !important;
-background:
-    transparent !important;
-color: #778297;
-font-size: 11px;
-border-radius: 15px;
-box-shadow: none !important;
-transition:
-    0.2s;
+    width: 100%;
 
+    margin: 0 !important;
+
+    padding:
+        9px 4px !important;
+
+    border: none !important;
+
+    background:
+        transparent !important;
+
+    color: #778297;
+
+    font-size: 11px;
+
+    border-radius: 15px;
+
+    box-shadow: none !important;
+
+    transition:
+        0.2s;
 }
 
 .nav-button.active {
-color: #53ffad;
 
-background:
-    rgba(83,255,173,0.1) !important;
+    color: #53ffad;
 
+    background:
+        rgba(83,255,173,0.1) !important;
 }
 
 .nav-icon {
-display: block;
 
-font-size: 21px;
-margin-bottom: 3px;
+    display: block;
 
-}
+    font-size: 21px;
 
-/* =========================================================
-LOCK
-========================================================= */
-
-.locked-box {
-padding: 35px 20px;
-
-text-align: center;
-border-radius: 25px;
-background:
-    linear-gradient(
-        145deg,
-        #111827,
-        #080b12
-    );
-border:
-    1px solid
-    rgba(255,255,255,0.06);
-
-}
-
-.locked-box .lock-icon {
-font-size: 60px;
-
-margin-bottom: 15px;
-
+    margin-bottom: 3px;
 }
 
 /* =========================================================
@@ -1490,56 +2005,76 @@ MOBILE
 
 @media (max-width: 420px) {
 
-.page {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.coin-button {
-    width: 165px;
-    height: 165px;
-    font-size: 70px;
-}
-.casino-grid,
-.cases-grid,
-.shop-grid {
-    gap: 8px;
-}
-.game-card {
-    min-height: 130px;
-}
-.roulette-wheel {
-    width: 205px;
-    height: 205px;
-}
+    .page {
 
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+    .coin-button {
+
+        width: 165px;
+
+        height: 165px;
+
+        font-size: 70px;
+    }
+
+    .casino-grid,
+    .cases-grid,
+    .shop-grid {
+
+        gap: 8px;
+    }
+
+    .game-card {
+
+        min-height: 130px;
+    }
+
+    .roulette-wheel {
+
+        width: 205px;
+
+        height: 205px;
+    }
+
+    .roulette-numbers {
+
+        grid-template-columns:
+            repeat(5, 1fr);
+    }
 }
 
 /* =========================================================
-SAFE AREA — IPHONE
+IPHONE SAFE AREA
 ========================================================= */
 
 @supports (
-padding-bottom:
-env(safe-area-inset-bottom)
+    padding-bottom:
+    env(safe-area-inset-bottom)
 ) {
 
-.bottom-nav {
-    bottom:
-        calc(
-            8px +
-            env(
-                safe-area-inset-bottom
-            )
-        );
-}
-#app {
-    padding-bottom:
-        calc(
-            100px +
-            env(
-                safe-area-inset-bottom
-            )
-        );
-}
+    .bottom-nav {
 
+        bottom:
+            calc(
+                8px +
+                env(
+                    safe-area-inset-bottom
+                )
+            );
+    }
+
+    #app {
+
+        padding-bottom:
+            calc(
+                110px +
+                env(
+                    safe-area-inset-bottom
+                )
+            );
+    }
 }
