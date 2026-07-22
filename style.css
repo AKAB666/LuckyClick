@@ -1,1905 +1,1545 @@
 /* =========================================================
-   🍀 LUCKY CLICK
-   TELEGRAM MINI APP STYLE
+🍀 LUCKY CLICK — PREMIUM TELEGRAM MINI APP
+FULL STYLE.CSS
 ========================================================= */
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     -webkit-tap-highlight-color: transparent;
-}
+    }
 
 html {
-    min-height: 100%;
-    background: #080b12;
+scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
+min-height: 100vh;
+background:
+radial-gradient(
+circle at 50% -10%,
+rgba(40, 120, 255, 0.18),
+transparent 35%
+),
+radial-gradient(
+circle at 0% 50%,
+rgba(0, 255, 160, 0.08),
+transparent 30%
+),
+#070a11;
 
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+color: #ffffff;
+font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
+overflow-x: hidden;
 
-    color: #ffffff;
-
-    background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(60, 100, 255, 0.18),
-            transparent 40%
-        ),
-        #080b12;
-
-    overflow-x: hidden;
 }
-
-button,
-input {
-    font: inherit;
-}
-
-button {
-    border: none;
-    cursor: pointer;
-    color: white;
-}
-
-button:active {
-    transform: scale(0.97);
-}
-
-.hidden {
-    display: none !important;
-}
-
 
 /* =========================================================
-   APP
+SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+width: 4px;
+}
+
+::-webkit-scrollbar-track {
+background: #080b12;
+}
+
+::-webkit-scrollbar-thumb {
+background: #263247;
+border-radius: 10px;
+}
+
+/* =========================================================
+APP
 ========================================================= */
 
 #app {
-    width: 100%;
-    max-width: 600px;
-    min-height: 100vh;
-
-    margin: 0 auto;
-
-    padding-bottom: 100px;
+width: 100%;
+max-width: 600px;
+min-height: 100vh;
+margin: auto;
+padding-bottom: 100px;
+position: relative;
 }
-
 
 /* =========================================================
-   TOPBAR
+PAGE
 ========================================================= */
-
-.topbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding:
-        calc(12px + env(safe-area-inset-top))
-        16px
-        12px;
-
-    background:
-        rgba(8, 11, 18, 0.86);
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.06);
-}
-
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-
-.brand-logo {
-    width: 44px;
-    height: 44px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
-
-    border-radius: 14px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #2b7fff,
-            #725cff
-        );
-
-    box-shadow:
-        0 8px 25px
-        rgba(70, 100, 255, 0.25);
-}
-
-
-.brand-title {
-    font-size: 17px;
-    font-weight: 800;
-}
-
-
-.brand-subtitle {
-    margin-top: 2px;
-
-    color:
-        rgba(255,255,255,0.48);
-
-    font-size: 11px;
-}
-
-
-.balance-box {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    padding:
-        9px 12px;
-
-    border-radius: 14px;
-
-    background:
-        rgba(255,255,255,0.07);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    box-shadow:
-        inset 0 1px 0
-        rgba(255,255,255,0.04);
-}
-
-
-.balance-icon {
-    font-size: 16px;
-}
-
-
-.balance {
-    font-size: 15px;
-    font-weight: 800;
-
-    white-space: nowrap;
-}
-
-
-/* =========================================================
-   PAGES
-========================================================= */
-
-main {
-    padding:
-        16px;
-}
-
 
 .page {
-    animation:
-        pageIn
-        0.25s
-        ease;
+width: 100%;
+min-height: calc(100vh - 90px);
+padding: 18px 14px 30px;
+animation: pageIn 0.3s ease;
 }
 
+.page.hidden {
+display: none !important;
+}
+
+.page.active {
+display: block;
+}
 
 @keyframes pageIn {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
-    }
-
+from {
+opacity: 0;
+transform: translateY(10px);
 }
 
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+}
 
 /* =========================================================
-   WELCOME
+TOP HEADER
 ========================================================= */
 
-.welcome-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.top-header {
+position: sticky;
+top: 0;
+z-index: 100;
 
-    padding: 16px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 14px;
+background: rgba(7, 10, 17, 0.82);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border-bottom: 1px solid rgba(255,255,255,0.06);
 
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(40, 70, 130, 0.45),
-            rgba(20, 25, 40, 0.9)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.07);
 }
 
+.logo {
+display: flex;
+align-items: center;
+gap: 8px;
 
-.welcome-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+font-size: 18px;
+font-weight: 900;
+
 }
 
-
-.avatar {
-    width: 48px;
-    height: 48px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 16px;
-
-    font-size: 26px;
-
-    background:
-        rgba(255,255,255,0.08);
+.logo span {
+color: #53ffad;
 }
 
+.balance-box {
+display: flex;
+align-items: center;
+gap: 6px;
 
-.welcome-card h2 {
-    margin: 0;
+padding: 8px 12px;
+border-radius: 14px;
+background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,0.09),
+        rgba(255,255,255,0.025)
+    );
+border: 1px solid rgba(255,255,255,0.08);
+box-shadow:
+    0 5px 25px rgba(0,0,0,0.25);
 
-    font-size: 18px;
 }
 
-
-.welcome-card p {
-    margin:
-        4px 0 0;
-
-    color:
-        rgba(255,255,255,0.5);
-
-    font-size: 13px;
+.balance {
+font-weight: 800;
+color: #ffd95a;
 }
-
-
-.level-badge {
-    padding:
-        7px 10px;
-
-    border-radius: 10px;
-
-    background:
-        rgba(75, 105, 255, 0.18);
-
-    color:
-        #9baeff;
-
-    font-size: 11px;
-    font-weight: 800;
-}
-
-
-.level-badge span {
-    font-size: 14px;
-}
-
 
 /* =========================================================
-   XP
+TITLES
 ========================================================= */
 
-.xp-card {
-    margin-top: 12px;
-
-    padding: 14px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
+h1,
+h2,
+h3 {
+letter-spacing: -0.4px;
 }
 
-
-.xp-header {
-    display: flex;
-    justify-content: space-between;
-
-    margin-bottom: 9px;
-
-    color:
-        rgba(255,255,255,0.6);
-
-    font-size: 12px;
+h2 {
+font-size: 25px;
+margin-bottom: 16px;
 }
 
-
-.xp-bar {
-    height: 7px;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background:
-        rgba(255,255,255,0.08);
+h3 {
+font-size: 18px;
 }
-
-
-.xp-progress {
-    width: 0%;
-    height: 100%;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(
-            90deg,
-            #397bff,
-            #8a62ff
-        );
-
-    transition:
-        width
-        0.35s
-        ease;
-}
-
 
 /* =========================================================
-   CLICKER
+CARDS
 ========================================================= */
 
-.clicker-card {
-    position: relative;
+.card,
+.profile-card,
+.shop-card,
+.case-card,
+.quest-card,
+.game-card,
+.inventory-item,
+.promo-card {
 
-    margin-top: 14px;
+background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.075),
+        rgba(255,255,255,0.025)
+    );
+border:
+    1px solid rgba(255,255,255,0.07);
+border-radius: 22px;
+padding: 18px;
+margin-bottom: 14px;
+box-shadow:
+    0 15px 40px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.04);
 
-    padding:
-        26px 20px;
-
-    text-align: center;
-
-    border-radius: 28px;
-
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(72, 100, 255, 0.18),
-            transparent 55%
-        ),
-        rgba(255,255,255,0.035);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
-
-    overflow: hidden;
 }
 
+/* =========================================================
+BALANCE HERO
+========================================================= */
 
-.clicker-title {
-    color:
-        rgba(255,255,255,0.5);
+.balance-card {
+position: relative;
+overflow: hidden;
 
-    font-size: 13px;
+padding: 26px 20px;
+text-align: center;
+border-radius: 28px;
+background:
+    radial-gradient(
+        circle at 50% 0%,
+        rgba(83,255,173,0.16),
+        transparent 50%
+    ),
+    linear-gradient(
+        145deg,
+        #111827,
+        #080b12
+    );
+border: 1px solid rgba(83,255,173,0.12);
+box-shadow:
+    0 20px 60px rgba(0,0,0,0.4);
+
 }
 
+.balance-card::before {
+content: “”;
+position: absolute;
 
-.big-balance {
-    margin:
-        8px 0 20px;
+width: 180px;
+height: 180px;
+top: -100px;
+left: 50%;
+transform: translateX(-50%);
+background: #53ffad;
+filter: blur(100px);
+opacity: 0.08;
 
-    font-size: 30px;
-    font-weight: 900;
 }
 
+.balance-card .balance {
+position: relative;
+
+font-size: 34px;
+font-weight: 900;
+color: #ffd95a;
+
+}
+
+/* =========================================================
+CLICKER
+========================================================= */
+
+.clicker-area {
+text-align: center;
+padding: 20px 0;
+}
 
 .coin-button {
-    position: relative;
+position: relative;
 
-    width: 150px;
-    height: 150px;
+width: 190px;
+height: 190px;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+font-size: 82px;
+background:
+    radial-gradient(
+        circle at 35% 25%,
+        #fff4a8,
+        #ffd83d 30%,
+        #e59b00 65%,
+        #8a4e00 100%
+    );
+box-shadow:
+    0 0 0 8px rgba(255,215,70,0.06),
+    0 0 50px rgba(255,190,0,0.25),
+    inset 0 8px 15px rgba(255,255,255,0.45),
+    inset 0 -12px 20px rgba(0,0,0,0.3);
+transition:
+    transform 0.12s,
+    box-shadow 0.2s;
 
-    display: block;
-
-    margin: 0 auto;
-
-    border-radius: 50%;
-
-    font-size: 72px;
-
-    background:
-        radial-gradient(
-            circle at 35% 25%,
-            #ffe88b,
-            #f6b51c 45%,
-            #c97900
-        );
-
-    box-shadow:
-        0 12px 0
-        #9c5d00,
-
-        0 25px 45px
-        rgba(245, 166, 20, 0.28),
-
-        inset 0 5px 10px
-        rgba(255,255,255,0.45);
 }
-
 
 .coin-button:active {
-    transform:
-        translateY(7px)
-        scale(0.96);
-
-    box-shadow:
-        0 5px 0
-        #9c5d00,
-
-        0 15px 30px
-        rgba(245, 166, 20, 0.2);
+transform: scale(0.91);
 }
 
+.coin-button::after {
+content: “”;
 
-.click-info {
-    margin-top: 25px;
+position: absolute;
+inset: -12px;
+border-radius: 50%;
+border:
+    1px solid rgba(255,215,70,0.25);
+animation:
+    coinPulse 2s infinite;
 
-    color:
-        rgba(255,255,255,0.55);
-
-    font-size: 13px;
 }
 
-
-.click-info b {
-    color: #ffffff;
+@keyframes coinPulse {
+0%, 100% {
+transform: scale(1);
+opacity: 0.5;
 }
 
+50% {
+    transform: scale(1.08);
+    opacity: 0;
+}
+
+}
 
 /* =========================================================
-   CLICK EFFECT
+CLICK EFFECT
 ========================================================= */
 
-.click-effects {
-    position: absolute;
+#clickEffects {
+position: fixed;
+inset: 0;
 
-    left: 0;
-    right: 0;
+pointer-events: none;
+z-index: 999;
 
-    top: 170px;
-
-    pointer-events: none;
 }
-
 
 .click-effect {
-    position: absolute;
+position: absolute;
 
-    color:
-        #ffe37a;
-
-    font-size: 18px;
-    font-weight: 900;
-
-    animation:
-        floatUp
-        1s
-        ease
-        forwards;
-}
-
-
-@keyframes floatUp {
-
-    0% {
-        opacity: 0;
-        transform:
-            translateY(10px)
-            scale(0.8);
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        transform:
-            translateY(-70px)
-            scale(1.1);
-    }
+color: #ffd95a;
+font-size: 20px;
+font-weight: 900;
+animation:
+    clickFloat 1s ease forwards;
 
 }
 
+@keyframes clickFloat {
+0% {
+opacity: 1;
+transform: translateY(0) scale(1);
+}
+
+100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(1.2);
+}
+
+}
 
 /* =========================================================
-   CARDS
+BUTTONS
 ========================================================= */
 
-.upgrade-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-
-    margin-top: 12px;
-
-    padding: 15px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
+button {
+font-family: inherit;
 }
 
+button:not(.nav-button) {
+width: 100%;
 
-.card-title {
-    font-weight: 800;
+border: none;
+padding: 14px 16px;
+border-radius: 15px;
+color: #fff;
+background:
+    linear-gradient(
+        135deg,
+        #1d293b,
+        #111827
+    );
+border:
+    1px solid rgba(255,255,255,0.08);
+font-size: 15px;
+font-weight: 750;
+cursor: pointer;
+transition:
+    transform 0.15s,
+    filter 0.15s,
+    background 0.15s;
+margin-top: 8px;
+
 }
 
-
-.card-description {
-    margin-top: 5px;
-
-    color:
-        rgba(255,255,255,0.48);
-
-    font-size: 12px;
+button:not(.nav-button):active {
+transform: scale(0.97);
 }
 
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.primary-button,
-.secondary-button,
-.success-button,
-.jackpot-button {
-    min-height: 44px;
-
-    padding:
-        11px 15px;
-
-    border-radius: 14px;
-
-    font-weight: 800;
-
-    transition:
-        0.2s
-        ease;
+button:not(.nav-button):hover {
+filter: brightness(1.15);
 }
-
 
 .primary-button {
-    background:
-        linear-gradient(
-            135deg,
-            #397bff,
-            #705bff
-        );
+background:
+linear-gradient(
+135deg,
+#00d084,
+#009b64
+) !important;
 
-    box-shadow:
-        0 8px 20px
-        rgba(65, 95, 255, 0.2);
+box-shadow:
+    0 8px 25px rgba(0,208,132,0.18);
+
 }
 
-
-.secondary-button {
-    background:
-        rgba(255,255,255,0.08);
+.danger-button {
+background:
+linear-gradient(
+135deg,
+#ff4757,
+#b5162b
+) !important;
 }
 
+.gold-button {
+color: #17120a !important;
 
-.success-button {
-    margin-top: 10px;
+background:
+    linear-gradient(
+        135deg,
+        #ffe47a,
+        #f3ad20
+    ) !important;
 
-    background:
-        linear-gradient(
-            135deg,
-            #20b879,
-            #159a66
-        );
 }
-
-
-.jackpot-button {
-    background:
-        linear-gradient(
-            135deg,
-            #ff9f1c,
-            #ff3d7f
-        );
-
-    font-size: 17px;
-}
-
-
-.full {
-    width: 100%;
-}
-
-
-.primary-button span {
-    margin-left: 5px;
-}
-
 
 /* =========================================================
-   STATS
+INPUTS
 ========================================================= */
 
-.stats-grid {
-    display: grid;
+input,
+select {
+width: 100%;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+padding: 14px 15px;
+margin-top: 8px;
+border-radius: 14px;
+outline: none;
+color: white;
+background:
+    rgba(0,0,0,0.28);
+border:
+    1px solid rgba(255,255,255,0.09);
+font-size: 16px;
 
-    gap: 10px;
-
-    margin-top: 12px;
 }
 
+input:focus,
+select:focus {
+border-color: rgba(83,255,173,0.5);
 
-.stat-card {
-    padding: 15px 8px;
+box-shadow:
+    0 0 0 3px rgba(83,255,173,0.08);
 
-    text-align: center;
-
-    border-radius: 18px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
 }
-
-
-.stat-card span {
-    display: block;
-
-    font-size: 20px;
-}
-
-
-.stat-card strong {
-    display: block;
-
-    margin-top: 5px;
-
-    font-size: 16px;
-}
-
-
-.stat-card small {
-    display: block;
-
-    margin-top: 3px;
-
-    color:
-        rgba(255,255,255,0.45);
-
-    font-size: 10px;
-}
-
 
 /* =========================================================
-   HEADINGS
+XP
 ========================================================= */
 
-.section-heading {
-    margin:
-        8px 0 18px;
+.xp-bar {
+height: 8px;
+
+margin-top: 10px;
+overflow: hidden;
+border-radius: 20px;
+background: rgba(255,255,255,0.08);
+
 }
 
+#xpProgress {
+height: 100%;
 
-.section-heading h1 {
-    margin: 0;
+width: 0%;
+border-radius: inherit;
+background:
+    linear-gradient(
+        90deg,
+        #00d084,
+        #5cffc1
+    );
+transition:
+    width 0.5s ease;
 
-    font-size: 27px;
 }
-
-
-.section-heading p {
-    margin:
-        6px 0 0;
-
-    color:
-        rgba(255,255,255,0.45);
-
-    font-size: 13px;
-}
-
 
 /* =========================================================
-   SHOP
+CASINO
 ========================================================= */
 
-.shop-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 10px;
+#casino {
+background:
+radial-gradient(
+circle at 50% 0%,
+rgba(92,50,255,0.12),
+transparent 35%
+);
 }
 
-
-.shop-card {
-    padding: 17px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
+.casino-header {
+text-align: center;
+margin-bottom: 20px;
 }
 
-
-.shop-icon {
-    font-size: 32px;
+.casino-header h2 {
+font-size: 30px;
 }
 
-
-.shop-card h3 {
-    margin:
-        10px 0 5px;
-
-    font-size: 15px;
+.casino-header p {
+color: #8994a8;
 }
 
+.casino-grid {
+display: grid;
 
-.shop-card p {
-    min-height: 48px;
+grid-template-columns:
+    repeat(2, 1fr);
+gap: 12px;
 
-    margin:
-        0 0 12px;
-
-    color:
-        rgba(255,255,255,0.45);
-
-    font-size: 11px;
-
-    line-height: 1.4;
 }
-
-
-/* =========================================================
-   CASES
-========================================================= */
-
-.cases-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 10px;
-}
-
-
-.case-card {
-    padding: 18px;
-
-    text-align: center;
-
-    border-radius: 22px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.07);
-}
-
-
-.case-icon {
-    font-size: 52px;
-
-    margin-bottom: 8px;
-}
-
-
-.case-card h3 {
-    margin: 0;
-}
-
-
-.case-card p {
-    min-height: 45px;
-
-    color:
-        rgba(255,255,255,0.45);
-
-    font-size: 11px;
-}
-
-
-.rare-case {
-    border-color:
-        rgba(80, 150, 255, 0.25);
-}
-
-
-.legendary-case {
-    border-color:
-        rgba(255, 190, 50, 0.25);
-}
-
-
-.mythical-case {
-    border-color:
-        rgba(180, 80, 255, 0.3);
-}
-
-
-.result-card {
-    margin-top: 12px;
-
-    padding: 18px;
-
-    text-align: center;
-
-    border-radius: 18px;
-
-    background:
-        rgba(255,255,255,0.05);
-}
-
-
-/* =========================================================
-   LOCKED
-========================================================= */
-
-.locked-card {
-    padding:
-        45px 20px;
-
-    text-align: center;
-
-    border-radius: 24px;
-
-    background:
-        rgba(255,255,255,0.04);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
-}
-
-
-.locked-icon {
-    font-size: 52px;
-}
-
-
-.locked-card h2 {
-    margin:
-        12px 0 6px;
-}
-
-
-.locked-card p {
-    margin: 0;
-
-    color:
-        rgba(255,255,255,0.45);
-}
-
-
-/* =========================================================
-   CASINO
-========================================================= */
-
-.casino-menu {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 10px;
-}
-
 
 .game-card {
-    min-height: 145px;
+min-height: 145px;
 
-    display: flex;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+cursor: pointer;
+transition:
+    transform 0.2s,
+    border-color 0.2s;
+overflow: hidden;
+position: relative;
 
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 6px;
-
-    padding: 15px;
-
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.08),
-            rgba(255,255,255,0.035)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.07);
 }
 
-
-.game-card span {
-    font-size: 38px;
+.game-card:active {
+transform: scale(0.97);
 }
 
-
-.game-card strong {
-    font-size: 15px;
+.game-card:hover {
+border-color:
+rgba(83,255,173,0.25);
 }
 
-
-.game-card small {
-    color:
-        rgba(255,255,255,0.42);
-
-    font-size: 10px;
+.game-icon {
+font-size: 42px;
 }
 
-
-.jackpot-card {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 130, 30, 0.16),
-            rgba(255, 30, 110, 0.08)
-        );
+.game-card h3 {
+margin-top: 8px;
 }
 
+.game-card p {
+color: #7f8ba1;
+font-size: 12px;
+}
 
 /* =========================================================
-   GAME SCREEN
+GAME SCREEN
 ========================================================= */
 
 .game-screen {
-    margin-top: 15px;
-
-    padding: 18px;
-
-    border-radius: 24px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.07);
-
-    animation:
-        pageIn
-        0.25s
-        ease;
+animation:
+pageIn 0.3s ease;
 }
 
-
-.game-screen h2 {
-    margin:
-        15px 0 20px;
-
-    text-align: center;
+.game-screen.hidden {
+display: none !important;
 }
 
+.game-top {
+display: flex;
+
+align-items: center;
+gap: 10px;
+margin-bottom: 16px;
+
+}
 
 .back-button {
-    padding:
-        8px 12px;
+width: auto !important;
 
-    border-radius: 12px;
+padding:
+    10px 14px !important;
+margin: 0 !important;
 
-    background:
-        rgba(255,255,255,0.07);
-
-    color:
-        rgba(255,255,255,0.75);
 }
-
 
 /* =========================================================
-   INPUT
-========================================================= */
-
-.game-input {
-    width: 100%;
-
-    height: 48px;
-
-    margin:
-        10px 0;
-
-    padding:
-        0 15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    border-radius: 14px;
-
-    outline: none;
-
-    color: white;
-
-    background:
-        rgba(0,0,0,0.25);
-}
-
-
-.game-input:focus {
-    border-color:
-        rgba(80,120,255,0.6);
-}
-
-
-.game-input::placeholder {
-    color:
-        rgba(255,255,255,0.35);
-}
-
-
-/* =========================================================
-   SLOT
+SLOT MACHINE
 ========================================================= */
 
 .slot-machine {
-    display: flex;
+padding: 20px;
 
-    justify-content: center;
+border-radius: 26px;
+background:
+    linear-gradient(
+        145deg,
+        #202838,
+        #090d15
+    );
+border:
+    2px solid #343e52;
+box-shadow:
+    0 20px 60px rgba(0,0,0,0.5),
+    inset 0 0 30px rgba(0,0,0,0.4);
 
-    gap: 8px;
-
-    margin:
-        15px 0 20px;
 }
 
+.slot-title {
+text-align: center;
 
-.slot-machine div {
-    width: 78px;
-    height: 78px;
+font-size: 22px;
+font-weight: 900;
+color: #ffd95a;
+margin-bottom: 18px;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 18px;
-
-    font-size: 42px;
-
-    background:
-        rgba(0,0,0,0.35);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
 }
 
+.slot-reels {
+display: grid;
+
+grid-template-columns:
+    repeat(3, 1fr);
+gap: 8px;
+padding: 10px;
+border-radius: 18px;
+background:
+    #05070b;
+box-shadow:
+    inset 0 0 25px #000;
+
+}
+
+.slot-reel {
+height: 90px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+border-radius: 12px;
+background:
+    linear-gradient(
+        180deg,
+        #fff,
+        #cbd1da 50%,
+        #fff
+    );
+color: #111;
+font-size: 46px;
+box-shadow:
+    inset 0 0 15px rgba(0,0,0,0.25);
+
+}
+
+.slot-reel.spinning {
+animation:
+slotSpin 0.12s
+linear infinite;
+}
+
+@keyframes slotSpin {
+0% {
+transform: translateY(-5px);
+}
+
+50% {
+    transform: translateY(5px);
+}
+100% {
+    transform: translateY(-5px);
+}
+
+}
 
 /* =========================================================
-   DICE
+ROULETTE
 ========================================================= */
 
-.dice-number {
-    padding:
-        20px;
+.roulette-table {
+padding: 18px;
 
-    text-align: center;
+border-radius: 28px;
+background:
+    radial-gradient(
+        circle,
+        #12663e,
+        #06301f
+    );
+border:
+    3px solid #b98b32;
+box-shadow:
+    0 20px 60px rgba(0,0,0,0.5);
 
-    font-size: 48px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(0,0,0,0.25);
 }
-
-
-.number-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(6, 1fr);
-
-    gap: 6px;
-
-    margin-top: 12px;
-}
-
-
-.number-grid button {
-    height: 44px;
-
-    border-radius: 12px;
-
-    background:
-        rgba(255,255,255,0.08);
-}
-
-
-.selection-text {
-    margin:
-        10px 0;
-
-    text-align: center;
-
-    color:
-        rgba(255,255,255,0.55);
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   ROULETTE
-========================================================= */
 
 .roulette-wheel {
-    width: 130px;
-    height: 130px;
+width: 230px;
+height: 230px;
 
-    display: flex;
+margin: 15px auto;
+border-radius: 50%;
+background:
+    conic-gradient(
+        #d9273f 0deg 10deg,
+        #111 10deg 20deg,
+        #d9273f 20deg 30deg,
+        #111 30deg 40deg,
+        #d9273f 40deg 50deg,
+        #111 50deg 60deg,
+        #d9273f 60deg 70deg,
+        #111 70deg 80deg,
+        #d9273f 80deg 90deg,
+        #111 90deg 100deg,
+        #d9273f 100deg 110deg,
+        #111 110deg 120deg,
+        #d9273f 120deg 130deg,
+        #111 130deg 140deg,
+        #d9273f 140deg 150deg,
+        #111 150deg 160deg,
+        #d9273f 160deg 170deg,
+        #111 170deg 180deg,
+        #d9273f 180deg 190deg,
+        #111 190deg 200deg,
+        #d9273f 200deg 210deg,
+        #111 210deg 220deg,
+        #d9273f 220deg 230deg,
+        #111 230deg 240deg,
+        #d9273f 240deg 250deg,
+        #111 250deg 260deg,
+        #d9273f 260deg 270deg,
+        #111 270deg 280deg,
+        #d9273f 280deg 290deg,
+        #111 290deg 300deg,
+        #d9273f 300deg 310deg,
+        #111 310deg 320deg,
+        #d9273f 320deg 330deg,
+        #111 330deg 340deg,
+        #d9273f 340deg 350deg,
+        #111 350deg 360deg
+    );
+border:
+    8px solid #d5a642;
+box-shadow:
+    0 0 0 5px #291d08,
+    0 15px 35px rgba(0,0,0,0.5);
+transition:
+    transform 4s
+    cubic-bezier(.12,.8,.18,1);
 
-    align-items: center;
-    justify-content: center;
-
-    margin:
-        10px auto 20px;
-
-    border-radius: 50%;
-
-    background:
-        conic-gradient(
-            #c92b3c 0deg 90deg,
-            #111 90deg 180deg,
-            #c92b3c 180deg 270deg,
-            #111 270deg 360deg
-        );
-
-    border:
-        7px solid
-        #d3a83a;
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,0.4);
 }
 
+.roulette-wheel.spinning {
+transform:
+rotate(1800deg);
+}
 
 .roulette-result {
-    width: 72px;
-    height: 72px;
+text-align: center;
 
-    display: flex;
+font-size: 35px;
+font-weight: 900;
+margin: 15px 0;
+color: #ffd95a;
 
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background:
-        #111722;
-
-    font-size: 28px;
-    font-weight: 900;
 }
-
-
-.roulette-colors {
-    display: grid;
-
-    grid-template-columns:
-        1fr;
-
-    gap: 7px;
-}
-
-
-.roulette-colors button {
-    min-height: 44px;
-
-    border-radius: 13px;
-
-    font-weight: 800;
-}
-
-
-.red-button {
-    background:
-        #b52c3e;
-}
-
-
-.black-button {
-    background:
-        #222630;
-}
-
-
-.green-button {
-    background:
-        #16845a;
-}
-
-
-.roulette-numbers {
-    display: grid;
-
-    grid-template-columns:
-        repeat(6, 1fr);
-
-    gap: 5px;
-
-    margin-top: 12px;
-}
-
-
-.roulette-numbers button {
-    min-height: 36px;
-
-    border-radius: 9px;
-
-    background:
-        rgba(255,255,255,0.07);
-
-    font-size: 12px;
-}
-
 
 /* =========================================================
-   LADDER
+DICE
 ========================================================= */
 
-.big-game-value {
-    text-align: center;
+.dice-container {
+text-align: center;
 
-    font-size: 20px;
-    font-weight: 800;
+padding: 25px;
+
 }
 
+.dice-number {
+font-size: 90px;
 
-.multiplier-value {
-    margin:
-        12px 0;
+margin: 25px;
+display: inline-block;
+filter:
+    drop-shadow(
+        0 15px 25px
+        rgba(0,0,0,0.5)
+    );
 
-    text-align: center;
-
-    font-size: 42px;
-    font-weight: 900;
-
-    color:
-        #73a4ff;
 }
 
+.dice-number.rolling {
+animation:
+diceRoll 0.6s
+ease infinite;
+}
+
+@keyframes diceRoll {
+0% {
+transform:
+rotate(0deg)
+scale(1);
+}
+
+50% {
+    transform:
+        rotate(180deg)
+        scale(1.2);
+}
+100% {
+    transform:
+        rotate(360deg)
+        scale(1);
+}
+
+}
 
 /* =========================================================
-   MINES
+LADDER
+========================================================= */
+
+.ladder-board {
+display: flex;
+
+flex-direction: column-reverse;
+gap: 8px;
+margin: 20px 0;
+
+}
+
+.ladder-step {
+padding: 14px;
+
+border-radius: 12px;
+text-align: center;
+background:
+    rgba(255,255,255,0.05);
+color: #7f8ba1;
+transition:
+    0.3s;
+
+}
+
+.ladder-step.active {
+color: #fff;
+
+background:
+    linear-gradient(
+        90deg,
+        #00a86b,
+        #00d084
+    );
+transform:
+    scale(1.03);
+box-shadow:
+    0 5px 25px
+    rgba(0,208,132,0.25);
+
+}
+
+/* =========================================================
+MINES
 ========================================================= */
 
 .mines-board {
-    display: grid;
+display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+grid-template-columns:
+    repeat(4, 1fr);
+gap: 8px;
+margin: 20px 0;
 
-    gap: 7px;
-
-    margin:
-        15px 0;
 }
-
 
 .mine-cell {
-    aspect-ratio: 1;
+aspect-ratio: 1;
 
-    border-radius: 13px;
+margin: 0 !important;
+padding: 0 !important;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 25px;
+background:
+    linear-gradient(
+        145deg,
+        #182235,
+        #0b111d
+    ) !important;
+border:
+    1px solid
+    rgba(255,255,255,0.08) !important;
+box-shadow:
+    inset 0 3px 10px
+    rgba(255,255,255,0.03);
 
-    background:
-        linear-gradient(
-            145deg,
-            #263149,
-            #151b29
-        );
-
-    font-size: 22px;
 }
 
+.mine-cell:hover {
+background:
+#202e45 !important;
+}
+
+.mine-cell.mine-safe {
+background:
+linear-gradient(
+145deg,
+#075c43,
+#00a86b
+) !important;
+}
+
+.mine-cell.mine-danger {
+background:
+linear-gradient(
+145deg,
+#7d1525,
+#e52b43
+) !important;
+}
 
 /* =========================================================
-   CRASH
+CRASH
 ========================================================= */
 
-.crash-area {
-    position: relative;
+.crash-screen {
+position: relative;
 
-    height: 150px;
+min-height: 330px;
+overflow: hidden;
+border-radius: 25px;
+background:
+    linear-gradient(
+        180deg,
+        #101d32,
+        #070a11
+    );
+border:
+    1px solid
+    rgba(255,255,255,0.07);
 
-    margin:
-        15px 0;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            160deg,
-            #111a2b,
-            #0d111c
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
 }
 
+.crash-multiplier {
+position: absolute;
 
-.crash-plane {
-    position: absolute;
+top: 30px;
+left: 0;
+right: 0;
+text-align: center;
+font-size: 54px;
+font-weight: 900;
+color: #53ffad;
 
-    left: 0;
-    bottom: 25px;
-
-    font-size: 40px;
-
-    transition:
-        left
-        0.1s
-        linear;
 }
 
+#crashPlane {
+position: absolute;
+
+left: 5%;
+top: 55%;
+font-size: 45px;
+transition:
+    left 0.1s linear;
+filter:
+    drop-shadow(
+        0 0 15px
+        rgba(83,255,173,0.5)
+    );
+
+}
+
+.crash-line {
+position: absolute;
+
+left: 0;
+bottom: 0;
+width: 100%;
+height: 2px;
+background:
+    rgba(83,255,173,0.3);
+transform:
+    rotate(-15deg);
+transform-origin:
+    left center;
+
+}
 
 /* =========================================================
-   JACKPOT
+CASES
 ========================================================= */
 
-.jackpot-display {
-    padding:
-        25px 15px;
+.cases-grid {
+display: grid;
 
-    text-align: center;
+grid-template-columns:
+    repeat(2, 1fr);
+gap: 12px;
 
-    border-radius: 20px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,150,30,0.18),
-            transparent 65%
-        );
 }
 
+.case-card {
+position: relative;
 
-.jackpot-display > :first-child {
-    font-size: 70px;
+text-align: center;
+overflow: hidden;
+padding: 22px 14px;
+transition:
+    transform 0.2s;
+
 }
 
-
-.jackpot-display h2 {
-    margin:
-        8px 0;
-
-    font-size: 30px;
+.case-card:active {
+transform:
+scale(0.96);
 }
 
+.case-icon {
+font-size: 55px;
 
-.jackpot-display p {
-    color:
-        rgba(255,255,255,0.5);
+margin-bottom: 10px;
+filter:
+    drop-shadow(
+        0 8px 15px
+        rgba(0,0,0,0.4)
+    );
 
-    font-size: 13px;
 }
 
+.case-card.common {
+border-color:
+rgba(180,180,180,0.25);
+}
+
+.case-card.rare {
+border-color:
+rgba(50,150,255,0.35);
+}
+
+.case-card.legendary {
+border-color:
+rgba(255,190,40,0.45);
+
+box-shadow:
+    0 0 25px
+    rgba(255,190,40,0.08);
+
+}
+
+.case-card.mythical {
+border-color:
+rgba(190,80,255,0.5);
+
+box-shadow:
+    0 0 35px
+    rgba(190,80,255,0.1);
+
+}
 
 /* =========================================================
-   QUESTS
+CASE OPENING
 ========================================================= */
 
-.quests-list {
-    display: flex;
+.case-opening {
+display: none;
 
-    flex-direction: column;
+position: fixed;
+inset: 0;
+z-index: 1000;
+align-items: center;
+justify-content: center;
+padding: 20px;
+background:
+    rgba(2,4,8,0.92);
+backdrop-filter:
+    blur(12px);
 
-    gap: 10px;
 }
 
-
-.quest-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 13px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
+.case-opening.active {
+display: flex;
 }
 
+.case-opening-box {
+width: 100%;
+max-width: 500px;
 
-.quest-icon {
-    width: 44px;
-    height: 44px;
+padding: 25px;
+border-radius: 28px;
+background:
+    linear-gradient(
+        145deg,
+        #182235,
+        #080b12
+    );
+border:
+    1px solid
+    rgba(255,255,255,0.1);
+box-shadow:
+    0 30px 100px
+    rgba(0,0,0,0.7);
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 13px;
-
-    background:
-        rgba(255,255,255,0.07);
-
-    font-size: 22px;
 }
 
+.case-track {
+position: relative;
 
-.quest-content {
-    flex: 1;
+overflow: hidden;
+height: 130px;
+margin: 20px 0;
+border-radius: 18px;
+background:
+    #05070b;
+border:
+    2px solid
+    rgba(255,255,255,0.08);
+
 }
 
+.case-track::after {
+content: “”;
 
-.quest-content h3 {
-    margin: 0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 50%;
+width: 3px;
+transform:
+    translateX(-50%);
+background:
+    #ffd95a;
+box-shadow:
+    0 0 20px
+    #ffd95a;
+z-index: 10;
 
-    font-size: 14px;
 }
 
+.case-track-items {
+display: flex;
 
-.quest-content p {
-    margin:
-        4px 0 0;
+gap: 10px;
+height: 100%;
+align-items: center;
+padding: 10px;
+transform:
+    translateX(0);
 
-    color:
-        rgba(255,255,255,0.45);
-
-    font-size: 11px;
 }
 
+.case-track-item {
+min-width: 105px;
+height: 105px;
 
-.quest-card button {
-    padding:
-        9px 11px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+border-radius: 15px;
+background:
+    linear-gradient(
+        145deg,
+        #1a2434,
+        #0c111b
+    );
+border:
+    1px solid
+    rgba(255,255,255,0.08);
+font-size: 35px;
+flex-shrink: 0;
 
-    border-radius: 11px;
-
-    background:
-        #397bff;
-
-    font-size: 11px;
-    font-weight: 800;
 }
 
+.case-track-item span {
+font-size: 10px;
 
-.quest-card button:disabled {
-    background:
-        rgba(255,255,255,0.08);
+margin-top: 5px;
+color: #aab4c4;
 
-    color:
-        rgba(255,255,255,0.4);
 }
-
 
 /* =========================================================
-   INVENTORY
+INVENTORY
 ========================================================= */
 
-.inventory-list {
-    display: flex;
+.inventory-grid {
+display: grid;
 
-    flex-direction: column;
+grid-template-columns:
+    repeat(2, 1fr);
+gap: 10px;
 
-    gap: 8px;
 }
-
 
 .inventory-item {
-    display: grid;
+margin: 0;
 
-    grid-template-columns:
-        1fr auto;
+padding: 14px;
+cursor: pointer;
+transition:
+    transform 0.15s,
+    border-color 0.15s;
 
-    gap: 4px;
-
-    padding: 14px;
-
-    border-radius: 16px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.06);
 }
 
-
-.inventory-item small {
-    color:
-        rgba(255,255,255,0.4);
+.inventory-item:active {
+transform:
+scale(0.96);
 }
-
 
 .inventory-item strong {
-    grid-row:
-        span 2;
+display: block;
 
-    align-self: center;
+color: #ffd95a;
+margin-top: 8px;
 
-    color:
-        #ffd45a;
 }
 
+/* =========================================================
+SHOP
+========================================================= */
+
+.shop-grid {
+display: grid;
+
+grid-template-columns:
+    repeat(2, 1fr);
+gap: 12px;
+
+}
+
+.shop-card {
+margin: 0;
+
+text-align: center;
+
+}
+
+.shop-icon {
+font-size: 38px;
+
+margin-bottom: 8px;
+
+}
 
 /* =========================================================
-   PROFILE
+PROMO
+========================================================= */
+
+.promo-card {
+background:
+linear-gradient(
+145deg,
+rgba(85,50,180,0.2),
+rgba(20,15,40,0.5)
+);
+}
+
+#promoMessage {
+min-height: 22px;
+
+margin-top: 10px;
+text-align: center;
+font-size: 13px;
+color: #53ffad;
+
+}
+
+/* =========================================================
+PROFILE
 ========================================================= */
 
 .profile-card {
-    padding:
-        30px 20px;
+text-align: center;
 
-    text-align: center;
+padding: 30px 20px;
 
-    border-radius: 25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(55,80,150,0.3),
-            rgba(255,255,255,0.04)
-        );
 }
-
 
 .profile-avatar {
-    width: 80px;
-    height: 80px;
+width: 90px;
+height: 90px;
 
-    display: flex;
+margin:
+    0 auto 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+font-size: 48px;
+background:
+    radial-gradient(
+        circle,
+        #53ffad,
+        #08734c
+    );
+box-shadow:
+    0 0 40px
+    rgba(83,255,173,0.2);
 
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 auto 12px;
-
-    border-radius: 25px;
-
-    font-size: 45px;
-
-    background:
-        rgba(255,255,255,0.08);
 }
-
-
-.profile-card h2 {
-    margin: 0;
-}
-
-
-.profile-card p {
-    color:
-        rgba(255,255,255,0.45);
-}
-
-
-.profile-stats {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 8px;
-
-    margin-top: 12px;
-}
-
-
-.profile-stats > div {
-    padding: 15px 5px;
-
-    text-align: center;
-
-    border-radius: 17px;
-
-    background:
-        rgba(255,255,255,0.045);
-}
-
-
-.profile-stats span,
-.profile-stats strong,
-.profile-stats small {
-    display: block;
-}
-
-
-.profile-stats span {
-    font-size: 20px;
-}
-
-
-.profile-stats strong {
-    margin-top: 5px;
-}
-
-
-.profile-stats small {
-    margin-top: 3px;
-
-    color:
-        rgba(255,255,255,0.4);
-
-    font-size: 10px;
-}
-
 
 /* =========================================================
-   MESSAGE
+QUESTS
+========================================================= */
+
+.quest-card {
+position: relative;
+}
+
+.quest-card.completed {
+border-color:
+rgba(83,255,173,0.4);
+}
+
+.quest-progress {
+color: #53ffad;
+
+font-size: 13px;
+margin-top: 7px;
+
+}
+
+/* =========================================================
+MESSAGE
 ========================================================= */
 
 .game-message {
-    position: fixed;
+position: fixed;
 
-    left: 50%;
+left: 50%;
+bottom: 95px;
+z-index: 2000;
+max-width: calc(100% - 30px);
+padding: 13px 18px;
+border-radius: 15px;
+background:
+    rgba(20,25,35,0.96);
+border:
+    1px solid
+    rgba(255,255,255,0.1);
+box-shadow:
+    0 15px 40px
+    rgba(0,0,0,0.5);
+transform:
+    translate(-50%, 30px);
+opacity: 0;
+pointer-events: none;
+transition:
+    0.3s;
 
-    bottom: 90px;
-
-    z-index: 1000;
-
-    width:
-        calc(100% - 40px);
-
-    max-width: 400px;
-
-    padding:
-        13px 16px;
-
-    transform:
-        translate(-50%, 25px);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    text-align: center;
-
-    border-radius: 15px;
-
-    background:
-        rgba(25,30,42,0.95);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,0.4);
-
-    transition:
-        0.25s
-        ease;
 }
-
 
 .game-message.show {
-    opacity: 1;
+transform:
+translate(-50%, 0);
 
-    transform:
-        translate(-50%, 0);
+opacity: 1;
+
 }
-
 
 .game-message.success {
-    border-color:
-        rgba(30,200,130,0.4);
+border-color:
+rgba(83,255,173,0.35);
 }
-
 
 .game-message.error {
-    border-color:
-        rgba(255,70,90,0.4);
+border-color:
+rgba(255,71,87,0.35);
 }
 
-
 /* =========================================================
-   BOTTOM NAV
+BOTTOM NAVIGATION
 ========================================================= */
 
 .bottom-nav {
-    position: fixed;
+position: fixed;
 
-    left: 50%;
+left: 50%;
+bottom: 10px;
+transform:
+    translateX(-50%);
+z-index: 500;
+width:
+    min(94%, 570px);
+display: grid;
+grid-template-columns:
+    repeat(5, 1fr);
+padding: 7px;
+border-radius: 22px;
+background:
+    rgba(12,16,25,0.9);
+border:
+    1px solid
+    rgba(255,255,255,0.08);
+backdrop-filter:
+    blur(25px);
+-webkit-backdrop-filter:
+    blur(25px);
+box-shadow:
+    0 15px 50px
+    rgba(0,0,0,0.5);
 
-    bottom: 0;
-
-    z-index: 200;
-
-    width:
-        100%;
-
-    max-width: 600px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, 1fr);
-
-    padding:
-        8px
-        8px
-        calc(8px + env(safe-area-inset-bottom));
-
-    transform:
-        translateX(-50%);
-
-    background:
-        rgba(12,15,23,0.92);
-
-    backdrop-filter:
-        blur(22px);
-
-    -webkit-backdrop-filter:
-        blur(22px);
-
-    border-top:
-        1px solid
-        rgba(255,255,255,0.07);
 }
-
 
 .nav-button {
-    display: flex;
+width: 100%;
 
-    flex-direction: column;
+margin: 0 !important;
+padding: 9px 4px !important;
+border: none !important;
+background:
+    transparent !important;
+color: #778297;
+font-size: 11px;
+border-radius: 15px;
+box-shadow: none !important;
+transition:
+    0.2s;
 
-    align-items: center;
-
-    gap: 3px;
-
-    padding:
-        7px 3px;
-
-    border-radius: 13px;
-
-    background:
-        transparent;
-
-    color:
-        rgba(255,255,255,0.4);
 }
-
-
-.nav-button span {
-    font-size: 20px;
-}
-
-
-.nav-button small {
-    font-size: 9px;
-}
-
 
 .nav-button.active {
-    color:
-        #ffffff;
+color: #53ffad;
 
-    background:
-        rgba(70,100,255,0.14);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 380px) {
-
-    main {
-        padding:
-            12px;
-    }
-
-    .shop-grid,
-    .cases-grid {
-        grid-template-columns:
-            1fr;
-    }
-
-    .shop-card p {
-        min-height:
-            auto;
-    }
-
-    .coin-button {
-        width: 135px;
-        height: 135px;
-        font-size: 62px;
-    }
-
-    .roulette-numbers {
-        grid-template-columns:
-            repeat(5, 1fr);
-    }
+background:
+    rgba(83,255,173,0.1) !important;
 
 }
 
+.nav-icon {
+display: block;
+
+font-size: 21px;
+margin-bottom: 3px;
+
+}
 
 /* =========================================================
-   SAFE AREA
+LOCK
 ========================================================= */
 
-@supports (padding: env(safe-area-inset-bottom)) {
+.locked-box {
+padding: 35px 20px;
 
-    body {
-        padding-bottom:
-            env(safe-area-inset-bottom);
-    }
+text-align: center;
+border-radius: 25px;
+background:
+    linear-gradient(
+        145deg,
+        #111827,
+        #080b12
+    );
+border:
+    1px solid
+    rgba(255,255,255,0.06);
+
+}
+
+.locked-box .lock-icon {
+font-size: 60px;
+
+margin-bottom: 15px;
+
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+.page {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.coin-button {
+    width: 165px;
+    height: 165px;
+    font-size: 70px;
+}
+.casino-grid,
+.cases-grid,
+.shop-grid {
+    gap: 8px;
+}
+.game-card {
+    min-height: 130px;
+}
+.roulette-wheel {
+    width: 205px;
+    height: 205px;
+}
+
+}
+
+/* =========================================================
+SAFE AREA — IPHONE
+========================================================= */
+
+@supports (
+padding-bottom:
+env(safe-area-inset-bottom)
+) {
+
+.bottom-nav {
+    bottom:
+        calc(
+            8px +
+            env(
+                safe-area-inset-bottom
+            )
+        );
+}
+#app {
+    padding-bottom:
+        calc(
+            100px +
+            env(
+                safe-area-inset-bottom
+            )
+        );
+}
 
 }
