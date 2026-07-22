@@ -1,138 +1,94 @@
 /* =========================================================
    🍀 LUCKY CLICK
-   TELEGRAM MINI APP — FULL STYLE
+   💰 ВЕРХНЯЯ ПАНЕЛЬ
    ========================================================= */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html {
-    min-height: 100%;
-    background: #080b18;
-}
-
-body {
-    min-height: 100vh;
-    overflow-x: hidden;
-
-    padding-bottom: 100px;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "SF Pro Text",
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
-
-    color: #ffffff;
-
-    background:
-        radial-gradient(
-            circle at 50% -15%,
-            rgba(83, 101, 255, 0.35),
-            transparent 42%
-        ),
-        radial-gradient(
-            circle at 100% 50%,
-            rgba(112, 61, 255, 0.12),
-            transparent 35%
-        ),
-        linear-gradient(
-            180deg,
-            #080b18 0%,
-            #0a0f21 50%,
-            #060812 100%
-        );
-}
-
-
-/* =========================================================
-   📱 SAFE AREA
-   ========================================================= */
-
-body {
-    padding-top: env(safe-area-inset-top);
-}
-
-.bottom-nav {
-    padding-bottom:
-        calc(
-            8px +
-            env(safe-area-inset-bottom)
-        );
-}
-
-
-/* =========================================================
-   🔥 SCROLLBAR
-   ========================================================= */
-
-::-webkit-scrollbar {
-    width: 4px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.18);
-    border-radius: 20px;
-}
-
-
-/* =========================================================
-   🧭 HEADER
-   ========================================================= */
-
-.top-header {
-    position: sticky;
-    top: 0;
-    z-index: 500;
-
-    height: 64px;
+.top-bar {
+    width: 100%;
+    min-height: 64px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding:
-        0
-        16px;
+    padding: 10px 16px;
 
-    background:
-        rgba(8, 11, 24, 0.82);
+    box-sizing: border-box;
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.07);
-
-    backdrop-filter:
-        blur(22px);
-
-    -webkit-backdrop-filter:
-        blur(22px);
+    position: relative;
+    z-index: 100;
 }
 
 
-.logo {
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: -0.6px;
+/* =========================================================
+   🍀 ЛОГОТИП И НАЗВАНИЕ
+   ========================================================= */
+
+.app-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+}
+
+
+.app-logo {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 24px;
 
     background:
         linear-gradient(
             135deg,
-            #ffffff 10%,
-            #9caaff 55%,
-            #6e7dff 100%
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.05)
+        );
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.2);
+
+    flex-shrink: 0;
+}
+
+
+.app-name {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.05;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.app-name span {
+    opacity: 0.85;
+}
+
+
+.app-name strong {
+    font-size: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffd54a
         );
 
     -webkit-background-clip: text;
@@ -140,1901 +96,136 @@ body {
 }
 
 
+/* =========================================================
+   💰 БАЛАНС
+   ========================================================= */
+
 .balance-box {
+    margin-left: auto;
+
     display: flex;
     align-items: center;
-    gap: 6px;
-
-    min-width: 100px;
-
     justify-content: center;
 
-    padding:
-        9px
-        13px;
+    gap: 7px;
 
-    border-radius: 15px;
+    min-width: 90px;
 
-    color: #ffd95a;
+    padding: 9px 14px;
 
-    font-size: 15px;
-    font-weight: 900;
+    border-radius: 16px;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(255,214,74,0.14),
-            rgba(255,255,255,0.05)
-        );
+        rgba(255, 255, 255, 0.09);
 
     border:
         1px solid
-        rgba(255,215,80,0.18);
+        rgba(255, 255, 255, 0.13);
 
     box-shadow:
-        0 7px 25px
-        rgba(0,0,0,0.25);
-}
-
-
-/* =========================================================
-   📄 PAGES
-   ========================================================= */
-
-.page {
-    width: 100%;
-    max-width: 620px;
-
-    margin:
-        0
-        auto;
-
-    padding:
-        18px
-        15px
-        30px;
-
-    animation:
-        pageIn
-        0.28s
-        ease;
-}
-
-
-.page.hidden {
-    display: none !important;
-}
-
-
-.page.active {
-    display: block;
-}
-
-
-@keyframes pageIn {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
-    }
-
-}
-
-
-/* =========================================================
-   🃏 UNIVERSAL CARDS
-   ========================================================= */
-
-.card,
-.profile-card,
-.clicker-card,
-.case-card,
-.quest-card {
-
-    position: relative;
-
-    width: 100%;
-
-    margin-bottom: 14px;
-
-    padding: 20px;
-
-    border-radius: 24px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.085),
-            rgba(255,255,255,0.035)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.22);
+        0 6px 20px
+        rgba(0, 0, 0, 0.18);
 
     backdrop-filter:
-        blur(18px);
+        blur(12px);
 
     -webkit-backdrop-filter:
-        blur(18px);
-}
+        blur(12px);
 
-
-.card h2,
-.card h3,
-.profile-card h2,
-.clicker-card h2 {
-
-    margin-bottom: 10px;
-
-    font-weight: 850;
-
-}
-
-
-.card p,
-.profile-card p,
-.clicker-card p {
-
-    margin-top: 8px;
-
-    color:
-        rgba(255,255,255,0.65);
-
-    line-height: 1.45;
-
-}
-
-
-.card b,
-.profile-card b,
-.clicker-card b {
-
-    color: #ffffff;
-
-}
-
-
-/* =========================================================
-   👤 PROFILE
-   ========================================================= */
-
-.profile-card {
-
-    text-align: center;
-
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 50% -20%,
-            rgba(91,108,255,0.28),
-            transparent 60%
-        ),
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.08),
-            rgba(255,255,255,0.025)
-        );
-}
-
-
-.avatar {
-
-    width: 82px;
-    height: 82px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin:
-        0
-        auto
-        14px;
-
-    border-radius: 50%;
-
-    font-size: 42px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #6675ff,
-            #6b38e8
-        );
-
-    border:
-        3px
-        solid
-        rgba(255,255,255,0.18);
-
-    box-shadow:
-        0 0 0 7px
-        rgba(102,117,255,0.08),
-
-        0 15px 40px
-        rgba(82,88,255,0.4);
-
-    animation:
-        avatarFloat
-        3s
-        ease-in-out
-        infinite;
-}
-
-
-@keyframes avatarFloat {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-5px);
-    }
-
-}
-
-
-/* =========================================================
-   ⭐ XP
-   ========================================================= */
-
-.xp-bar {
-
-    width: 100%;
-    height: 8px;
-
-    margin-top: 15px;
-
-    overflow: hidden;
-
-    border-radius: 50px;
-
-    background:
-        rgba(0,0,0,0.35);
-
-    box-shadow:
-        inset 0 1px 4px
-        rgba(0,0,0,0.4);
-}
-
-
-.xp-progress {
-
-    width: 0%;
-    height: 100%;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(
-            90deg,
-            #5969ff,
-            #9275ff,
-            #42d7ff
-        );
-
-    box-shadow:
-        0 0 15px
-        rgba(90,120,255,0.7);
+    white-space: nowrap;
 
     transition:
-        width
-        0.5s
-        ease;
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.balance-box:active {
+    transform: scale(0.96);
+
+    background:
+        rgba(255, 255, 255, 0.14);
 }
 
 
 /* =========================================================
-   🪙 CLICKER
+   🪙 ИКОНКА МОНЕТЫ
    ========================================================= */
 
-.clicker-card {
-
-    text-align: center;
-
-    padding:
-        24px
-        18px
-        20px;
-}
-
-
-.coin-button {
-
-    position: relative;
-
-    width: 190px;
-    height: 190px;
+.coin-icon {
+    font-size: 20px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    margin:
-        25px
-        auto;
-
-    border: none;
-
-    border-radius: 50%;
-
-    font-size: 82px;
-
-    cursor: pointer;
-
-    background:
-        radial-gradient(
-            circle at 33% 25%,
-            #fff5a6 0%,
-            #ffd84a 22%,
-            #ffb400 55%,
-            #e47700 100%
-        );
-
-    box-shadow:
-
-        inset
-        -10px
-        -12px
-        20px
-        rgba(170,75,0,0.35),
-
-        inset
-        8px
-        8px
-        20px
-        rgba(255,255,255,0.35),
-
-        0
-        12px
-        0
-        #9b4e00,
-
-        0
-        25px
-        50px
-        rgba(255,170,0,0.28);
-
-    transition:
-        transform
-        0.12s
-        ease,
-
-        box-shadow
-        0.12s
-        ease;
-}
-
-
-.coin-button::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 10px;
-
-    border-radius: 50%;
-
-    border:
-        2px
-        solid
-        rgba(255,255,255,0.3);
-
-    pointer-events: none;
-}
-
-
-.coin-button:active {
-
-    transform:
-        translateY(9px)
-        scale(0.94);
-
-    box-shadow:
-
-        inset
-        -5px
-        -6px
-        12px
-        rgba(170,75,0,0.35),
-
-        0
-        4px
-        0
-        #9b4e00;
-}
-
-
-@media (
-    max-width: 380px
-) {
-
-    .coin-button {
-
-        width: 165px;
-        height: 165px;
-
-        font-size: 70px;
-
-    }
-
-}
-
-
-/* =========================================================
-   🔘 BUTTONS
-   ========================================================= */
-
-button {
-
-    width: 100%;
-
-    min-height: 48px;
-
-    margin-top: 10px;
-
-    padding:
-        12px
-        16px;
-
-    border: none;
-
-    border-radius: 15px;
-
-    color: #ffffff;
-
-    font-family: inherit;
-
-    font-size: 15px;
-    font-weight: 750;
-
-    cursor: pointer;
-
-    background:
-        linear-gradient(
-            135deg,
-            #5969f5,
-            #754ff1
-        );
-
-    box-shadow:
-        0
-        7px
-        22px
-        rgba(75,80,230,0.22);
-
-    transition:
-        transform
-        0.12s
-        ease,
-
-        filter
-        0.15s
-        ease,
-
-        box-shadow
-        0.15s
-        ease;
-}
-
-
-button:active {
-
-    transform:
-        scale(0.97);
-
-}
-
-
-button:hover {
-
-    filter:
-        brightness(1.1);
-
-    box-shadow:
-        0
-        10px
-        28px
-        rgba(75,80,230,0.35);
-
-}
-
-
-button:disabled {
-
-    opacity: 0.45;
-
-    cursor:
-        not-allowed;
-
-    transform:
-        none;
-}
-
-
-/* =========================================================
-   📝 INPUT
-   ========================================================= */
-
-input {
-
-    width: 100%;
-
-    height: 50px;
-
-    margin-top: 10px;
-
-    padding:
-        0
-        16px;
-
-    outline: none;
-
-    border:
-        1px
-        solid
-        rgba(255,255,255,0.09);
-
-    border-radius: 15px;
-
-    color: #ffffff;
-
-    font-family: inherit;
-
-    font-size: 16px;
-
-    background:
-        rgba(0,0,0,0.27);
-
-    transition:
-        border
-        0.2s
-        ease,
-
-        box-shadow
-        0.2s
-        ease;
-}
-
-
-input::placeholder {
-
-    color:
-        rgba(255,255,255,0.35);
-
-}
-
-
-input:focus {
-
-    border-color:
-        rgba(104,120,255,0.75);
-
-    box-shadow:
-        0
-        0
-        0
-        3px
-        rgba(91,105,255,0.13);
-}
-
-
-/* =========================================================
-   🎰 CASINO MENU
-   ========================================================= */
-
-.casino-menu {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 10px;
-
-    margin-top: 15px;
-}
-
-
-.casino-menu button {
-
-    min-height: 95px;
-
-    margin: 0;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 5px;
-
-    font-size: 30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(91,105,255,0.24),
-            rgba(104,62,220,0.12)
-        );
-
-    border:
-        1px
-        solid
-        rgba(116,127,255,0.18);
-
-}
-
-
-.casino-menu button span {
-
-    font-size: 13px;
-
-    color:
-        rgba(255,255,255,0.75);
-
-}
-
-
-/* =========================================================
-   🎮 GAME SCREEN
-   ========================================================= */
-
-.game-screen {
-
-    width: 100%;
-
-    margin-top: 15px;
-
-    padding: 20px;
-
-    border-radius: 24px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.075),
-            rgba(255,255,255,0.025)
-        );
-
-    border:
-        1px
-        solid
-        rgba(255,255,255,0.08);
-
-    box-shadow:
-        0
-        15px
-        45px
-        rgba(0,0,0,0.25);
-
-    animation:
-        gameOpen
-        0.25s
-        ease;
-}
-
-
-@keyframes gameOpen {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(0.97)
-            translateY(8px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            translateY(0);
-
-    }
-
-}
-
-
-/* =========================================================
-   🎰 SLOT
-   ========================================================= */
-
-.slot-machine {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    margin:
-        25px
-        0;
-}
-
-
-.slot-machine div {
-
-    width: 78px;
-    height: 88px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 18px;
-
-    font-size: 42px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #252d50,
-            #0c1124
-        );
-
-    border:
-        2px
-        solid
-        rgba(255,255,255,0.1);
-
-    box-shadow:
-
-        inset
-        0
-        0
-        20px
-        rgba(0,0,0,0.45),
-
-        0
-        10px
-        25px
-        rgba(0,0,0,0.25);
-}
-
-
-@media (
-    max-width: 380px
-) {
-
-    .slot-machine div {
-
-        width: 65px;
-        height: 75px;
-
-        font-size: 34px;
-
-    }
-
-}
-
-
-/* =========================================================
-   🎲 DICE
-   ========================================================= */
-
-.dice-number {
-
-    width: 120px;
-    height: 120px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin:
-        20px
-        auto;
-
-    border-radius: 25px;
-
-    font-size: 52px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #d9ddff
-        );
-
-    color: #11152b;
-
-    box-shadow:
-        0
-        15px
-        35px
-        rgba(100,110,255,0.25);
-
-}
-
-
-.number-buttons {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 7px;
-
-    margin-top: 15px;
-}
-
-
-.number-buttons button {
-
-    margin: 0;
-
-    min-height: 45px;
-
-}
-
-
-/* =========================================================
-   🎡 ROULETTE
-   ========================================================= */
-
-.roulette-wheel {
-
-    position: relative;
-
-    width: 230px;
-    height: 230px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin:
-        25px
-        auto;
-
-    border-radius: 50%;
-
-    background:
-
-        conic-gradient(
-            #159447 0deg 9.73deg,
-
-            #111 9.73deg 19.46deg,
-
-            #c9202d 19.46deg 29.19deg,
-
-            #111 29.19deg 38.92deg,
-
-            #c9202d 38.92deg 48.65deg,
-
-            #111 48.65deg 58.38deg,
-
-            #c9202d 58.38deg 68.11deg,
-
-            #111 68.11deg 77.84deg,
-
-            #c9202d 77.84deg 87.57deg,
-
-            #111 87.57deg 97.30deg,
-
-            #c9202d 97.30deg 107.03deg,
-
-            #111 107.03deg 116.76deg,
-
-            #c9202d 116.76deg 126.49deg,
-
-            #111 126.49deg 136.22deg,
-
-            #c9202d 136.22deg 145.95deg,
-
-            #111 145.95deg 155.68deg,
-
-            #c9202d 155.68deg 165.41deg,
-
-            #111 165.41deg 175.14deg,
-
-            #c9202d 175.14deg 184.87deg,
-
-            #111 184.87deg 194.60deg,
-
-            #c9202d 194.60deg 204.33deg,
-
-            #111 204.33deg 214.06deg,
-
-            #c9202d 214.06deg 223.79deg,
-
-            #111 223.79deg 233.52deg,
-
-            #c9202d 233.52deg 243.25deg,
-
-            #111 243.25deg 252.98deg,
-
-            #c9202d 252.98deg 262.71deg,
-
-            #111 262.71deg 272.44deg,
-
-            #c9202d 272.44deg 282.17deg,
-
-            #111 282.17deg 291.90deg,
-
-            #c9202d 291.90deg 301.63deg,
-
-            #111 301.63deg 311.36deg,
-
-            #c9202d 311.36deg 321.09deg,
-
-            #111 321.09deg 330.82deg,
-
-            #c9202d 330.82deg 340.55deg,
-
-            #111 340.55deg 350.28deg,
-
-            #c9202d 350.28deg 360deg
-        );
-
-    border:
-        9px
-        solid
-        #d4a33a;
-
-    box-shadow:
-
-        0
-        0
-        0
-        5px
-        #38290b,
-
-        0
-        18px
-        50px
-        rgba(0,0,0,0.5);
-
-    transition:
-        transform
-        4s
-        cubic-bezier(
-            0.12,
-            0.72,
-            0.18,
-            1
-        );
-}
-
-
-.roulette-wheel::after {
-
-    content: "▼";
-
-    position: absolute;
-
-    top: -27px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    z-index: 5;
-
-    color: #ffd35a;
-
-    font-size: 28px;
-
-    text-shadow:
-        0
-        3px
-        8px
-        rgba(0,0,0,0.7);
-}
-
-
-.roulette-wheel div {
-
-    position: relative;
-    z-index: 2;
-
-    width: 82px;
-    height: 82px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    color: #1a1a1a;
-
-    font-size: 28px;
-    font-weight: 900;
-
-    background:
-        radial-gradient(
-            circle,
-            #ffffff,
-            #dfe2ea
-        );
-
-    border:
-        5px
-        solid
-        #b38b32;
-
-    box-shadow:
-        0
-        0
-        20px
-        rgba(255,255,255,0.35);
-}
-
-
-.roulette-colors {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 7px;
-
-}
-
-
-.roulette-colors button {
-
-    margin: 0;
-
-    padding:
-        10px
-        4px;
-
-    font-size: 12px;
-
-}
-
-
-.roulette-numbers {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(6, 1fr);
-
-    gap: 5px;
-
-    max-height: 200px;
-
-    overflow-y: auto;
-
-    margin:
-        12px
-        0;
-}
-
-
-.roulette-numbers button {
-
-    min-height: 38px;
-
-    margin: 0;
-
-    padding: 3px;
-
-    border-radius: 9px;
-
-    font-size: 12px;
-
-    background:
-        rgba(255,255,255,0.08);
-
-}
-
-
-.roulette-numbers button.selected {
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffb52d,
-            #ff7200
-        );
-
-    color: #111;
-
-}
-
-
-/* =========================================================
-   📈 LADDER
-   ========================================================= */
-
-#ladderLevel {
-
-    margin-top: 15px;
-
-    text-align: center;
-
-    font-size: 18px;
-
-    font-weight: 800;
-
-}
-
-
-#ladderMultiplier {
-
-    margin:
-        20px
-        0;
-
-    text-align: center;
-
-    font-size: 46px;
-
-    font-weight: 900;
-
-    color: #7f91ff;
-
-    text-shadow:
-        0
-        0
-        25px
-        rgba(110,125,255,0.5);
-}
-
-
-/* =========================================================
-   💣 MINES
-   ========================================================= */
-
-#minesMultiplier {
-
-    margin:
-        15px
-        0;
-
-    text-align: center;
-
-    font-size: 40px;
-
-    font-weight: 900;
-
-    color: #70e8ff;
-}
-
-
-.mines-board {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 7px;
-
-    margin:
-        20px
-        0;
-}
-
-
-.mine-cell {
-
-    min-height: 65px;
-
-    margin: 0;
-
-    padding: 0;
-
-    font-size: 26px;
-
-    border-radius: 14px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #252e52,
-            #11162b
-        );
-
-    border:
-        1px
-        solid
-        rgba(255,255,255,0.08);
-
-}
-
-
-.mine-cell:active {
-
-    transform:
-        scale(0.92);
-
-}
-
-
-/* =========================================================
-   ✈️ CRASH
-   ========================================================= */
-
-.crash-area {
-
-    position: relative;
-
-    width: 100%;
-    height: 190px;
-
-    margin:
-        20px
-        0;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #111c43,
-            #080b18
-        );
-
-    border:
-        1px
-        solid
-        rgba(255,255,255,0.08);
-}
-
-
-.crash-area::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: 35px;
-
-    width: 100%;
-    height: 2px;
-
-    background:
-        rgba(255,255,255,0.1);
-}
-
-
-#crashPlane {
-
-    position: absolute;
-
-    left: 5%;
-    bottom: 50px;
-
-    font-size: 38px;
-
-    transition:
-        left
-        0.1s
-        linear;
 
     filter:
         drop-shadow(
-            0
-            0
-            12px
-            rgba(85,150,255,0.8)
+            0 2px 5px
+            rgba(255, 193, 7, 0.35)
         );
 }
 
 
-#crashMultiplier {
-
-    text-align: center;
-
-    margin:
-        10px
-        0
-        20px;
-
-    font-size: 45px;
-
-    font-weight: 900;
-
-    color: #70ffb0;
-
-    text-shadow:
-        0
-        0
-        20px
-        rgba(60,255,150,0.4);
-}
-
-
 /* =========================================================
-   💎 JACKPOT
+   🔢 ЧИСЛО БАЛАНСА
    ========================================================= */
 
-#jackpotGame {
+.balance {
+    color: #ffd54a;
 
-    text-align: center;
+    font-size: 16px;
 
-}
+    font-weight: 800;
 
+    letter-spacing: 0.2px;
 
-#jackpotGame h2 {
-
-    font-size: 32px;
-
-    margin-bottom: 10px;
-
-}
-
-
-#jackpotGame button:first-of-type {
-
-    min-height: 65px;
-
-    font-size: 20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffc928,
-            #ff6a00
-        );
-
-    color: #16100a;
-
-    box-shadow:
-        0
-        0
-        30px
-        rgba(255,160,0,0.25);
-}
-
-
-/* =========================================================
-   🎁 CASES
-   ========================================================= */
-
-.case-card {
-
-    text-align: center;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(95,110,255,0.13),
-            rgba(255,255,255,0.035)
-        );
-}
-
-
-.case-card h3 {
-
-    font-size: 19px;
-
-}
-
-
-.case-card button {
-
-    margin-top: 15px;
-
-}
-
-
-.case-result {
-
-    width: 100%;
-
-    min-height: 70px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 15px;
-
-    padding: 18px;
-
-    text-align: center;
-
-    border-radius: 20px;
-
-    background:
-        rgba(255,255,255,0.055);
-
-    border:
-        1px
-        solid
-        rgba(255,255,255,0.08);
-}
-
-
-/* =========================================================
-   📋 QUESTS
-   ========================================================= */
-
-.quest-card {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.065),
-            rgba(255,255,255,0.025)
-        );
-}
-
-
-.quest-progress {
-
-    margin-top: 8px;
-
-    color: #8291ff !important;
-
-    font-weight: 850;
-
-}
-
-
-/* =========================================================
-   🎒 INVENTORY
-   ========================================================= */
-
-.inventory-item {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        auto;
-
-    gap: 5px;
-
-    margin-bottom: 9px;
-
-    padding: 15px;
-
-    border-radius: 17px;
-
-    background:
-        rgba(255,255,255,0.055);
-
-    border:
-        1px
-        solid
-        rgba(255,255,255,0.07);
-}
-
-
-.inventory-item small {
-
-    color:
-        rgba(255,255,255,0.4);
-
-}
-
-
-.inventory-item strong {
-
-    grid-column: 2;
-
-    grid-row:
-        1 / 3;
-
-    align-self: center;
-
-    color: #ffd35a;
-
-}
-
-
-/* =========================================================
-   🔔 MESSAGE
-   ========================================================= */
-
-.game-message {
-
-    position: fixed;
-
-    z-index: 2000;
-
-    top: 80px;
-    left: 50%;
-
-    width:
-        calc(100% - 30px);
-
-    max-width: 500px;
-
-    padding:
-        14px
-        18px;
-
-    transform:
-        translate(-50%, -20px);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    text-align: center;
-
-    border-radius: 17px;
-
-    background:
-        rgba(24,29,52,0.94);
-
-    border:
-        1px
-        solid
-        rgba(255,255,255,0.1);
-
-    box-shadow:
-        0
-        15px
-        40px
-        rgba(0,0,0,0.4);
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
-
-    transition:
-        opacity
-        0.25s
-        ease,
-
-        transform
-        0.25s
-        ease;
-}
-
-
-.game-message.show {
-
-    opacity: 1;
-
-    transform:
-        translate(-50%, 0);
-
-}
-
-
-.game-message.success {
-
-    border-color:
-        rgba(60,255,150,0.35);
-
-}
-
-
-.game-message.error {
-
-    border-color:
-        rgba(255,70,90,0.35);
-
-}
-
-
-/* =========================================================
-   ✨ CLICK EFFECTS
-   ========================================================= */
-
-#clickEffects {
-
-    position: fixed;
-
-    z-index: 1500;
-
-    inset: 0;
-
-    pointer-events: none;
+    max-width: 130px;
 
     overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
 
-.click-effect {
+/* =========================================================
+   📱 МОБИЛЬНАЯ АДАПТАЦИЯ
+   ========================================================= */
 
-    position: absolute;
+@media (max-width: 380px) {
 
-    top: 45%;
-
-    color: #ffd75a;
-
-    font-size: 20px;
-
-    font-weight: 900;
-
-    text-shadow:
-        0
-        0
-        12px
-        rgba(255,180,20,0.7);
-
-    animation:
-        clickFloat
-        1s
-        ease
-        forwards;
-}
-
-
-@keyframes clickFloat {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            translateY(15px)
-            scale(0.8);
-
+    .top-bar {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
-    20% {
+    .app-logo {
+        width: 38px;
+        height: 38px;
 
-        opacity: 1;
-
+        font-size: 21px;
     }
 
-    100% {
-
-        opacity: 0;
-
-        transform:
-            translateY(-110px)
-            scale(1.2);
-
+    .app-name {
+        font-size: 16px;
     }
 
-}
-
-
-/* =========================================================
-   🧭 BOTTOM NAV
-========================================================= */
-
-.bottom-nav {
-
-    position: fixed;
-
-    z-index: 1000;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, 1fr);
-
-    gap: 3px;
-
-    padding:
-        7px
-        7px
-        calc(
-            7px +
-            env(safe-area-inset-bottom)
-        );
-
-    background:
-        rgba(7,10,22,0.9);
-
-    border-top:
-        1px
-        solid
-        rgba(255,255,255,0.08);
-
-    backdrop-filter:
-        blur(25px);
-
-    -webkit-backdrop-filter:
-        blur(25px);
-}
-
-
-.bottom-nav button {
-
-    min-height: 60px;
-
-    margin: 0;
-
-    padding:
-        5px
-        2px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 3px;
-
-    color:
-        rgba(255,255,255,0.55);
-
-    font-size: 21px;
-
-    background:
-        transparent;
-
-    box-shadow:
-        none;
-}
-
-
-.bottom-nav button span {
-
-    font-size: 10px;
-
-    font-weight: 650;
-
-}
-
-
-.bottom-nav button:hover {
-
-    background:
-        rgba(255,255,255,0.06);
-
-    box-shadow:
-        none;
-
-}
-
-
-.bottom-nav button:active {
-
-    transform:
-        scale(0.92);
-
-}
-
-
-/* =========================================================
-   📱 TABLET / DESKTOP
-   ========================================================= */
-
-@media (
-    min-width: 700px
-) {
-
-    .bottom-nav {
-
-        left: 50%;
-        right: auto;
-
-        bottom: 15px;
-
-        width: 590px;
-
-        transform:
-            translateX(-50%);
-
-        border:
-            1px
-            solid
-            rgba(255,255,255,0.1);
-
-        border-radius: 24px;
-
-        box-shadow:
-            0
-            15px
-            50px
-            rgba(0,0,0,0.35);
+    .app-name strong {
+        font-size: 18px;
     }
 
-}
+    .balance-box {
+        padding: 8px 11px;
 
+        min-width: 75px;
+    }
 
-/* =========================================================
-   🌟 HIDDEN
-   ========================================================= */
+    .balance {
+        font-size: 14px;
+    }
 
-.hidden {
-
-    display:
-        none !important;
-
-}
-
-
-/* =========================================================
-   🎯 SELECTION
-   ========================================================= */
-
-::selection {
-
-    color: #ffffff;
-
-    background:
-        rgba(91,105,255,0.5);
-
-}
-
-
-/* =========================================================
-   🚫 DISABLE TEXT SELECTION FOR GAME UI
-   ========================================================= */
-
-button,
-.coin-button,
-.casino-menu,
-.roulette-wheel,
-.mine-cell {
-
-    user-select: none;
-
-    -webkit-user-select: none;
-
-}
-
-
-/* =========================================================
-   📱 TELEGRAM MINI APP POLISH
-   ========================================================= */
-
-button,
-input {
-
-    -webkit-appearance: none;
-
-    appearance: none;
-
-}
-
-
-button:focus-visible,
-input:focus-visible {
-
-    outline:
-        2px
-        solid
-        rgba(120,140,255,0.7);
-
-    outline-offset:
-        2px;
+    .coin-icon {
+        font-size: 18px;
+    }
 
 }
