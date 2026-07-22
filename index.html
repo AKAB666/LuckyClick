@@ -2,1381 +2,2118 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#0b1020">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#10131c">
 <title>🍀 Lucky Click</title>
+
 <style>
 *{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
+
 body{
-margin:0;
-font-family:Arial,sans-serif;
-color:#fff;
-min-height:100vh;
-background:
-radial-gradient(circle at 50% -10%,#334d91 0,#151d35 35%,#070a12 75%);
-padding-bottom:85px;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:
+        radial-gradient(circle at top,#202844 0,#0b0d14 55%);
+    color:#fff;
+    min-height:100vh;
+    padding-bottom:90px;
 }
-button,input{
-font:inherit;
-}
+
 button{
-border:0;
-cursor:pointer;
-color:#fff;
-font-weight:700;
+    border:0;
+    cursor:pointer;
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
 }
-.hidden{
-display:none!important;
-}
-/* ================= AUTH ================= */
-#authScreen{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-}
-.auth-box{
-width:100%;
-max-width:420px;
-padding:28px 22px;
-border-radius:28px;
-background:rgba(17,24,42,.96);
-border:1px solid #394867;
-box-shadow:0 25px 80px #000b;
-}
-.auth-logo{
-text-align:center;
-font-size:35px;
-font-weight:900;
-margin-bottom:5px;
-}
-.auth-subtitle{
-text-align:center;
-color:#aeb9d0;
-margin-bottom:25px;
-}
-.auth-tabs{
-display:flex;
-gap:8px;
-margin-bottom:15px;
-}
-.auth-tabs button{
-flex:1;
-padding:13px;
-border-radius:12px;
-background:#222d47;
-color:#aab5ca;
-}
-.auth-tabs button.active{
-background:linear-gradient(135deg,#765eff,#3e2ac4);
-color:#fff;
-}
-.auth-input{
-width:100%;
-padding:15px;
-margin:6px 0;
-border-radius:13px;
-border:1px solid #3b4968;
-background:#090e19;
-color:#fff;
-outline:none;
-}
-.auth-input:focus{
-border-color:#7965ff;
-}
-.main-btn{
-width:100%;
-padding:15px;
-margin-top:10px;
-border-radius:14px;
-background:linear-gradient(135deg,#725dff,#3d2bc1);
-}
-.auth-message{
-min-height:22px;
-text-align:center;
-margin-top:12px;
-color:#ff7777;
-}
-/* ================= APP ================= */
-#app{
-display:none;
-}
-.page{
-display:none;
-max-width:700px;
-margin:auto;
-padding:18px;
-}
-.page.active{
-display:block;
-}
-.header{
-text-align:center;
-margin-bottom:18px;
-}
-.logo{
-font-size:29px;
-font-weight:900;
-}
-.balance-box{
-padding:20px;
-border-radius:22px;
-text-align:center;
-background:linear-gradient(135deg,#1d2944,#101726);
-border:1px solid #354361;
-box-shadow:0 15px 40px #0006;
-}
-.balance{
-font-size:31px;
-font-weight:900;
-color:#ffd84d;
-}
-.username{
-color:#9da9c2;
-margin-top:5px;
-}
-.level{
-margin-top:10px;
-color:#b9c2d4;
-}
-.xp-bar{
-height:8px;
-margin-top:8px;
-border-radius:20px;
-overflow:hidden;
-background:#252d40;
-}
-#xpProgress{
-width:0%;
-height:100%;
-background:linear-gradient(90deg,#765dff,#00d4ff);
-transition:.3s;
-}
-.card{
-margin:14px 0;
-padding:18px;
-border-radius:22px;
-background:rgba(17,24,39,.94);
-border:1px solid #303e5b;
-box-shadow:0 12px 35px #0005;
-}
-.coin-button{
-width:190px;
-height:190px;
-display:block;
-margin:25px auto;
-border-radius:50%;
-font-size:65px;
-background:
-radial-gradient(circle at 35% 25%,#fff58a,#ffd21c 35%,#ff8700 100%);
-box-shadow:
-0 0 0 8px #ffbf3020,
-0 0 55px #ffb30070,
-inset 0 -18px 25px #d66a0066;
-transition:.1s;
-}
-.coin-button:active{
-transform:scale(.91);
-}
-.big-button{
-width:100%;
-padding:15px;
-margin-top:10px;
-border-radius:14px;
-background:linear-gradient(135deg,#6955ff,#4434c7);
-}
-.green{
-background:linear-gradient(135deg,#1db954,#087d36);
-}
-.red{
-background:linear-gradient(135deg,#ff4646,#a91414);
-}
-.orange{
-background:linear-gradient(135deg,#ff9d27,#d95700);
-}
-.blue{
-background:linear-gradient(135deg,#248cff,#1550aa);
-}
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-}
-.game-card{
-min-height:115px;
-padding:18px 10px;
-border-radius:18px;
-background:linear-gradient(145deg,#202a42,#111725);
-border:1px solid #35415d;
-}
-.game-card span{
-display:block;
-font-size:36px;
-margin-bottom:8px;
-}
+
 input{
-width:100%;
-padding:14px;
-margin:6px 0;
-border-radius:12px;
-border:1px solid #3b4763;
-background:#0b101b;
-color:#fff;
-outline:none;
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #3b435c;
+    background:#0d1019;
+    color:#fff;
+    outline:none;
+    margin:6px 0;
 }
-.lock{
-text-align:center;
-padding:30px;
-color:#aab5ca;
+
+.hidden{
+    display:none!important;
 }
-.lock strong{
-display:block;
-font-size:28px;
-margin-bottom:8px;
+
+/* =========================
+AUTH
+========================= */
+
+#authScreen{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
-.nav{
-position:fixed;
-z-index:50;
-bottom:0;
-left:0;
-right:0;
-height:76px;
-display:flex;
-background:#101625ee;
-backdrop-filter:blur(15px);
-border-top:1px solid #303d58;
+
+.auth-box{
+    width:100%;
+    max-width:420px;
+    background:rgba(20,24,38,.95);
+    border:1px solid #30384e;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 15px 50px #0009;
 }
-.nav button{
-flex:1;
-background:none;
-color:#8995ad;
-font-size:10px;
+
+.auth-logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:900;
+    margin-bottom:8px;
 }
-.nav button span{
-display:block;
-font-size:22px;
-margin-bottom:3px;
+
+.auth-subtitle{
+    text-align:center;
+    color:#aeb6ca;
+    margin-bottom:25px;
 }
-.nav button.active{
-color:#fff;
+
+.auth-box h2{
+    margin-top:0;
 }
-.message{
-position:fixed;
-z-index:100;
-top:18px;
-left:50%;
-width:max-content;
-max-width:90%;
-padding:13px 18px;
-border-radius:15px;
-background:#202b42;
-border:1px solid #455372;
-box-shadow:0 10px 30px #0009;
-transform:translate(-50%,-150px);
-transition:.3s;
-text-align:center;
+
+.auth-switch{
+    text-align:center;
+    color:#aeb6ca;
+    margin-top:18px;
 }
-.message.show{
-transform:translate(-50%,0);
+
+.auth-switch button{
+    background:none;
+    color:#7d8cff;
+    padding:0;
 }
-.message.error{
-border-color:#ff5050;
+
+#app{
+    display:none;
 }
-.game-screen{
-margin-top:15px;
+
+/* =========================
+GENERAL
+========================= */
+
+.page{
+    display:none;
+    padding:18px;
+    max-width:700px;
+    margin:auto;
 }
-.back{
-padding:11px 16px;
-border-radius:12px;
-background:#273149;
+
+.page.active{
+    display:block;
 }
-.slot{
-display:flex;
-justify-content:center;
-gap:10px;
-margin:20px 0;
+
+.header{
+    text-align:center;
+    margin-bottom:18px;
 }
-.reel{
-width:80px;
-height:80px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:15px;
-font-size:40px;
-background:#080b12;
-border:2px solid #3e4b68;
+
+.logo{
+    font-size:28px;
+    font-weight:900;
 }
-.roulette-wheel{
-width:190px;
-height:190px;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:20px auto;
-border-radius:50%;
-border:10px solid #d4a928;
-background:conic-gradient(
-#d92727 0 10deg,
-#111 10deg 20deg,
-#d92727 20deg 30deg,
-#111 30deg 40deg,
-#d92727 40deg 50deg,
-#111 50deg 60deg,
-#d92727 60deg 70deg,
-#111 70deg 80deg,
-#d92727 80deg 90deg,
-#111 90deg 100deg,
-#d92727 100deg 110deg,
-#111 110deg 120deg,
-#d92727 120deg 130deg,
-#111 130deg 140deg,
-#d92727 140deg 150deg,
-#111 150deg 160deg,
-#d92727 160deg 170deg,
-#111 170deg 180deg,
-#d92727 180deg 190deg,
-#111 190deg 200deg,
-#d92727 200deg 210deg,
-#111 210deg 220deg,
-#d92727 220deg 230deg,
-#111 230deg 240deg,
-#d92727 240deg 250deg,
-#111 250deg 260deg,
-#d92727 260deg 270deg,
-#111 270deg 280deg,
-#d92727 280deg 290deg,
-#111 290deg 300deg,
-#d92727 300deg 310deg,
-#111 310deg 320deg,
-#d92727 320deg 330deg,
-#111 330deg 340deg,
-#d92727 340deg 350deg,
-#111 350deg 360deg
-);
-transition:transform 3s cubic-bezier(.12,.8,.18,1);
+
+.balance-box{
+    margin:15px 0;
+    padding:16px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#1d2437,#111522);
+    border:1px solid #303952;
+    text-align:center;
+    box-shadow:0 10px 30px #0005;
 }
-.roulette-wheel.spinning{
-transform:rotate(1440deg);
+
+.balance{
+    font-size:28px;
+    font-weight:900;
+    color:#ffd84d;
 }
-.colors{
-display:flex;
-gap:8px;
+
+.level-box{
+    margin-top:10px;
+    font-size:13px;
+    color:#b8bfd2;
 }
-.colors button{
-flex:1;
-padding:13px 5px;
-border-radius:12px;
+
+.xp-bar{
+    height:8px;
+    background:#272d3c;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:8px;
 }
-.dice{
-font-size:90px;
-text-align:center;
-margin:20px;
+
+#xpProgress{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#7b5cff,#00d4ff);
+    transition:.3s;
 }
-.dice-buttons{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
+
+.card{
+    background:rgba(20,24,38,.9);
+    border:1px solid #30384e;
+    border-radius:22px;
+    padding:18px;
+    margin:14px 0;
+    box-shadow:0 12px 35px #0005;
 }
-.dice-buttons button{
-padding:13px;
-background:#272e42;
-border-radius:12px;
+
+.card h2{
+    margin-top:0;
 }
-.ladder-level{
-text-align:center;
-font-size:25px;
-margin:20px;
+
+.big-button{
+    width:100%;
+    padding:15px;
+    border-radius:15px;
+    background:linear-gradient(135deg,#6955ff,#4434c7);
+    margin-top:10px;
 }
-.mines-board{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:8px;
-margin:20px 0;
+
+.green{
+    background:linear-gradient(135deg,#1db954,#0b873b);
 }
-.mine-cell{
-aspect-ratio:1;
-background:#252d43;
-border-radius:12px;
-font-size:25px;
+
+.red{
+    background:linear-gradient(135deg,#ff4545,#a91414);
 }
-.crash-box{
-height:220px;
-background:
-linear-gradient(#131927aa,#131927aa),
-radial-gradient(circle at bottom left,#275bff,#0b0e18 65%);
-border-radius:20px;
-position:relative;
-overflow:hidden;
-margin:15px 0;
+
+.blue{
+    background:linear-gradient(135deg,#248cff,#1550aa);
 }
-#crashPlane{
-position:absolute;
-left:5%;
-bottom:20%;
-font-size:45px;
+
+.orange{
+    background:linear-gradient(135deg,#ff9d27,#d95700);
 }
-.crash-multiplier{
-text-align:center;
-font-size:40px;
-font-weight:900;
-padding-top:30px;
-}
-.case{
-padding:18px;
-border-radius:18px;
-background:linear-gradient(135deg,#252b40,#111522);
-border:1px solid #3c4662;
-margin:10px 0;
-}
-.inventory-item{
-display:flex;
-align-items:center;
-gap:10px;
-background:#181d2c;
-padding:12px;
-border-radius:14px;
-margin:7px 0;
-}
-.inventory-icon{
-font-size:30px;
-}
-.inventory-item button{
-margin-left:auto;
-background:#2769db;
-padding:8px;
-border-radius:9px;
-}
-.click-effect{
-position:fixed;
-pointer-events:none;
-font-weight:900;
-color:#ffe34e;
-animation:floatUp 1s forwards;
-z-index:99;
-}
-@keyframes floatUp{
-from{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-to{
-opacity:0;
-transform:translateY(-90px) scale(1.3);
-}
-}
-@media(max-width:400px){
+
+/* =========================
+COIN
+========================= */
+
 .coin-button{
-width:160px;
-height:160px;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    margin:25px auto;
+    display:block;
+    font-size:65px;
+    background:
+        radial-gradient(circle at 35% 25%,#fff58a,#ffd21c 35%,#ff8a00 100%);
+    box-shadow:
+        0 0 0 8px #ffbf3020,
+        0 0 50px #ffb30070,
+        inset 0 -15px 25px #d66a0066;
+    transition:.1s;
 }
+
+.coin-button:active{
+    transform:scale(.92);
+}
+
+/* =========================
+GRID
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.game-card{
+    padding:20px 10px;
+    min-height:110px;
+    border-radius:18px;
+    background:linear-gradient(145deg,#20263a,#131724);
+    border:1px solid #343c55;
+    text-align:center;
+}
+
+.game-card span{
+    display:block;
+    font-size:35px;
+    margin-bottom:8px;
+}
+
+/* =========================
+LOCK
+========================= */
+
+.lock{
+    text-align:center;
+    padding:30px 15px;
+    color:#b7bed0;
+}
+
+.lock strong{
+    display:block;
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+/* =========================
+NAV
+========================= */
+
+.nav{
+    position:fixed;
+    z-index:50;
+    bottom:0;
+    left:0;
+    right:0;
+    height:76px;
+    background:#111522ee;
+    backdrop-filter:blur(15px);
+    border-top:1px solid #30384e;
+    display:flex;
+    justify-content:space-around;
+}
+
 .nav button{
-font-size:9px;
+    flex:1;
+    background:none;
+    color:#8992aa;
+    font-size:11px;
 }
+
 .nav button span{
-font-size:20px;
+    display:block;
+    font-size:23px;
+    margin-bottom:3px;
 }
+
+.nav button.active{
+    color:#fff;
+}
+
+/* =========================
+MESSAGE
+========================= */
+
+.message{
+    position:fixed;
+    z-index:1000;
+    top:18px;
+    left:50%;
+    transform:translate(-50%,-120px);
+    background:#1d2536;
+    border:1px solid #414b68;
+    border-radius:15px;
+    padding:13px 18px;
+    box-shadow:0 10px 30px #0008;
+    transition:.3s;
+    max-width:90%;
+    text-align:center;
+}
+
+.message.show{
+    transform:translate(-50%,0);
+}
+
+/* =========================
+GAMES
+========================= */
+
+.game-screen{
+    margin-top:15px;
+}
+
+.back{
+    background:#272e42;
+    padding:11px 16px;
+    border-radius:12px;
+    margin-bottom:12px;
+}
+
+.slot{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:20px 0;
+}
+
+.reel{
+    width:80px;
+    height:80px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    background:#080a10;
+    border:2px solid #3e4762;
+}
+
+.roulette-wheel{
+    width:190px;
+    height:190px;
+    margin:20px auto;
+    border-radius:50%;
+    border:10px solid #d4a928;
+    background:
+        conic-gradient(
+            #d92727 0 10deg,
+            #111 10deg 20deg,
+            #d92727 20deg 30deg,
+            #111 30deg 40deg,
+            #d92727 40deg 50deg,
+            #111 50deg 60deg,
+            #d92727 60deg 70deg,
+            #111 70deg 80deg,
+            #d92727 80deg 90deg,
+            #111 90deg 100deg,
+            #d92727 100deg 110deg,
+            #111 110deg 120deg,
+            #d92727 120deg 130deg,
+            #111 130deg 140deg,
+            #d92727 140deg 150deg,
+            #111 150deg 160deg,
+            #d92727 160deg 170deg,
+            #111 170deg 180deg,
+            #d92727 180deg 190deg,
+            #111 190deg 200deg,
+            #d92727 200deg 210deg,
+            #111 210deg 220deg,
+            #d92727 220deg 230deg,
+            #111 230deg 240deg,
+            #d92727 240deg 250deg,
+            #111 250deg 260deg,
+            #d92727 260deg 270deg,
+            #111 270deg 280deg,
+            #d92727 280deg 290deg,
+            #111 290deg 300deg,
+            #d92727 300deg 310deg,
+            #111 310deg 320deg,
+            #d92727 320deg 330deg,
+            #111 330deg 340deg,
+            #d92727 340deg 350deg,
+            #111 350deg 360deg
+        );
+    transition:transform 3s cubic-bezier(.12,.8,.18,1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+}
+
+.roulette-wheel.spinning{
+    transform:rotate(1440deg);
+}
+
+.colors{
+    display:flex;
+    gap:8px;
+}
+
+.colors button{
+    flex:1;
+    padding:13px 5px;
+    border-radius:12px;
+}
+
+.dice{
+    font-size:90px;
+    text-align:center;
+    margin:20px;
+}
+
+.dice-buttons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.dice-buttons button{
+    padding:13px;
+    background:#272e42;
+    border-radius:12px;
+}
+
+.ladder-level{
+    text-align:center;
+    font-size:25px;
+    margin:20px;
+}
+
+.mines-board{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin:20px 0;
+}
+
+.mine-cell{
+    aspect-ratio:1;
+    background:#252d43;
+    border-radius:12px;
+    font-size:25px;
+}
+
+.crash-box{
+    height:220px;
+    background:
+        linear-gradient(#131927aa,#131927aa),
+        radial-gradient(circle at bottom left,#275bff,#0b0e18 65%);
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+#crashPlane{
+    position:absolute;
+    left:5%;
+    bottom:20%;
+    font-size:45px;
+}
+
+.crash-multiplier{
+    text-align:center;
+    font-size:40px;
+    font-weight:900;
+    padding-top:30px;
+}
+
+.case{
+    padding:18px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#252b40,#111522);
+    border:1px solid #3c4662;
+    margin:10px 0;
+}
+
+.inventory-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#181d2c;
+    padding:12px;
+    border-radius:14px;
+    margin:7px 0;
+}
+
+.inventory-icon{
+    font-size:30px;
+}
+
+.inventory-item button{
+    margin-left:auto;
+    background:#2769db;
+    padding:8px;
+    border-radius:9px;
+}
+
+.farm{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.farm-cell{
+    min-height:100px;
+    border-radius:15px;
+    background:#242b3e;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+}
+
+.click-effect{
+    position:fixed;
+    pointer-events:none;
+    font-weight:900;
+    color:#ffe34e;
+    animation:floatUp 1s forwards;
+    z-index:99;
+}
+
+@keyframes floatUp{
+    from{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+    to{
+        opacity:0;
+        transform:translateY(-90px) scale(1.3);
+    }
+}
+
+@media(max-width:400px){
+    .coin-button{
+        width:160px;
+        height:160px;
+    }
+
+    .colors{
+        flex-direction:column;
+    }
 }
 </style>
 </head>
+
 <body>
-<!-- ================= AUTH ================= -->
-<div id="authScreen">
-<div class="auth-box">
-<div class="auth-logo">🍀 Lucky Click</div>
-<div class="auth-subtitle">
-Войди в игру или создай аккаунт
-</div>
-<div class="auth-tabs">
 
-Войти
-Регистрация
-</div>
-
-<input
-id=“authUsername”
-class=“auth-input”
-type=“text”
-placeholder=“Логин”
-autocomplete=“username”
-
-<input
-id=“authPassword”
-class=“auth-input”
-type=“password”
-placeholder=“Пароль”
-autocomplete=“current-password”
-
-Войти
-<div id="authMessage"
-class="auth-message">
-</div>
-</div>
-</div>
-<!-- ================= APP ================= -->
-<div id="app">
 <div id="gameMessage" class="message"></div>
 <div id="clickEffects"></div>
-<!-- HOME -->
-<section id="home" class="page active">
-<div class="header">
-<div class="logo">
+
+<!-- =====================================================
+AUTH
+===================================================== -->
+
+<section id="authScreen">
+
+<div class="auth-box">
+
+<div class="auth-logo">
 🍀 LUCKY CLICK
 </div>
-<div class="username">
-Игрок: <b id="currentUsername">---</b>
+
+<div class="auth-subtitle">
+Игра без регистрации через email
 </div>
+
+<!-- LOGIN -->
+
+<div id="loginForm">
+
+<h2>🔐 Вход</h2>
+
+<input
+id="loginUsername"
+type="text"
+placeholder="Логин"
+maxlength="20"
+>
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Пароль"
+maxlength="100"
+>
+
+<button
+class="big-button"
+onclick="login()"
+>
+Войти
+</button>
+
+<div class="auth-switch">
+Нет аккаунта?
+<button onclick="showRegister()">
+Зарегистрироваться
+</button>
 </div>
+
+</div>
+
+<!-- REGISTER -->
+
+<div id="registerForm" class="hidden">
+
+<h2>📝 Регистрация</h2>
+
+<input
+id="registerUsername"
+type="text"
+placeholder="Логин"
+maxlength="20"
+>
+
+<input
+id="registerPassword"
+type="password"
+placeholder="Пароль"
+maxlength="100"
+>
+
+<input
+id="registerPassword2"
+type="password"
+placeholder="Повторите пароль"
+maxlength="100"
+>
+
+<button
+class="big-button green"
+onclick="register()"
+>
+Создать аккаунт
+</button>
+
+<div class="auth-switch">
+Уже есть аккаунт?
+<button onclick="showLogin()">
+Войти
+</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+APP
+===================================================== -->
+
+<div id="app">
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="header">
+<div class="logo">🍀 LUCKY CLICK</div>
+<div>Твой путь к богатству</div>
+</div>
+
 <div class="balance-box">
+
 <div class="balance">
-0
+<span class="balance-value">0</span>
 </div>
-<div>
-🪙 Монет
-</div>
-<div class="level">
 
+<div>🪙 Монет</div>
+
+<div class="level-box">
 Уровень
-1
-
+<b class="player-level">1</b>
 · XP
-
-0
-/
-100
-
+<b class="player-xp">0</b> /
+<b class="xp-needed">100</b>
 </div>
+
 <div class="xp-bar">
 <div id="xpProgress"></div>
 </div>
+
 </div>
+
 <div class="card" style="text-align:center">
+
 <div>
-
 Сила клика:
-
-<b class="click-power">
-0.5
-</b>
+<b class="click-power">0.5</b>
 🪙
 </div>
 
+<button
+class="coin-button"
+onclick="clickCoin()"
+>
 🪙
-
 </button>
 
+<button
+class="big-button"
+onclick="upgradeClick()"
+>
 ⚡ Улучшить клик —
-
 <span class="click-price">
 100 🪙
 </span>
 </button>
+
 </div>
+
 <div class="card">
+
 <h2>🎒 Инвентарь</h2>
-<div id="homeInventory">
-🎒 Инвентарь пуст
+
+<div id="homeInventory"></div>
+
 </div>
-</div>
+
 </section>
+
 <!-- SHOP -->
+
 <section id="shop" class="page">
+
 <div class="header">
-<div class="logo">
-🏪 Магазин
+<div class="logo">🏪 Магазин</div>
 </div>
-</div>
+
 <div class="balance-box">
-
 🪙
-
-<span class="balance">
-0
-</span>
+<span class="balance-value">0</span>
 </div>
+
 <div class="card">
+
 <h2>⚡ Улучшения</h2>
 
+<button
+class="big-button"
+onclick="buyShopItem('megaClick')"
+>
 🔥 Mega Click — 5 000 🪙
-
 </button>
 
+<button
+class="big-button"
+onclick="buyShopItem('superClick')"
+>
 🚀 Super Click — 25 000 🪙
-
 </button>
 
+<button
+class="big-button"
+onclick="buyShopItem('luck')"
+>
 🍀 Luck — 15 000 🪙
-
 </button>
 
+<button
+class="big-button"
+onclick="buyShopItem('vip')"
+>
 👑 VIP — 100 000 🪙
-
 </button>
 
+<button
+class="big-button"
+onclick="buyShopItem('autoClick')"
+>
 🤖 Автокликер — 50 000 🪙
-
 </button>
+
 </div>
+
 <div class="card">
+
 <h2>🚀 Бустеры</h2>
 
+<button
+class="big-button"
+onclick="buyBooster('double')"
+>
 ⚡ x2 Клик — 1 000 🪙
-
 </button>
 
+<button
+class="big-button"
+onclick="buyBooster('lucky')"
+>
 🍀 Lucky Boost — 2 500 🪙
-
 </button>
 
+<button
+class="big-button"
+onclick="buyPassiveIncome()"
+>
 💰 Автодоход — 10 000 🪙
-
 </button>
-</div>
-</section>
-<!-- CASES -->
-<section id="cases" class="page">
-<div class="header">
-<div class="logo">
-🎁 Кейсы
-</div>
-<p>
-Открываются с 5 уровня
-</p>
-</div>
-<div
-id="casesLocked"
-class="card lock">
 
-🔒
+</div>
+
+</section>
+
+<!-- CASES -->
+
+<section id="cases" class="page">
+
+<div class="header">
+<div class="logo">🎁 Кейсы</div>
+<p>Открываются с 5 уровня</p>
+</div>
+
+<div id="casesLocked" class="card lock">
+
+<strong>🔒</strong>
 
 Кейсы доступны с
-5 уровня
+<b>5 уровня</b>
 
 </div>
+
 <div id="casesContent" class="hidden">
+
 <div class="case">
+
 <h2>📦 Обычный кейс</h2>
+
 <p>
 Цена: 5 000 🪙
 </p>
 
+<button
+class="big-button"
+onclick="openCase('common')"
+>
 Открыть
-
 </button>
+
 </div>
+
 <div class="case">
+
 <h2>💎 Редкий кейс</h2>
+
 <p>
 Цена: 25 000 🪙
 </p>
 
+<button
+class="big-button"
+onclick="openCase('rare')"
+>
 Открыть
-
 </button>
+
 </div>
+
 <div class="case">
+
 <h2>👑 Легендарный кейс</h2>
+
 <p>
 Цена: 100 000 🪙
 </p>
 
+<button
+class="big-button"
+onclick="openCase('legendary')"
+>
 Открыть
-
 </button>
+
 </div>
+
 <div class="case">
+
 <h2>🌌 Мифический кейс</h2>
+
 <p>
 Цена: 500 000 🪙
 </p>
 
+<button
+class="big-button"
+onclick="openCase('mythical')"
+>
 Открыть
-
 </button>
+
 </div>
+
 </div>
+
 <div class="card">
+
 <h2>🎒 Инвентарь</h2>
-<div id="inventory">
-🎒 Инвентарь пуст
+
+<div id="inventory"></div>
+
 </div>
-</div>
+
 </section>
+
 <!-- CASINO -->
+
 <section id="casino" class="page">
+
 <div class="header">
+
 <div class="logo">
 🎰 Казино
 </div>
+
 <p>
 Доступно с 7 уровня
 </p>
-</div>
-<div
-id="casinoLocked"
-class="card lock">
 
-🔒
+</div>
+
+<div id="casinoLocked" class="card lock">
+
+<strong>🔒</strong>
 
 Казино доступно с
-7 уровня
+<b>7 уровня</b>
 
 </div>
+
 <div id="casinoContent" class="hidden">
+
 <div class="grid casino-grid">
 
-🎰
+<button
+class="game-card"
+onclick="openGame('slotGame')"
+>
+<span>🎰</span>
 Слоты
-
 </button>
 
-🎡
+<button
+class="game-card"
+onclick="openGame('rouletteGame')"
+>
+<span>🎡</span>
 Рулетка
-
 </button>
 
-🎲
+<button
+class="game-card"
+onclick="openGame('diceGame')"
+>
+<span>🎲</span>
 Кубик
-
 </button>
 
-📈
+<button
+class="game-card"
+onclick="openGame('ladderGame')"
+>
+<span>📈</span>
 Лесенка
-
 </button>
 
-💣
+<button
+class="game-card"
+onclick="openGame('minesGame')"
+>
+<span>💣</span>
 Mines
-
 </button>
 
-✈️
+<button
+class="game-card"
+onclick="openGame('crashGame')"
+>
+<span>✈️</span>
 Crash
-
 </button>
 
-💎
+<button
+class="game-card"
+onclick="openGame('jackpotGame')"
+>
+<span>💎</span>
 Jackpot
-
 </button>
+
 </div>
+
 <!-- SLOT -->
+
 <div
 id="slotGame"
-class="game-screen hidden card">
+class="game-screen hidden card"
+>
 
+<button
+class="back"
+onclick="backToCasino()"
+>
 ← Назад
-
 </button>
+
 <h2>🎰 Слоты</h2>
+
 <div class="slot">
+
 <div id="slot1" class="reel">
 🍒
 </div>
+
 <div id="slot2" class="reel">
 🍋
 </div>
+
 <div id="slot3" class="reel">
 🍊
 </div>
+
 </div>
 
 <input
-id=“slotBet”
-type=“number”
-placeholder=“Ставка”
+id="slotBet"
+type="number"
+placeholder="Ставка"
+>
 
+<button
+class="big-button"
+onclick="playSlot()"
+>
 🎰 Крутить
-
 </button>
+
 </div>
+
 <!-- ROULETTE -->
+
 <div
 id="rouletteGame"
-class="game-screen hidden card">
+class="game-screen hidden card"
+>
 
+<button
+class="back"
+onclick="backToCasino()"
+>
 ← Назад
-
 </button>
+
 <h2>🎡 Рулетка</h2>
+
 <div
 id="rouletteWheel"
-class="roulette-wheel">
-
+class="roulette-wheel"
+>
 🎯
-
 </div>
 
 <input
-id=“rouletteBet”
-type=“number”
-placeholder=“Ставка”
+id="rouletteBet"
+type="number"
+placeholder="Ставка"
+>
 
 <div class="colors">
 
+<button
+class="red"
+onclick="selectRouletteColor('red')"
+>
 🔴 Красное ×2
-
 </button>
 
+<button
+onclick="selectRouletteColor('black')"
+>
 ⚫ Чёрное ×2
-
 </button>
 
+<button
+class="green"
+onclick="selectRouletteColor('green')"
+>
 🟢 Зеро ×14
-
 </button>
+
 </div>
+
 <p id="selectedRouletteColor">
 Цвет не выбран
 </p>
 
 <input
-id=“rouletteNumber”
-type=“number”
-min=“0”
-max=“36”
-placeholder=“Или число 0–36”
+id="rouletteNumber"
+type="number"
+min="0"
+max="36"
+placeholder="Или число 0–36"
+>
 
+<button
+class="big-button"
+onclick="selectRouletteNumber(
+Number(document.getElementById('rouletteNumber').value)
+)"
+>
 Выбрать число
-
 </button>
 
+<button
+class="big-button"
+onclick="playRoulette()"
+>
 🎡 Крутить рулетку
-
 </button>
+
 <h2
 id="rouletteNumberResult"
-style="text-align:center">
-</h2>
+style="text-align:center"
+></h2>
+
 </div>
+
 <!-- DICE -->
+
 <div
 id="diceGame"
-class="game-screen hidden card">
+class="game-screen hidden card"
+>
 
+<button
+class="back"
+onclick="backToCasino()"
+>
 ← Назад
-
 </button>
+
 <h2>🎲 Кубик</h2>
+
 <div class="dice">
-<span id="diceNumber">
+
+<span class="dice-number">
 ⚀
 </span>
+
 </div>
 
 <input
-id=“diceBet”
-type=“number”
-placeholder=“Ставка”
+id="diceBet"
+type="number"
+placeholder="Ставка"
+>
 
 <div class="dice-buttons">
 
+<button onclick="selectDiceNumber(1)">
 1
+</button>
+
+<button onclick="selectDiceNumber(2)">
 2
+</button>
+
+<button onclick="selectDiceNumber(3)">
 3
+</button>
+
+<button onclick="selectDiceNumber(4)">
 4
+</button>
+
+<button onclick="selectDiceNumber(5)">
 5
+</button>
+
+<button onclick="selectDiceNumber(6)">
 6
+</button>
 
 </div>
+
 <p id="selectedDiceNumber">
 Выберите число
 </p>
 
+<button
+class="big-button"
+onclick="playDice()"
+>
 🎲 Бросить
-
 </button>
+
 </div>
+
 <!-- LADDER -->
+
 <div
 id="ladderGame"
-class="game-screen hidden card">
+class="game-screen hidden card"
+>
 
+<button
+class="back"
+onclick="backToCasino()"
+>
 ← Назад
-
 </button>
+
 <h2>📈 Лесенка</h2>
 
 <input
-id=“ladderBet”
-type=“number”
-placeholder=“Ставка”
+id="ladderBet"
+type="number"
+placeholder="Ставка"
+>
 
 <div class="ladder-level">
+
 <div id="ladderLevel">
 Уровень 0 / 10
 </div>
+
 <div id="ladderMultiplier">
 ×1.00
 </div>
+
 </div>
 
+<button
+class="big-button"
+onclick="startLadder()"
+>
 🚀 Начать
-
 </button>
 
+<button
+class="big-button green"
+onclick="ladderNext()"
+>
 ⬆️ Следующая ступень
-
 </button>
 
+<button
+class="big-button orange"
+onclick="ladderCashout()"
+>
 💰 Забрать
-
 </button>
+
 </div>
+
 <!-- MINES -->
+
 <div
 id="minesGame"
-class="game-screen hidden card">
+class="game-screen hidden card"
+>
 
+<button
+class="back"
+onclick="backToCasino()"
+>
 ← Назад
-
 </button>
+
 <h2>💣 Mines</h2>
 
 <input
-id=“minesBet”
-type=“number”
-placeholder=“Ставка”
+id="minesBet"
+type="number"
+placeholder="Ставка"
+>
 
 <p>
-
 Множитель:
-
 <b id="minesMultiplier">
 ×1.00
 </b>
 </p>
+
 <div class="mines-board"></div>
 
+<button
+class="big-button"
+onclick="startMines()"
+>
 💣 Начать
-
 </button>
 
+<button
+class="big-button green"
+onclick="cashoutMines()"
+>
 💰 Забрать
-
 </button>
+
 </div>
+
 <!-- CRASH -->
+
 <div
 id="crashGame"
-class="game-screen hidden card">
+class="game-screen hidden card"
+>
 
+<button
+class="back"
+onclick="backToCasino()"
+>
 ← Назад
-
 </button>
+
 <h2>✈️ Crash</h2>
+
 <div class="crash-box">
+
 <div
+class="crash-multiplier"
 id="crashMultiplier"
-class="crash-multiplier">
-
+>
 ×1.00
-
 </div>
+
 <div id="crashPlane">
 ✈️
 </div>
+
 </div>
 
 <input
-id=“crashBet”
-type=“number”
-placeholder=“Ставка”
+id="crashBet"
+type="number"
+placeholder="Ставка"
+>
 
+<button
+class="big-button"
+onclick="startCrash()"
+>
 🚀 Старт
-
 </button>
 
+<button
+class="big-button green"
+onclick="cashoutCrash()"
+>
 💰 Забрать
-
 </button>
+
 </div>
+
 <!-- JACKPOT -->
+
 <div
 id="jackpotGame"
-class="game-screen hidden card">
+class="game-screen hidden card"
+>
 
+<button
+class="back"
+onclick="backToCasino()"
+>
 ← Назад
-
 </button>
+
 <h2>💎 Jackpot</h2>
+
 <p>
 Шанс на большой выигрыш очень маленький.
 </p>
 
 <input
-id=“jackpotBet”
-type=“number”
-placeholder=“Ставка”
+id="jackpotBet"
+type="number"
+placeholder="Ставка"
+>
 
+<button
+class="big-button"
+onclick="playJackpot()"
+>
 💎 Испытать удачу
-
 </button>
+
 </div>
+
 </div>
+
 </section>
+
 <!-- FARM -->
+
 <section id="farm" class="page">
+
 <div class="header">
+
 <div class="logo">
 🌾 Ферма
 </div>
+
 <p>
 Выращивай урожай и зарабатывай
 </p>
+
 </div>
+
 <div class="card">
+
 <h2>🌱 Твоя ферма</h2>
-<div class="grid">
 
+<div class="farm">
+
+<div class="farm-cell">
 🌱
+<button onclick="plant(0)">
 Посадить
-
-</button>
-
-🌱
-Посадить
-
-</button>
-
-🌱
-Посадить
-
 </button>
 </div>
+
+<div class="farm-cell">
+🌱
+<button onclick="plant(1)">
+Посадить
+</button>
 </div>
+
+<div class="farm-cell">
+🌱
+<button onclick="plant(2)">
+Посадить
+</button>
+</div>
+
+</div>
+
+</div>
+
 </section>
+
 <!-- PROFILE -->
+
 <section id="profile" class="page">
+
 <div class="header">
+
 <div class="logo">
 👤 Профиль
 </div>
+
 </div>
+
 <div class="card">
+
 <h2>🍀 Lucky Click</h2>
+
 <p>
 Логин:
 <b id="profileUsername">
----
+—
 </b>
 </p>
+
 <p>
-Уровень:
-<b class="player-level">
-1
+ID:
+<b id="profileId">
+—
 </b>
 </p>
+
 <p>
 Монеты:
-<b class="balance">
+<b class="balance-value">
 0
 </b>
 🪙
 </p>
+
 <p>
 Кликов:
-<b id="totalClicks">
+<b class="total-clicks">
 0
 </b>
 </p>
+
 <p>
 Сила клика:
 <b class="click-power">
 0.5
 </b>
 </p>
+
+<button
+class="big-button red"
+onclick="logout()"
+>
+🚪 Выйти из аккаунта
+</button>
+
 </div>
+
 <div class="card">
+
 <h2>🎁 Промокод</h2>
 
 <input
-id=“promoInput”
-placeholder=“Введите промокод”
+id="promoInput"
+placeholder="Введите промокод"
+>
 
+<button
+class="big-button"
+onclick="activatePromo()"
+>
 Активировать
-
 </button>
+
 <p id="promoMessage"></p>
-</div>
-<div class="card">
 
-🚪 Выйти из аккаунта
-
-</button>
 </div>
+
 </section>
+
 <!-- NAV -->
+
 <nav class="nav">
 
-🪙
+<button
+class="active"
+onclick="
+openPage('home');
+setActiveNav(this)
+"
+>
+
+<span>🪙</span>
+
 Главная
 
 </button>
 
-🏪
+<button
+onclick="
+openPage('shop');
+setActiveNav(this)
+"
+>
+
+<span>🏪</span>
+
 Магазин
 
 </button>
 
-🎁
+<button
+onclick="
+openPage('cases');
+setActiveNav(this)
+"
+>
+
+<span>🎁</span>
+
 Кейсы
 
 </button>
 
-🎰
+<button
+onclick="
+openPage('casino');
+setActiveNav(this)
+"
+>
+
+<span>🎰</span>
+
 Казино
 
 </button>
 
-🌾
+<button
+onclick="
+openPage('farm');
+setActiveNav(this)
+"
+>
+
+<span>🌾</span>
+
 Ферма
 
 </button>
 
-👤
+<button
+onclick="
+openPage('profile');
+setActiveNav(this)
+"
+>
+
+<span>👤</span>
+
 Профиль
 
 </button>
+
 </nav>
+
 </div>
+
 <script>
+
+"use strict";
+
 /* =========================================================
-CONFIG
+SMART HANDLER
 ========================================================= */
+
 const SMART_HANDLER =
 "https://tykkqockosneptokyiqh.supabase.co/functions/v1/smart-handler";
+
+
 /* =========================================================
-AUTH STATE
+STATE
 ========================================================= */
-let authMode="login";
-let currentUser=
-JSON.parse(
-localStorage.getItem("luckyClickUser")||"null"
-);
-/* =========================================================
-GAME STATE
-========================================================= */
+
 const defaultState={
+
 balance:0,
+
 clicks:0,
-clickPower:.5,
+
+clickPower:0.5,
+
 clickPrice:100,
+
 level:1,
+
 xp:0,
+
 luck:0,
+
 vip:false,
+
 autoClick:false,
+
 passiveIncome:false,
+
 inventory:[],
+
 boosters:{
-double:0
+
+double:0,
+
+lucky:0
+
+},
+
+stats:{
+
+casinoGames:0,
+
+casesOpened:0,
+
+totalWon:0
+
 }
+
 };
+
+
 let state=
 JSON.parse(
-localStorage.getItem("luckyClickState")||"null"
-)||
-JSON.parse(
-JSON.stringify(defaultState)
+localStorage.getItem(
+"luckyClickState"
+)
+)||JSON.parse(
+JSON.stringify(
+defaultState
+)
 );
+
+
+let currentUser=
+JSON.parse(
+localStorage.getItem(
+"luckyClickUser"
+)||"null"
+);
+
+
 /* =========================================================
-AUTH TABS
+MESSAGE
 ========================================================= */
-function switchAuth(mode){
-authMode=mode;
-document
-.getElementById("loginTab")
-.classList
-.toggle("active",mode==="login");
-document
-.getElementById("registerTab")
-.classList
-.toggle("active",mode==="register");
-document
-.getElementById("authButton")
-.textContent=
-mode==="login"
-?"Войти"
-:"Создать аккаунт";
-document
-.getElementById("authMessage")
-.textContent="";
+
+let messageTimer;
+
+function showMessage(
+text,
+type="success"
+){
+
+const el=
+document.getElementById(
+"gameMessage"
+);
+
+el.textContent=text;
+
+el.className=
+"message show";
+
+clearTimeout(
+messageTimer
+);
+
+messageTimer=
+setTimeout(
+()=>{
+el.classList.remove(
+"show"
+);
+},
+2500
+);
+
 }
+
+
 /* =========================================================
-REGISTER / LOGIN
+AUTH FORMS
 ========================================================= */
-async function authAction(){
+
+function showRegister(){
+
+document
+.getElementById(
+"loginForm"
+)
+.classList
+.add("hidden");
+
+document
+.getElementById(
+"registerForm"
+)
+.classList
+.remove("hidden");
+
+}
+
+
+function showLogin(){
+
+document
+.getElementById(
+"registerForm"
+)
+.classList
+.add("hidden");
+
+document
+.getElementById(
+"loginForm"
+)
+.classList
+.remove("hidden");
+
+}
+
+
+/* =========================================================
+REGISTER
+========================================================= */
+
+async function register(){
+
 const username=
 document
-.getElementById("authUsername")
+.getElementById(
+"registerUsername"
+)
 .value
-.trim();
+.trim()
+.toLowerCase();
+
 const password=
 document
-.getElementById("authPassword")
+.getElementById(
+"registerPassword"
+)
 .value;
-const message=
+
+const password2=
 document
-.getElementById("authMessage");
-if(!username||!password){
-message.textContent=
-"Введите логин и пароль";
+.getElementById(
+"registerPassword2"
+)
+.value;
+
+
+if(
+!username||
+!password
+){
+
+showMessage(
+"Введите логин и пароль",
+"error"
+);
+
 return;
+
 }
-message.style.color="#aeb9d0";
-message.textContent=
-"Подождите...";
+
+
+if(
+password!==password2
+){
+
+showMessage(
+"Пароли не совпадают",
+"error"
+);
+
+return;
+
+}
+
+
 try{
+
 const response=
 await fetch(
 SMART_HANDLER,
 {
+
 method:"POST",
+
 headers:{
+
 "Content-Type":
 "application/json"
+
 },
-body:
-JSON.stringify({
-action:
-authMode,
-username:
-username,
-password:
-password
+
+body:JSON.stringify({
+
+action:"register",
+
+username:username,
+
+password:password
+
 })
+
 }
 );
+
+
 const result=
 await response.json();
-if(!response.ok||
-!result.success){
-message.style.color="#ff7777";
-message.textContent=
+
+
+if(
+!result.success
+){
+
+showMessage(
 result.error||
-"Ошибка";
+"Ошибка регистрации",
+"error"
+);
+
 return;
+
 }
-currentUser=result.user;
+
+
+showMessage(
+"✅ Аккаунт создан!"
+);
+
+document
+.getElementById(
+"loginUsername"
+)
+.value=
+username;
+
+showLogin();
+
+}catch(error){
+
+console.error(error);
+
+showMessage(
+"❌ Ошибка подключения",
+"error"
+);
+
+}
+
+}
+
+
+/* =========================================================
+LOGIN
+========================================================= */
+
+async function login(){
+
+const username=
+document
+.getElementById(
+"loginUsername"
+)
+.value
+.trim()
+.toLowerCase();
+
+const password=
+document
+.getElementById(
+"loginPassword"
+)
+.value;
+
+
+if(
+!username||
+!password
+){
+
+showMessage(
+"Введите логин и пароль",
+"error"
+);
+
+return;
+
+}
+
+
+try{
+
+const response=
+await fetch(
+SMART_HANDLER,
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/json"
+
+},
+
+body:JSON.stringify({
+
+action:"login",
+
+username:username,
+
+password:password
+
+})
+
+}
+);
+
+
+const result=
+await response.json();
+
+
+if(
+!result.success
+){
+
+showMessage(
+result.error||
+"Неверный логин или пароль",
+"error"
+);
+
+return;
+
+}
+
+
+currentUser=
+result.user;
+
 localStorage.setItem(
 "luckyClickUser",
 JSON.stringify(
 currentUser
 )
 );
-const savedGame=
-localStorage.getItem(
-"luckyClickState_"+currentUser.id
+
+
+openApp();
+
+showMessage(
+"👋 Добро пожаловать, "+
+currentUser.username
 );
-if(savedGame){
-state=
-JSON.parse(savedGame);
-}else{
-state=
-JSON.parse(
-JSON.stringify(
-defaultState
-)
-);
-saveGame();
-}
-showApp();
+
 }catch(error){
+
 console.error(error);
-message.style.color="#ff7777";
-message.textContent=
-"Ошибка соединения с сервером";
+
+showMessage(
+"❌ Ошибка подключения к серверу",
+"error"
+);
+
 }
+
 }
+
+
+/* =========================================================
+OPEN APP
+========================================================= */
+
+function openApp(){
+
+document
+.getElementById(
+"authScreen"
+)
+.style
+.display="none";
+
+document
+.getElementById(
+"app"
+)
+.style
+.display="block";
+
+updateUI();
+
+}
+
+
 /* =========================================================
 LOGOUT
 ========================================================= */
+
 function logout(){
-saveGame();
+
 localStorage.removeItem(
 "luckyClickUser"
 );
-currentUser=null;
-document
-.getElementById("app")
-.style.display="none";
-document
-.getElementById("authScreen")
-.style.display="flex";
-document
-.getElementById("authUsername")
-.value="";
-document
-.getElementById("authPassword")
-.value="";
-switchAuth("login");
+
+location.reload();
+
 }
+
+
 /* =========================================================
-SHOW APP
+SAVE
 ========================================================= */
-function showApp(){
-document
-.getElementById("authScreen")
-.style.display="none";
-document
-.getElementById("app")
-.style.display="block";
-document
-.getElementById("currentUsername")
-.textContent=
-currentUser.username;
-document
-.getElementById("profileUsername")
-.textContent=
-currentUser.username;
-updateUI();
-}
-/* =========================================================
-SAVE GAME
-========================================================= */
+
 function saveGame(){
-if(!currentUser)
-return;
+
 localStorage.setItem(
-"luckyClickState_"+
-currentUser.id,
-JSON.stringify(state)
+"luckyClickState",
+JSON.stringify(
+state
+)
 );
+
 updateUI();
+
 }
-/* =========================================================
-MESSAGE
-========================================================= */
-let messageTimer;
-function showMessage(
-text,
-type="success"
-){
-const el=
-document
-.getElementById("gameMessage");
-el.textContent=text;
-el.className=
-"message show "+
-type;
-clearTimeout(messageTimer);
-messageTimer=
-setTimeout(
-()=>{
-el.classList.remove("show");
-},
-2500
-);
-}
+
+
 /* =========================================================
 FORMAT
 ========================================================= */
+
 function formatNumber(n){
+
 return Number(n)
 .toLocaleString(
 "ru-RU",
@@ -1384,33 +2121,54 @@ return Number(n)
 maximumFractionDigits:2
 }
 );
+
 }
+
+
 /* =========================================================
 XP
 ========================================================= */
+
 function xpNeeded(){
+
 return state.level*100;
+
 }
+
+
 function addXP(amount){
+
 state.xp+=amount;
+
 while(
 state.xp>=xpNeeded()
 ){
+
 state.xp-=
 xpNeeded();
+
 state.level++;
+
 showMessage(
 "🎉 Новый уровень "+
 state.level
 );
+
 }
+
 }
+
+
 /* =========================================================
 UI
 ========================================================= */
+
 function updateUI(){
+
 document
-.querySelectorAll(".balance")
+.querySelectorAll(
+".balance-value"
+)
 .forEach(
 el=>{
 el.textContent=
@@ -1419,8 +2177,24 @@ state.balance
 );
 }
 );
+
+
 document
-.querySelectorAll(".click-power")
+.querySelectorAll(
+".total-clicks"
+)
+.forEach(
+el=>{
+el.textContent=
+state.clicks;
+}
+);
+
+
+document
+.querySelectorAll(
+".click-power"
+)
 .forEach(
 el=>{
 el.textContent=
@@ -1429,309 +2203,540 @@ state.clickPower
 );
 }
 );
+
+
 document
-.querySelectorAll(".click-price")
+.querySelectorAll(
+".click-price"
+)
 .forEach(
 el=>{
 el.textContent=
 formatNumber(
 state.clickPrice
-)+
-" 🪙";
+)+" 🪙";
 }
 );
+
+
 document
-.querySelectorAll(".player-level")
+.querySelectorAll(
+".player-level"
+)
 .forEach(
 el=>{
 el.textContent=
 state.level;
 }
 );
+
+
 document
-.querySelectorAll(".player-xp")
+.querySelectorAll(
+".player-xp"
+)
 .forEach(
 el=>{
 el.textContent=
 state.xp;
 }
 );
+
+
 document
-.querySelectorAll(".xp-needed")
+.querySelectorAll(
+".xp-needed"
+)
 .forEach(
 el=>{
 el.textContent=
 xpNeeded();
 }
 );
-const clicks=
-document
-.getElementById("totalClicks");
-if(clicks){
-clicks.textContent=
-state.clicks;
-}
+
+
 const progress=
-document
-.getElementById("xpProgress");
+document.getElementById(
+"xpProgress"
+);
+
 if(progress){
+
 progress.style.width=
 Math.min(
 100,
-state.xp/xpNeeded()*100
+state.xp/
+xpNeeded()*
+100
 )+"%";
+
 }
+
+
 const casesLocked=
-document
-.getElementById("casesLocked");
+document.getElementById(
+"casesLocked"
+);
+
 const casesContent=
-document
-.getElementById("casesContent");
-if(state.level>=5){
-casesLocked.classList
+document.getElementById(
+"casesContent"
+);
+
+
+if(
+state.level>=5
+){
+
+casesLocked?.classList
 .add("hidden");
-casesContent.classList
+
+casesContent?.classList
 .remove("hidden");
+
 }else{
-casesLocked.classList
+
+casesLocked?.classList
 .remove("hidden");
-casesContent.classList
+
+casesContent?.classList
 .add("hidden");
+
 }
+
+
 const casinoLocked=
-document
-.getElementById("casinoLocked");
+document.getElementById(
+"casinoLocked"
+);
+
 const casinoContent=
-document
-.getElementById("casinoContent");
-if(state.level>=7){
-casinoLocked.classList
+document.getElementById(
+"casinoContent"
+);
+
+
+if(
+state.level>=7
+){
+
+casinoLocked?.classList
 .add("hidden");
-casinoContent.classList
+
+casinoContent?.classList
 .remove("hidden");
+
 }else{
-casinoLocked.classList
+
+casinoLocked?.classList
 .remove("hidden");
-casinoContent.classList
+
+casinoContent?.classList
 .add("hidden");
+
 }
+
+
+if(
+currentUser
+){
+
+document
+.getElementById(
+"profileUsername"
+)
+.textContent=
+currentUser.username;
+
+document
+.getElementById(
+"profileId"
+)
+.textContent=
+currentUser.id;
+
+}
+
+
 updateInventory();
+
 }
+
+
 /* =========================================================
 CLICK
 ========================================================= */
+
 function clickCoin(){
+
 let power=
 state.clickPower;
+
+
 if(
 state.boosters.double>
 Date.now()
 ){
+
 power*=2;
+
 }
+
+
 const luckyChance=
-.02+
+0.02+
 state.luck/1000;
+
+
 if(
 Math.random()<
 luckyChance
 ){
+
 power*=10;
+
 showMessage(
 "🍀 LUCKY BONUS ×10!"
 );
+
 }
-state.balance+=power;
+
+
+state.balance+=
+power;
+
 state.clicks++;
+
 addXP(1);
+
 createClickEffect(
 "+"+
 formatNumber(power)+
 " 🪙"
 );
+
 saveGame();
+
 }
+
+
 /* =========================================================
 CLICK EFFECT
 ========================================================= */
-function createClickEffect(text){
+
+function createClickEffect(
+text
+){
+
+const container=
+document.getElementById(
+"clickEffects"
+);
+
 const el=
-document
-.createElement("div");
+document.createElement(
+"div"
+);
+
 el.className=
 "click-effect";
-el.textContent=text;
+
+el.textContent=
+text;
+
 el.style.left=
 Math.random()*80+10+"%";
+
 el.style.top=
 Math.random()*50+25+"%";
-document
-.getElementById("clickEffects")
-.appendChild(el);
+
+container.appendChild(
+el
+);
+
 setTimeout(
 ()=>{
 el.remove();
 },
 1000
 );
+
 }
+
+
 /* =========================================================
 UPGRADE
 ========================================================= */
+
 function upgradeClick(){
+
 if(
 state.balance<
 state.clickPrice
 ){
+
 showMessage(
 "❌ Недостаточно монет",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=
 state.clickPrice;
+
 state.clickPower+=
-.5;
+0.5;
+
 state.clickPrice*=2;
+
 showMessage(
 "⚡ Клик улучшен!"
 );
+
 saveGame();
+
 }
+
+
 /* =========================================================
 NAVIGATION
 ========================================================= */
+
 function openPage(
-id,
-button
+id
 ){
+
 document
-.querySelectorAll(".page")
+.querySelectorAll(
+".page"
+)
 .forEach(
-p=>
-p.classList.remove("active")
+p=>{
+p.classList.remove(
+"active"
 );
+}
+);
+
+
 document
 .getElementById(id)
-.classList.add("active");
+?.classList
+.add("active");
+
+
 document
-.querySelectorAll(".nav button")
+.querySelectorAll(
+".game-screen"
+)
 .forEach(
-b=>
-b.classList.remove("active")
+g=>{
+g.classList.add(
+"hidden"
 );
-if(button){
-button.classList.add("active");
 }
-document
-.querySelectorAll(".game-screen")
-.forEach(
-g=>
-g.classList.add("hidden")
 );
-const grid=
+
+
 document
-.querySelector(".casino-grid");
-if(grid){
-grid.classList.remove("hidden");
-}
+.querySelector(
+".casino-grid"
+)
+?.classList
+.remove("hidden");
+
+
 updateUI();
+
 }
+
+
+function setActiveNav(
+btn
+){
+
+document
+.querySelectorAll(
+".nav button"
+)
+.forEach(
+b=>{
+b.classList.remove(
+"active"
+);
+}
+);
+
+btn.classList.add(
+"active"
+);
+
+}
+
+
 /* =========================================================
 SHOP
 ========================================================= */
-function buyShopItem(item){
+
+function buyShopItem(
+item
+){
+
 const items={
+
 megaClick:{
+
 price:5000,
+
 action:()=>{
 state.clickPower+=1;
 },
-text:"🔥 +1 к силе клика!"
+
+text:
+"🔥 +1 к силе клика!"
+
 },
+
 superClick:{
+
 price:25000,
+
 action:()=>{
 state.clickPower+=5;
 },
-text:"🚀 +5 к силе клика!"
+
+text:
+"🚀 +5 к силе клика!"
+
 },
+
 luck:{
+
 price:15000,
+
 action:()=>{
 state.luck+=10;
 },
-text:"🍀 Удача увеличена!"
+
+text:
+"🍀 Удача увеличена!"
+
 },
+
 vip:{
+
 price:100000,
+
 action:()=>{
 state.vip=true;
 },
-text:"👑 VIP активирован!"
+
+text:
+"👑 VIP активирован!"
+
 },
+
 autoClick:{
+
 price:50000,
+
 action:()=>{
 state.autoClick=true;
 },
-text:"🤖 Автокликер активирован!"
+
+text:
+"🤖 Автокликер активирован!"
+
 }
+
 };
+
+
 const selected=
 items[item];
+
+
 if(
 !selected||
 state.balance<
 selected.price
 ){
+
 showMessage(
 "❌ Недостаточно монет",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=
 selected.price;
+
 selected.action();
+
 showMessage(
 selected.text
 );
+
 saveGame();
+
 }
-/* =========================================================
-BOOSTERS
-========================================================= */
-function buyBooster(type){
+
+
+function buyBooster(
+type
+){
+
 const price=
 type==="double"
 ?1000
 :2500;
+
+
 if(
 state.balance<
 price
 ){
+
 showMessage(
 "❌ Недостаточно монет",
 "error"
 );
+
 return;
+
 }
-state.balance-=price;
+
+
+state.balance-=
+price;
+
+
 if(
 type==="double"
 ){
+
 state.boosters.double=
 Date.now()+60000;
+
 showMessage(
 "⚡ x2 на 60 секунд!"
 );
+
 }else{
+
+state.boosters.lucky=
+Date.now()+60000;
+
 state.luck+=20;
-showMessage(
-"🍀 Lucky Boost!"
-);
+
 setTimeout(
 ()=>{
 state.luck-=20;
@@ -1739,940 +2744,1732 @@ saveGame();
 },
 60000
 );
+
+showMessage(
+"🍀 Lucky Boost!"
+);
+
 }
+
+
 saveGame();
+
 }
+
+
 function buyPassiveIncome(){
+
 if(
 state.balance<
 10000
 ){
+
 showMessage(
 "❌ Недостаточно монет",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=10000;
+
 state.passiveIncome=true;
+
 showMessage(
 "💰 Автодоход включён!"
 );
+
 saveGame();
+
 }
+
+
 /* =========================================================
 PROMO
 ========================================================= */
+
 const promoCodes={
+
 LUCKY:1000,
+
 LUCKYCLICK:5000,
+
 BONUS:10000,
+
 VIP:50000,
+
 START:2500,
+
 CASINO:25000
+
 };
+
+
+let usedPromos=
+JSON.parse(
+localStorage.getItem(
+"usedPromos"
+)
+)||[];
+
+
 function activatePromo(){
+
 const input=
-document
-.getElementById("promoInput");
+document.getElementById(
+"promoInput"
+);
+
 const message=
-document
-.getElementById("promoMessage");
+document.getElementById(
+"promoMessage"
+);
+
 const code=
 input.value
 .trim()
 .toUpperCase();
-let used=
-JSON.parse(
-localStorage.getItem(
-"usedPromos_"+
-currentUser.id
-)||"[]"
-);
+
+
 if(
 !promoCodes[code]
 ){
+
 message.textContent=
 "❌ Неверный промокод";
+
 return;
+
 }
+
+
 if(
-used.includes(code)
+usedPromos.includes(
+code
+)
 ){
+
 message.textContent=
 "❌ Уже использован";
+
 return;
+
 }
+
+
 state.balance+=
 promoCodes[code];
-used.push(code);
-localStorage.setItem(
-"usedPromos_"+
-currentUser.id,
-JSON.stringify(used)
+
+usedPromos.push(
+code
 );
+
+localStorage.setItem(
+"usedPromos",
+JSON.stringify(
+usedPromos
+)
+);
+
 message.textContent=
 "🎉 Получено "+
 formatNumber(
 promoCodes[code]
 )+
 " 🪙";
+
 input.value="";
+
 saveGame();
+
 }
+
+
 /* =========================================================
 CASES
 ========================================================= */
+
 const casePrices={
+
 common:5000,
+
 rare:25000,
+
 legendary:100000,
+
 mythical:500000
+
 };
+
+
 const caseItems={
+
 common:[
+
 ["🪙","Монета",500],
+
 ["💎","Кристалл",1500],
+
 ["👑","Корона",5000],
+
 ["🌟","Легенда",15000],
+
 ["🌌","Миф",50000]
+
 ],
+
 rare:[
+
 ["💎","Кристалл",5000],
+
 ["👑","Корона",15000],
+
 ["🐉","Дракон",50000],
+
 ["🌟","Звезда",100000],
+
 ["🌌","Мифический",250000]
+
 ],
+
 legendary:[
+
 ["👑","Корона",50000],
+
 ["🐉","Дракон",150000],
+
 ["💎","Алмаз",500000],
+
 ["🏆","Трофей",1000000],
+
 ["🌌","Мега Джекпот",5000000]
+
 ],
+
 mythical:[
+
 ["💎","Алмаз",500000],
+
 ["🐉","Дракон",1000000],
+
 ["👑","Богатство",2500000],
+
 ["🌌","Артефакт",5000000],
+
 ["💠","ULTIMATE",25000000]
+
 ]
+
 };
-function openCase(type){
+
+
+function openCase(
+type
+){
+
 if(
 state.level<5
 ){
+
 showMessage(
 "🔒 Кейсы с 5 уровня",
 "error"
 );
+
 return;
+
 }
+
+
 const price=
 casePrices[type];
+
+
 if(
 state.balance<
 price
 ){
+
 showMessage(
 "❌ Недостаточно монет",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=price;
+
+
 const items=
 caseItems[type];
+
+
 const random=
 items[
 Math.floor(
-Math.random()*items.length
+Math.random()*
+items.length
 )
 ];
+
+
 const item={
+
 icon:random[0],
+
 name:random[1],
+
 value:random[2],
+
 id:Date.now()
+
 };
-state.inventory.push(item);
+
+
+state.inventory.push(
+item
+);
+
+state.stats.casesOpened++;
+
+
 showMessage(
 "🎁 Выпало "+
 item.icon+
 " "+
 item.name
 );
+
+
 saveGame();
+
 }
+
+
+/* =========================================================
+INVENTORY
+========================================================= */
+
 function updateInventory(){
-[
-document.getElementById("inventory"),
-document.getElementById("homeInventory")
-]
-.forEach(
+
+const boxes=[
+
+document.getElementById(
+"inventory"
+),
+
+document.getElementById(
+"homeInventory"
+)
+
+];
+
+
+boxes.forEach(
 container=>{
-if(!container)
-return;
+
+if(
+!container
+)return;
+
+
 container.innerHTML="";
+
+
 state.inventory
 .slice()
 .reverse()
 .forEach(
 item=>{
+
 const div=
-document.createElement("div");
+document.createElement(
+"div"
+);
+
 div.className=
 "inventory-item";
+
 div.innerHTML=
-"<div class='inventory-icon'>"+
-item.icon+
-"</div>"+
-"<div><b>"+
-item.name+
-"</b><br><small>"+
-formatNumber(item.value)+
-" 🪙</small></div>"+
-"<button onclick='sellItem("+
-item.id+
-")'>Продать</button>";
-container.appendChild(div);
+
+`
+<div class="inventory-icon">
+${item.icon}
+</div>
+
+<div>
+
+<b>
+${item.name}
+</b>
+
+<br>
+
+<small>
+${formatNumber(item.value)}
+🪙
+</small>
+
+</div>
+
+<button
+onclick="sellItem(${item.id})"
+>
+Продать
+</button>
+`;
+
+
+container.appendChild(
+div
+);
+
 }
 );
+
+
 if(
 !state.inventory.length
 ){
+
 container.innerHTML=
 "🎒 Инвентарь пуст";
+
 }
+
 }
 );
+
 }
-function sellItem(id){
+
+
+function sellItem(
+id
+){
+
 const index=
 state.inventory.findIndex(
 item=>
 item.id===id
 );
-if(index===-1)
-return;
+
+
+if(
+index===-1
+)return;
+
+
 const item=
 state.inventory[index];
+
+
 const price=
 Math.floor(
 item.value*.7
 );
-state.balance+=price;
+
+
+state.balance+=
+price;
+
+
 state.inventory.splice(
 index,
 1
 );
+
+
 showMessage(
 "💰 Продано за "+
 formatNumber(price)+
 " 🪙"
 );
+
+
 saveGame();
+
 }
+
+
 /* =========================================================
 CASINO
 ========================================================= */
-function openGame(id){
+
+function openGame(
+id
+){
+
 if(
 state.level<7
 ){
+
 showMessage(
 "🔒 Казино с 7 уровня",
 "error"
 );
+
 return;
+
 }
+
+
 document
-.querySelectorAll(".game-screen")
+.querySelectorAll(
+".game-screen"
+)
 .forEach(
 g=>
-g.classList.add("hidden")
+g.classList.add(
+"hidden"
+)
 );
+
+
 document
-.querySelector(".casino-grid")
-.classList.add("hidden");
+.querySelector(
+".casino-grid"
+)
+.classList
+.add("hidden");
+
+
 document
 .getElementById(id)
-.classList.remove("hidden");
+.classList
+.remove("hidden");
+
 }
+
+
 function backToCasino(){
+
 document
-.querySelectorAll(".game-screen")
+.querySelectorAll(
+".game-screen"
+)
 .forEach(
 g=>
-g.classList.add("hidden")
+g.classList.add(
+"hidden"
+)
 );
+
+
 document
-.querySelector(".casino-grid")
-.classList.remove("hidden");
+.querySelector(
+".casino-grid"
+)
+.classList
+.remove("hidden");
+
 }
+
+
 /* =========================================================
 SLOT
 ========================================================= */
+
 const symbols=[
+
 "🍒",
+
 "🍋",
+
 "🍊",
+
 "🍇",
+
 "🔔",
+
 "💎",
+
 "7️⃣"
+
 ];
+
+
 function randomSlot(){
+
 return symbols[
 Math.floor(
-Math.random()*symbols.length
+Math.random()*
+symbols.length
 )
 ];
+
 }
+
+
 function playSlot(){
+
 const bet=
 Number(
-document
-.getElementById("slotBet")
-.value
+document.getElementById(
+"slotBet"
+).value
 );
+
+
 if(
 !bet||
 state.balance<
 bet
 ){
+
 showMessage(
 "❌ Неверная ставка",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=bet;
+
+
 const result=[
+
 randomSlot(),
+
 randomSlot(),
+
 randomSlot()
+
 ];
+
+
 [
+
 "slot1",
+
 "slot2",
+
 "slot3"
+
 ]
 .forEach(
-(id,i)=>
+(id,i)=>{
+
 document
 .getElementById(id)
 .textContent=
-result[i]
+result[i];
+
+}
 );
+
+
 let multiplier=0;
+
+
 if(
-result[0]===result[1]&&
-result[1]===result[2]
+
+result[0]===
+result[1]&&
+
+result[1]===
+result[2]
+
 ){
+
 multiplier=
 result[0]==="7️⃣"
 ?25
 :10;
+
 }else if(
-result[0]===result[1]||
-result[1]===result[2]||
-result[0]===result[2]
+
+result[0]===
+result[1]||
+
+result[1]===
+result[2]||
+
+result[0]===
+result[2]
+
 ){
+
 multiplier=2;
+
 }
-if(multiplier){
+
+
+if(
+multiplier
+){
+
 const win=
 bet*multiplier;
+
 state.balance+=win;
+
+state.stats.totalWon+=win;
+
 showMessage(
 "🎉 Выигрыш ×"+
 multiplier
 );
+
 }else{
+
 showMessage(
 "😢 Не повезло",
 "error"
 );
+
 }
+
+
 saveGame();
+
 }
+
+
 /* =========================================================
 ROULETTE
 ========================================================= */
+
 let rouletteColor=null;
+
 let rouletteNumber=null;
+
+
 const redNumbers=[
+
 1,3,5,7,9,
+
 12,14,16,18,
+
 19,21,23,25,
+
 27,30,32,34,36
+
 ];
-function selectRouletteColor(color){
+
+
+function selectRouletteColor(
+color
+){
+
 rouletteColor=color;
+
+
 document
-.getElementById("selectedRouletteColor")
+.getElementById(
+"selectedRouletteColor"
+)
 .textContent=
 "Выбрано: "+
 color;
+
 }
-function chooseRouletteNumber(){
-const n=
-Number(
-document
-.getElementById("rouletteNumber")
-.value
-);
-if(
-isNaN(n)||
-n<0||
-n>36
+
+
+function selectRouletteNumber(
+n
 ){
-showMessage(
-"Введите число от 0 до 36",
-"error"
-);
-return;
-}
+
+if(
+isNaN(n)
+)return;
+
+
 rouletteNumber=n;
+
+
 showMessage(
 "🎯 Выбрано число "+
 n
 );
+
 }
+
+
 function playRoulette(){
+
 const bet=
 Number(
-document
-.getElementById("rouletteBet")
-.value
+document.getElementById(
+"rouletteBet"
+).value
 );
+
+
 if(
 !bet||
 state.balance<
 bet
 ){
+
 showMessage(
 "❌ Неверная ставка",
 "error"
 );
+
 return;
+
 }
+
+
 if(
 rouletteColor===null&&
 rouletteNumber===null
 ){
+
 showMessage(
 "❌ Выберите цвет или число",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=bet;
+
+
 const result=
 Math.floor(
 Math.random()*37
 );
+
+
 const color=
+
 result===0
+
 ?"green"
-:redNumbers.includes(result)
+
+:redNumbers.includes(
+result
+)
+
 ?"red"
+
 :"black";
+
+
 let win=0;
+
+
 if(
-rouletteNumber===result
+rouletteNumber===
+result
 ){
+
 win=bet*36;
+
 }else if(
-rouletteColor===color
+rouletteColor===
+color
 ){
+
 win=
 color==="green"
 ?bet*14
 :bet*2;
+
 }
+
+
 const wheel=
-document
-.getElementById("rouletteWheel");
-wheel.classList.add("spinning");
+document.getElementById(
+"rouletteWheel"
+);
+
+
+wheel.classList.add(
+"spinning"
+);
+
+
 setTimeout(
 ()=>{
-wheel.classList.remove("spinning");
+
+wheel.classList.remove(
+"spinning"
+);
+
+
 document
-.getElementById("rouletteNumberResult")
+.getElementById(
+"rouletteNumberResult"
+)
 .textContent=
 "Выпало: "+
 result+
-" — "+
+" "+
 color;
+
+
 if(win){
+
 state.balance+=win;
+
 showMessage(
 "🎉 Выигрыш "+
 formatNumber(win)+
 " 🪙"
 );
+
 }else{
+
 showMessage(
 "😢 Ставка проиграна",
 "error"
 );
+
 }
+
+
 rouletteColor=null;
+
 rouletteNumber=null;
+
 saveGame();
+
 },
 3000
 );
+
 }
+
+
 /* =========================================================
 DICE
 ========================================================= */
+
 let diceChoice=null;
-function selectDiceNumber(n){
+
+
+function selectDiceNumber(
+n
+){
+
 diceChoice=n;
+
+
 document
-.getElementById("selectedDiceNumber")
+.getElementById(
+"selectedDiceNumber"
+)
 .textContent=
 "Выбрано число: "+
 n;
+
 }
+
+
 function playDice(){
+
 const bet=
 Number(
-document
-.getElementById("diceBet")
-.value
+document.getElementById(
+"diceBet"
+).value
 );
+
+
 if(
 !bet||
 state.balance<
 bet||
 !diceChoice
 ){
+
 showMessage(
 "❌ Неверная ставка или число",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=bet;
+
+
 const result=
 Math.floor(
 Math.random()*6
 )+1;
+
+
 const faces=[
+
 "⚀",
+
 "⚁",
+
 "⚂",
+
 "⚃",
+
 "⚄",
+
 "⚅"
+
 ];
+
+
 document
-.getElementById("diceNumber")
+.querySelector(
+".dice-number"
+)
 .textContent=
 faces[result-1];
+
+
 if(
 result===diceChoice
 ){
+
 const win=
 bet*5;
+
+
 state.balance+=win;
+
+
 showMessage(
 "🎲 Угадал! +"+
-formatNumber(win)+
-" 🪙"
+formatNumber(win)
 );
+
 }else{
+
 showMessage(
 "🎲 Выпало "+
 result,
 "error"
 );
+
 }
+
+
 saveGame();
+
 }
+
+
 /* =========================================================
 LADDER
 ========================================================= */
+
 let ladderActive=false;
+
 let ladderBet=0;
+
 let ladderMultiplier=1;
+
 let ladderLevel=0;
+
+
 function startLadder(){
+
 const bet=
 Number(
-document
-.getElementById("ladderBet")
-.value
+document.getElementById(
+"ladderBet"
+).value
 );
+
+
 if(
 !bet||
 state.balance<
 bet
 ){
+
 showMessage(
 "❌ Неверная ставка",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=bet;
+
 ladderBet=bet;
+
 ladderMultiplier=1;
+
 ladderLevel=0;
+
 ladderActive=true;
+
 updateLadder();
+
 saveGame();
+
 }
+
+
 function ladderNext(){
-if(!ladderActive)
-return;
+
+if(
+!ladderActive
+)return;
+
+
 const chance=
 .75-
 ladderLevel*.04;
+
+
 if(
 Math.random()>chance
 ){
+
 ladderActive=false;
+
 showMessage(
 "💥 Проигрыш!",
 "error"
 );
+
 return;
+
 }
+
+
 ladderLevel++;
+
 ladderMultiplier*=1.35;
+
 updateLadder();
+
 }
+
+
 function ladderCashout(){
+
 if(
 !ladderActive||
 ladderLevel===0
 )
 return;
+
+
 const win=
 ladderBet*
 ladderMultiplier;
+
+
 state.balance+=win;
+
 ladderActive=false;
+
+
 showMessage(
 "💰 Забрали "+
-formatNumber(win)+
-" 🪙"
+formatNumber(win)
 );
+
+
 saveGame();
+
 }
+
+
 function updateLadder(){
+
 document
-.getElementById("ladderLevel")
+.getElementById(
+"ladderLevel"
+)
 .textContent=
 "Уровень "+
 ladderLevel+
 " / 10";
+
+
 document
-.getElementById("ladderMultiplier")
+.getElementById(
+"ladderMultiplier"
+)
 .textContent=
 "×"+
 ladderMultiplier.toFixed(2);
+
 }
+
+
 /* =========================================================
 MINES
 ========================================================= */
+
 let minesActive=false;
+
 let minesBet=0;
+
 let minesMultiplier=1;
+
 let minePositions=[];
+
+
 function startMines(){
+
 const bet=
 Number(
-document
-.getElementById("minesBet")
-.value
+document.getElementById(
+"minesBet"
+).value
 );
+
+
 if(
 !bet||
 state.balance<
 bet
 ){
+
 showMessage(
 "❌ Неверная ставка",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=bet;
+
 minesBet=bet;
+
 minesMultiplier=1;
+
 minesActive=true;
+
 minePositions=[];
+
+
 while(
 minePositions.length<5
 ){
+
 const p=
 Math.floor(
 Math.random()*16
 );
+
+
 if(
 !minePositions.includes(p)
 ){
+
 minePositions.push(p);
+
 }
+
 }
+
+
 const board=
-document
-.querySelector(".mines-board");
+document.querySelector(
+".mines-board"
+);
+
+
 board.innerHTML="";
+
+
 for(
 let i=0;
 i<16;
 i++
 ){
+
 const button=
-document
-.createElement("button");
+document.createElement(
+"button"
+);
+
+
 button.className=
 "mine-cell";
-button.textContent="❓";
+
+
+button.textContent=
+"❓";
+
+
 button.onclick=
 ()=>revealMine(
 button,
 i
 );
-board.appendChild(button);
+
+
+board.appendChild(
+button
+);
+
 }
-document
-.getElementById("minesMultiplier")
-.textContent="×1.00";
+
+
 saveGame();
+
 }
+
+
 function revealMine(
 cell,
 index
 ){
-if(!minesActive)
-return;
+
 if(
-minePositions.includes(index)
+!minesActive
+)return;
+
+
+if(
+minePositions.includes(
+index
+)
 ){
-cell.textContent="💣";
+
+cell.textContent=
+"💣";
+
 minesActive=false;
+
+
 showMessage(
 "💥 Мина!",
 "error"
 );
+
 return;
+
 }
-cell.textContent="💎";
+
+
+cell.textContent=
+"💎";
+
+
 cell.disabled=true;
+
+
 minesMultiplier*=1.25;
+
+
 document
-.getElementById("minesMultiplier")
+.getElementById(
+"minesMultiplier"
+)
 .textContent=
 "×"+
 minesMultiplier.toFixed(2);
+
 }
+
+
 function cashoutMines(){
-if(!minesActive)
-return;
+
+if(
+!minesActive
+)return;
+
+
 const win=
 minesBet*
 minesMultiplier;
+
+
 state.balance+=win;
+
 minesActive=false;
+
+
 showMessage(
 "💰 Выигрыш "+
-formatNumber(win)+
-" 🪙"
+formatNumber(win)
 );
+
+
 saveGame();
+
 }
+
+
 /* =========================================================
 CRASH
 ========================================================= */
+
 let crashActive=false;
+
 let crashBet=0;
+
 let crashMultiplier=1;
+
 let crashTimer;
+
+
 function startCrash(){
+
 const bet=
 Number(
-document
-.getElementById("crashBet")
-.value
+document.getElementById(
+"crashBet"
+).value
 );
+
+
 if(
 !bet||
 state.balance<
 bet
 ){
+
 showMessage(
 "❌ Неверная ставка",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=bet;
+
 crashBet=bet;
+
 crashMultiplier=1;
+
 crashActive=true;
+
+
 const start=
 Date.now();
-clearInterval(crashTimer);
+
+
+clearInterval(
+crashTimer
+);
+
+
 crashTimer=
 setInterval(
 ()=>{
+
 const elapsed=
 (Date.now()-start)/1000;
+
+
 crashMultiplier=
 1+
 elapsed*.35;
+
+
 document
-.getElementById("crashMultiplier")
+.getElementById(
+"crashMultiplier"
+)
 .textContent=
 "×"+
 crashMultiplier.toFixed(2);
+
+
 document
-.getElementById("crashPlane")
+.getElementById(
+"crashPlane"
+)
 .style.left=
 Math.min(
 90,
 5+elapsed*8
 )+"%";
+
+
 if(
 Math.random()<
-.0015*crashMultiplier
+.0015*
+crashMultiplier
 ){
+
 crashEnd();
+
 }
+
 },
 100
 );
+
 }
+
+
 function crashEnd(){
-clearInterval(crashTimer);
+
+clearInterval(
+crashTimer
+);
+
 crashActive=false;
+
+
 showMessage(
 "💥 Crash ×"+
 crashMultiplier.toFixed(2),
 "error"
 );
+
 }
+
+
 function cashoutCrash(){
-if(!crashActive)
-return;
+
+if(
+!crashActive
+)return;
+
+
 const win=
 crashBet*
 crashMultiplier;
+
+
 state.balance+=win;
-clearInterval(crashTimer);
+
+
+clearInterval(
+crashTimer
+);
+
+
 crashActive=false;
+
+
 showMessage(
 "✈️ Забрали "+
-formatNumber(win)+
-" 🪙"
+formatNumber(win)
 );
+
+
 saveGame();
+
 }
+
+
 /* =========================================================
 JACKPOT
 ========================================================= */
+
 function playJackpot(){
+
 const bet=
 Number(
-document
-.getElementById("jackpotBet")
-.value
+document.getElementById(
+"jackpotBet"
+).value
 );
+
+
 if(
 !bet||
 state.balance<
 bet
 ){
+
 showMessage(
 "❌ Неверная ставка",
 "error"
 );
+
 return;
+
 }
+
+
 state.balance-=bet;
+
+
 const r=
 Math.random();
+
+
 let multiplier=0;
-if(r<.001)
+
+
+if(
+r<.001
+)
 multiplier=1000;
-else if(r<.01)
+
+else if(
+r<.01
+)
 multiplier=100;
-else if(r<.1)
+
+else if(
+r<.1
+)
 multiplier=10;
-else if(r<.3)
+
+else if(
+r<.3
+)
 multiplier=2;
-if(multiplier){
+
+
+if(
+multiplier
+){
+
 const win=
 bet*multiplier;
+
+
 state.balance+=win;
+
+
 showMessage(
 "💎 JACKPOT ×"+
 multiplier
 );
+
 }else{
+
 showMessage(
 "😢 Не повезло",
 "error"
 );
+
 }
+
+
 saveGame();
+
 }
+
+
 /* =========================================================
 FARM
 ========================================================= */
-function plant(slot){
+
+function plant(
+slot
+){
+
 showMessage(
 "🌱 Семя посажено!"
 );
+
+
 setTimeout(
 ()=>{
+
 state.balance+=100;
+
+
 showMessage(
 "🌾 Урожай собран! +100 🪙"
 );
+
+
 saveGame();
+
 },
 5000
 );
+
 }
+
+
 /* =========================================================
 AUTO CLICK
 ========================================================= */
+
 setInterval(
 ()=>{
+
 if(
 state.autoClick
 ){
+
 clickCoin();
+
 }
+
 },
 1000
 );
+
+
+/* =========================================================
+PASSIVE INCOME
+========================================================= */
+
+setInterval(
+()=>{
+
+if(
+state.passiveIncome
+){
+
+state.balance+=100;
+
+saveGame();
+
+}
+
+},
+600000
+);
+
+
 /* =========================================================
 START
 ========================================================= */
-document
-.addEventListener(
+
+document.addEventListener(
 "DOMContentLoaded",
 ()=>{
-if(currentUser){
-showApp();
+
+if(
+currentUser
+){
+
+openApp();
+
 }else{
+
 document
-.getElementById("authScreen")
-.style.display="flex";
+.getElementById(
+"authScreen"
+)
+.style
+.display="flex";
+
 }
+
+updateUI();
+
+console.log(
+"🍀 Lucky Click запущен!"
+);
+
 }
 );
+
 </script>
+
 </body>
 </html>
