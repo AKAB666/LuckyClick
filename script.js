@@ -16,7 +16,7 @@ if (tg) {
 }
 
 /* =========================================================
-GAME STATE
+DEFAULT GAME STATE
 ========================================================= */
 
 const defaultState = {
@@ -39,9 +39,9 @@ const defaultState = {
     },
 
     luck: 0,
+
     vip: false,
     autoClick: false,
-
     passiveIncome: false,
 
     stats: {
@@ -51,12 +51,30 @@ const defaultState = {
     }
 };
 
-let state = JSON.parse(
-    localStorage.getItem("luckyClickState")
-) || structuredClone(defaultState);
+/* =========================================================
+LOAD GAME
+========================================================= */
+
+let state;
+
+try {
+
+    state =
+        JSON.parse(
+            localStorage.getItem(
+                "luckyClickState"
+            )
+        ) || structuredClone(defaultState);
+
+} catch (error) {
+
+    state =
+        structuredClone(defaultState);
+
+}
 
 /* =========================================================
-SAVE
+SAVE GAME
 ========================================================= */
 
 function saveGame() {
@@ -67,10 +85,11 @@ function saveGame() {
     );
 
     updateUI();
+
 }
 
 /* =========================================================
-FORMAT
+FORMAT NUMBER
 ========================================================= */
 
 function formatNumber(number) {
@@ -81,6 +100,7 @@ function formatNumber(number) {
             maximumFractionDigits: 2
         }
     );
+
 }
 
 /* =========================================================
@@ -89,24 +109,41 @@ MESSAGE
 
 let messageTimer;
 
-function showMessage(text, type = "success") {
+function showMessage(
+    text,
+    type = "success"
+) {
 
-    const el = document.getElementById("gameMessage");
+    const el =
+        document.getElementById(
+            "gameMessage"
+        );
 
     if (!el) return;
 
-    el.textContent = text;
+    el.textContent =
+        text;
 
     el.className =
-        "game-message show " + type;
+        "game-message show " +
+        type;
 
-    clearTimeout(messageTimer);
+    clearTimeout(
+        messageTimer
+    );
 
-    messageTimer = setTimeout(() => {
+    messageTimer =
+        setTimeout(
+            () => {
 
-        el.classList.remove("show");
+                el.classList.remove(
+                    "show"
+                );
 
-    }, 2500);
+            },
+            2500
+        );
+
 }
 
 /* =========================================================
@@ -116,21 +153,32 @@ XP / LEVEL
 function xpNeeded() {
 
     return state.level * 100;
+
 }
 
 function addXP(amount) {
 
-    state.xp += amount;
+    state.xp +=
+        amount;
 
-    while (state.xp >= xpNeeded()) {
+    while (
+        state.xp >=
+        xpNeeded()
+    ) {
 
-        state.xp -= xpNeeded();
+        state.xp -=
+            xpNeeded();
 
         state.level++;
 
         showMessage(
-            `🎉 Новый уровень: ${state.level}`,
-            "success"
+            `🎉 Новый уровень: ${state.level}`
+        );
+
+        playSound(
+            800,
+            0.2,
+            "triangle"
         );
 
     }
@@ -146,79 +194,120 @@ UPDATE UI
 function updateUI() {
 
     document
-        .querySelectorAll(".balance")
-        .forEach(el => {
+        .querySelectorAll(
+            ".balance"
+        )
+        .forEach(
+            el => {
 
-            el.textContent =
-                formatNumber(state.balance);
+                el.textContent =
+                    formatNumber(
+                        state.balance
+                    );
 
-        });
-
-    document
-        .querySelectorAll(".total-clicks")
-        .forEach(el => {
-
-            el.textContent =
-                formatNumber(state.clicks);
-
-        });
+            }
+        );
 
     document
-        .querySelectorAll(".click-power")
-        .forEach(el => {
+        .querySelectorAll(
+            ".total-clicks"
+        )
+        .forEach(
+            el => {
 
-            el.textContent =
-                formatNumber(state.clickPower);
+                el.textContent =
+                    formatNumber(
+                        state.clicks
+                    );
 
-        });
-
-    document
-        .querySelectorAll(".click-price")
-        .forEach(el => {
-
-            el.textContent =
-                formatNumber(state.clickPrice) +
-                " 🪙";
-
-        });
+            }
+        );
 
     document
-        .querySelectorAll(".player-level")
-        .forEach(el => {
+        .querySelectorAll(
+            ".click-power"
+        )
+        .forEach(
+            el => {
 
-            el.textContent =
-                state.level;
+                el.textContent =
+                    formatNumber(
+                        state.clickPower
+                    );
 
-        });
-
-    document
-        .querySelectorAll(".player-xp")
-        .forEach(el => {
-
-            el.textContent =
-                state.xp;
-
-        });
+            }
+        );
 
     document
-        .querySelectorAll(".xp-needed")
-        .forEach(el => {
+        .querySelectorAll(
+            ".click-price"
+        )
+        .forEach(
+            el => {
 
-            el.textContent =
-                xpNeeded();
+                el.textContent =
+                    formatNumber(
+                        state.clickPrice
+                    ) +
+                    " 🪙";
 
-        });
+            }
+        );
+
+    document
+        .querySelectorAll(
+            ".player-level"
+        )
+        .forEach(
+            el => {
+
+                el.textContent =
+                    state.level;
+
+            }
+        );
+
+    document
+        .querySelectorAll(
+            ".player-xp"
+        )
+        .forEach(
+            el => {
+
+                el.textContent =
+                    state.xp;
+
+            }
+        );
+
+    document
+        .querySelectorAll(
+            ".xp-needed"
+        )
+        .forEach(
+            el => {
+
+                el.textContent =
+                    xpNeeded();
+
+            }
+        );
 
     const xpProgress =
-        document.getElementById("xpProgress");
+        document.getElementById(
+            "xpProgress"
+        );
 
     if (xpProgress) {
 
         xpProgress.style.width =
             Math.min(
                 100,
-                state.xp / xpNeeded() * 100
-            ) + "%";
+                state.xp /
+                xpNeeded() *
+                100
+            ) +
+            "%";
 
     }
 
@@ -239,7 +328,10 @@ function clickCoin() {
 
     /* DOUBLE BOOST */
 
-    if (state.boosters.double > Date.now()) {
+    if (
+        state.boosters.double >
+        Date.now()
+    ) {
 
         power *= 2;
 
@@ -249,9 +341,13 @@ function clickCoin() {
 
     const luckyChance =
         0.02 +
-        state.luck / 1000;
+        state.luck /
+        1000;
 
-    if (Math.random() < luckyChance) {
+    if (
+        Math.random() <
+        luckyChance
+    ) {
 
         power *= 10;
 
@@ -259,9 +355,16 @@ function clickCoin() {
             `🍀 LUCKY BONUS ×10! +${formatNumber(power)} 🪙`
         );
 
+        playSound(
+            900,
+            0.15,
+            "square"
+        );
+
     }
 
-    state.balance += power;
+    state.balance +=
+        power;
 
     state.clicks++;
 
@@ -289,7 +392,9 @@ function createClickEffect(text) {
     if (!container) return;
 
     const el =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     el.className =
         "click-effect";
@@ -298,18 +403,29 @@ function createClickEffect(text) {
         text;
 
     el.style.left =
-        Math.random() * 80 + 10 + "%";
+        Math.random() *
+        80 +
+        10 +
+        "%";
 
     el.style.top =
-        Math.random() * 50 + 25 + "%";
+        Math.random() *
+        50 +
+        25 +
+        "%";
 
-    container.appendChild(el);
+    container.appendChild(
+        el
+    );
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        el.remove();
+            el.remove();
 
-    }, 1000);
+        },
+        1000
+    );
 
 }
 
@@ -336,12 +452,20 @@ function upgradeClick() {
     state.balance -=
         state.clickPrice;
 
-    state.clickPower += 0.5;
+    state.clickPower +=
+        0.5;
 
-    state.clickPrice *= 2;
+    state.clickPrice *=
+        2;
 
     showMessage(
         `⚡ Клик улучшен! Теперь +${formatNumber(state.clickPower)} 🪙`
+    );
+
+    playSound(
+        600,
+        0.15,
+        "triangle"
     );
 
     saveGame();
@@ -355,49 +479,79 @@ NAVIGATION
 function openPage(pageId) {
 
     document
-        .querySelectorAll(".page")
-        .forEach(page => {
+        .querySelectorAll(
+            ".page"
+        )
+        .forEach(
+            page => {
 
-            page.classList.add("hidden");
+                page.classList.add(
+                    "hidden"
+                );
 
-            page.classList.remove("active");
+                page.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
     const page =
-        document.getElementById(pageId);
+        document.getElementById(
+            pageId
+        );
 
     if (!page) return;
 
-    page.classList.remove("hidden");
+    page.classList.remove(
+        "hidden"
+    );
 
-    page.classList.add("active");
-
-    /* CLOSE GAMES */
+    page.classList.add(
+        "active"
+    );
 
     document
-        .querySelectorAll(".game-screen")
-        .forEach(game => {
+        .querySelectorAll(
+            ".game-screen"
+        )
+        .forEach(
+            game => {
 
-            game.classList.add("hidden");
+                game.classList.add(
+                    "hidden"
+                );
 
-        });
+            }
+        );
 
     updateUI();
 
 }
 
+/* =========================================================
+NAV BUTTON
+========================================================= */
+
 function setActiveNav(button) {
 
     document
-        .querySelectorAll(".nav-button")
-        .forEach(btn => {
+        .querySelectorAll(
+            ".nav-button"
+        )
+        .forEach(
+            btn => {
 
-            btn.classList.remove("active");
+                btn.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
-    button.classList.add("active");
+    button.classList.add(
+        "active"
+    );
 
 }
 
@@ -406,6 +560,8 @@ LOCKS
 ========================================================= */
 
 function updateLocks() {
+
+    /* CASES FROM LEVEL 5 */
 
     const casesLocked =
         document.getElementById(
@@ -417,9 +573,14 @@ function updateLocks() {
             "casesContent"
         );
 
-    if (casesLocked && casesContent) {
+    if (
+        casesLocked &&
+        casesContent
+    ) {
 
-        if (state.level >= 5) {
+        if (
+            state.level >= 5
+        ) {
 
             casesLocked.classList.add(
                 "hidden"
@@ -443,6 +604,8 @@ function updateLocks() {
 
     }
 
+    /* CASINO FROM LEVEL 7 */
+
     const casinoLocked =
         document.getElementById(
             "casinoLocked"
@@ -453,9 +616,14 @@ function updateLocks() {
             "casinoContent"
         );
 
-    if (casinoLocked && casinoContent) {
+    if (
+        casinoLocked &&
+        casinoContent
+    ) {
 
-        if (state.level >= 7) {
+        if (
+            state.level >= 7
+        ) {
 
             casinoLocked.classList.add(
                 "hidden"
@@ -487,7 +655,7 @@ SHOP
 
 function buyBooster(type) {
 
-    let price =
+    const price =
         type === "double"
             ? 1000
             : 2500;
@@ -506,9 +674,12 @@ function buyBooster(type) {
 
     }
 
-    state.balance -= price;
+    state.balance -=
+        price;
 
-    if (type === "double") {
+    if (
+        type === "double"
+    ) {
 
         state.boosters.double =
             Date.now() +
@@ -520,25 +691,32 @@ function buyBooster(type) {
 
     }
 
-    if (type === "lucky") {
+    if (
+        type === "lucky"
+    ) {
 
         state.boosters.lucky =
             Date.now() +
             60000;
 
-        state.luck += 20;
+        state.luck +=
+            20;
 
         showMessage(
             "🍀 Lucky Boost активирован!"
         );
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            state.luck -= 20;
+                state.luck -=
+                    20;
 
-            saveGame();
+                saveGame();
 
-        }, 60000);
+            },
+            60000
+        );
 
     }
 
@@ -546,9 +724,14 @@ function buyBooster(type) {
 
 }
 
+/* =========================================================
+PASSIVE INCOME
+========================================================= */
+
 function buyPassiveIncome() {
 
-    const price = 10000;
+    const price =
+        10000;
 
     if (
         state.balance <
@@ -564,9 +747,24 @@ function buyPassiveIncome() {
 
     }
 
-    state.balance -= price;
+    if (
+        state.passiveIncome
+    ) {
 
-    state.passiveIncome = true;
+        showMessage(
+            "ℹ️ Автодоход уже активирован",
+            "error"
+        );
+
+        return;
+
+    }
+
+    state.balance -=
+        price;
+
+    state.passiveIncome =
+        true;
 
     showMessage(
         "💰 Автодоход активирован!"
@@ -576,63 +774,92 @@ function buyPassiveIncome() {
 
 }
 
+/* =========================================================
+SHOP ITEMS
+========================================================= */
+
 function buyShopItem(item) {
 
     const items = {
 
         megaClick: {
+
             price: 5000,
+
             action: () => {
 
-                state.clickPower += 1;
+                state.clickPower +=
+                    1;
 
             },
+
             text:
                 "🔥 Сила клика увеличена на +1!"
+
         },
 
         superClick: {
+
             price: 25000,
+
             action: () => {
 
-                state.clickPower += 5;
+                state.clickPower +=
+                    5;
 
             },
+
             text:
                 "🚀 Сила клика увеличена на +5!"
+
         },
 
         luck: {
+
             price: 15000,
+
             action: () => {
 
-                state.luck += 10;
+                state.luck +=
+                    10;
 
             },
+
             text:
                 "💎 Шанс Lucky Bonus увеличен!"
+
         },
 
         vip: {
+
             price: 100000,
+
             action: () => {
 
-                state.vip = true;
+                state.vip =
+                    true;
 
             },
+
             text:
                 "👑 VIP Status активирован!"
+
         },
 
         autoClick: {
+
             price: 50000,
+
             action: () => {
 
-                state.autoClick = true;
+                state.autoClick =
+                    true;
 
             },
+
             text:
                 "🤖 Автокликер активирован!"
+
         }
 
     };
@@ -640,7 +867,8 @@ function buyShopItem(item) {
     const selected =
         items[item];
 
-    if (!selected) return;
+    if (!selected)
+        return;
 
     if (
         state.balance <
@@ -670,34 +898,45 @@ function buyShopItem(item) {
 }
 
 /* =========================================================
-PASSIVE INCOME
+PASSIVE INCOME TIMER
 ========================================================= */
 
-setInterval(() => {
+setInterval(
+    () => {
 
-    if (state.passiveIncome) {
+        if (
+            state.passiveIncome
+        ) {
 
-        state.balance += 100;
+            state.balance +=
+                100;
 
-        saveGame();
+            saveGame();
 
-    }
+        }
 
-}, 600000);
+    },
+    600000
+);
 
 /* =========================================================
 AUTO CLICK
 ========================================================= */
 
-setInterval(() => {
+setInterval(
+    () => {
 
-    if (state.autoClick) {
+        if (
+            state.autoClick
+        ) {
 
-        clickCoin();
+            clickCoin();
 
-    }
+        }
 
-}, 1000);
+    },
+    1000
+);
 
 /* =========================================================
 PROMO CODES
@@ -705,19 +944,57 @@ PROMO CODES
 
 const promoCodes = {
 
-    LUCKY: 1000,
+    LUCKY: {
 
-    LUCKYCLICK: 5000,
+        reward: 1000
 
-    BONUS: 10000,
+    },
 
-    VIP: 50000,
+    LUCKYCLICK: {
 
-    START: 2500,
+        reward: 5000
 
-    CASINO: 25000
+    },
+
+    BONUS: {
+
+        reward: 10000
+
+    },
+
+    VIP: {
+
+        reward: 50000
+
+    },
+
+    START: {
+
+        reward: 2500
+
+    },
+
+    CASINO: {
+
+        reward: 25000
+
+    },
+
+    /* PERSONAL ADMIN CODE */
+
+    ADMIN7: {
+
+        reward: 10000,
+
+        level: 7
+
+    }
 
 };
+
+/* =========================================================
+ACTIVATE PROMO
+========================================================= */
 
 function activatePromo() {
 
@@ -731,7 +1008,11 @@ function activatePromo() {
             "promoMessage"
         );
 
-    if (!input) return;
+    if (
+        !input ||
+        !message
+    )
+        return;
 
     const code =
         input.value
@@ -748,8 +1029,9 @@ function activatePromo() {
     }
 
     if (
-        state.promoUsed
-            .includes(code)
+        state.promoUsed.includes(
+            code
+        )
     ) {
 
         message.textContent =
@@ -759,33 +1041,55 @@ function activatePromo() {
 
     }
 
-    if (
-        promoCodes[code]
-    ) {
+    const promo =
+        promoCodes[code];
 
-        const reward =
-            promoCodes[code];
-
-        state.balance +=
-            reward;
-
-        state.promoUsed.push(
-            code
-        );
+    if (!promo) {
 
         message.textContent =
-            `🎉 Вы получили ${formatNumber(reward)} 🪙`;
-
-        input.value = "";
-
-        saveGame();
+            "❌ Неверный промокод";
 
         return;
 
     }
 
+    state.balance +=
+        promo.reward;
+
+    if (
+        promo.level
+    ) {
+
+        state.level =
+            Math.max(
+                state.level,
+                promo.level
+            );
+
+        state.xp =
+            0;
+
+    }
+
+    state.promoUsed.push(
+        code
+    );
+
     message.textContent =
-        "❌ Неверный промокод";
+        promo.level
+            ? `🎉 Промокод активирован! +${formatNumber(promo.reward)} 🪙 Уровень ${promo.level}!`
+            : `🎉 Вы получили ${formatNumber(promo.reward)} 🪙`;
+
+    input.value =
+        "";
+
+    playSound(
+        900,
+        0.2,
+        "triangle"
+    );
+
+    saveGame();
 
 }
 
@@ -968,15 +1272,21 @@ const casePrices = {
 let caseOpeningInProgress =
     false;
 
+/* =========================================================
+RANDOM CASE ITEM
+========================================================= */
+
 function randomCaseItem(type) {
 
     const items =
         caseItems[type];
 
     const random =
-        Math.random() * 100;
+        Math.random() *
+        100;
 
-    let current = 0;
+    let current =
+        0;
 
     for (
         const item of items
@@ -986,7 +1296,8 @@ function randomCaseItem(type) {
             item.chance;
 
         if (
-            random <= current
+            random <=
+            current
         ) {
 
             return item;
@@ -999,9 +1310,29 @@ function randomCaseItem(type) {
 
 }
 
+/* =========================================================
+OPEN CASE
+========================================================= */
+
 function openCase(type) {
 
-    if (caseOpeningInProgress)
+    if (
+        state.level <
+        5
+    ) {
+
+        showMessage(
+            "🔒 Кейсы открываются с 5 уровня",
+            "error"
+        );
+
+        return;
+
+    }
+
+    if (
+        caseOpeningInProgress
+    )
         return;
 
     const price =
@@ -1021,7 +1352,8 @@ function openCase(type) {
 
     }
 
-    state.balance -= price;
+    state.balance -=
+        price;
 
     caseOpeningInProgress =
         true;
@@ -1041,21 +1373,34 @@ function openCase(type) {
             "caseOpeningResult"
         );
 
-    if (!modal ||
+    if (
+        !modal ||
         !track ||
         !result
-    ) return;
+    ) {
+
+        state.balance +=
+            price;
+
+        caseOpeningInProgress =
+            false;
+
+        return;
+
+    }
 
     modal.classList.add(
         "active"
     );
 
-    track.innerHTML = "";
+    track.innerHTML =
+        "";
 
     const winner =
         randomCaseItem(type);
 
-    const items = [];
+    const items =
+        [];
 
     for (
         let i = 0;
@@ -1064,7 +1409,9 @@ function openCase(type) {
     ) {
 
         items.push(
-            randomCaseItem(type)
+            randomCaseItem(
+                type
+            )
         );
 
     }
@@ -1072,31 +1419,35 @@ function openCase(type) {
     items[30] =
         winner;
 
-    items.forEach(item => {
+    items.forEach(
+        item => {
 
-        const el =
-            document.createElement(
-                "div"
+            const el =
+                document.createElement(
+                    "div"
+                );
+
+            el.className =
+                "case-track-item";
+
+            el.innerHTML = `
+
+                <div>
+                    ${item.icon}
+                </div>
+
+                <span>
+                    ${item.name}
+                </span>
+
+            `;
+
+            track.appendChild(
+                el
             );
 
-        el.className =
-            "case-track-item";
-
-        el.innerHTML = `
-
-            <div>
-                ${item.icon}
-            </div>
-
-            <span>
-                ${item.name}
-            </span>
-
-        `;
-
-        track.appendChild(el);
-
-    });
+        }
+    );
 
     track.style.transition =
         "none";
@@ -1104,47 +1455,68 @@ function openCase(type) {
     track.style.transform =
         "translateX(0)";
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        const itemWidth =
-            115;
+            const itemWidth =
+                115;
 
-        const target =
-            -(30 * itemWidth) +
-            150;
+            const target =
+                -(30 *
+                itemWidth) +
+                150;
 
-        track.style.transition =
-            "transform 5s cubic-bezier(.12,.8,.18,1)";
+            track.style.transition =
+                "transform 5s cubic-bezier(.12,.8,.18,1)";
 
-        track.style.transform =
-            `translateX(${target}px)`;
+            track.style.transform =
+                `translateX(${target}px)`;
 
-    }, 100);
+        },
+        100
+    );
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        state.inventory.push({
-            ...winner,
-            id: Date.now()
-        });
+            state.inventory.push({
 
-        state.stats.casesOpened++;
+                ...winner,
 
-        result.textContent =
-            `🎉 Вы выиграли ${winner.icon} ${winner.name} — ${formatNumber(winner.value)} 🪙`;
+                id:
+                    Date.now()
 
-        showMessage(
-            `🎁 Выпало: ${winner.name}!`
-        );
+            });
 
-        caseOpeningInProgress =
-            false;
+            state.stats.casesOpened++;
 
-        saveGame();
+            result.textContent =
+                `🎉 Вы выиграли ${winner.icon} ${winner.name} — ${formatNumber(winner.value)} 🪙`;
 
-    }, 5400);
+            showMessage(
+                `🎁 Выпало: ${winner.name}!`
+            );
+
+            playSound(
+                1000,
+                0.3,
+                "triangle"
+            );
+
+            caseOpeningInProgress =
+                false;
+
+            saveGame();
+
+        },
+        5400
+    );
 
 }
+
+/* =========================================================
+CLOSE CASE
+========================================================= */
 
 function closeCaseOpening() {
 
@@ -1184,101 +1556,119 @@ function updateInventory() {
 
     ];
 
-    containers.forEach(container => {
+    containers.forEach(
+        container => {
 
-        if (!container) return;
+            if (!container)
+                return;
 
-        container.innerHTML = "";
+            container.innerHTML =
+                "";
 
-        if (
-            state.inventory.length === 0
-        ) {
+            if (
+                state.inventory.length ===
+                0
+            ) {
 
-            container.innerHTML = `
+                container.innerHTML = `
 
-                <div class="empty-inventory">
+                    <div class="empty-inventory">
 
-                    🎒
+                        🎒
 
-                    <p>
-                        Инвентарь пуст
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-        state.inventory
-            .slice()
-            .reverse()
-            .forEach(item => {
-
-                const el =
-                    document.createElement(
-                        "div"
-                    );
-
-                el.className =
-                    "inventory-item";
-
-                el.innerHTML = `
-
-                    <div class="inventory-icon">
-
-                        ${item.icon}
+                        <p>
+                            Инвентарь пуст
+                        </p>
 
                     </div>
 
-                    <strong>
-                        ${item.name}
-                    </strong>
-
-                    <small>
-                        ${formatNumber(item.value)} 🪙
-                    </small>
-
-                    <button
-                        onclick="sellItem(${item.id})"
-                    >
-
-                        💰 Продать
-
-                    </button>
-
                 `;
 
-                container.appendChild(el);
+                return;
 
-            });
+            }
 
-    });
+            state.inventory
+                .slice()
+                .reverse()
+                .forEach(
+                    item => {
+
+                        const el =
+                            document.createElement(
+                                "div"
+                            );
+
+                        el.className =
+                            "inventory-item";
+
+                        el.innerHTML = `
+
+                            <div class="inventory-icon">
+
+                                ${item.icon}
+
+                            </div>
+
+                            <strong>
+                                ${item.name}
+                            </strong>
+
+                            <small>
+                                ${formatNumber(item.value)} 🪙
+                            </small>
+
+                            <button
+                                onclick="sellItem(${item.id})"
+                            >
+
+                                💰 Продать
+
+                            </button>
+
+                        `;
+
+                        container.appendChild(
+                            el
+                        );
+
+                    }
+                );
+
+        }
+    );
 
     document
         .querySelectorAll(
             ".inventory-count"
         )
-        .forEach(el => {
+        .forEach(
+            el => {
 
-            el.textContent =
-                state.inventory.length;
+                el.textContent =
+                    state.inventory.length;
 
-        });
+            }
+        );
 
 }
+
+/* =========================================================
+SELL ITEM
+========================================================= */
 
 function sellItem(id) {
 
     const index =
         state.inventory.findIndex(
             item =>
-                item.id === id
+                item.id ===
+                id
         );
 
-    if (index === -1)
+    if (
+        index === -1
+    )
         return;
 
     const item =
@@ -1286,7 +1676,8 @@ function sellItem(id) {
 
     const sellPrice =
         Math.floor(
-            item.value * 0.7
+            item.value *
+            0.7
         );
 
     state.balance +=
@@ -1311,24 +1702,41 @@ CASINO NAVIGATION
 
 function openGame(gameId) {
 
+    if (
+        state.level <
+        7
+    ) {
+
+        showMessage(
+            "🔒 Казино открывается с 7 уровня",
+            "error"
+        );
+
+        return;
+
+    }
+
     document
         .querySelectorAll(
             ".game-screen"
         )
-        .forEach(game => {
+        .forEach(
+            game => {
 
-            game.classList.add(
-                "hidden"
-            );
+                game.classList.add(
+                    "hidden"
+                );
 
-        });
+            }
+        );
 
     const game =
         document.getElementById(
             gameId
         );
 
-    if (!game) return;
+    if (!game)
+        return;
 
     document
         .querySelector(
@@ -1344,19 +1752,25 @@ function openGame(gameId) {
 
 }
 
+/* =========================================================
+BACK TO CASINO
+========================================================= */
+
 function backToCasino() {
 
     document
         .querySelectorAll(
             ".game-screen"
         )
-        .forEach(game => {
+        .forEach(
+            game => {
 
-            game.classList.add(
-                "hidden"
-            );
+                game.classList.add(
+                    "hidden"
+                );
 
-        });
+            }
+        );
 
     document
         .querySelector(
@@ -1392,12 +1806,15 @@ function playSlot() {
         );
 
     const bet =
-        Number(input?.value);
+        Number(
+            input?.value
+        );
 
     if (
         !bet ||
         bet <= 0 ||
-        state.balance < bet
+        state.balance <
+        bet
     ) {
 
         showMessage(
@@ -1409,7 +1826,8 @@ function playSlot() {
 
     }
 
-    state.balance -= bet;
+    state.balance -=
+        bet;
 
     state.stats.casinoGames++;
 
@@ -1429,92 +1847,121 @@ function playSlot() {
 
     ];
 
-    reels.forEach(reel => {
+    reels.forEach(
+        reel => {
 
-        reel?.classList.add(
-            "spinning"
-        );
+            reel?.classList.add(
+                "spinning"
+            );
 
-    });
+        }
+    );
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        const result = [
+            const result = [
 
-            randomSlot(),
-            randomSlot(),
-            randomSlot()
+                randomSlot(),
 
-        ];
+                randomSlot(),
 
-        reels.forEach(
-            (reel, index) => {
+                randomSlot()
 
-                if (!reel) return;
+            ];
 
-                reel.textContent =
-                    result[index];
+            reels.forEach(
+                (
+                    reel,
+                    index
+                ) => {
 
-                reel.classList.remove(
-                    "spinning"
+                    if (!reel)
+                        return;
+
+                    reel.textContent =
+                        result[index];
+
+                    reel.classList.remove(
+                        "spinning"
+                    );
+
+                }
+            );
+
+            let multiplier =
+                0;
+
+            if (
+                result[0] ===
+                result[1] &&
+                result[1] ===
+                result[2]
+            ) {
+
+                multiplier =
+                    result[0] ===
+                    "7️⃣"
+                        ? 25
+                        : 10;
+
+            } else if (
+
+                result[0] ===
+                result[1] ||
+
+                result[1] ===
+                result[2] ||
+
+                result[0] ===
+                result[2]
+
+            ) {
+
+                multiplier =
+                    2;
+
+            }
+
+            if (
+                multiplier >
+                0
+            ) {
+
+                const win =
+                    bet *
+                    multiplier;
+
+                state.balance +=
+                    win;
+
+                state.stats.totalWon +=
+                    win;
+
+                showMessage(
+                    `🎉 Выигрыш ×${multiplier}: +${formatNumber(win)} 🪙`
+                );
+
+                playSound(
+                    800,
+                    0.2,
+                    "triangle"
+                );
+
+            } else {
+
+                showMessage(
+                    "😢 Не повезло",
+                    "error"
                 );
 
             }
-        );
 
-        let multiplier = 0;
+            saveGame();
 
-        if (
-            result[0] ===
-            result[1] &&
-            result[1] ===
-            result[2]
-        ) {
-
-            multiplier =
-                result[0] === "7️⃣"
-                    ? 25
-                    : 10;
-
-        } else if (
-            result[0] ===
-            result[1] ||
-            result[1] ===
-            result[2] ||
-            result[0] ===
-            result[2]
-        ) {
-
-            multiplier = 2;
-
-        }
-
-        if (multiplier > 0) {
-
-            const win =
-                bet * multiplier;
-
-            state.balance += win;
-
-            state.stats.totalWon +=
-                win;
-
-            showMessage(
-                `🎉 Выигрыш ×${multiplier}: +${formatNumber(win)} 🪙`
-            );
-
-        } else {
-
-            showMessage(
-                "😢 Не повезло",
-                "error"
-            );
-
-        }
-
-        saveGame();
-
-    }, 1200);
+        },
+        1200
+    );
 
 }
 
@@ -1536,8 +1983,11 @@ ROULETTE
 const redNumbers = [
 
     1, 3, 5, 7, 9,
+
     12, 14, 16, 18,
+
     19, 21, 23, 25,
+
     27, 30, 32, 34, 36
 
 ];
@@ -1548,7 +1998,9 @@ let selectedRouletteColor =
 let selectedRouletteNumber =
     null;
 
-function selectRouletteColor(color) {
+function selectRouletteColor(
+    color
+) {
 
     selectedRouletteColor =
         color;
@@ -1567,7 +2019,9 @@ function selectRouletteColor(color) {
 
 }
 
-function selectRouletteNumber(number) {
+function selectRouletteNumber(
+    number
+) {
 
     selectedRouletteNumber =
         number;
@@ -1586,12 +2040,19 @@ function selectRouletteNumber(number) {
 
 }
 
-function getRouletteColor(number) {
+function getRouletteColor(
+    number
+) {
 
-    if (number === 0)
+    if (
+        number ===
+        0
+    )
         return "green";
 
-    return redNumbers.includes(number)
+    return redNumbers.includes(
+        number
+    )
         ? "red"
         : "black";
 
@@ -1605,12 +2066,15 @@ function playRoulette() {
         );
 
     const bet =
-        Number(input?.value);
+        Number(
+            input?.value
+        );
 
     if (
         !bet ||
         bet <= 0 ||
-        state.balance < bet
+        state.balance <
+        bet
     ) {
 
         showMessage(
@@ -1624,7 +2088,8 @@ function playRoulette() {
 
     if (
         !selectedRouletteColor &&
-        selectedRouletteNumber === null
+        selectedRouletteNumber ===
+        null
     ) {
 
         showMessage(
@@ -1636,7 +2101,8 @@ function playRoulette() {
 
     }
 
-    state.balance -= bet;
+    state.balance -=
+        bet;
 
     const wheel =
         document.getElementById(
@@ -1649,81 +2115,101 @@ function playRoulette() {
 
     const result =
         Math.floor(
-            Math.random() * 37
+            Math.random() *
+            37
         );
 
     const color =
-        getRouletteColor(result);
-
-    setTimeout(() => {
-
-        wheel?.classList.remove(
-            "spinning"
+        getRouletteColor(
+            result
         );
 
-        const resultEl =
-            document.getElementById(
-                "rouletteNumber"
+    setTimeout(
+        () => {
+
+            wheel?.classList.remove(
+                "spinning"
             );
 
-        if (resultEl) {
+            const resultEl =
+                document.getElementById(
+                    "rouletteNumber"
+                );
 
-            resultEl.textContent =
-                result;
+            if (resultEl) {
 
-            resultEl.className =
-                `roulette-result ${color}`;
+                resultEl.textContent =
+                    result;
 
-        }
+                resultEl.className =
+                    `roulette-result ${color}`;
 
-        let win = 0;
+            }
 
-        if (
-            selectedRouletteNumber ===
-            result
-        ) {
+            let win =
+                0;
 
-            win =
-                bet * 36;
+            if (
+                selectedRouletteNumber ===
+                result
+            ) {
 
-        } else if (
-            selectedRouletteColor ===
-            color
-        ) {
+                win =
+                    bet *
+                    36;
 
-            win =
-                color === "green"
-                    ? bet * 14
-                    : bet * 2;
+            } else if (
+                selectedRouletteColor ===
+                color
+            ) {
 
-        }
+                win =
+                    color ===
+                    "green"
 
-        if (win > 0) {
+                        ? bet *
+                        14
 
-            state.balance += win;
+                        : bet *
+                        2;
 
-            showMessage(
-                `🎉 Выпало ${result} ${color}! Выигрыш: ${formatNumber(win)} 🪙`
-            );
+            }
 
-        } else {
+            if (
+                win >
+                0
+            ) {
 
-            showMessage(
-                `🎡 Выпало ${result} ${color}. Ставка проиграла`,
-                "error"
-            );
+                state.balance +=
+                    win;
 
-        }
+                state.stats.totalWon +=
+                    win;
 
-        selectedRouletteColor =
-            null;
+                showMessage(
+                    `🎉 Выпало ${result} ${color}! Выигрыш: ${formatNumber(win)} 🪙`
+                );
 
-        selectedRouletteNumber =
-            null;
+            } else {
 
-        saveGame();
+                showMessage(
+                    `🎡 Выпало ${result} ${color}. Ставка проиграла`,
+                    "error"
+                );
 
-    }, 3000);
+            }
+
+            selectedRouletteColor =
+                null;
+
+            selectedRouletteNumber =
+                null;
+
+            saveGame();
+
+        },
+        3000
+    );
 
 }
 
@@ -1734,7 +2220,9 @@ DICE
 let selectedDiceNumber =
     null;
 
-function selectDiceNumber(number) {
+function selectDiceNumber(
+    number
+) {
 
     selectedDiceNumber =
         number;
@@ -1761,11 +2249,14 @@ function playDice() {
         );
 
     const bet =
-        Number(input?.value);
+        Number(
+            input?.value
+        );
 
     if (
         !bet ||
-        state.balance < bet
+        state.balance <
+        bet
     ) {
 
         showMessage(
@@ -1790,7 +2281,8 @@ function playDice() {
 
     }
 
-    state.balance -= bet;
+    state.balance -=
+        bet;
 
     const dice =
         document.querySelector(
@@ -1801,51 +2293,73 @@ function playDice() {
         "rolling"
     );
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        const result =
-            Math.floor(
-                Math.random() * 6
-            ) + 1;
+            const result =
+                Math.floor(
+                    Math.random() *
+                    6
+                ) +
+                1;
 
-        if (dice) {
+            if (dice) {
 
-            dice.textContent =
-                ["⚀","⚁","⚂","⚃","⚄","⚅"]
-                [result - 1];
+                dice.textContent =
+                    [
+                        "⚀",
+                        "⚁",
+                        "⚂",
+                        "⚃",
+                        "⚄",
+                        "⚅"
+                    ][
+                        result -
+                        1
+                    ];
 
-            dice.classList.remove(
-                "rolling"
-            );
+                dice.classList.remove(
+                    "rolling"
+                );
 
-        }
+            }
 
-        if (
-            result ===
-            selectedDiceNumber
-        ) {
+            if (
+                result ===
+                selectedDiceNumber
+            ) {
 
-            const win =
-                bet * 5;
+                const win =
+                    bet *
+                    5;
 
-            state.balance += win;
+                state.balance +=
+                    win;
 
-            showMessage(
-                `🎲 Угадал! +${formatNumber(win)} 🪙`
-            );
+                state.stats.totalWon +=
+                    win;
 
-        } else {
+                showMessage(
+                    `🎲 Угадал! +${formatNumber(win)} 🪙`
+                );
 
-            showMessage(
-                `🎲 Выпало ${result}`,
-                "error"
-            );
+            } else {
 
-        }
+                showMessage(
+                    `🎲 Выпало ${result}`,
+                    "error"
+                );
 
-        saveGame();
+            }
 
-    }, 1000);
+            selectedDiceNumber =
+                null;
+
+            saveGame();
+
+        },
+        1000
+    );
 
 }
 
@@ -1873,11 +2387,14 @@ function startLadder() {
         );
 
     const bet =
-        Number(input?.value);
+        Number(
+            input?.value
+        );
 
     if (
         !bet ||
-        state.balance < bet
+        state.balance <
+        bet
     ) {
 
         showMessage(
@@ -1889,7 +2406,8 @@ function startLadder() {
 
     }
 
-    state.balance -= bet;
+    state.balance -=
+        bet;
 
     ladderBet =
         bet;
@@ -1911,12 +2429,15 @@ function startLadder() {
 
 function ladderNext() {
 
-    if (!ladderActive)
+    if (
+        !ladderActive
+    )
         return;
 
     const chance =
         0.75 -
-        ladderLevel * 0.04;
+        ladderLevel *
+        0.04;
 
     if (
         Math.random() >
@@ -1948,7 +2469,8 @@ function ladderCashout() {
 
     if (
         !ladderActive ||
-        ladderLevel === 0
+        ladderLevel ===
+        0
     )
         return;
 
@@ -1956,7 +2478,11 @@ function ladderCashout() {
         ladderBet *
         ladderMultiplier;
 
-    state.balance += win;
+    state.balance +=
+        win;
+
+    state.stats.totalWon +=
+        win;
 
     ladderActive =
         false;
@@ -2010,7 +2536,8 @@ let minesBet =
 let minesMultiplier =
     1;
 
-let minePositions = [];
+let minePositions =
+    [];
 
 function startMines() {
 
@@ -2020,11 +2547,14 @@ function startMines() {
         );
 
     const bet =
-        Number(input?.value);
+        Number(
+            input?.value
+        );
 
     if (
         !bet ||
-        state.balance < bet
+        state.balance <
+        bet
     ) {
 
         showMessage(
@@ -2036,7 +2566,8 @@ function startMines() {
 
     }
 
-    state.balance -= bet;
+    state.balance -=
+        bet;
 
     minesBet =
         bet;
@@ -2047,15 +2578,18 @@ function startMines() {
     minesActive =
         true;
 
-    minePositions = [];
+    minePositions =
+        [];
 
     while (
-        minePositions.length < 5
+        minePositions.length <
+        5
     ) {
 
         const position =
             Math.floor(
-                Math.random() * 16
+                Math.random() *
+                16
             );
 
         if (
@@ -2077,9 +2611,11 @@ function startMines() {
             ".mines-board"
         );
 
-    if (!board) return;
+    if (!board)
+        return;
 
-    board.innerHTML = "";
+    board.innerHTML =
+        "";
 
     for (
         let i = 0;
@@ -2119,7 +2655,9 @@ function revealMine(
     index
 ) {
 
-    if (!minesActive)
+    if (
+        !minesActive
+    )
         return;
 
     if (
@@ -2185,7 +2723,11 @@ function cashoutMines() {
         minesBet *
         minesMultiplier;
 
-    state.balance += win;
+    state.balance +=
+        win;
+
+    state.stats.totalWon +=
+        win;
 
     minesActive =
         false;
@@ -2221,11 +2763,14 @@ function startCrash() {
         );
 
     const bet =
-        Number(input?.value);
+        Number(
+            input?.value
+        );
 
     if (
         !bet ||
-        state.balance < bet
+        state.balance <
+        bet
     ) {
 
         showMessage(
@@ -2237,7 +2782,8 @@ function startCrash() {
 
     }
 
-    state.balance -= bet;
+    state.balance -=
+        bet;
 
     crashBet =
         bet;
@@ -2261,54 +2807,62 @@ function startCrash() {
     );
 
     crashTimer =
-        setInterval(() => {
+        setInterval(
+            () => {
 
-            const elapsed =
-                (Date.now() - start) /
-                1000;
+                const elapsed =
+                    (
+                        Date.now() -
+                        start
+                    ) /
+                    1000;
 
-            crashMultiplier =
-                1 +
-                elapsed *
-                0.35;
+                crashMultiplier =
+                    1 +
+                    elapsed *
+                    0.35;
 
-            const multiplier =
-                document.getElementById(
-                    "crashMultiplier"
-                );
+                const multiplier =
+                    document.getElementById(
+                        "crashMultiplier"
+                    );
 
-            if (multiplier) {
+                if (multiplier) {
 
-                multiplier.textContent =
-                    `×${crashMultiplier.toFixed(2)}`;
+                    multiplier.textContent =
+                        `×${crashMultiplier.toFixed(2)}`;
 
-            }
+                }
 
-            if (plane) {
+                if (plane) {
 
-                plane.style.left =
-                    Math.min(
-                        90,
-                        5 +
-                        elapsed * 8
-                    ) + "%";
+                    plane.style.left =
+                        Math.min(
+                            90,
+                            5 +
+                            elapsed *
+                            8
+                        ) +
+                        "%";
 
-            }
+                }
 
-            const crashChance =
-                0.0015 *
-                crashMultiplier;
+                const crashChance =
+                    0.0015 *
+                    crashMultiplier;
 
-            if (
-                Math.random() <
-                crashChance
-            ) {
+                if (
+                    Math.random() <
+                    crashChance
+                ) {
 
-                crashEnd();
+                    crashEnd();
 
-            }
+                }
 
-        }, 100);
+            },
+            100
+        );
 
 }
 
@@ -2339,7 +2893,11 @@ function cashoutCrash() {
         crashBet *
         crashMultiplier;
 
-    state.balance += win;
+    state.balance +=
+        win;
+
+    state.stats.totalWon +=
+        win;
 
     clearInterval(
         crashTimer
@@ -2368,11 +2926,14 @@ function playJackpot() {
         );
 
     const bet =
-        Number(input?.value);
+        Number(
+            input?.value
+        );
 
     if (
         !bet ||
-        state.balance < bet
+        state.balance <
+        bet
     ) {
 
         showMessage(
@@ -2384,7 +2945,8 @@ function playJackpot() {
 
     }
 
-    state.balance -= bet;
+    state.balance -=
+        bet;
 
     const chance =
         Math.random();
@@ -2392,41 +2954,58 @@ function playJackpot() {
     let multiplier;
 
     if (
-        chance < 0.001
+        chance <
+        0.001
     ) {
 
-        multiplier = 1000;
+        multiplier =
+            1000;
 
     } else if (
-        chance < 0.01
+        chance <
+        0.01
     ) {
 
-        multiplier = 100;
+        multiplier =
+            100;
 
     } else if (
-        chance < 0.1
+        chance <
+        0.1
     ) {
 
-        multiplier = 10;
+        multiplier =
+            10;
 
     } else if (
-        chance < 0.3
+        chance <
+        0.3
     ) {
 
-        multiplier = 2;
+        multiplier =
+            2;
 
     } else {
 
-        multiplier = 0;
+        multiplier =
+            0;
 
     }
 
-    if (multiplier > 0) {
+    if (
+        multiplier >
+        0
+    ) {
 
         const win =
-            bet * multiplier;
+            bet *
+            multiplier;
 
-        state.balance += win;
+        state.balance +=
+            win;
+
+        state.stats.totalWon +=
+            win;
 
         showMessage(
             `💎 JACKPOT! ×${multiplier} — +${formatNumber(win)} 🪙`
@@ -2452,27 +3031,51 @@ QUESTS
 const quests = {
 
     firstClick: {
+
         condition:
-            () => state.clicks >= 1,
-        reward: 50
+            () =>
+                state.clicks >=
+                1,
+
+        reward:
+            50
+
     },
 
     earn100: {
+
         condition:
-            () => state.balance >= 100,
-        reward: 100
+            () =>
+                state.balance >=
+                100,
+
+        reward:
+            100
+
     },
 
     level5: {
+
         condition:
-            () => state.level >= 5,
-        reward: 1000
+            () =>
+                state.level >=
+                5,
+
+        reward:
+            1000
+
     },
 
     casino: {
+
         condition:
-            () => state.level >= 7,
-        reward: 2500
+            () =>
+                state.level >=
+                7,
+
+        reward:
+            2500
+
     }
 
 };
@@ -2487,7 +3090,9 @@ const claimedQuests =
 function claimQuest(id) {
 
     if (
-        claimedQuests.includes(id)
+        claimedQuests.includes(
+            id
+        )
     ) {
 
         showMessage(
@@ -2521,7 +3126,9 @@ function claimQuest(id) {
     state.balance +=
         quest.reward;
 
-    claimedQuests.push(id);
+    claimedQuests.push(
+        id
+    );
 
     localStorage.setItem(
         "luckyClickQuests",
@@ -2542,11 +3149,14 @@ function claimQuest(id) {
 SOUND SYSTEM
 ========================================================= */
 
-let audioContext = null;
+let audioContext =
+    null;
 
 function getAudioContext() {
 
-    if (!audioContext) {
+    if (
+        !audioContext
+    ) {
 
         audioContext =
             new (
@@ -2609,7 +3219,7 @@ function playSound(
             duration
         );
 
-    } catch (e) {
+    } catch (error) {
 
         console.log(
             "Sound unavailable"
