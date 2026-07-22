@@ -1,17 +1,15 @@
 /* =========================================================
    🍀 LUCKY CLICK — ПОЛНЫЙ SCRIPT.JS
-   🎟️ + СИСТЕМА ПРОМОКОДОВ
+   Версия: 3.0
    ========================================================= */
 
 "use strict";
 
-
 /* =========================================================
-   💾 СОХРАНЕНИЕ ИГРЫ
+   💾 СОХРАНЕНИЕ
    ========================================================= */
 
-const SAVE_KEY = "luckyClickSave_v2";
-
+const SAVE_KEY = "luckyClickSave_v3";
 
 let game = {
 
@@ -21,7 +19,6 @@ let game = {
 
     xp: 0,
 
-
     clickPower: 0.1,
 
     clickPrice: 100,
@@ -30,23 +27,13 @@ let game = {
 
     totalEarned: 0,
 
-
     doubleClick: false,
 
     doubleClickUntil: 0,
 
-
     luckyBoost: false,
 
     passiveIncome: false,
-
-
-    /*
-       🎟️ Использованные промокоды
-    */
-
-    usedPromos: [],
-
 
     quests: {
 
@@ -60,7 +47,6 @@ let game = {
 
     },
 
-
     questProgress: {
 
         firstClick: 0,
@@ -69,17 +55,15 @@ let game = {
 
     },
 
-
     inventory: [],
 
+    usedPromoCodes: [],
 
     rouletteNumber: null,
 
     rouletteColor: null,
 
-
     diceNumber: null,
-
 
     ladder: {
 
@@ -90,7 +74,6 @@ let game = {
         level: 0
 
     },
-
 
     mines: {
 
@@ -107,7 +90,6 @@ let game = {
         mines: []
 
     },
-
 
     crash: {
 
@@ -127,37 +109,70 @@ let game = {
 
 
 /* =========================================================
-   🎟️ ПРОМОКОДЫ
+   🎁 ПРОМОКОДЫ
+   =========================================================
+
+   Чтобы добавить новый промокод:
+
+   "КОД": {
+       reward: 1000,
+       xp: 50,
+       message: "🎁 Бонус за промокод!"
+   }
+
+   reward = количество монет
+   xp = количество опыта
    ========================================================= */
 
 const promoCodes = {
 
-    "LUCKY2026": {
+    "LUCKY": {
 
-        reward: 10000,
+        reward: 1000,
 
-        message:
-            "🎁 Промокод активирован! +10 000 🪙"
+        xp: 50,
+
+        message: "🍀 Промокод LUCKY активирован!"
 
     },
-
 
     "BONUS": {
 
-        reward: 5000,
+        reward: 2500,
 
-        message:
-            "🎁 Бонус получен! +5 000 🪙"
+        xp: 100,
+
+        message: "🎁 Промокод BONUS активирован!"
 
     },
 
-
     "LUCKYCLICK": {
 
-        reward: 25000,
+        reward: 5000,
 
-        message:
-            "🍀 Lucky Click! +25 000 🪙"
+        xp: 200,
+
+        message: "🪙 Промокод LUCKYCLICK активирован!"
+
+    },
+
+    "WELCOME": {
+
+        reward: 10000,
+
+        xp: 500,
+
+        message: "👋 Добро пожаловать в Lucky Click!"
+
+    },
+
+    "VIP": {
+
+        reward: 50000,
+
+        xp: 1000,
+
+        message: "👑 VIP-промокод активирован!"
 
     }
 
@@ -165,156 +180,7 @@ const promoCodes = {
 
 
 /* =========================================================
-   🎟️ АКТИВАЦИЯ ПРОМОКОДА
-   ========================================================= */
-
-function activatePromo() {
-
-    const input =
-        document.getElementById(
-            "promoInput"
-        );
-
-
-    if (!input) {
-
-        showMessage(
-            "❌ Поле промокода не найдено",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const code =
-        input.value
-            .trim()
-            .toUpperCase();
-
-
-    if (!code) {
-
-        showMessage(
-            "❌ Введите промокод",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Проверяем существование кода
-    */
-
-    const promo =
-        promoCodes[code];
-
-
-    if (!promo) {
-
-        showMessage(
-            "❌ Неверный промокод",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Если старое сохранение
-       не имеет usedPromos
-    */
-
-    if (
-        !Array.isArray(
-            game.usedPromos
-        )
-    ) {
-
-        game.usedPromos = [];
-
-    }
-
-
-    /*
-       Проверяем повторное использование
-    */
-
-    if (
-        game.usedPromos.includes(
-            code
-        )
-    ) {
-
-        showMessage(
-            "⚠️ Этот промокод уже использован",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Выдаём награду
-    */
-
-    game.balance +=
-        promo.reward;
-
-
-    game.totalEarned +=
-        promo.reward;
-
-
-    /*
-       Записываем промокод
-       в использованные
-    */
-
-    game.usedPromos.push(
-        code
-    );
-
-
-    /*
-       Очищаем поле
-    */
-
-    input.value = "";
-
-
-    /*
-       Сохраняем игру
-    */
-
-    saveGame();
-
-
-    updateUI();
-
-
-    /*
-       Показываем сообщение
-    */
-
-    showMessage(
-        promo.message,
-        "success"
-    );
-
-}
-
-
-/* =========================================================
-   🔧 ЗАГРУЗКА СОХРАНЕНИЯ
+   💾 ЗАГРУЗКА ИГРЫ
    ========================================================= */
 
 function loadGame() {
@@ -327,90 +193,109 @@ function loadGame() {
             );
 
 
-        if (saved) {
-
-            const data =
-                JSON.parse(
-                    saved
-                );
+        if (!saved) return;
 
 
-            game = {
-
-                ...game,
-
-                ...data,
+        const data =
+            JSON.parse(saved);
 
 
-                quests: {
+        game = {
 
-                    ...game.quests,
+            ...game,
 
-                    ...(data.quests || {})
-
-                },
+            ...data,
 
 
-                questProgress: {
+            quests: {
 
-                    ...game.questProgress,
+                ...game.quests,
 
-                    ...(data.questProgress || {})
+                ...(data.quests || {})
 
-                },
-
-
-                ladder: {
-
-                    ...game.ladder,
-
-                    ...(data.ladder || {})
-
-                },
+            },
 
 
-                mines: {
+            questProgress: {
 
-                    ...game.mines,
+                ...game.questProgress,
 
-                    ...(data.mines || {})
+                ...(data.questProgress || {})
 
-                },
-
-
-                crash: {
-
-                    ...game.crash,
-
-                    ...(data.crash || {})
-
-                },
+            },
 
 
-                /*
-                   Защита старых сохранений
-                */
+            ladder: {
 
-                usedPromos:
+                ...game.ladder,
 
-                    Array.isArray(
-                        data.usedPromos
-                    )
+                ...(data.ladder || {})
 
-                        ? data.usedPromos
+            },
 
-                        : []
 
-            };
+            mines: {
+
+                ...game.mines,
+
+                ...(data.mines || {})
+
+            },
+
+
+            crash: {
+
+                ...game.crash,
+
+                ...(data.crash || {})
+
+            },
+
+
+            inventory:
+
+                Array.isArray(
+                    data.inventory
+                )
+
+                    ? data.inventory
+
+                    : [],
+
+
+            usedPromoCodes:
+
+                Array.isArray(
+                    data.usedPromoCodes
+                )
+
+                    ? data.usedPromoCodes
+
+                    : []
+
+        };
+
+
+        /*
+        Если у игрока старое сохранение
+        и нет usedPromoCodes
+        */
+
+        if (
+            !Array.isArray(
+                game.usedPromoCodes
+            )
+        ) {
+
+            game.usedPromoCodes = [];
 
         }
 
-    }
 
-    catch (error) {
+    } catch (error) {
 
         console.error(
-            "Ошибка загрузки:",
+            "Ошибка загрузки игры:",
             error
         );
 
@@ -420,7 +305,7 @@ function loadGame() {
 
 
 /* =========================================================
-   💾 СОХРАНЕНИЕ
+   💾 СОХРАНЕНИЕ ИГРЫ
    ========================================================= */
 
 function saveGame() {
@@ -431,19 +316,18 @@ function saveGame() {
 
             SAVE_KEY,
 
-            JSON.stringify(
-                game
-            )
+            JSON.stringify(game)
 
         );
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(
-            "Ошибка сохранения:",
+
+            "Ошибка сохранения игры:",
+
             error
+
         );
 
     }
@@ -452,16 +336,12 @@ function saveGame() {
 
 
 /* =========================================================
-   🛠️ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+   🔢 ФОРМАТ ЧИСЕЛ
    ========================================================= */
 
-function formatNumber(
-    number
-) {
+function formatNumber(number) {
 
-    return Number(
-        number
-    ).toLocaleString(
+    return Number(number).toLocaleString(
 
         "ru-RU",
 
@@ -476,39 +356,61 @@ function formatNumber(
 }
 
 
+/* =========================================================
+   🔔 СООБЩЕНИЯ
+   ========================================================= */
+
 function showMessage(
+
     text,
+
     type = "normal"
+
 ) {
 
     const message =
+
         document.getElementById(
+
             "gameMessage"
+
         );
 
 
-    if (!message) return;
+    if (!message) {
+
+        console.log(text);
+
+        return;
+
+    }
 
 
-    message.textContent =
-        text;
+    message.textContent = text;
 
 
     message.className =
+
         "game-message " +
+
         type;
 
 
     message.classList.add(
+
         "show"
+
     );
 
 
     setTimeout(
+
         () => {
 
             message.classList.remove(
+
                 "show"
+
             );
 
         },
@@ -521,46 +423,49 @@ function showMessage(
 
 
 /* =========================================================
-   🪙 ДОБАВЛЕНИЕ МОНЕТ
+   🪙 МОНЕТЫ
    ========================================================= */
 
-function addCoins(
-    amount
-) {
+function addCoins(amount) {
 
-    game.balance +=
-        amount;
+    amount = Number(amount);
 
 
-    if (
-        amount > 0
-    ) {
+    if (!Number.isFinite(amount)) {
 
-        game.totalEarned +=
-            amount;
+        return;
+
+    }
+
+
+    game.balance += amount;
+
+
+    if (amount > 0) {
+
+        game.totalEarned += amount;
 
     }
 
 
     saveGame();
 
-
     updateUI();
 
 }
 
 
-/* =========================================================
-   🪙 СНЯТИЕ МОНЕТ
-   ========================================================= */
+function removeCoins(amount) {
 
-function removeCoins(
-    amount
-) {
+    amount = Number(amount);
+
 
     if (
-        game.balance <
-        amount
+
+        !Number.isFinite(amount) ||
+
+        amount <= 0
+
     ) {
 
         return false;
@@ -568,12 +473,21 @@ function removeCoins(
     }
 
 
-    game.balance -=
-        amount;
+    if (
+
+        game.balance < amount
+
+    ) {
+
+        return false;
+
+    }
+
+
+    game.balance -= amount;
 
 
     saveGame();
-
 
     updateUI();
 
@@ -587,24 +501,54 @@ function removeCoins(
    ⭐ ОПЫТ И УРОВНИ
    ========================================================= */
 
-function addXP(
-    amount
-) {
+function getXPNeeded() {
 
-    game.xp +=
-        amount;
+    return (
+
+        100 +
+
+        (
+
+            game.level - 1
+
+        ) * 50
+
+    );
+
+}
+
+
+function addXP(amount) {
+
+    amount = Number(amount);
+
+
+    if (
+
+        !Number.isFinite(amount) ||
+
+        amount <= 0
+
+    ) {
+
+        return;
+
+    }
+
+
+    game.xp += amount;
 
 
     while (
 
         game.level < 50 &&
 
-        game.xp >=
-        getXPNeeded()
+        game.xp >= getXPNeeded()
 
     ) {
 
         game.xp -=
+
             getXPNeeded();
 
 
@@ -623,7 +567,9 @@ function addXP(
 
 
         if (
+
             game.level === 5
+
         ) {
 
             showMessage(
@@ -638,7 +584,9 @@ function addXP(
 
 
         if (
+
             game.level === 7
+
         ) {
 
             showMessage(
@@ -656,27 +604,7 @@ function addXP(
 
     saveGame();
 
-
     updateUI();
-
-}
-
-
-function getXPNeeded() {
-
-    return (
-
-        100 +
-
-        (
-
-            game.level - 1
-
-        ) *
-
-        50
-
-    );
 
 }
 
@@ -685,35 +613,45 @@ function getXPNeeded() {
    🧭 НАВИГАЦИЯ
    ========================================================= */
 
-function openPage(
-    pageId
-) {
+function openPage(pageId) {
 
     const pages =
+
         document.querySelectorAll(
+
             ".page"
+
         );
 
 
     pages.forEach(
+
         page => {
 
             page.classList.add(
+
                 "hidden"
+
             );
 
 
             page.classList.remove(
+
                 "active"
+
             );
 
         }
+
     );
 
 
     const page =
+
         document.getElementById(
+
             pageId
+
         );
 
 
@@ -721,18 +659,23 @@ function openPage(
 
 
     page.classList.remove(
+
         "hidden"
+
     );
 
 
     page.classList.add(
+
         "active"
+
     );
 
 
     if (
-        pageId ===
-        "cases"
+
+        pageId === "cases"
+
     ) {
 
         updateCases();
@@ -741,8 +684,9 @@ function openPage(
 
 
     if (
-        pageId ===
-        "casino"
+
+        pageId === "casino"
+
     ) {
 
         updateCasino();
@@ -751,8 +695,9 @@ function openPage(
 
 
     if (
-        pageId ===
-        "quests"
+
+        pageId === "quests"
+
     ) {
 
         updateQuests();
@@ -761,28 +706,35 @@ function openPage(
 
 
     if (
-        pageId ===
-        "inventoryPage"
+
+        pageId === "inventoryPage"
+
     ) {
 
         updateInventory();
 
     }
 
+
+    if (
+
+        pageId === "promo"
+
+    ) {
+
+        updatePromoCodes();
+
+    }
+
 }
 
 
-/* =========================================================
-   🎰 ОТКРЫТИЕ ИГРЫ
-   ========================================================= */
-
-function openGame(
-    gameId
-) {
+function openGame(gameId) {
 
     if (
-        game.level <
-        7
+
+        game.level < 7
+
     ) {
 
         showMessage(
@@ -799,51 +751,64 @@ function openGame(
 
 
     const casinoContent =
+
         document.getElementById(
+
             "casinoContent"
+
         );
 
 
-    if (
-        casinoContent
-    ) {
+    if (casinoContent) {
 
         casinoContent.classList.add(
+
             "hidden"
+
         );
 
     }
 
 
     const screens =
+
         document.querySelectorAll(
+
             ".game-screen"
+
         );
 
 
     screens.forEach(
+
         screen => {
 
             screen.classList.add(
+
                 "hidden"
+
             );
 
         }
+
     );
 
 
     const gameScreen =
+
         document.getElementById(
+
             gameId
+
         );
 
 
-    if (
-        gameScreen
-    ) {
+    if (gameScreen) {
 
         gameScreen.classList.remove(
+
             "hidden"
+
         );
 
     }
@@ -851,41 +816,47 @@ function openGame(
 }
 
 
-/* =========================================================
-   🔙 НАЗАД В КАЗИНО
-   ========================================================= */
-
 function backToCasino() {
 
     const screens =
+
         document.querySelectorAll(
+
             ".game-screen"
+
         );
 
 
     screens.forEach(
+
         screen => {
 
             screen.classList.add(
+
                 "hidden"
+
             );
 
         }
+
     );
 
 
     const casinoContent =
+
         document.getElementById(
+
             "casinoContent"
+
         );
 
 
-    if (
-        casinoContent
-    ) {
+    if (casinoContent) {
 
         casinoContent.classList.remove(
+
             "hidden"
+
         );
 
     }
@@ -900,6 +871,7 @@ function backToCasino() {
 function clickCoin() {
 
     let reward =
+
         game.clickPower;
 
 
@@ -908,28 +880,27 @@ function clickCoin() {
         game.doubleClick &&
 
         Date.now() <
+
         game.doubleClickUntil
 
     ) {
 
-        reward *=
-            2;
+        reward *= 2;
 
     }
 
 
-    game.balance +=
-        reward;
+    game.balance += reward;
 
 
-    game.totalEarned +=
-        reward;
+    game.totalEarned += reward;
 
 
     game.totalClicks++;
 
 
     game.questProgress.firstClick =
+
         Math.min(
 
             game.totalClicks,
@@ -940,6 +911,7 @@ function clickCoin() {
 
 
     game.questProgress.earn100 =
+
         Math.min(
 
             game.totalEarned,
@@ -949,61 +921,57 @@ function clickCoin() {
         );
 
 
-    addXP(
-        1
-    );
+    addXP(1);
 
 
     createClickEffect(
 
         "+" +
 
-        reward.toFixed(
-            1
-        )
+        reward.toFixed(1)
 
     );
 
 
     saveGame();
 
-
     updateUI();
 
 }
 
 
-/* =========================================================
-   ✨ ЭФФЕКТ КЛИКА
-   ========================================================= */
-
-function createClickEffect(
-    text
-) {
+function createClickEffect(text) {
 
     const container =
+
         document.getElementById(
+
             "clickEffects"
+
         );
 
 
-    if (
-        !container
-    ) return;
+    if (!container) return;
 
 
     const effect =
+
         document.createElement(
+
             "div"
+
         );
 
 
     effect.className =
+
         "click-effect";
 
 
     effect.textContent =
+
         text +
+
         " 🪙";
 
 
@@ -1023,7 +991,9 @@ function createClickEffect(
 
 
     container.appendChild(
+
         effect
+
     );
 
 
@@ -1081,9 +1051,7 @@ function upgradeClick() {
 
                 0.1
 
-            ).toFixed(
-                2
-            )
+            ).toFixed(2)
 
         );
 
@@ -1099,9 +1067,7 @@ function upgradeClick() {
         );
 
 
-    addXP(
-        25
-    );
+    addXP(25);
 
 
     showMessage(
@@ -1115,7 +1081,6 @@ function upgradeClick() {
 
     saveGame();
 
-
     updateUI();
 
 }
@@ -1125,20 +1090,17 @@ function upgradeClick() {
    🚀 БУСТЕРЫ
    ========================================================= */
 
-function buyBooster(
-    type
-) {
+function buyBooster(type) {
 
     if (
-        type ===
-        "double"
+
+        type === "double"
+
     ) {
 
         if (
 
-            !removeCoins(
-                1000
-            )
+            !removeCoins(1000)
 
         ) {
 
@@ -1156,6 +1118,7 @@ function buyBooster(
 
 
         game.doubleClick =
+
             true;
 
 
@@ -1178,12 +1141,15 @@ function buyBooster(
 
 
     if (
-        type ===
-        "lucky"
+
+        type === "lucky"
+
     ) {
 
         if (
+
             game.luckyBoost
+
         ) {
 
             showMessage(
@@ -1201,9 +1167,7 @@ function buyBooster(
 
         if (
 
-            !removeCoins(
-                2500
-            )
+            !removeCoins(2500)
 
         ) {
 
@@ -1221,6 +1185,7 @@ function buyBooster(
 
 
         game.luckyBoost =
+
             true;
 
 
@@ -1237,7 +1202,6 @@ function buyBooster(
 
     saveGame();
 
-
     updateUI();
 
 }
@@ -1250,7 +1214,9 @@ function buyBooster(
 function buyPassiveIncome() {
 
     if (
+
         game.passiveIncome
+
     ) {
 
         showMessage(
@@ -1268,9 +1234,7 @@ function buyPassiveIncome() {
 
     if (
 
-        !removeCoins(
-            10000
-        )
+        !removeCoins(10000)
 
     ) {
 
@@ -1288,6 +1252,7 @@ function buyPassiveIncome() {
 
 
     game.passiveIncome =
+
         true;
 
 
@@ -1302,8 +1267,233 @@ function buyPassiveIncome() {
 
     saveGame();
 
+    updateUI();
+
+}
+
+
+/* =========================================================
+   🎟️ ПРОМОКОДЫ
+   ========================================================= */
+
+function activatePromoCode() {
+
+    const input =
+
+        document.getElementById(
+
+            "promoCode"
+
+        );
+
+
+    if (!input) {
+
+        showMessage(
+
+            "❌ Поле промокода не найдено",
+
+            "error"
+
+        );
+
+        return;
+
+    }
+
+
+    const code =
+
+        input.value
+
+            .trim()
+
+            .toUpperCase();
+
+
+    if (!code) {
+
+        showMessage(
+
+            "Введите промокод",
+
+            "error"
+
+        );
+
+        return;
+
+    }
+
+
+    if (
+
+        !promoCodes[code]
+
+    ) {
+
+        showMessage(
+
+            "❌ Неверный промокод",
+
+            "error"
+
+        );
+
+        return;
+
+    }
+
+
+    if (
+
+        game.usedPromoCodes.includes(
+
+            code
+
+        )
+
+    ) {
+
+        showMessage(
+
+            "⚠️ Этот промокод уже использован",
+
+            "error"
+
+        );
+
+        return;
+
+    }
+
+
+    const promo =
+
+        promoCodes[code];
+
+
+    game.usedPromoCodes.push(
+
+        code
+
+    );
+
+
+    if (
+
+        promo.reward > 0
+
+    ) {
+
+        game.balance +=
+
+            promo.reward;
+
+
+        game.totalEarned +=
+
+            promo.reward;
+
+    }
+
+
+    if (
+
+        promo.xp > 0
+
+    ) {
+
+        addXP(
+
+            promo.xp
+
+        );
+
+    }
+
+
+    saveGame();
 
     updateUI();
+
+    updatePromoCodes();
+
+
+    input.value = "";
+
+
+    showMessage(
+
+        promo.message +
+
+        " +" +
+
+        formatNumber(
+
+            promo.reward
+
+        ) +
+
+        " 🪙",
+
+        "success"
+
+    );
+
+}
+
+
+/* =========================================================
+   🎟️ ПРОМОКОДЫ — СПИСОК
+   ========================================================= */
+
+function updatePromoCodes() {
+
+    const list =
+
+        document.getElementById(
+
+            "promoUsedList"
+
+        );
+
+
+    if (!list) return;
+
+
+    if (
+
+        game.usedPromoCodes.length === 0
+
+    ) {
+
+        list.innerHTML =
+
+            "<p>🎟️ Вы ещё не использовали промокоды</p>";
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+
+        game.usedPromoCodes
+
+            .map(
+
+                code =>
+
+                    `<div class="promo-used">
+
+                        ✅ ${code}
+
+                    </div>`
+
+            )
+
+            .join("");
 
 }
 
@@ -1312,12 +1502,12 @@ function buyPassiveIncome() {
    📋 ЗАДАНИЯ
    ========================================================= */
 
-function claimQuest(
-    type
-) {
+function claimQuest(type) {
 
     if (
+
         game.quests[type]
+
     ) {
 
         showMessage(
@@ -1333,81 +1523,76 @@ function claimQuest(
     }
 
 
-    let reward =
-        0;
+    let reward = 0;
 
-
-    let completed =
-        false;
+    let completed = false;
 
 
     if (
-        type ===
-        "firstClick"
+
+        type === "firstClick"
+
     ) {
 
         completed =
-            game.totalClicks >=
-            1;
+
+            game.totalClicks >= 1;
 
 
-        reward =
-            50;
+        reward = 50;
 
     }
 
 
     if (
-        type ===
-        "earn100"
+
+        type === "earn100"
+
     ) {
 
         completed =
-            game.totalEarned >=
-            100;
+
+            game.totalEarned >= 100;
 
 
-        reward =
-            100;
+        reward = 100;
 
     }
 
 
     if (
-        type ===
-        "level5"
+
+        type === "level5"
+
     ) {
 
         completed =
-            game.level >=
-            5;
+
+            game.level >= 5;
 
 
-        reward =
-            1000;
+        reward = 1000;
 
     }
 
 
     if (
-        type ===
-        "casino"
+
+        type === "casino"
+
     ) {
 
         completed =
-            game.level >=
-            7;
+
+            game.level >= 7;
 
 
-        reward =
-            2500;
+        reward = 2500;
 
     }
 
 
-    if (
-        !completed
-    ) {
+    if (!completed) {
 
         showMessage(
 
@@ -1423,17 +1608,13 @@ function claimQuest(
 
 
     game.quests[type] =
+
         true;
 
 
-    addCoins(
-        reward
-    );
+    addCoins(reward);
 
-
-    addXP(
-        50
-    );
+    addXP(50);
 
 
     showMessage(
@@ -1464,60 +1645,47 @@ const caseSettings = {
 
         price: 5000,
 
-        name:
-            "Обычный кейс",
+        name: "Обычный кейс",
 
         rewards: [
 
             {
 
-                name:
-                    "🎁 Обычный подарок",
+                name: "🎁 Обычный подарок",
 
-                chance:
-                    60,
+                chance: 60,
 
-                value:
-                    2500
+                value: 2500
 
             },
 
             {
 
-                name:
-                    "🪙 Монеты",
+                name: "🪙 Монеты",
 
-                chance:
-                    30,
+                chance: 30,
 
-                value:
-                    7500
+                value: 7500
 
             },
 
             {
 
-                name:
-                    "💎 Редкий подарок",
+                name: "💎 Редкий подарок",
 
-                chance:
-                    9,
+                chance: 9,
 
-                value:
-                    15000
+                value: 15000
 
             },
 
             {
 
-                name:
-                    "👑 Легендарный подарок",
+                name: "👑 Легендарный подарок",
 
-                chance:
-                    1,
+                chance: 1,
 
-                value:
-                    50000
+                value: 50000
 
             }
 
@@ -1528,63 +1696,49 @@ const caseSettings = {
 
     rare: {
 
-        price:
-            25000,
+        price: 25000,
 
-        name:
-            "Редкий кейс",
+        name: "Редкий кейс",
 
         rewards: [
 
             {
 
-                name:
-                    "🪙 Монеты",
+                name: "🪙 Монеты",
 
-                chance:
-                    50,
+                chance: 50,
 
-                value:
-                    15000
+                value: 15000
 
             },
 
             {
 
-                name:
-                    "💎 Редкий подарок",
+                name: "💎 Редкий подарок",
 
-                chance:
-                    35,
+                chance: 35,
 
-                value:
-                    35000
+                value: 35000
 
             },
 
             {
 
-                name:
-                    "👑 Легендарный подарок",
+                name: "👑 Легендарный подарок",
 
-                chance:
-                    13,
+                chance: 13,
 
-                value:
-                    100000
+                value: 100000
 
             },
 
             {
 
-                name:
-                    "🌌 Мифический подарок",
+                name: "🌌 Мифический подарок",
 
-                chance:
-                    2,
+                chance: 2,
 
-                value:
-                    250000
+                value: 250000
 
             }
 
@@ -1595,63 +1749,49 @@ const caseSettings = {
 
     legendary: {
 
-        price:
-            100000,
+        price: 100000,
 
-        name:
-            "Легендарный кейс",
+        name: "Легендарный кейс",
 
         rewards: [
 
             {
 
-                name:
-                    "🪙 Монеты",
+                name: "🪙 Монеты",
 
-                chance:
-                    45,
+                chance: 45,
 
-                value:
-                    50000
+                value: 50000
 
             },
 
             {
 
-                name:
-                    "💎 Редкий подарок",
+                name: "💎 Редкий подарок",
 
-                chance:
-                    30,
+                chance: 30,
 
-                value:
-                    100000
+                value: 100000
 
             },
 
             {
 
-                name:
-                    "👑 Легендарный подарок",
+                name: "👑 Легендарный подарок",
 
-                chance:
-                    20,
+                chance: 20,
 
-                value:
-                    250000
+                value: 250000
 
             },
 
             {
 
-                name:
-                    "🌌 Мифический подарок",
+                name: "🌌 Мифический подарок",
 
-                chance:
-                    5,
+                chance: 5,
 
-                value:
-                    1000000
+                value: 1000000
 
             }
 
@@ -1662,63 +1802,49 @@ const caseSettings = {
 
     mythical: {
 
-        price:
-            500000,
+        price: 500000,
 
-        name:
-            "Мифический кейс",
+        name: "Мифический кейс",
 
         rewards: [
 
             {
 
-                name:
-                    "🪙 Монеты",
+                name: "🪙 Монеты",
 
-                chance:
-                    50,
+                chance: 50,
 
-                value:
-                    250000
+                value: 250000
 
             },
 
             {
 
-                name:
-                    "💎 Редкий подарок",
+                name: "💎 Редкий подарок",
 
-                chance:
-                    30,
+                chance: 30,
 
-                value:
-                    500000
+                value: 500000
 
             },
 
             {
 
-                name:
-                    "👑 Легендарный подарок",
+                name: "👑 Легендарный подарок",
 
-                chance:
-                    15,
+                chance: 15,
 
-                value:
-                    1000000
+                value: 1000000
 
             },
 
             {
 
-                name:
-                    "🌌 МИФИЧЕСКИЙ ПРИЗ",
+                name: "🌌 МИФИЧЕСКИЙ ПРИЗ",
 
-                chance:
-                    5,
+                chance: 5,
 
-                value:
-                    5000000
+                value: 5000000
 
             }
 
@@ -1729,17 +1855,12 @@ const caseSettings = {
 };
 
 
-/* =========================================================
-   🎁 ОТКРЫТИЕ КЕЙСА
-   ========================================================= */
-
-function openCase(
-    type
-) {
+function openCase(type) {
 
     if (
-        game.level <
-        5
+
+        game.level < 5
+
     ) {
 
         showMessage(
@@ -1756,6 +1877,7 @@ function openCase(
 
 
     const settings =
+
         caseSettings[type];
 
 
@@ -1792,35 +1914,31 @@ function openCase(
         100;
 
 
-    let current =
-        0;
+    let current = 0;
 
-
-    let reward =
-        null;
+    let reward = null;
 
 
     for (
 
         const item of
+
         settings.rewards
 
     ) {
 
         current +=
+
             item.chance;
 
 
         if (
 
-            random <=
-            current
+            random <= current
 
         ) {
 
-            reward =
-                item;
-
+            reward = item;
 
             break;
 
@@ -1835,8 +1953,7 @@ function openCase(
 
             settings.rewards[
 
-                settings.rewards.length -
-                1
+                settings.rewards.length - 1
 
             ];
 
@@ -1845,8 +1962,7 @@ function openCase(
 
     if (
 
-        reward.value >
-        0
+        reward.value > 0
 
     ) {
 
@@ -1861,31 +1977,32 @@ function openCase(
 
     game.inventory.push({
 
-        name:
-            reward.name,
+        name: reward.name,
 
-        value:
-            reward.value,
+        value: reward.value,
 
         date:
 
             new Date()
 
                 .toLocaleDateString(
+
                     "ru-RU"
+
                 )
 
     });
 
 
-    addXP(
-        100
-    );
+    addXP(100);
 
 
     const result =
+
         document.getElementById(
+
             "caseResult"
+
         );
 
 
@@ -1921,7 +2038,6 @@ function openCase(
 
     saveGame();
 
-
     updateInventory();
 
 }
@@ -1934,26 +2050,35 @@ function openCase(
 function updateCasino() {
 
     const locked =
+
         document.getElementById(
+
             "casinoLocked"
+
         );
 
 
     const content =
+
         document.getElementById(
+
             "casinoContent"
+
         );
 
 
     if (
-        game.level >=
-        7
+
+        game.level >= 7
+
     ) {
 
         if (locked) {
 
             locked.classList.add(
+
                 "hidden"
+
             );
 
         }
@@ -1962,19 +2087,21 @@ function updateCasino() {
         if (content) {
 
             content.classList.remove(
+
                 "hidden"
+
             );
 
         }
 
-    }
-
-    else {
+    } else {
 
         if (locked) {
 
             locked.classList.remove(
+
                 "hidden"
+
             );
 
         }
@@ -1983,7 +2110,9 @@ function updateCasino() {
         if (content) {
 
             content.classList.add(
+
                 "hidden"
+
             );
 
         }
@@ -1994,32 +2123,41 @@ function updateCasino() {
 
 
 /* =========================================================
-   🎁 ПРОВЕРКА КЕЙСОВ
+   🎁 КЕЙСЫ
    ========================================================= */
 
 function updateCases() {
 
     const locked =
+
         document.getElementById(
+
             "casesLocked"
+
         );
 
 
     const content =
+
         document.getElementById(
+
             "casesContent"
+
         );
 
 
     if (
-        game.level >=
-        5
+
+        game.level >= 5
+
     ) {
 
         if (locked) {
 
             locked.classList.add(
+
                 "hidden"
+
             );
 
         }
@@ -2028,19 +2166,21 @@ function updateCases() {
         if (content) {
 
             content.classList.remove(
+
                 "hidden"
+
             );
 
         }
 
-    }
-
-    else {
+    } else {
 
         if (locked) {
 
             locked.classList.remove(
+
                 "hidden"
+
             );
 
         }
@@ -2049,7 +2189,9 @@ function updateCases() {
         if (content) {
 
             content.classList.add(
+
                 "hidden"
+
             );
 
         }
@@ -2066,6 +2208,7 @@ function updateCases() {
 function playSlot() {
 
     const bet =
+
         Number(
 
             document.getElementById(
@@ -2080,6 +2223,7 @@ function playSlot() {
     if (
 
         !bet ||
+
         bet <= 0
 
     ) {
@@ -2099,9 +2243,7 @@ function playSlot() {
 
     if (
 
-        !removeCoins(
-            bet
-        )
+        !removeCoins(bet)
 
     ) {
 
@@ -2137,8 +2279,7 @@ function playSlot() {
     ];
 
 
-    let spins =
-        0;
+    let spins = 0;
 
 
     const interval =
@@ -2147,55 +2288,48 @@ function playSlot() {
 
             () => {
 
-                document.getElementById(
-                    "slot1"
-                ).textContent =
+                [
 
-                    symbols[
+                    "slot1",
 
-                        Math.floor(
+                    "slot2",
 
-                            Math.random() *
-
-                            symbols.length
-
-                        )
-
-                    ];
-
-
-                document.getElementById(
-                    "slot2"
-                ).textContent =
-
-                    symbols[
-
-                        Math.floor(
-
-                            Math.random() *
-
-                            symbols.length
-
-                        )
-
-                    ];
-
-
-                document.getElementById(
                     "slot3"
-                ).textContent =
 
-                    symbols[
+                ].forEach(
 
-                        Math.floor(
+                    id => {
 
-                            Math.random() *
+                        const element =
 
-                            symbols.length
+                            document.getElementById(
 
-                        )
+                                id
 
-                    ];
+                            );
+
+
+                        if (element) {
+
+                            element.textContent =
+
+                                symbols[
+
+                                    Math.floor(
+
+                                        Math.random() *
+
+                                        symbols.length
+
+                                    )
+
+                                ];
+
+                        }
+
+                    }
+
+                );
 
 
                 spins++;
@@ -2203,21 +2337,20 @@ function playSlot() {
 
                 if (
 
-                    spins >=
-                    15
+                    spins >= 15
 
                 ) {
 
                     clearInterval(
+
                         interval
+
                     );
 
 
                     finishSlot(
 
-                        bet,
-
-                        symbols
+                        bet
 
                     );
 
@@ -2232,31 +2365,36 @@ function playSlot() {
 }
 
 
-function finishSlot(
-    bet,
-    symbols
-) {
+function finishSlot(bet) {
 
     const a =
+
         document.getElementById(
+
             "slot1"
-        ).textContent;
+
+        )?.textContent;
 
 
     const b =
+
         document.getElementById(
+
             "slot2"
-        ).textContent;
+
+        )?.textContent;
 
 
     const c =
+
         document.getElementById(
+
             "slot3"
-        ).textContent;
+
+        )?.textContent;
 
 
-    let multiplier =
-        0;
+    let multiplier = 0;
 
 
     if (
@@ -2268,42 +2406,36 @@ function finishSlot(
     ) {
 
         if (
+
             a === "7️⃣"
+
         ) {
 
-            multiplier =
-                20;
+            multiplier = 20;
 
-        }
+        } else if (
 
-        else if (
             a === "💎"
+
         ) {
 
-            multiplier =
-                15;
+            multiplier = 15;
 
-        }
+        } else if (
 
-        else if (
             a === "🍀"
+
         ) {
 
-            multiplier =
-                10;
+            multiplier = 10;
+
+        } else {
+
+            multiplier = 5;
 
         }
 
-        else {
-
-            multiplier =
-                5;
-
-        }
-
-    }
-
-    else if (
+    } else if (
 
         a === b ||
 
@@ -2313,32 +2445,27 @@ function finishSlot(
 
     ) {
 
-        multiplier =
-            2;
+        multiplier = 2;
 
     }
 
 
     if (
 
-        multiplier >
-        0
+        multiplier > 0
 
     ) {
 
         const win =
+
             bet *
+
             multiplier;
 
 
-        addCoins(
-            win
-        );
+        addCoins(win);
 
-
-        addXP(
-            50
-        );
+        addXP(50);
 
 
         showMessage(
@@ -2349,7 +2476,7 @@ function finishSlot(
 
             "! +" +
 
-            win +
+            formatNumber(win) +
 
             " 🪙",
 
@@ -2357,9 +2484,7 @@ function finishSlot(
 
         );
 
-    }
-
-    else {
+    } else {
 
         showMessage(
 
@@ -2381,17 +2506,19 @@ function finishSlot(
    🎡 РУЛЕТКА
    ========================================================= */
 
-function selectRouletteNumber(
-    number
-) {
+function selectRouletteNumber(number) {
 
     game.rouletteNumber =
-        number;
+
+        Number(number);
 
 
     const element =
+
         document.getElementById(
+
             "selectedRouletteNumber"
+
         );
 
 
@@ -2408,31 +2535,30 @@ function selectRouletteNumber(
 }
 
 
-function selectRouletteColor(
-    color
-) {
+function selectRouletteColor(color) {
 
     game.rouletteColor =
+
         color;
 
 
     const names = {
 
-        red:
-            "🔴 Красное",
+        red: "🔴 Красное",
 
-        black:
-            "⚫ Чёрное",
+        black: "⚫ Чёрное",
 
-        green:
-            "🟢 Зелёное"
+        green: "🟢 Зелёное"
 
     };
 
 
     const element =
+
         document.getElementById(
+
             "selectedRouletteColor"
+
         );
 
 
@@ -2442,20 +2568,25 @@ function selectRouletteColor(
 
             "Выбран цвет: " +
 
-            names[color];
+            (
+
+                names[color] ||
+
+                color
+
+            );
 
     }
 
 }
 
 
-function getRouletteColor(
-    number
-) {
+function getRouletteColor(number) {
 
     if (
-        number ===
-        0
+
+        number === 0
+
     ) {
 
         return "green";
@@ -2477,7 +2608,9 @@ function getRouletteColor(
 
 
     return redNumbers.includes(
+
         number
+
     )
 
         ? "red"
@@ -2490,6 +2623,7 @@ function getRouletteColor(
 function playRoulette() {
 
     const bet =
+
         Number(
 
             document.getElementById(
@@ -2524,8 +2658,7 @@ function playRoulette() {
 
     if (
 
-        game.rouletteNumber ===
-        null &&
+        game.rouletteNumber === null &&
 
         !game.rouletteColor
 
@@ -2546,9 +2679,7 @@ function playRoulette() {
 
     if (
 
-        !removeCoins(
-            bet
-        )
+        !removeCoins(bet)
 
     ) {
 
@@ -2597,51 +2728,43 @@ function playRoulette() {
     if (resultElement) {
 
         resultElement.textContent =
+
             result;
 
     }
 
 
-    let multiplier =
-        0;
+    let multiplier = 0;
 
 
     if (
 
-        game.rouletteNumber !==
-        null &&
+        game.rouletteNumber !== null &&
 
-        game.rouletteNumber ===
-        result
+        game.rouletteNumber === result
 
     ) {
 
-        multiplier =
-            36;
+        multiplier = 36;
 
     }
 
 
     if (
 
-        game.rouletteColor ===
-        color
+        game.rouletteColor === color
 
     ) {
 
         if (
 
-            color ===
-            "green"
+            color === "green"
 
         ) {
 
-            multiplier =
-                14;
+            multiplier = 14;
 
-        }
-
-        else {
+        } else {
 
             multiplier =
 
@@ -2660,8 +2783,7 @@ function playRoulette() {
 
     if (
 
-        multiplier >
-        0
+        multiplier > 0
 
     ) {
 
@@ -2672,14 +2794,9 @@ function playRoulette() {
             multiplier;
 
 
-        addCoins(
-            win
-        );
+        addCoins(win);
 
-
-        addXP(
-            50
-        );
+        addXP(50);
 
 
         showMessage(
@@ -2690,7 +2807,7 @@ function playRoulette() {
 
             "! Выигрыш +" +
 
-            win +
+            formatNumber(win) +
 
             " 🪙",
 
@@ -2698,9 +2815,7 @@ function playRoulette() {
 
         );
 
-    }
-
-    else {
+    } else {
 
         showMessage(
 
@@ -2726,17 +2841,19 @@ function playRoulette() {
    🎲 КУБИК
    ========================================================= */
 
-function selectDiceNumber(
-    number
-) {
+function selectDiceNumber(number) {
 
     game.diceNumber =
-        number;
+
+        Number(number);
 
 
     const element =
+
         document.getElementById(
+
             "selectedDiceNumber"
+
         );
 
 
@@ -2756,6 +2873,7 @@ function selectDiceNumber(
 function playDice() {
 
     const bet =
+
         Number(
 
             document.getElementById(
@@ -2789,7 +2907,9 @@ function playDice() {
 
 
     if (
+
         !game.diceNumber
+
     ) {
 
         showMessage(
@@ -2807,9 +2927,7 @@ function playDice() {
 
     if (
 
-        !removeCoins(
-            bet
-        )
+        !removeCoins(bet)
 
     ) {
 
@@ -2834,7 +2952,9 @@ function playDice() {
 
             6
 
-        ) + 1;
+        ) +
+
+        1;
 
 
     const dice =
@@ -2860,6 +2980,7 @@ function playDice() {
     if (
 
         result ===
+
         game.diceNumber
 
     ) {
@@ -2871,21 +2992,16 @@ function playDice() {
             5;
 
 
-        addCoins(
-            win
-        );
+        addCoins(win);
 
-
-        addXP(
-            40
-        );
+        addXP(40);
 
 
         showMessage(
 
             "🎉 Угадал! +" +
 
-            win +
+            formatNumber(win) +
 
             " 🪙",
 
@@ -2893,9 +3009,7 @@ function playDice() {
 
         );
 
-    }
-
-    else {
+    } else {
 
         showMessage(
 
@@ -2949,6 +3063,7 @@ const ladderMultipliers = [
 function startLadder() {
 
     const bet =
+
         Number(
 
             document.getElementById(
@@ -3002,9 +3117,7 @@ function startLadder() {
 
     if (
 
-        !removeCoins(
-            bet
-        )
+        !removeCoins(bet)
 
     ) {
 
@@ -3022,14 +3135,17 @@ function startLadder() {
 
 
     game.ladder.active =
+
         true;
 
 
     game.ladder.bet =
+
         bet;
 
 
     game.ladder.level =
+
         0;
 
 
@@ -3080,19 +3196,23 @@ function ladderNext() {
     if (
 
         Math.random() >
+
         chance
 
     ) {
 
         game.ladder.active =
+
             false;
 
 
         game.ladder.bet =
+
             0;
 
 
         game.ladder.level =
+
             0;
 
 
@@ -3120,13 +3240,11 @@ function ladderNext() {
 
     if (
 
-        game.ladder.level >=
-        10
+        game.ladder.level >= 10
 
     ) {
 
         ladderCashout();
-
 
         return;
 
@@ -3154,8 +3272,7 @@ function ladderCashout() {
 
         !game.ladder.active ||
 
-        game.ladder.level <=
-        0
+        game.ladder.level <= 0
 
     ) {
 
@@ -3192,9 +3309,7 @@ function ladderCashout() {
         );
 
 
-    addCoins(
-        win
-    );
+    addCoins(win);
 
 
     addXP(
@@ -3207,14 +3322,17 @@ function ladderCashout() {
 
 
     game.ladder.active =
+
         false;
 
 
     game.ladder.bet =
+
         0;
 
 
     game.ladder.level =
+
         0;
 
 
@@ -3225,7 +3343,7 @@ function ladderCashout() {
 
         "💰 Забрано " +
 
-        win +
+        formatNumber(win) +
 
         " 🪙",
 
@@ -3239,14 +3357,20 @@ function ladderCashout() {
 function updateLadder() {
 
     const level =
+
         document.getElementById(
+
             "ladderLevel"
+
         );
 
 
     const multiplier =
+
         document.getElementById(
+
             "ladderMultiplier"
+
         );
 
 
@@ -3273,9 +3397,7 @@ function updateLadder() {
 
                 game.ladder.level
 
-            ].toFixed(
-                2
-            );
+            ].toFixed(2);
 
     }
 
@@ -3289,6 +3411,7 @@ function updateLadder() {
 function startMines() {
 
     const bet =
+
         Number(
 
             document.getElementById(
@@ -3323,9 +3446,26 @@ function startMines() {
 
     if (
 
-        !removeCoins(
-            bet
-        )
+        game.mines.active
+
+    ) {
+
+        showMessage(
+
+            "Сначала закончите текущую игру",
+
+            "error"
+
+        );
+
+        return;
+
+    }
+
+
+    if (
+
+        !removeCoins(bet)
 
     ) {
 
@@ -3343,20 +3483,22 @@ function startMines() {
 
 
     const totalCells =
+
         16;
 
 
     const mineCount =
+
         4;
 
 
-    let mines =
-        [];
+    let mines = [];
 
 
     while (
 
         mines.length <
+
         mineCount
 
     ) {
@@ -3375,13 +3517,17 @@ function startMines() {
         if (
 
             !mines.includes(
+
                 position
+
             )
 
         ) {
 
             mines.push(
+
                 position
+
             );
 
         }
@@ -3391,23 +3537,17 @@ function startMines() {
 
     game.mines = {
 
-        active:
-            true,
+        active: true,
 
-        bet:
-            bet,
+        bet: bet,
 
-        multiplier:
-            1,
+        multiplier: 1,
 
-        safeCells:
-            [],
+        safeCells: [],
 
-        opened:
-            [],
+        opened: [],
 
-        mines:
-            mines
+        mines: mines
 
     };
 
@@ -3432,6 +3572,7 @@ function startMines() {
 function createMinesBoard() {
 
     const board =
+
         document.querySelector(
 
             ".mines-board"
@@ -3442,8 +3583,7 @@ function createMinesBoard() {
     if (!board) return;
 
 
-    board.innerHTML =
-        "";
+    board.innerHTML = "";
 
 
     for (
@@ -3466,23 +3606,26 @@ function createMinesBoard() {
 
 
         button.className =
+
             "mine-cell";
 
 
         button.textContent =
+
             "❓";
 
 
         button.onclick =
 
             () =>
-                openMineCell(
-                    i
-                );
+
+                openMineCell(i);
 
 
         board.appendChild(
+
             button
+
         );
 
     }
@@ -3490,9 +3633,7 @@ function createMinesBoard() {
 }
 
 
-function openMineCell(
-    index
-) {
+function openMineCell(index) {
 
     if (
 
@@ -3508,7 +3649,9 @@ function openMineCell(
     if (
 
         game.mines.opened.includes(
+
             index
+
         )
 
     ) {
@@ -3519,11 +3662,14 @@ function openMineCell(
 
 
     game.mines.opened.push(
+
         index
+
     );
 
 
     const cells =
+
         document.querySelectorAll(
 
             ".mine-cell"
@@ -3534,16 +3680,20 @@ function openMineCell(
     if (
 
         game.mines.mines.includes(
+
             index
+
         )
 
     ) {
 
         cells[index].textContent =
+
             "💣";
 
 
         game.mines.active =
+
             false;
 
 
@@ -3551,9 +3701,13 @@ function openMineCell(
 
             mine => {
 
-                cells[mine]
-                    .textContent =
-                    "💣";
+                if (cells[mine]) {
+
+                    cells[mine].textContent =
+
+                        "💣";
+
+                }
 
             }
 
@@ -3575,6 +3729,7 @@ function openMineCell(
 
 
     cells[index].textContent =
+
         "💎";
 
 
@@ -3588,9 +3743,7 @@ function openMineCell(
 
                 0.25
 
-            ).toFixed(
-                2
-            )
+            ).toFixed(2)
 
         );
 
@@ -3634,8 +3787,7 @@ function cashoutMines() {
 
     if (
 
-        game.mines.opened.length ===
-        0
+        game.mines.opened.length === 0
 
     ) {
 
@@ -3663,12 +3815,11 @@ function cashoutMines() {
         );
 
 
-    addCoins(
-        win
-    );
+    addCoins(win);
 
 
     game.mines.active =
+
         false;
 
 
@@ -3676,7 +3827,7 @@ function cashoutMines() {
 
         "💰 Ты забрал " +
 
-        win +
+        formatNumber(win) +
 
         " 🪙",
 
@@ -3690,6 +3841,7 @@ function cashoutMines() {
 function updateMines() {
 
     const element =
+
         document.getElementById(
 
             "minesMultiplier"
@@ -3703,10 +3855,7 @@ function updateMines() {
 
             "×" +
 
-            game.mines.multiplier
-                .toFixed(
-                    2
-                );
+            game.mines.multiplier.toFixed(2);
 
     }
 
@@ -3739,6 +3888,7 @@ function startCrash() {
 
 
     const bet =
+
         Number(
 
             document.getElementById(
@@ -3773,9 +3923,7 @@ function startCrash() {
 
     if (
 
-        !removeCoins(
-            bet
-        )
+        !removeCoins(bet)
 
     ) {
 
@@ -3793,18 +3941,22 @@ function startCrash() {
 
 
     game.crash.active =
+
         true;
 
 
     game.crash.bet =
+
         bet;
 
 
     game.crash.multiplier =
+
         1;
 
 
     game.crash.crashed =
+
         false;
 
 
@@ -3827,6 +3979,7 @@ function startCrash() {
             () => {
 
                 game.crash.multiplier +=
+
                     0.05;
 
 
@@ -3836,6 +3989,7 @@ function startCrash() {
                 if (
 
                     game.crash.multiplier >=
+
                     crashPoint
 
                 ) {
@@ -3863,10 +4017,12 @@ function crashGame() {
 
 
     game.crash.active =
+
         false;
 
 
     game.crash.crashed =
+
         true;
 
 
@@ -3874,10 +4030,7 @@ function crashGame() {
 
         "💥 CRASH! ×" +
 
-        game.crash.multiplier
-            .toFixed(
-                2
-            ),
+        game.crash.multiplier.toFixed(2),
 
         "error"
 
@@ -3928,17 +4081,14 @@ function cashoutCrash() {
         );
 
 
-    addCoins(
-        win
-    );
+    addCoins(win);
 
 
-    addXP(
-        50
-    );
+    addXP(50);
 
 
     game.crash.active =
+
         false;
 
 
@@ -3946,7 +4096,7 @@ function cashoutCrash() {
 
         "✈️ Забрано " +
 
-        win +
+        formatNumber(win) +
 
         " 🪙",
 
@@ -3963,6 +4113,7 @@ function cashoutCrash() {
 function updateCrash() {
 
     const multiplier =
+
         document.getElementById(
 
             "crashMultiplier"
@@ -3971,6 +4122,7 @@ function updateCrash() {
 
 
     const plane =
+
         document.getElementById(
 
             "crashPlane"
@@ -3985,9 +4137,8 @@ function updateCrash() {
             "×" +
 
             game.crash.multiplier
-                .toFixed(
-                    2
-                );
+
+                .toFixed(2);
 
     }
 
@@ -3999,6 +4150,7 @@ function updateCrash() {
             Math.min(
 
                 game.crash.multiplier *
+
                 5,
 
                 90
@@ -4024,6 +4176,7 @@ function updateCrash() {
 function playJackpot() {
 
     const bet =
+
         Number(
 
             document.getElementById(
@@ -4058,9 +4211,7 @@ function playJackpot() {
 
     if (
 
-        !removeCoins(
-            bet
-        )
+        !removeCoins(bet)
 
     ) {
 
@@ -4078,49 +4229,53 @@ function playJackpot() {
 
 
     const random =
+
         Math.random();
 
 
     let multiplier =
+
         0;
 
 
     if (
-        random <
-        0.01
+
+        random < 0.01
+
     ) {
 
         multiplier =
+
             100;
 
-    }
+    } else if (
 
-    else if (
-        random <
-        0.05
+        random < 0.05
+
     ) {
 
         multiplier =
+
             25;
 
-    }
+    } else if (
 
-    else if (
-        random <
-        0.15
+        random < 0.15
+
     ) {
 
         multiplier =
+
             10;
 
-    }
+    } else if (
 
-    else if (
-        random <
-        0.35
+        random < 0.35
+
     ) {
 
         multiplier =
+
             3;
 
     }
@@ -4128,8 +4283,7 @@ function playJackpot() {
 
     if (
 
-        multiplier >
-        0
+        multiplier > 0
 
     ) {
 
@@ -4140,14 +4294,10 @@ function playJackpot() {
             multiplier;
 
 
-        addCoins(
-            win
-        );
+        addCoins(win);
 
 
-        addXP(
-            100
-        );
+        addXP(100);
 
 
         showMessage(
@@ -4158,7 +4308,7 @@ function playJackpot() {
 
             " +" +
 
-            win +
+            formatNumber(win) +
 
             " 🪙",
 
@@ -4166,9 +4316,7 @@ function playJackpot() {
 
         );
 
-    }
-
-    else {
+    } else {
 
         showMessage(
 
@@ -4187,12 +4335,13 @@ function playJackpot() {
 
 
 /* =========================================================
-   🎒 КОЛЛЕКЦИЯ
+   🎒 ИНВЕНТАРЬ
    ========================================================= */
 
 function updateInventory() {
 
     const inventory =
+
         document.getElementById(
 
             "inventory"
@@ -4205,8 +4354,7 @@ function updateInventory() {
 
     if (
 
-        game.inventory.length ===
-        0
+        game.inventory.length === 0
 
     ) {
 
@@ -4225,29 +4373,35 @@ function updateInventory() {
 
             .map(
 
-                item => {
+                item => `
 
-                    return `
+                    <div class="inventory-item">
 
-                        <div class="inventory-item">
+                        <div>
 
-                            <div>
-                                ${item.name}
-                            </div>
-
-                            <small>
-                                ${item.date}
-                            </small>
-
-                            <strong>
-                                ${formatNumber(item.value)} 🪙
-                            </strong>
+                            ${item.name}
 
                         </div>
 
-                    `;
+                        <small>
 
-                }
+                            ${item.date}
+
+                        </small>
+
+                        <strong>
+
+                            ${formatNumber(
+
+                                item.value
+
+                            )} 🪙
+
+                        </strong>
+
+                    </div>
+
+                `
 
             )
 
@@ -4263,6 +4417,7 @@ function updateInventory() {
 function updateQuests() {
 
     const list =
+
         document.getElementById(
 
             "questsList"
@@ -4274,6 +4429,7 @@ function updateQuests() {
 
 
     const buttons =
+
         list.querySelectorAll(
 
             ".quest-card button"
@@ -4282,6 +4438,7 @@ function updateQuests() {
 
 
     const progress =
+
         list.querySelectorAll(
 
             ".quest-progress"
@@ -4293,8 +4450,7 @@ function updateQuests() {
 
         progress[0].textContent =
 
-            game.totalClicks >=
-            1
+            game.totalClicks >= 1
 
                 ? "1 / 1"
 
@@ -4342,6 +4498,7 @@ function updateQuests() {
         (button, index) => {
 
             const type =
+
                 types[index];
 
 
@@ -4352,10 +4509,12 @@ function updateQuests() {
             ) {
 
                 button.textContent =
+
                     "✅ Получено";
 
 
                 button.disabled =
+
                     true;
 
             }
@@ -4504,9 +4663,7 @@ function updateUI() {
 
                         game.clickPower
 
-                    ).toFixed(
-                        1
-                    );
+                    ).toFixed(1);
 
             }
 
@@ -4593,6 +4750,8 @@ function updateUI() {
 
     updateCrash();
 
+    updatePromoCodes();
+
 }
 
 
@@ -4610,9 +4769,7 @@ setInterval(
 
         ) {
 
-            addCoins(
-                100
-            );
+            addCoins(100);
 
 
             showMessage(
@@ -4633,7 +4790,7 @@ setInterval(
 
 
 /* =========================================================
-   ⏱️ ПРОВЕРКА БУСТЕРА
+   ⏱️ БУСТЕР
    ========================================================= */
 
 setInterval(
@@ -4651,15 +4808,16 @@ setInterval(
         ) {
 
             game.doubleClick =
+
                 false;
 
 
             game.doubleClickUntil =
+
                 0;
 
 
             saveGame();
-
 
             updateUI();
 
@@ -4686,9 +4844,9 @@ document.addEventListener(
 
         updateUI();
 
-        openPage(
-            "home"
-        );
+        updatePromoCodes();
+
+        openPage("home");
 
     }
 
