@@ -3787,3 +3787,26 @@ document.addEventListener(
     }
 
 );
+function activatePromo() {
+    const input = document.getElementById("promoInput");
+    const message = document.getElementById("promoMessage");
+
+    const code = input.value.trim().toUpperCase();
+
+    if (code === "LUCKY1000") {
+        game.balance += 1000;
+
+        message.textContent =
+            "🎉 Промокод активирован! +1000 🪙";
+
+        saveGame();
+        updateUI();
+
+        input.value = "";
+
+        return;
+    }
+
+    message.textContent =
+        "❌ Неверный промокод";
+}
